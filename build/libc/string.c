@@ -339,7 +339,7 @@ size_t strcspn(const char* s, const char* c) {
   }
 }
 
-#else
+#elif WANT_STRLEN
 
 size_t strlen(const char* s) {
   const char* a = s;

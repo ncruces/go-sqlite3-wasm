@@ -8,7 +8,7 @@ WASI_SDK="tools/wasi-sdk/bin/"
 
 trap 'rm -f sqlite3.tmp sqlite3.wasm' EXIT
 
-"$WASI_SDK/clang" --target=wasm32 -nostdlib -std=c23 -g0 -O2 \
+"$WASI_SDK/clang" --target=wasm32 -nostdlib -std=c23 -g0 -Oz \
 	-Wall -Wextra -Wno-unused-parameter -Wno-unused-function \
 	-o sqlite3.wasm main.c -Ilibc -I. \
 	-mexec-model=reactor \
@@ -29,7 +29,7 @@ trap 'rm -f sqlite3.tmp sqlite3.wasm' EXIT
 mv sqlite3.wasm sqlite3.tmp
 
 "$BINARYEN/wasm-opt" -g sqlite3.tmp -o sqlite3.wasm \
-	--gufa --generate-global-effects --low-memory-unused --converge -O3 \
+	--gufa --generate-global-effects --low-memory-unused --converge -Oz \
 	--enable-mutable-globals --enable-multivalue \
 	--enable-bulk-memory --enable-reference-types \
 	--enable-sign-ext --enable-nontrapping-float-to-int \

@@ -11,6 +11,8 @@ curl -#OL "https://github.com/ncruces/sqlite-createtable-parser/raw/master/LICEN
 curl -#OL "https://github.com/ncruces/sqlite-createtable-parser/raw/master/sql3parse_table.c"
 curl -#OL "https://github.com/ncruces/sqlite-createtable-parser/raw/master/sql3parse_table.h"
 
+mv LICENSE ../LICENSE
+
 trap 'rm -f sql3parse_table.*' EXIT
 
 "$WASI_SDK/clang" --target=wasm32 -nostdlib -std=c23 -g0 -Oz \
@@ -25,12 +27,13 @@ trap 'rm -f sql3parse_table.*' EXIT
 	-Wl,--no-entry \
 	-Wl,--stack-first \
 	-Wl,--import-undefined \
+	-Wl,--export=malloc \
 	-Wl,--export=sql3parse_table
 
 mv sql3parse_table sql3parse_table.tmp
 
 "$BINARYEN/wasm-opt" -g sql3parse_table.tmp -o sql3parse_table.wasm \
-	--gufa --generate-global-effects --converge -Oz \
+	--gufa --generate-global-effects --low-memory-unused --converge -Oz \
 	--enable-mutable-globals --enable-multivalue \
 	--enable-bulk-memory --enable-reference-types \
 	--enable-sign-ext --enable-nontrapping-float-to-int \

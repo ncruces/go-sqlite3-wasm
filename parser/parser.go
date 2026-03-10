@@ -22,7 +22,7 @@ func New() *Module {
 	copy(m.Memory[65950:], data1)
 	return m
 }
-func (m *Module) _malloc(v0 int32) int32 {
+func (m *Module) Xmalloc(v0 int32) int32 {
 	var v1, v2, v3 int32
 	_, _, _ = v1, v2, v3
 	{
@@ -133,159 +133,157 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 				_ = t21
 				{
 					{
-						t22 := m._malloc(int32(64))
+						t22 := m.Xmalloc(int32(64))
 						v8 = t22
 						if t22 != 0 {
 							t23 := v3
-							t24 := t23 + int32(28)
-							binary.LittleEndian.PutUint32(m.Memory[uint32(t24):], uint32(i32_const(0)))
+							binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t23))+28:], uint32(i32_const(0)))
+							t24 := v3
+							binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t24))+20:], uint64(i64_const(0)))
 							t25 := v3
-							binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t25))+20:], uint64(i64_const(0)))
-							t26 := v3
-							t27 := v1
-							binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t26))+16:], uint32(t27))
-							t28 := v3
-							t29 := v0
-							binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t28))+12:], uint32(t29))
-							t30 := v3
-							t31 := v8
-							binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t30))+36:], uint32(t31))
-							t32 := v3
-							t33 := v8
-							t34 := t33 + int32(16)
-							binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t32))+32:], uint32(t34))
+							t26 := v1
+							binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t25))+16:], uint32(t26))
+							t27 := v3
+							t28 := v0
+							binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t27))+12:], uint32(t28))
+							t29 := v3
+							t30 := v8
+							binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t29))+36:], uint32(t30))
+							t31 := v3
+							t32 := v8
+							t33 := t32 + int32(16)
+							binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t31))+32:], uint32(t33))
 							v0 = int32(3)
-							t35 := v3
-							t36 := t35 + int32(12)
-							v1 = t36
-							t37 := m._sql3lexer_next(t36)
-							v4 = t37
-							if t37 != int32(57) {
-								t39 := v4
-								if t39 != int32(6) {
+							t34 := v3
+							t35 := t34 + int32(12)
+							v1 = t35
+							t36 := m._sql3lexer_next(t35)
+							v4 = t36
+							if t36 != int32(57) {
+								t38 := v4
+								if t38 != int32(6) {
 									goto l3
 								}
-								t41 := v3
-								t42 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t41))+36:]))
-								v4 = t42
-								binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t42))+44:], uint32(int32(1)))
-								t43 := v1
-								t44 := m._sql3lexer_next(t43)
-								v5 = t44
-								var t46 int32
-								_ = t46
-								if t44 == int32(7) {
-									t47 := v4
-									m.Memory[int64(uint32(t47))+24] = byte(int32(1))
-									t48 := v1
-									t49 := m._sql3lexer_next(t48)
-									t46 = t49
+								t40 := v3
+								t41 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t40))+36:]))
+								v4 = t41
+								binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t41))+44:], uint32(int32(1)))
+								t42 := v1
+								t43 := m._sql3lexer_next(t42)
+								v5 = t43
+								var t45 int32
+								_ = t45
+								if t43 == int32(7) {
+									t46 := v4
+									m.Memory[int64(uint32(t46))+24] = byte(int32(1))
+									t47 := v1
+									t48 := m._sql3lexer_next(t47)
+									t45 = t48
 								} else {
-									t50 := v5
-									t46 = t50
+									t49 := v5
+									t45 = t49
 								}
-								if t46 != int32(8) {
+								if t45 != int32(8) {
 									goto l3
 								}
-								t52 := v3
-								t53 := t52 + int32(12)
-								v1 = t53
-								t54 := m._sql3lexer_peek(t53)
-								if t54 == int32(9) {
-									t56 := v1
-									t57 := m._sql3lexer_next(t56)
-									_ = t57
+								t51 := v3
+								t52 := t51 + int32(12)
+								v1 = t52
+								t53 := m._sql3lexer_peek(t52)
+								if t53 == int32(9) {
+									t55 := v1
+									t56 := m._sql3lexer_next(t55)
+									_ = t56
 									v0 = int32(2)
-									t58 := v1
-									t59 := m._sql3lexer_next(t58)
-									if t59 != int32(10) {
+									t57 := v1
+									t58 := m._sql3lexer_next(t57)
+									if t58 != int32(10) {
 										goto l3
 									}
-									t61 := v1
-									t62 := m._sql3lexer_next(t61)
-									if t62 != int32(11) {
+									t60 := v1
+									t61 := m._sql3lexer_next(t60)
+									if t61 != int32(11) {
 										goto l3
 									}
-									t64 := v4
-									m.Memory[int64(uint32(t64))+25] = byte(int32(1))
+									t63 := v4
+									m.Memory[int64(uint32(t63))+25] = byte(int32(1))
 								}
-								t65 := v3
-								t66 := t65 + int32(12)
-								v1 = t66
-								t67 := m._sql3parse_schema_identifier(t66)
-								v0 = t67
-								if t67 != 0 {
+								t64 := v3
+								t65 := t64 + int32(12)
+								v1 = t65
+								t66 := m._sql3parse_schema_identifier(t65)
+								v0 = t66
+								if t66 != 0 {
 									goto l3
 								}
 								v0 = int32(3)
 								{
-									t68 := v1
-									t69 := m._sql3lexer_next(t68)
-									t70 := t69 - int32(15)
-									switch t70 {
+									t67 := v1
+									t68 := m._sql3lexer_next(t67)
+									t69 := t68 - int32(15)
+									switch t69 {
 									case 0:
 										goto l3
 									case 4:
-										goto l5
+										goto l8
 									default:
 										goto l4
 									}
 								}
-							l5:
 							l8:
 								{
 									v0 = int32(2)
-									t71 := v3
-									t72 := t71 + int32(12)
-									v1 = t72
-									t73 := m._sql3lexer_peek(t72)
-									if t73 != int32(2) {
+									t70 := v3
+									t71 := t70 + int32(12)
+									v1 = t71
+									t72 := m._sql3lexer_peek(t71)
+									if t72 != int32(2) {
 										goto l3
 									}
-									t75 := v1
-									t76 := m._sql3parse_column(t75)
-									v5 = t76
-									if t76 == 0 {
+									t74 := v1
+									t75 := m._sql3parse_column(t74)
+									v5 = t75
+									if t75 == 0 {
 										goto l3
 									}
+									t77 := v4
 									t78 := v4
-									t79 := v4
-									t80 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t79))+28:]))
-									t81 := t80 + int32(1)
-									v0 = t81
-									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t78))+28:], uint32(t81))
-									t82 := v4
-									t83 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t82))+32:]))
-									t84 := v0
-									t85 := m._sql3_array_grow(t83, t84, int32(4))
-									v1 = t85
-									if t85 == 0 {
+									t79 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t78))+28:]))
+									t80 := t79 + int32(1)
+									v0 = t80
+									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t77))+28:], uint32(t80))
+									t81 := v4
+									t82 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t81))+32:]))
+									t83 := v0
+									t84 := m._sql3_array_grow(t82, t83, int32(4))
+									v1 = t84
+									if t84 == 0 {
+										t86 := v4
 										t87 := v4
-										t88 := v4
-										t89 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t88))+28:]))
-										t90 := t89 - int32(1)
-										binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t87))+28:], uint32(t90))
+										t88 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t87))+28:]))
+										t89 := t88 - int32(1)
+										binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t86))+28:], uint32(t89))
 										v0 = int32(1)
 										goto l3
 									}
-									t91 := v4
-									t92 := v1
-									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t91))+32:], uint32(t92))
+									t90 := v4
+									t91 := v1
+									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t90))+32:], uint32(t91))
 									v0 = int32(2)
-									t93 := v1
-									t94 := v4
-									t95 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t94))+28:]))
-									t96 := i32_shl(t95, int32(2))
-									t97 := t93 + t96
-									t98 := t97 - int32(4)
-									t99 := v5
-									binary.LittleEndian.PutUint32(m.Memory[uint32(t98):], uint32(t99))
+									t92 := v1
+									t93 := v4
+									t94 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t93))+28:]))
+									t95 := i32_shl(t94, int32(2))
+									t96 := t92 + t95
+									t97 := t96 - int32(4)
+									t98 := v5
+									binary.LittleEndian.PutUint32(m.Memory[uint32(t97):], uint32(t98))
 									{
-										t100 := v3
-										t101 := t100 + int32(12)
-										t102 := m._sql3lexer_peek(t101)
-										t103 := t102 - int32(18)
-										switch t103 {
+										t99 := v3
+										t100 := t99 + int32(12)
+										t101 := m._sql3lexer_peek(t100)
+										t102 := t101 - int32(18)
+										switch t102 {
 										case 0:
 											goto l6
 										case 2:
@@ -295,67 +293,67 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 										}
 									}
 								l6:
-									t104 := v3
-									t105 := t104 + int32(12)
-									v0 = t105
-									t106 := m._sql3lexer_next(t105)
-									_ = t106
-									t107 := v0
-									t108 := m._sql3lexer_peek(t107)
-									t109 := t108 - int32(21)
-									v0 = t109
-									var t110 int32
-									if uint32(t109) > uint32(int32(5)) {
-										t110 = 1
+									t103 := v3
+									t104 := t103 + int32(12)
+									v0 = t104
+									t105 := m._sql3lexer_next(t104)
+									_ = t105
+									t106 := v0
+									t107 := m._sql3lexer_peek(t106)
+									t108 := t107 - int32(21)
+									v0 = t108
+									var t109 int32
+									if uint32(t108) > uint32(int32(5)) {
+										t109 = 1
 									}
-									t111 := v0
-									t112 := i32_shr_u(int32(59), t111)
-									t113 := t112 & int32(1)
-									var t114 int32
-									if t113 == 0 {
-										t114 = 1
+									t110 := v0
+									t111 := i32_shr_u(int32(59), t110)
+									t112 := t111 & int32(1)
+									var t113 int32
+									if t112 == 0 {
+										t113 = 1
 									}
-									t115 := t110 | t114
-									if t115 != 0 {
+									t114 := t109 | t113
+									if t114 != 0 {
 										goto l8
 									}
 								}
-								t116 := v0
-								t117 := i32_shl(t116, int32(2))
-								t118 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t117))+65904:]))
-								t21 = t118
+								t115 := v0
+								t116 := i32_shl(t115, int32(2))
+								t117 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t116))+65904:]))
+								t21 = t117
 								goto l9
 							}
-							t119 := v3
-							t120 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t119))+36:]))
-							v1 = t120
-							t121 := v3
-							t122 := t121 + int32(12)
-							v4 = t122
-							t123 := m._sql3lexer_next(t122)
-							if t123 != int32(8) {
+							t118 := v3
+							t119 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t118))+36:]))
+							v1 = t119
+							t120 := v3
+							t121 := t120 + int32(12)
+							v4 = t121
+							t122 := m._sql3lexer_next(t121)
+							if t122 != int32(8) {
 								goto l3
 							}
-							t125 := v4
-							t126 := m._sql3parse_schema_identifier(t125)
-							v0 = t126
-							if t126 != 0 {
+							t124 := v4
+							t125 := m._sql3parse_schema_identifier(t124)
+							v0 = t125
+							if t125 != 0 {
 								goto l3
 							}
-							t127 := v4
-							t128 := m._sql3lexer_next(t127)
-							v5 = t128
-							t129 := v4
-							t130 := m._sql3lexer_peek(t129)
-							v4 = t130
+							t126 := v4
+							t127 := m._sql3lexer_next(t126)
+							v5 = t127
+							t128 := v4
+							t129 := m._sql3lexer_peek(t128)
+							v4 = t129
 							v0 = int32(3)
 							{
 								{
 									{
 										{
-											t131 := v5
-											t132 := t131 - int32(58)
-											switch t132 {
+											t130 := v5
+											t131 := t130 - int32(58)
+											switch t131 {
 											case 0:
 												goto l10
 											case 1:
@@ -370,9 +368,9 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 										{
 											{
 												{
-													t133 := v4
-													t134 := t133 - int32(61)
-													switch t134 {
+													t132 := v4
+													t133 := t132 - int32(61)
+													switch t133 {
 													case 0:
 														goto l13
 													case 1:
@@ -382,260 +380,260 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 													}
 												}
 											l14:
-												t135 := v3
-												t136 := t135 + int32(12)
-												v4 = t136
-												t137 := m._sql3lexer_next(t136)
-												_ = t137
+												t134 := v3
+												t135 := t134 + int32(12)
+												v4 = t135
+												t136 := m._sql3lexer_next(t135)
+												_ = t136
 												v0 = int32(2)
-												t138 := v1
-												binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t138))+44:], uint32(int32(2)))
-												t139 := v4
-												t140 := m._sql3lexer_next(t139)
-												if t140 != int32(2) {
+												t137 := v1
+												binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t137))+44:], uint32(int32(2)))
+												t138 := v4
+												t139 := m._sql3lexer_next(t138)
+												if t139 != int32(2) {
 													goto l3
 												}
-												t142 := v1
-												t143 := v3
-												t144 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t143))+24:]))
-												binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t142))+56:], uint64(t144))
+												t141 := v1
+												t142 := v3
+												t143 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t142))+24:]))
+												binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t141))+56:], uint64(t143))
 												goto l16
 											}
 										l13:
-											t145 := v3
-											t146 := t145 + int32(12)
-											t147 := m._sql3lexer_next(t146)
-											_ = t147
+											t144 := v3
+											t145 := t144 + int32(12)
+											t146 := m._sql3lexer_next(t145)
+											_ = t146
 										}
 									l15:
-										t148 := v1
-										binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t148))+44:], uint32(int32(3)))
+										t147 := v1
+										binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t147))+44:], uint32(int32(3)))
 										v0 = int32(2)
-										t149 := v3
-										t150 := t149 + int32(12)
-										v4 = t150
-										t151 := m._sql3lexer_next(t150)
-										if t151 != int32(2) {
+										t148 := v3
+										t149 := t148 + int32(12)
+										v4 = t149
+										t150 := m._sql3lexer_next(t149)
+										if t150 != int32(2) {
 											goto l3
 										}
-										t153 := v1
-										t154 := v3
-										t155 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t154))+24:]))
-										binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t153))+48:], uint64(t155))
-										t156 := v4
-										t157 := m._sql3lexer_next(t156)
-										if t157 != int32(62) {
+										t152 := v1
+										t153 := v3
+										t154 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t153))+24:]))
+										binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t152))+48:], uint64(t154))
+										t155 := v4
+										t156 := m._sql3lexer_next(t155)
+										if t156 != int32(62) {
 											goto l3
 										}
-										t159 := v4
-										t160 := m._sql3lexer_next(t159)
-										if t160 != int32(2) {
+										t158 := v4
+										t159 := m._sql3lexer_next(t158)
+										if t159 != int32(2) {
 											goto l3
 										}
-										t162 := v1
-										t163 := v3
-										t164 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t163))+24:]))
-										binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t162))+56:], uint64(t164))
+										t161 := v1
+										t162 := v3
+										t163 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t162))+24:]))
+										binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t161))+56:], uint64(t163))
 										goto l16
 									}
 								l11:
-									t165 := v4
-									if t165 == int32(61) {
-										t167 := v3
-										t168 := t167 + int32(12)
-										t169 := m._sql3lexer_next(t168)
-										_ = t169
+									t164 := v4
+									if t164 == int32(61) {
+										t166 := v3
+										t167 := t166 + int32(12)
+										t168 := m._sql3lexer_next(t167)
+										_ = t168
 									}
-									t170 := v1
-									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t170))+44:], uint32(int32(4)))
+									t169 := v1
+									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t169))+44:], uint32(int32(4)))
 									v0 = int32(2)
-									t171 := v3
-									t172 := t171 + int32(12)
-									v4 = t172
-									t173 := m._sql3lexer_peek(t172)
-									if t173 != int32(2) {
+									t170 := v3
+									t171 := t170 + int32(12)
+									v4 = t171
+									t172 := m._sql3lexer_peek(t171)
+									if t172 != int32(2) {
 										goto l3
 									}
-									t175 := v4
-									t176 := m._sql3parse_column(t175)
-									v5 = t176
-									if t176 == 0 {
+									t174 := v4
+									t175 := m._sql3parse_column(t174)
+									v5 = t175
+									if t175 == 0 {
 										goto l3
 									}
 									v0 = int32(1)
+									t177 := v1
 									t178 := v1
-									t179 := v1
-									t180 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t179))+28:]))
-									t181 := t180 + int32(1)
-									v4 = t181
-									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t178))+28:], uint32(t181))
-									t182 := v1
-									t183 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t182))+32:]))
-									t184 := v4
-									t185 := m._sql3_array_grow(t183, t184, int32(4))
-									v4 = t185
-									if t185 == 0 {
+									t179 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t178))+28:]))
+									t180 := t179 + int32(1)
+									v4 = t180
+									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t177))+28:], uint32(t180))
+									t181 := v1
+									t182 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t181))+32:]))
+									t183 := v4
+									t184 := m._sql3_array_grow(t182, t183, int32(4))
+									v4 = t184
+									if t184 == 0 {
+										t186 := v1
 										t187 := v1
-										t188 := v1
-										t189 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t188))+28:]))
-										t190 := t189 - int32(1)
-										binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t187))+28:], uint32(t190))
+										t188 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t187))+28:]))
+										t189 := t188 - int32(1)
+										binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t186))+28:], uint32(t189))
 										goto l3
 									}
-									t191 := v1
+									t190 := v1
+									t191 := v4
+									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t190))+32:], uint32(t191))
 									t192 := v4
-									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t191))+32:], uint32(t192))
-									t193 := v4
-									t194 := v1
-									t195 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t194))+28:]))
-									t196 := i32_shl(t195, int32(2))
-									t197 := t193 + t196
-									t198 := t197 - int32(4)
-									t199 := v5
-									binary.LittleEndian.PutUint32(m.Memory[uint32(t198):], uint32(t199))
+									t193 := v1
+									t194 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t193))+28:]))
+									t195 := i32_shl(t194, int32(2))
+									t196 := t192 + t195
+									t197 := t196 - int32(4)
+									t198 := v5
+									binary.LittleEndian.PutUint32(m.Memory[uint32(t197):], uint32(t198))
 									goto l16
 								}
 							l12:
-								t200 := v4
-								if t200 == int32(61) {
-									t202 := v3
-									t203 := t202 + int32(12)
-									t204 := m._sql3lexer_next(t203)
-									_ = t204
+								t199 := v4
+								if t199 == int32(61) {
+									t201 := v3
+									t202 := t201 + int32(12)
+									t203 := m._sql3lexer_next(t202)
+									_ = t203
 								}
-								t205 := v1
-								binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t205))+44:], uint32(int32(5)))
+								t204 := v1
+								binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t204))+44:], uint32(int32(5)))
 								v0 = int32(2)
-								t206 := v3
-								t207 := t206 + int32(12)
-								t208 := m._sql3lexer_next(t207)
-								if t208 != int32(2) {
+								t205 := v3
+								t206 := t205 + int32(12)
+								t207 := m._sql3lexer_next(t206)
+								if t207 != int32(2) {
 									goto l3
 								}
-								t210 := v1
-								t211 := v3
-								t212 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t211))+24:]))
-								binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t210))+48:], uint64(t212))
+								t209 := v1
+								t210 := v3
+								t211 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t210))+24:]))
+								binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t209))+48:], uint64(t211))
 							}
 						l16:
 							v0 = i32_const(0)
-							t213 := v3
-							t214 := t213 + int32(12)
-							v1 = t214
-							t215 := m._sql3lexer_peek(t214)
-							if t215 != int32(17) {
+							t212 := v3
+							t213 := t212 + int32(12)
+							v1 = t213
+							t214 := m._sql3lexer_peek(t213)
+							if t214 != int32(17) {
 								goto l3
 							}
-							t217 := v1
-							t218 := m._sql3lexer_next(t217)
-							_ = t218
+							t216 := v1
+							t217 := m._sql3lexer_next(t216)
+							_ = t217
 							goto l3
 						}
 						v0 = i32_const(0)
-						t219 := v2
-						if t219 == 0 {
+						t218 := v2
+						if t218 == 0 {
 							goto l0
 						}
-						t221 := v2
-						binary.LittleEndian.PutUint32(m.Memory[uint32(t221):], uint32(int32(1)))
+						t220 := v2
+						binary.LittleEndian.PutUint32(m.Memory[uint32(t220):], uint32(int32(1)))
 						goto l0
 					}
 				l7:
-					t222 := v3
-					t223 := t222 + int32(12)
-					t224 := m._sql3lexer_peek(t223)
-					t21 = t224
+					t221 := v3
+					t222 := t221 + int32(12)
+					t223 := m._sql3lexer_peek(t222)
+					t21 = t223
 				}
 			l9:
 				v0 = t21
-				t225 := v4
-				t226 := t225 + int32(16)
-				v9 = t226
-				t227 := v3
-				t228 := t227 + int32(56)
-				v10 = t228
+				t224 := v4
+				t225 := t224 + int32(16)
+				v9 = t225
+				t226 := v3
+				t227 := t226 + int32(56)
+				v10 = t227
 			l25:
 				{
 					{
-						t229 := v0
-						t230 := i32_shl(int32(1), t229)
-						t231 := t230 & i32_const(0x7600000)
-						var t232 int32
-						if t231 == 0 {
-							t232 = 1
+						t228 := v0
+						t229 := i32_shl(int32(1), t228)
+						t230 := t229 & i32_const(0x7600000)
+						var t231 int32
+						if t230 == 0 {
+							t231 = 1
 						}
-						t233 := v0
-						var t234 int32
-						if uint32(t233) > uint32(int32(26)) {
-							t234 = 1
+						t232 := v0
+						var t233 int32
+						if uint32(t232) > uint32(int32(26)) {
+							t233 = 1
 						}
-						t235 := t232 | t234
-						if t235 != 0 {
+						t234 := t231 | t233
+						if t234 != 0 {
 							goto l17
 						}
-						t236 := v3
-						t237 := v9
-						binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t236))+32:], uint32(t237))
-						t238 := v3
-						t239 := t238 + int32(12)
-						v5 = t239
-						t240 := m._sql3lexer_peek(t239)
-						v0 = t240
-						t241 := m._malloc(int32(48))
-						v1 = t241
-						if t241 == 0 {
+						t235 := v3
+						t236 := v9
+						binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t235))+32:], uint32(t236))
+						t237 := v3
+						t238 := t237 + int32(12)
+						v5 = t238
+						t239 := m._sql3lexer_peek(t238)
+						v0 = t239
+						t240 := m.Xmalloc(int32(48))
+						v1 = t240
+						if t240 == 0 {
 							goto l4
 						}
 						{
 							{
 								{
 									{
-										t243 := v0
-										var t245 int32
-										_ = t245
-										if t243 == int32(21) {
-											t246 := v5
-											t247 := m._sql3lexer_next(t246)
-											_ = t247
+										t242 := v0
+										var t244 int32
+										_ = t244
+										if t242 == int32(21) {
+											t245 := v5
+											t246 := m._sql3lexer_next(t245)
+											_ = t246
 											v0 = int32(2)
-											t248 := v5
-											t249 := m._sql3lexer_next(t248)
-											if t249 != int32(2) {
+											t247 := v5
+											t248 := m._sql3lexer_next(t247)
+											if t248 != int32(2) {
 												goto l3
 											}
-											t251 := v1
-											t252 := v3
-											t253 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t252))+24:]))
-											binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t251))+4:], uint64(t253))
-											t254 := v5
-											t255 := m._sql3lexer_peek(t254)
-											t256 := t255 - int32(22)
-											v5 = t256
-											var t257 int32
-											if uint32(t256) > uint32(int32(4)) {
-												t257 = 1
+											t250 := v1
+											t251 := v3
+											t252 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t251))+24:]))
+											binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t250))+4:], uint64(t252))
+											t253 := v5
+											t254 := m._sql3lexer_peek(t253)
+											t255 := t254 - int32(22)
+											v5 = t255
+											var t256 int32
+											if uint32(t255) > uint32(int32(4)) {
+												t256 = 1
 											}
-											t258 := v5
-											t259 := i32_shr_u(int32(29), t258)
-											t260 := t259 & int32(1)
-											var t261 int32
-											if t260 == 0 {
-												t261 = 1
+											t257 := v5
+											t258 := i32_shr_u(int32(29), t257)
+											t259 := t258 & int32(1)
+											var t260 int32
+											if t259 == 0 {
+												t260 = 1
 											}
-											t262 := t257 | t261
-											if t262 != 0 {
+											t261 := t256 | t260
+											if t261 != 0 {
 												goto l3
 											}
-											t263 := v5
-											t264 := i32_shl(t263, int32(2))
-											t265 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t264))+65928:]))
-											t245 = t265
+											t262 := v5
+											t263 := i32_shl(t262, int32(2))
+											t264 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t263))+65928:]))
+											t244 = t264
 										} else {
-											t266 := v0
-											t245 = t266
+											t265 := v0
+											t244 = t265
 										}
-										t267 := t245 - int32(22)
-										switch t267 {
+										t266 := t244 - int32(22)
+										switch t266 {
 										case 0, 2:
 											goto l18
 										case 3:
@@ -647,310 +645,307 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 										}
 									}
 								l20:
-									t268 := v3
-									t269 := t268 + int32(12)
-									v5 = t269
-									t270 := m._sql3lexer_next(t269)
-									_ = t270
+									t267 := v3
+									t268 := t267 + int32(12)
+									v5 = t268
+									t269 := m._sql3lexer_next(t268)
+									_ = t269
 									v0 = int32(2)
-									t271 := v1
-									binary.LittleEndian.PutUint32(m.Memory[uint32(t271):], uint32(int32(2)))
-									t272 := v3
-									t273 := t272 + int32(40)
-									t274 := v5
-									m._sql3parse_expression(t273, t274)
-									t275 := v1
-									t276 := v3
-									t277 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t276))+40:]))
-									v12 = t277
-									binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t275))+28:], uint64(t277))
-									t278 := v12
-									t279 := int32(t278)
-									if t279 != 0 {
+									t270 := v1
+									binary.LittleEndian.PutUint32(m.Memory[uint32(t270):], uint32(int32(2)))
+									t271 := v3
+									t272 := t271 + int32(40)
+									t273 := v5
+									m._sql3parse_expression(t272, t273)
+									t274 := v1
+									t275 := v3
+									t276 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t275))+40:]))
+									v12 = t276
+									binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t274))+28:], uint64(t276))
+									t277 := v12
+									t278 := int32(t277)
+									if t278 != 0 {
 										goto l19
 									}
 									goto l3
 								}
 							l18:
-								t280 := v1
-								t281 := v3
-								t282 := t281 + int32(12)
-								t283 := m._sql3lexer_next(t282)
-								var t284 int32
-								if t283 != int32(22) {
-									t284 = 1
+								t279 := v1
+								t280 := v3
+								t281 := t280 + int32(12)
+								t282 := m._sql3lexer_next(t281)
+								var t283 int32
+								if t282 != int32(22) {
+									t283 = 1
 								}
-								v7 = t284
-								var t285 int32
-								_ = t285
-								if t284 != 0 {
-									t285 = int32(1)
+								v7 = t283
+								var t284 int32
+								_ = t284
+								if t283 != 0 {
+									t284 = int32(1)
 								} else {
-									t286 := v3
-									t287 := t286 + int32(12)
-									t288 := m._sql3lexer_next(t287)
-									if t288 != int32(23) {
+									t285 := v3
+									t286 := t285 + int32(12)
+									t287 := m._sql3lexer_next(t286)
+									if t287 != int32(23) {
 										goto l4
 									}
-									t285 = i32_const(0)
+									t284 = i32_const(0)
 								}
-								binary.LittleEndian.PutUint32(m.Memory[uint32(t280):], uint32(t285))
-								t290 := v3
-								t291 := t290 + int32(12)
-								t292 := m._sql3lexer_next(t291)
-								if t292 != int32(19) {
+								binary.LittleEndian.PutUint32(m.Memory[uint32(t279):], uint32(t284))
+								t289 := v3
+								t290 := t289 + int32(12)
+								t291 := m._sql3lexer_next(t290)
+								if t291 != int32(19) {
 									goto l4
 								}
 							l22:
 								{
+									t293 := v3
+									binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t293))+48:], uint64(i64_const(0)))
 									t294 := v3
-									binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t294))+48:], uint64(i64_const(0)))
-									t295 := v3
-									t296 := t295 + int32(12)
-									v0 = t296
-									t297 := m._sql3lexer_next(t296)
-									if t297 != int32(2) {
+									t295 := t294 + int32(12)
+									v0 = t295
+									t296 := m._sql3lexer_next(t295)
+									if t296 != int32(2) {
 										goto l4
 									}
+									t298 := v3
 									t299 := v3
-									t300 := v3
-									t301 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t300))+24:]))
-									binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t299))+40:], uint64(t301))
-									t302 := v0
-									t303 := m._sql3lexer_peek(t302)
-									if t303 == int32(34) {
-										t305 := v0
-										t306 := m._sql3lexer_next(t305)
-										_ = t306
-										t307 := v0
-										t308 := m._sql3lexer_next(t307)
-										if t308 != int32(2) {
+									t300 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t299))+24:]))
+									binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t298))+40:], uint64(t300))
+									t301 := v0
+									t302 := m._sql3lexer_peek(t301)
+									if t302 == int32(34) {
+										t304 := v0
+										t305 := m._sql3lexer_next(t304)
+										_ = t305
+										t306 := v0
+										t307 := m._sql3lexer_next(t306)
+										if t307 != int32(2) {
 											goto l4
 										}
+										t309 := v3
 										t310 := v3
-										t311 := v3
-										t312 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t311))+24:]))
-										binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t310))+48:], uint64(t312))
+										t311 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t310))+24:]))
+										binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t309))+48:], uint64(t311))
 									}
-									t313 := v3
-									t314 := t313 + int32(12)
-									v0 = t314
-									t315 := v10
-									m._sql3parse_optionalorder(t314, t315)
+									t312 := v3
+									t313 := t312 + int32(12)
+									v0 = t313
+									t314 := v10
+									m._sql3parse_optionalorder(t313, t314)
+									t315 := v1
 									t316 := v1
-									t317 := v1
-									t318 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t317))+12:]))
-									v11 = t318
-									t319 := t318 + int32(1)
-									v5 = t319
-									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t316))+12:], uint32(t319))
-									t320 := v1
-									t321 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t320))+16:]))
-									t322 := v5
-									t323 := m._sql3_array_grow(t321, t322, int32(20))
-									v6 = t323
-									if t323 == 0 {
+									t317 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t316))+12:]))
+									v11 = t317
+									t318 := t317 + int32(1)
+									v5 = t318
+									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t315))+12:], uint32(t318))
+									t319 := v1
+									t320 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t319))+16:]))
+									t321 := v5
+									t322 := m._sql3_array_grow(t320, t321, int32(20))
+									v6 = t322
+									if t322 == 0 {
 										goto l4
 									}
-									t325 := v1
+									t324 := v1
+									t325 := v6
+									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t324))+16:], uint32(t325))
 									t326 := v6
-									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t325))+16:], uint32(t326))
-									t327 := v6
-									t328 := v5
-									t329 := t328 * int32(20)
-									t330 := t327 + t329
-									t331 := t330 - int32(20)
-									v5 = t331
-									t332 := v3
-									t333 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t332))+40:]))
-									binary.LittleEndian.PutUint64(m.Memory[uint32(t331):], uint64(t333))
-									t334 := v5
-									t335 := t334 + int32(16)
-									t336 := v10
-									t337 := int32(binary.LittleEndian.Uint32(m.Memory[uint32(t336):]))
-									binary.LittleEndian.PutUint32(m.Memory[uint32(t335):], uint32(t337))
-									t338 := v5
-									t339 := t338 + int32(8)
-									t340 := v3
-									t341 := t340 + int32(48)
-									t342 := int64(binary.LittleEndian.Uint64(m.Memory[uint32(t341):]))
-									binary.LittleEndian.PutUint64(m.Memory[uint32(t339):], uint64(t342))
-									t343 := v0
-									t344 := m._sql3lexer_peek(t343)
-									v5 = t344
-									var t346 int32
-									_ = t346
-									if t344 == int32(37) {
-										t347 := v0
-										t348 := m._sql3lexer_next(t347)
-										_ = t348
-										t349 := v7
-										if t349 != 0 {
+									t327 := v5
+									t328 := t327 * int32(20)
+									t329 := t326 + t328
+									t330 := t329 - int32(20)
+									v5 = t330
+									t331 := v3
+									t332 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t331))+40:]))
+									binary.LittleEndian.PutUint64(m.Memory[uint32(t330):], uint64(t332))
+									t333 := v5
+									t334 := v10
+									t335 := int32(binary.LittleEndian.Uint32(m.Memory[uint32(t334):]))
+									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t333))+16:], uint32(t335))
+									t336 := v5
+									t337 := v3
+									t338 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t337))+48:]))
+									binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t336))+8:], uint64(t338))
+									t339 := v0
+									t340 := m._sql3lexer_peek(t339)
+									v5 = t340
+									var t342 int32
+									_ = t342
+									if t340 == int32(37) {
+										t343 := v0
+										t344 := m._sql3lexer_next(t343)
+										_ = t344
+										t345 := v7
+										if t345 != 0 {
 											goto l4
 										}
-										t350 := v1
-										m.Memory[int64(uint32(t350))+24] = byte(int32(1))
-										t351 := v0
-										t352 := m._sql3lexer_peek(t351)
-										t346 = t352
+										t346 := v1
+										m.Memory[int64(uint32(t346))+24] = byte(int32(1))
+										t347 := v0
+										t348 := m._sql3lexer_peek(t347)
+										t342 = t348
 									} else {
-										t353 := v5
-										t346 = t353
+										t349 := v5
+										t342 = t349
 									}
-									if t346 == int32(18) {
-										t355 := v3
-										t356 := t355 + int32(12)
-										t357 := m._sql3lexer_next(t356)
-										_ = t357
+									if t342 == int32(18) {
+										t351 := v3
+										t352 := t351 + int32(12)
+										t353 := m._sql3lexer_next(t352)
+										_ = t353
 										goto l22
 									}
 								}
-								t358 := v11
-								if t358 != 0 {
-									t359 := v1
-									t360 := int32(m.Memory[int64(uint32(t359))+24])
-									t361 := t360 & int32(1)
-									if t361 != 0 {
+								t354 := v11
+								if t354 != 0 {
+									t355 := v1
+									t356 := int32(m.Memory[int64(uint32(t355))+24])
+									t357 := t356 & int32(1)
+									if t357 != 0 {
 										goto l4
 									}
 								}
-								t362 := v3
-								t363 := t362 + int32(12)
-								v5 = t363
-								t364 := m._sql3lexer_next(t363)
-								if t364 != int32(20) {
+								t358 := v3
+								t359 := t358 + int32(12)
+								v5 = t359
+								t360 := m._sql3lexer_next(t359)
+								if t360 != int32(20) {
 									goto l4
 								}
 								v0 = int32(2)
-								t366 := v5
-								t367 := v1
-								t368 := t367 + int32(20)
-								t369 := m._sql3parse_optionalconflitclause(t366, t368)
-								if t369 == 0 {
+								t362 := v5
+								t363 := v1
+								t364 := t363 + int32(20)
+								t365 := m._sql3parse_optionalconflitclause(t362, t364)
+								if t365 == 0 {
 									goto l19
 								}
 								goto l3
 							}
 						l21:
-							t371 := v3
-							t372 := t371 + int32(12)
-							v5 = t372
-							t373 := m._sql3lexer_next(t372)
-							_ = t373
-							t374 := v5
-							t375 := m._sql3lexer_next(t374)
-							if t375 != int32(23) {
+							t367 := v3
+							t368 := t367 + int32(12)
+							v5 = t368
+							t369 := m._sql3lexer_next(t368)
+							_ = t369
+							t370 := v5
+							t371 := m._sql3lexer_next(t370)
+							if t371 != int32(23) {
 								goto l4
 							}
 							v0 = int32(2)
-							t377 := v5
-							t378 := m._sql3lexer_next(t377)
-							if t378 != int32(19) {
+							t373 := v5
+							t374 := m._sql3lexer_next(t373)
+							if t374 != int32(19) {
 								goto l3
 							}
-							t380 := v1
-							binary.LittleEndian.PutUint32(m.Memory[uint32(t380):], uint32(int32(3)))
+							t376 := v1
+							binary.LittleEndian.PutUint32(m.Memory[uint32(t376):], uint32(int32(3)))
 						l23:
 							{
-								t381 := v3
-								t382 := t381 + int32(12)
-								v5 = t382
-								t383 := m._sql3lexer_next(t382)
-								if t383 != int32(2) {
+								t377 := v3
+								t378 := t377 + int32(12)
+								v5 = t378
+								t379 := m._sql3lexer_next(t378)
+								if t379 != int32(2) {
 									goto l3
 								}
+								t381 := v1
+								t382 := v1
+								t383 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t382))+36:]))
+								t384 := t383 + int32(1)
+								v6 = t384
+								binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t381))+36:], uint32(t384))
 								t385 := v1
-								t386 := v1
-								t387 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t386))+36:]))
-								t388 := t387 + int32(1)
-								v6 = t388
-								binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t385))+36:], uint32(t388))
-								t389 := v1
-								t390 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t389))+40:]))
-								t391 := v6
-								t392 := m._sql3_array_grow(t390, t391, int32(8))
-								v7 = t392
-								if t392 == 0 {
+								t386 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t385))+40:]))
+								t387 := v6
+								t388 := m._sql3_array_grow(t386, t387, int32(8))
+								v7 = t388
+								if t388 == 0 {
 									goto l3
 								}
-								t394 := v1
-								t395 := v7
-								binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t394))+40:], uint32(t395))
-								t396 := v7
-								t397 := v6
-								t398 := i32_shl(t397, int32(3))
-								t399 := t396 + t398
-								t400 := t399 - int32(8)
-								t401 := v3
-								t402 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t401))+24:]))
-								binary.LittleEndian.PutUint64(m.Memory[uint32(t400):], uint64(t402))
-								t403 := v5
-								t404 := m._sql3lexer_peek(t403)
-								t405 := v5
-								t406 := m._sql3lexer_next(t405)
-								v7 = t406
-								if t404 == int32(18) {
+								t390 := v1
+								t391 := v7
+								binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t390))+40:], uint32(t391))
+								t392 := v7
+								t393 := v6
+								t394 := i32_shl(t393, int32(3))
+								t395 := t392 + t394
+								t396 := t395 - int32(8)
+								t397 := v3
+								t398 := int64(binary.LittleEndian.Uint64(m.Memory[int64(uint32(t397))+24:]))
+								binary.LittleEndian.PutUint64(m.Memory[uint32(t396):], uint64(t398))
+								t399 := v5
+								t400 := m._sql3lexer_peek(t399)
+								t401 := v5
+								t402 := m._sql3lexer_next(t401)
+								v7 = t402
+								if t400 == int32(18) {
 									goto l23
 								}
 							}
-							t408 := v7
-							if t408 != int32(20) {
+							t404 := v7
+							if t404 != int32(20) {
 								goto l3
 							}
-							t410 := v5
-							t411 := m._sql3lexer_next(t410)
-							if t411 != int32(42) {
+							t406 := v5
+							t407 := m._sql3lexer_next(t406)
+							if t407 != int32(42) {
 								goto l3
 							}
+							t409 := v5
+							t410 := m._sql3parse_foreignkey_clause(t409)
+							v5 = t410
+							if t410 == 0 {
+								goto l3
+							}
+							t412 := v1
 							t413 := v5
-							t414 := m._sql3parse_foreignkey_clause(t413)
-							v5 = t414
-							if t414 == 0 {
-								goto l3
-							}
-							t416 := v1
-							t417 := v5
-							binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t416))+44:], uint32(t417))
+							binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t412))+44:], uint32(t413))
 						}
 					l19:
+						t414 := v4
+						t415 := v4
+						t416 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t415))+36:]))
+						t417 := t416 + int32(1)
+						v0 = t417
+						binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t414))+36:], uint32(t417))
 						t418 := v4
-						t419 := v4
-						t420 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t419))+36:]))
-						t421 := t420 + int32(1)
-						v0 = t421
-						binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t418))+36:], uint32(t421))
-						t422 := v4
-						t423 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t422))+40:]))
-						t424 := v0
-						t425 := m._sql3_array_grow(t423, t424, int32(4))
-						v5 = t425
-						if t425 == 0 {
-							t427 := v4
-							t428 := v4
-							t429 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t428))+36:]))
-							t430 := t429 - int32(1)
-							binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t427))+36:], uint32(t430))
+						t419 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t418))+40:]))
+						t420 := v0
+						t421 := m._sql3_array_grow(t419, t420, int32(4))
+						v5 = t421
+						if t421 == 0 {
+							t423 := v4
+							t424 := v4
+							t425 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t424))+36:]))
+							t426 := t425 - int32(1)
+							binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t423))+36:], uint32(t426))
 							v0 = int32(1)
 							goto l3
 						}
-						t431 := v4
-						t432 := v5
-						binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t431))+40:], uint32(t432))
+						t427 := v4
+						t428 := v5
+						binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t427))+40:], uint32(t428))
 						v0 = int32(2)
-						t433 := v5
-						t434 := v4
-						t435 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t434))+36:]))
-						t436 := i32_shl(t435, int32(2))
-						t437 := t433 + t436
-						t438 := t437 - int32(4)
-						t439 := v1
-						binary.LittleEndian.PutUint32(m.Memory[uint32(t438):], uint32(t439))
+						t429 := v5
+						t430 := v4
+						t431 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t430))+36:]))
+						t432 := i32_shl(t431, int32(2))
+						t433 := t429 + t432
+						t434 := t433 - int32(4)
+						t435 := v1
+						binary.LittleEndian.PutUint32(m.Memory[uint32(t434):], uint32(t435))
 						{
-							t440 := v3
-							t441 := t440 + int32(12)
-							t442 := m._sql3lexer_peek(t441)
-							t443 := t442 - int32(18)
-							switch t443 {
+							t436 := v3
+							t437 := t436 + int32(12)
+							t438 := m._sql3lexer_peek(t437)
+							t439 := t438 - int32(18)
+							switch t439 {
 							case 0:
 								goto l24
 							case 2:
@@ -960,39 +955,39 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 							}
 						}
 					l24:
-						t444 := v3
-						t445 := t444 + int32(12)
-						v0 = t445
-						t446 := m._sql3lexer_next(t445)
-						_ = t446
-						t447 := v0
-						t448 := m._sql3lexer_peek(t447)
-						v0 = t448
+						t440 := v3
+						t441 := t440 + int32(12)
+						v0 = t441
+						t442 := m._sql3lexer_next(t441)
+						_ = t442
+						t443 := v0
+						t444 := m._sql3lexer_peek(t443)
+						v0 = t444
 						goto l25
 					}
 				l17:
 				}
 				v0 = int32(2)
-				t449 := v3
-				t450 := t449 + int32(12)
-				t451 := m._sql3lexer_next(t450)
-				if t451 != int32(20) {
+				t445 := v3
+				t446 := t445 + int32(12)
+				t447 := m._sql3lexer_next(t446)
+				if t447 != int32(20) {
 					goto l3
 				}
-				t453 := v3
-				t454 := v9
-				binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t453))+32:], uint32(t454))
+				t449 := v3
+				t450 := v9
+				binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t449))+32:], uint32(t450))
 			l30:
 				{
 					{
 						{
 							{
 								{
-									t455 := v3
-									t456 := t455 + int32(12)
-									t457 := m._sql3lexer_peek(t456)
-									t458 := t457 - int32(12)
-									switch t458 {
+									t451 := v3
+									t452 := t451 + int32(12)
+									t453 := m._sql3lexer_peek(t452)
+									t454 := t453 - int32(12)
+									switch t454 {
 									case 0:
 										goto l26
 									case 2:
@@ -1002,82 +997,82 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 									}
 								}
 							l26:
-								t459 := v3
-								t460 := t459 + int32(12)
-								v1 = t460
-								t461 := m._sql3lexer_next(t460)
-								_ = t461
-								t462 := v1
-								t463 := m._sql3lexer_next(t462)
-								if t463 != int32(13) {
+								t455 := v3
+								t456 := t455 + int32(12)
+								v1 = t456
+								t457 := m._sql3lexer_next(t456)
+								_ = t457
+								t458 := v1
+								t459 := m._sql3lexer_next(t458)
+								if t459 != int32(13) {
 									goto l3
 								}
-								t465 := v3
-								t466 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t465))+36:]))
-								m.Memory[int64(uint32(t466))+26] = byte(int32(1))
+								t461 := v3
+								t462 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t461))+36:]))
+								m.Memory[int64(uint32(t462))+26] = byte(int32(1))
 								goto l29
 							}
 						l28:
-							t467 := v3
-							t468 := t467 + int32(12)
-							t469 := m._sql3lexer_next(t468)
-							_ = t469
-							t470 := v3
-							t471 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t470))+36:]))
-							m.Memory[int64(uint32(t471))+27] = byte(int32(1))
+							t463 := v3
+							t464 := t463 + int32(12)
+							t465 := m._sql3lexer_next(t464)
+							_ = t465
+							t466 := v3
+							t467 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t466))+36:]))
+							m.Memory[int64(uint32(t467))+27] = byte(int32(1))
 						}
 					l29:
-						t472 := v3
-						t473 := t472 + int32(12)
-						v1 = t473
-						t474 := m._sql3lexer_peek(t473)
-						if t474 != int32(18) {
+						t468 := v3
+						t469 := t468 + int32(12)
+						v1 = t469
+						t470 := m._sql3lexer_peek(t469)
+						if t470 != int32(18) {
 							goto l27
 						}
-						t476 := v1
-						t477 := m._sql3lexer_next(t476)
-						_ = t477
+						t472 := v1
+						t473 := m._sql3lexer_next(t472)
+						_ = t473
 						goto l30
 					}
 				l27:
 				}
 				v0 = i32_const(0)
-				t478 := v3
-				t479 := t478 + int32(12)
-				v1 = t479
-				t480 := m._sql3lexer_peek(t479)
-				if t480 != int32(17) {
+				t474 := v3
+				t475 := t474 + int32(12)
+				v1 = t475
+				t476 := m._sql3lexer_peek(t475)
+				if t476 != int32(17) {
 					goto l3
 				}
-				t482 := v1
-				t483 := m._sql3lexer_next(t482)
-				_ = t483
+				t478 := v1
+				t479 := m._sql3lexer_next(t478)
+				_ = t479
 				goto l3
 			}
 		l4:
 			v0 = int32(2)
 		}
 	l3:
-		t484 := v2
+		t480 := v2
+		if t480 != 0 {
+			t481 := v2
+			t482 := v0
+			binary.LittleEndian.PutUint32(m.Memory[uint32(t481):], uint32(t482))
+		}
+		t483 := v8
+		t484 := v0
+		t485 := t483
 		if t484 != 0 {
-			t485 := v2
-			t486 := v0
-			binary.LittleEndian.PutUint32(m.Memory[uint32(t485):], uint32(t486))
+			t485 = i32_const(0)
 		}
-		t487 := v8
-		t488 := v0
-		t489 := t487
-		if t488 != 0 {
-			t489 = i32_const(0)
-		}
-		v0 = t489
+		v0 = t485
 	}
 l0:
-	t490 := v3
-	t491 := t490 - i32_const(-64)
-	m.___stack_pointer = t491
-	t492 := v0
-	return t492
+	t486 := v3
+	t487 := t486 - i32_const(-64)
+	m.___stack_pointer = t487
+	t488 := v0
+	return t488
 }
 func (m *Module) _sql3lexer_next(v0 int32) int32 {
 	var v1, v2, v3, v4, v5, v6, v7, v8, v9 int32
@@ -1801,7 +1796,7 @@ func (m *Module) _sql3parse_schema_identifier(v0 int32) int32 {
 	_, _, _, _ = v1, v2, v3, v4
 	t0 := v0
 	t1 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t0))+24:]))
-	v4 = t1
+	v3 = t1
 	{
 		t2 := v0
 		t3 := m._sql3lexer_next(t2)
@@ -1829,10 +1824,10 @@ func (m *Module) _sql3parse_schema_identifier(v0 int32) int32 {
 				t15 := v0
 				t16 := m._sql3lexer_next(t15)
 				_ = t16
-				t17 := v4
+				t17 := v3
 				t18 := v0
 				t19 := t18 + int32(12)
-				v3 = t19
+				v4 = t19
 				t20 := v1
 				t22 := t19
 				if t20 != int32(2) {
@@ -1845,8 +1840,8 @@ func (m *Module) _sql3parse_schema_identifier(v0 int32) int32 {
 				if t25 != int32(2) {
 					goto l0
 				}
-				t27 := v3
-				t28 := int32(binary.LittleEndian.Uint32(m.Memory[uint32(t27):]))
+				t27 := v0
+				t28 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t27))+12:]))
 				if t28 != 0 {
 					goto l1
 				}
@@ -1859,11 +1854,11 @@ func (m *Module) _sql3parse_schema_identifier(v0 int32) int32 {
 			if t31 != int32(2) {
 				t33 = i32_const(65896)
 			}
-			v3 = t33
+			v4 = t33
 		}
 	l1:
-		t34 := v4
-		t35 := v3
+		t34 := v3
+		t35 := v4
 		t36 := int64(binary.LittleEndian.Uint64(m.Memory[uint32(t35):]))
 		binary.LittleEndian.PutUint64(m.Memory[uint32(t34):], uint64(t36))
 		v2 = i32_const(0)
@@ -1881,7 +1876,7 @@ func (m *Module) _sql3parse_column(v0 int32) int32 {
 	v5 = t1
 	m.___stack_pointer = t1
 	{
-		t2 := m._malloc(i32_const(148))
+		t2 := m.Xmalloc(i32_const(148))
 		v2 = t2
 		if t2 == 0 {
 			goto l0
@@ -2269,7 +2264,7 @@ func (m *Module) _sql3parse_column(v0 int32) int32 {
 												}
 												t204 := t201 | t203
 												if t204 != 0 {
-													goto l16
+													goto l22
 												}
 											}
 											t205 := v1
@@ -2457,7 +2452,6 @@ func (m *Module) _sql3parse_column(v0 int32) int32 {
 							binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t290))+108:], uint64(t292))
 							goto l15
 						}
-					l16:
 					l22:
 						{
 							{
@@ -2568,7 +2562,7 @@ func (m *Module) _sql3_array_grow(v0 int32, v1 int32, v2 int32) int32 {
 			t12 := v0
 			if t12 == 0 {
 				t14 := v1
-				t15 := m._malloc(t14)
+				t15 := m.Xmalloc(t14)
 				t4 = t15
 				goto l0
 			}
@@ -2581,7 +2575,7 @@ func (m *Module) _sql3_array_grow(v0 int32, v1 int32, v2 int32) int32 {
 			_ = t16
 			t19 := int32(binary.LittleEndian.Uint32(m.Memory[uint32(i32_const(65952)):]))
 			t20 := v1
-			t21 := m._malloc(t20)
+			t21 := m.Xmalloc(t20)
 			v2 = t21
 			t22 := v0
 			t23 := t19 - t22
@@ -2672,7 +2666,7 @@ func (m *Module) _sql3parse_expression(v0 int32, v1 int32) {
 												t27 := t26 - int32(34)
 												switch t27 {
 												case 0, 5:
-													goto l1
+													goto l8
 												case 1, 2, 3, 4, 8, 9, 10, 12:
 													goto l2
 												case 6:
@@ -2687,7 +2681,6 @@ func (m *Module) _sql3parse_expression(v0 int32, v1 int32) {
 													goto l7
 												}
 											}
-										l1:
 										l8:
 											{
 												t28 := v4
@@ -2980,7 +2973,7 @@ func (m *Module) _sql3parse_foreignkey_clause(v0 int32) int32 {
 	var v1, v2, v3 int32
 	_, _, _ = v1, v2, v3
 	{
-		t0 := m._malloc(int32(36))
+		t0 := m.Xmalloc(int32(36))
 		v1 = t0
 		if t0 == 0 {
 			goto l0
@@ -3448,22 +3441,21 @@ l1:
 						goto l3
 					}
 					t58 := v7
-					t59 := t58 + int32(1)
-					t60 := int32(m.Memory[uint32(t59)])
-					if t60 != int32(47) {
+					t59 := int32(m.Memory[int64(uint32(t58))+1])
+					if t59 != int32(47) {
 						goto l3
 					}
-					t62 := v0
-					t63 := v2
-					t64 := t63 + int32(2)
-					v4 = t64
-					binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t62))+8:], uint32(t64))
+					t61 := v0
+					t62 := v2
+					t63 := t62 + int32(2)
+					v4 = t63
+					binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t61))+8:], uint32(t63))
 					goto l4
 				}
 				{
-					t65 := v10
-					t66 := t65 - int32(10)
-					switch t66 {
+					t64 := v10
+					t65 := t64 - int32(10)
+					switch t65 {
 					case 0, 3:
 						goto l5
 					default:
@@ -3472,39 +3464,39 @@ l1:
 				}
 			l5:
 			}
-			t67 := v2
-			t68 := t67 + int32(1)
-			v4 = t68
+			t66 := v2
+			t67 := t66 + int32(1)
+			v4 = t67
 		}
 	l4:
 		v9 = i32_const(0)
 	}
 l2:
-	t69 := v0
-	t70 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t69))+20:]))
-	v0 = t70
-	if t70 != 0 {
-		t71 := v0
-		t72 := v1
-		t73 := v5
-		t74 := t72 + t73
-		binary.LittleEndian.PutUint32(m.Memory[uint32(t71):], uint32(t74))
-		t75 := v0
-		t76 := v8
-		t77 := i32_const(-1)
-		if t76 != 0 {
-			t77 = i32_const(-2)
+	t68 := v0
+	t69 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t68))+20:]))
+	v0 = t69
+	if t69 != 0 {
+		t70 := v0
+		t71 := v1
+		t72 := v5
+		t73 := t71 + t72
+		binary.LittleEndian.PutUint32(m.Memory[uint32(t70):], uint32(t73))
+		t74 := v0
+		t75 := v8
+		t76 := i32_const(-1)
+		if t75 != 0 {
+			t76 = i32_const(-2)
 		}
-		t78 := v9
-		t79 := t77
-		if t78 != 0 {
-			t79 = i32_const(0)
+		t77 := v9
+		t78 := t76
+		if t77 != 0 {
+			t78 = i32_const(0)
 		}
-		t80 := v1
-		t81 := t79 - t80
-		t82 := v4
-		t83 := t81 + t82
-		binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t75))+4:], uint32(t83))
+		t79 := v1
+		t80 := t78 - t79
+		t81 := v4
+		t82 := t80 + t81
+		binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t74))+4:], uint32(t82))
 	}
 }
 func (m *Module) _str_nocasencmp(v0 int32, v1 int32, v2 int32) int32 {

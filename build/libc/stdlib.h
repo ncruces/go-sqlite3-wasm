@@ -5,6 +5,8 @@
 __attribute__((noreturn)) void abort(void);
 __attribute__((noreturn)) void exit(int);
 
+int system(const char*);
+
 int abs(int n);
 int atoi(const char*);
 

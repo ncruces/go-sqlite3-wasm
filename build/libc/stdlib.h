@@ -3,6 +3,10 @@
 #include <stddef.h>
 
 __attribute__((noreturn)) void abort(void);
+__attribute__((noreturn)) void exit(int);
+
+int abs(int n);
+int atoi(const char*);
 
 void free(void*);
 __attribute__((malloc)) void* malloc(size_t);

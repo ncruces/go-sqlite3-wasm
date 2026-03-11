@@ -19,3 +19,4 @@ char* strchrnul(const char*, int);
 int strcmp(const char*, const char*);
 int strncmp(const char*, const char*, size_t);
 char* strstr(const char*, const char*);
+char* strcpy(char* restrict, const char* restrict);

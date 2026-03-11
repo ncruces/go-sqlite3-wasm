@@ -8,9 +8,8 @@ BINARYEN="$ROOT/tools/binaryen/bin/"
 WASI_SDK="$ROOT/tools/wasi-sdk/bin/"
 
 curl -#OL "https://github.com/sqlite/sqlite/raw/version-3.52.0/mptest/mptest.c"
-curl -#OL "https://github.com/Photosounder/MinQND-libc/raw/refs/heads/main/minqnd_sprintf.c"
 
-trap 'rm -f sqlite3.tmp mptest.c minqnd_sprintf.c unistd.h' EXIT
+trap 'rm -f sqlite3.tmp mptest.c unistd.h' EXIT
 touch unistd.h
 
 "$WASI_SDK/clang" --target=wasm32 -nostdlib -std=c23 -g0 -Oz \
@@ -28,7 +27,6 @@ touch unistd.h
 	-D_HAVE_SQLITE_CONFIG_H -DSQLITE_USE_URI \
 	-DSQLITE_EXPERIMENTAL_PRAGMA_20251114 \
 	-DSQLITE_CUSTOM_INCLUDE=sqlite_opt.h \
-	-Wl,--export=errno \
 	-Wl,--export=__main_argc_argv \
 	$(awk '{print "-Wl,--export="$0}' "$ROOT/exports.txt")
 

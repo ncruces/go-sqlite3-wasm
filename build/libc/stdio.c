@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int vfprintf(FILE* restrict stream, const char* restrict format, va_list args) {
+  char* str = sqlite3_vmprintf(format, args);
+  if (str == NULL) {
+    return -1;
+  }
+  size_t len = strlen(str);
+  int ret = fwrite(str, 1, len, stream);
+  sqlite3_free(str);
+  return ret;
+}
+
+int fprintf(FILE* restrict stream, const char* restrict format, ...) {
+  va_list args;
+  va_start(args, format);
+  int ret = vfprintf(stream, format, args);
+  va_end(args);
+  return ret;
+}
+
+int printf(const char* restrict format, ...) {
+  va_list args;
+  va_start(args, format);
+  int ret = vfprintf(stdout, format, args);
+  va_end(args);
+  return ret;
+}

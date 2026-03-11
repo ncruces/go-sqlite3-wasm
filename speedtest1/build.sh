@@ -8,9 +8,8 @@ BINARYEN="$ROOT/tools/binaryen/bin/"
 WASI_SDK="$ROOT/tools/wasi-sdk/bin/"
 
 curl -#OL "https://github.com/sqlite/sqlite/raw/version-3.52.0/test/speedtest1.c"
-curl -#OL "https://github.com/Photosounder/MinQND-libc/raw/refs/heads/main/minqnd_sprintf.c"
 
-trap 'rm -f sqlite3.tmp speedtest1.c minqnd_sprintf.c unistd.h' EXIT
+trap 'rm -f sqlite3.tmp speedtest1.c unistd.h' EXIT
 touch unistd.h
 
 "$WASI_SDK/clang" --target=wasm32 -nostdlib -std=c23 -g0 -Oz \

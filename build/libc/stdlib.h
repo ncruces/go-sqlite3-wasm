@@ -7,7 +7,7 @@ __attribute__((noreturn)) void exit(int);
 
 int system(const char*);
 
-int abs(int n);
+int abs(int);
 int atoi(const char*);
 
 void free(void*);

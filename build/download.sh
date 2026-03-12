@@ -34,4 +34,10 @@ curl -#OL "$GITHUB_TAG/ext/misc/spellfix.c"
 curl -#OL "$GITHUB_TAG/ext/misc/uint.c"
 cd ~-
 
+mkdir -p test/
+cd test/
+curl -#OL "$GITHUB_TAG/mptest/mptest.c"
+curl -#OL "$GITHUB_TAG/test/speedtest1.c"
+cd ~-
+
 cat *.patch | patch -p0 --no-backup-if-mismatch

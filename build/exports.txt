@@ -1,4 +1,6 @@
 aligned_alloc
+main_mptest
+main_speedtest1
 sqlite3_anycollseq_init
 sqlite3_autovacuum_pages_go
 sqlite3_backup_finish

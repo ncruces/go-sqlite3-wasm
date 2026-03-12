@@ -1,5 +1,11 @@
 #include <stdio.h>
 
+int putchar(int ch) { return fputc(ch, stdout); }
+
+void rewind(FILE* stream) { fseek(stream, 0, SEEK_SET); }
+
+#ifdef SQLITE3_H
+
 int vfprintf(FILE* restrict stream, const char* restrict format, va_list args) {
   char* str = sqlite3_vmprintf(format, args);
   if (str == NULL) {
@@ -26,3 +32,5 @@ int printf(const char* restrict format, ...) {
   va_end(args);
   return ret;
 }
+
+#endif

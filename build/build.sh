@@ -35,5 +35,5 @@ mv sqlite3.wasm sqlite3.tmp
 	--disable-simd --disable-extended-const \
 	--strip --strip-producers
 
-go run github.com/ncruces/wasm2go@latest -endian big < sqlite3.wasm > ../sqlite3.go
-go run github.com/ncruces/wasm2go@latest -endian little < sqlite3.wasm > ../sqlite3_little.go
+go tool wasm2go -endian big < sqlite3.wasm > ../sqlite3.go
+go tool wasm2go -endian little < sqlite3.wasm > ../sqlite3_little.go

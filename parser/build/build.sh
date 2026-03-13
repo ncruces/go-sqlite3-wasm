@@ -40,4 +40,4 @@ mv sql3parse_table sql3parse_table.tmp
 	--disable-simd --disable-extended-const \
 	--strip --strip-producers
 
-go run github.com/ncruces/wasm2go@latest < sql3parse_table.wasm > ../parser.go
+go tool wasm2go < sql3parse_table.wasm > ../parser.go

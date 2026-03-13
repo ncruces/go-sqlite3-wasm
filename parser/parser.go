@@ -129,8 +129,8 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 		}
 		{
 			{
-				var t21 int32
-				_ = t21
+				var p21 int32
+				_ = p21
 				{
 					{
 						t22 := m.Xmalloc(int32(64))
@@ -171,19 +171,19 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 								t42 := v1
 								t43 := m._sql3lexer_next(t42)
 								v5 = t43
-								var t45 int32
-								_ = t45
+								var p45 int32
+								_ = p45
 								if t43 == int32(7) {
 									t46 := v4
 									m.Memory[int64(uint32(t46))+24] = byte(int32(1))
 									t47 := v1
 									t48 := m._sql3lexer_next(t47)
-									t45 = t48
+									p45 = t48
 								} else {
 									t49 := v5
-									t45 = t49
+									p45 = t49
 								}
-								if t45 != int32(8) {
+								if p45 != int32(8) {
 									goto l3
 								}
 								t51 := v3
@@ -302,18 +302,18 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 									t107 := m._sql3lexer_peek(t106)
 									t108 := t107 - int32(21)
 									v0 = t108
-									var t109 int32
+									var p109 int32
 									if uint32(t108) > uint32(int32(5)) {
-										t109 = 1
+										p109 = 1
 									}
 									t110 := v0
 									t111 := i32_shr_u(int32(59), t110)
 									t112 := t111 & int32(1)
-									var t113 int32
+									var p113 int32
 									if t112 == 0 {
-										t113 = 1
+										p113 = 1
 									}
-									t114 := t109 | t113
+									t114 := p109 | p113
 									if t114 != 0 {
 										goto l8
 									}
@@ -321,7 +321,7 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 								t115 := v0
 								t116 := i32_shl(t115, int32(2))
 								t117 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t116))+65904:]))
-								t21 = t117
+								p21 = t117
 								goto l9
 							}
 							t118 := v3
@@ -542,10 +542,10 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 					t221 := v3
 					t222 := t221 + int32(12)
 					t223 := m._sql3lexer_peek(t222)
-					t21 = t223
+					p21 = t223
 				}
 			l9:
-				v0 = t21
+				v0 = p21
 				t224 := v4
 				t225 := t224 + int32(16)
 				v9 = t225
@@ -558,16 +558,16 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 						t228 := v0
 						t229 := i32_shl(int32(1), t228)
 						t230 := t229 & i32_const(0x7600000)
-						var t231 int32
+						var p231 int32
 						if t230 == 0 {
-							t231 = 1
+							p231 = 1
 						}
 						t232 := v0
-						var t233 int32
+						var p233 int32
 						if uint32(t232) > uint32(int32(26)) {
-							t233 = 1
+							p233 = 1
 						}
-						t234 := t231 | t233
+						t234 := p231 | p233
 						if t234 != 0 {
 							goto l17
 						}
@@ -589,8 +589,8 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 								{
 									{
 										t242 := v0
-										var t244 int32
-										_ = t244
+										var p244 int32
+										_ = p244
 										if t242 == int32(21) {
 											t245 := v5
 											t246 := m._sql3lexer_next(t245)
@@ -609,30 +609,30 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 											t254 := m._sql3lexer_peek(t253)
 											t255 := t254 - int32(22)
 											v5 = t255
-											var t256 int32
+											var p256 int32
 											if uint32(t255) > uint32(int32(4)) {
-												t256 = 1
+												p256 = 1
 											}
 											t257 := v5
 											t258 := i32_shr_u(int32(29), t257)
 											t259 := t258 & int32(1)
-											var t260 int32
+											var p260 int32
 											if t259 == 0 {
-												t260 = 1
+												p260 = 1
 											}
-											t261 := t256 | t260
+											t261 := p256 | p260
 											if t261 != 0 {
 												goto l3
 											}
 											t262 := v5
 											t263 := i32_shl(t262, int32(2))
 											t264 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t263))+65928:]))
-											t244 = t264
+											p244 = t264
 										} else {
 											t265 := v0
-											t244 = t265
+											p244 = t265
 										}
-										t266 := t244 - int32(22)
+										t266 := p244 - int32(22)
 										switch t266 {
 										case 0, 2:
 											goto l18
@@ -674,15 +674,15 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 								t280 := v3
 								t281 := t280 + int32(12)
 								t282 := m._sql3lexer_next(t281)
-								var t283 int32
+								var p283 int32
 								if t282 != int32(22) {
-									t283 = 1
+									p283 = 1
 								}
-								v7 = t283
-								var t284 int32
-								_ = t284
-								if t283 != 0 {
-									t284 = int32(1)
+								v7 = p283
+								var p284 int32
+								_ = p284
+								if p283 != 0 {
+									p284 = int32(1)
 								} else {
 									t285 := v3
 									t286 := t285 + int32(12)
@@ -690,9 +690,9 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 									if t287 != int32(23) {
 										goto l4
 									}
-									t284 = i32_const(0)
+									p284 = i32_const(0)
 								}
-								binary.LittleEndian.PutUint32(m.Memory[uint32(t279):], uint32(t284))
+								binary.LittleEndian.PutUint32(m.Memory[uint32(t279):], uint32(p284))
 								t289 := v3
 								t290 := t289 + int32(12)
 								t291 := m._sql3lexer_next(t290)
@@ -773,8 +773,8 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 									t339 := v0
 									t340 := m._sql3lexer_peek(t339)
 									v5 = t340
-									var t342 int32
-									_ = t342
+									var p342 int32
+									_ = p342
 									if t340 == int32(37) {
 										t343 := v0
 										t344 := m._sql3lexer_next(t343)
@@ -787,12 +787,12 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 										m.Memory[int64(uint32(t346))+24] = byte(int32(1))
 										t347 := v0
 										t348 := m._sql3lexer_peek(t347)
-										t342 = t348
+										p342 = t348
 									} else {
 										t349 := v5
-										t342 = t349
+										p342 = t349
 									}
-									if t342 == int32(18) {
+									if p342 == int32(18) {
 										t351 := v3
 										t352 := t351 + int32(12)
 										t353 := m._sql3lexer_next(t352)
@@ -1061,11 +1061,11 @@ func (m *Module) Xsql3parse_table(v0 int32, v1 int32, v2 int32) int32 {
 		}
 		t483 := v8
 		t484 := v0
-		t485 := t483
+		p485 := t483
 		if t484 != 0 {
-			t485 = i32_const(0)
+			p485 = i32_const(0)
 		}
-		v0 = t485
+		v0 = p485
 	}
 l0:
 	t486 := v3
@@ -1139,18 +1139,18 @@ func (m *Module) _sql3lexer_next(v0 int32) int32 {
 				t19 := v2
 				t20 := t19 - int32(40)
 				v3 = t20
-				var t21 int32
+				var p21 int32
 				if uint32(t20) > uint32(int32(19)) {
-					t21 = 1
+					p21 = 1
 				}
 				t22 := v3
 				t23 := i32_shl(int32(1), t22)
 				t24 := t23 & i32_const(524371)
-				var t25 int32
+				var p25 int32
 				if t24 == 0 {
-					t25 = 1
+					p25 = 1
 				}
-				t26 := t21 | t25
+				t26 := p21 | p25
 				if t26 == 0 {
 					t28 := v0
 					t29 := v4
@@ -1199,19 +1199,19 @@ func (m *Module) _sql3lexer_next(v0 int32) int32 {
 				{
 					{
 						t36 := v2
-						var t37 int32
+						var p37 int32
 						if t36 != int32(95) {
-							t37 = 1
+							p37 = 1
 						}
 						t38 := v2
 						t39 := t38 | int32(32)
 						t40 := t39 - int32(97)
 						t41 := t40 & i32_const(255)
-						var t42 int32
+						var p42 int32
 						if uint32(t41) > uint32(int32(25)) {
-							t42 = 1
+							p42 = 1
 						}
-						t43 := t37 & t42
+						t43 := p37 & p42
 						if t43 == 0 {
 							v3 = i32_const(0)
 						l11:
@@ -1231,31 +1231,31 @@ func (m *Module) _sql3lexer_next(v0 int32) int32 {
 								}
 								t54 := v2
 								t55 := t54 & i32_const(255)
-								var t56 int32
+								var p56 int32
 								if t55 == int32(95) {
-									t56 = 1
+									p56 = 1
 								}
 								t57 := v2
 								t58 := t57 - int32(48)
 								t59 := t58 & i32_const(255)
-								var t60 int32
+								var p60 int32
 								if uint32(t59) < uint32(int32(10)) {
-									t60 = 1
+									p60 = 1
 								}
-								t61 := t56 | t60
-								var t62 int32
+								t61 := p56 | p60
+								var p62 int32
 								if t61 == 0 {
-									t62 = 1
+									p62 = 1
 								}
 								t63 := v2
 								t64 := t63 | int32(32)
 								t65 := t64 - int32(97)
 								t66 := t65 & i32_const(255)
-								var t67 int32
+								var p67 int32
 								if uint32(t66) > uint32(int32(25)) {
-									t67 = 1
+									p67 = 1
 								}
-								t68 := t62 & t67
+								t68 := p62 & p67
 								if t68 == 0 {
 									t70 := v0
 									t71 := v5
@@ -1611,32 +1611,32 @@ func (m *Module) _sql3lexer_next(v0 int32) int32 {
 							goto l24
 						}
 						t230 := v2
-						var t231 int32
+						var p231 int32
 						if t230 == int32(34) {
-							t231 = 1
+							p231 = 1
 						}
 						t232 := v2
-						var t233 int32
+						var p233 int32
 						if t232 == int32(39) {
-							t233 = 1
+							p233 = 1
 						}
-						t234 := t231 | t233
+						t234 := p231 | p233
 						t235 := v2
-						var t236 int32
+						var p236 int32
 						if t235 == int32(96) {
-							t236 = 1
+							p236 = 1
 						}
-						t237 := t234 | t236
-						var t238 int32
+						t237 := t234 | p236
+						var p238 int32
 						if t237 == 0 {
-							t238 = 1
+							p238 = 1
 						}
 						t239 := v2
-						var t240 int32
+						var p240 int32
 						if t239 != int32(91) {
-							t240 = 1
+							p240 = 1
 						}
-						t241 := t238 & t240
+						t241 := p238 & p240
 						if t241 != 0 {
 							goto l7
 						}
@@ -1649,11 +1649,11 @@ func (m *Module) _sql3lexer_next(v0 int32) int32 {
 						t246 := int32(m.Memory[uint32(t245)])
 						v2 = t246
 						t247 := v2
-						t249 := t246
+						p249 := t246
 						if t247 == int32(91) {
-							t249 = int32(93)
+							p249 = int32(93)
 						}
-						v7 = t249
+						v7 = p249
 						t250 := v3
 						v2 = t250
 					l27:
@@ -1663,8 +1663,8 @@ func (m *Module) _sql3lexer_next(v0 int32) int32 {
 									t251 := v2
 									v1 = t251
 									t252 := v6
-									var t254 int32
-									_ = t254
+									var p254 int32
+									_ = p254
 									if uint32(t251) < uint32(t252) {
 										t255 := v0
 										t256 := v1
@@ -1679,14 +1679,14 @@ func (m *Module) _sql3lexer_next(v0 int32) int32 {
 										if t261 != 0 {
 											goto l25
 										}
-										t254 = i32_const(0)
+										p254 = i32_const(0)
 									} else {
 										t262 := v8
-										t254 = t262
+										p254 = t262
 									}
 									t263 := v7
 									t264 := t263 & i32_const(255)
-									if t254 != t264 {
+									if p254 != t264 {
 										goto l7
 									}
 									goto l26
@@ -1762,16 +1762,16 @@ func (m *Module) _sql3lexer_peek(v0 int32) int32 {
 	t4 := v0
 	t5 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t4))+20:]))
 	v1 = t5
-	var t6 int64
-	_ = t6
+	var p6 int64
+	_ = p6
 	if t5 != 0 {
 		t7 := v1
 		t8 := int64(binary.LittleEndian.Uint64(m.Memory[uint32(t7):]))
-		t6 = t8
+		p6 = t8
 	} else {
-		t6 = i64_const(0)
+		p6 = i64_const(0)
 	}
-	v5 = t6
+	v5 = p6
 	t9 := v0
 	t10 := m._sql3lexer_next(t9)
 	t11 := v0
@@ -1829,11 +1829,11 @@ func (m *Module) _sql3parse_schema_identifier(v0 int32) int32 {
 				t19 := t18 + int32(12)
 				v4 = t19
 				t20 := v1
-				t22 := t19
+				p22 := t19
 				if t20 != int32(2) {
-					t22 = i32_const(65896)
+					p22 = i32_const(65896)
 				}
-				t23 := int64(binary.LittleEndian.Uint64(m.Memory[uint32(t22):]))
+				t23 := int64(binary.LittleEndian.Uint64(m.Memory[uint32(p22):]))
 				binary.LittleEndian.PutUint64(m.Memory[int64(uint32(t17))+8:], uint64(t23))
 				t24 := v0
 				t25 := m._sql3lexer_next(t24)
@@ -1850,11 +1850,11 @@ func (m *Module) _sql3parse_schema_identifier(v0 int32) int32 {
 			t29 := v0
 			t30 := t29 + int32(12)
 			t31 := v1
-			t33 := t30
+			p33 := t30
 			if t31 != int32(2) {
-				t33 = i32_const(65896)
+				p33 = i32_const(65896)
 			}
-			v4 = t33
+			v4 = p33
 		}
 	l1:
 		t34 := v3
@@ -1950,11 +1950,11 @@ func (m *Module) _sql3parse_column(v0 int32) int32 {
 			v1 = t46
 			t47 := v1
 			t48 := v7
-			t50 := t46
+			p50 := t46
 			if uint32(t47) < uint32(t48) {
-				t50 = t44
+				p50 = t44
 			}
-			t51 := t43 - t50
+			t51 := t43 - p50
 			v11 = t51
 			v1 = i32_const(0)
 		l3:
@@ -2048,8 +2048,8 @@ func (m *Module) _sql3parse_column(v0 int32) int32 {
 				}
 				v3 = i32_const(0)
 				t104 := v2
-				var t105 int32
-				_ = t105
+				var p105 int32
+				_ = p105
 				{
 					{
 						{
@@ -2253,16 +2253,16 @@ func (m *Module) _sql3parse_column(v0 int32) int32 {
 												t199 := t197 + t198
 												t200 := int32(m.Memory[uint32(t199)])
 												v4 = t200
-												var t201 int32
+												var p201 int32
 												if t200 == int32(39) {
-													t201 = 1
+													p201 = 1
 												}
 												t202 := v4
-												var t203 int32
+												var p203 int32
 												if t202 == int32(34) {
-													t203 = 1
+													p203 = 1
 												}
-												t204 := t201 | t203
+												t204 := p201 | p203
 												if t204 != 0 {
 													goto l22
 												}
@@ -2271,11 +2271,11 @@ func (m *Module) _sql3parse_column(v0 int32) int32 {
 											t206 := v10
 											t207 := v1
 											t208 := v10
-											t210 := t206
+											p210 := t206
 											if uint32(t207) > uint32(t208) {
-												t210 = t205
+												p210 = t205
 											}
-											v3 = t210
+											v3 = p210
 										l20:
 											{
 												t211 := v1
@@ -2292,18 +2292,18 @@ func (m *Module) _sql3parse_column(v0 int32) int32 {
 												v4 = t218
 												t219 := t218 - int32(9)
 												v6 = t219
-												var t220 int32
+												var p220 int32
 												if uint32(t219) <= uint32(int32(23)) {
-													t220 = 1
+													p220 = 1
 												}
 												t221 := v6
 												t222 := i32_shl(int32(1), t221)
 												t223 := t222 & i32_const(8388639)
-												t224 := i32_const(0)
+												p224 := i32_const(0)
 												if t223 != 0 {
-													t224 = t220
+													p224 = p220
 												}
-												if t224 != 0 {
+												if p224 != 0 {
 													goto l17
 												}
 												{
@@ -2321,16 +2321,16 @@ func (m *Module) _sql3parse_column(v0 int32) int32 {
 													}
 												l19:
 													t227 := v4
-													var t228 int32
+													var p228 int32
 													if t227 == 0 {
-														t228 = 1
+														p228 = 1
 													}
 													t229 := v4
-													var t230 int32
+													var p230 int32
 													if t229 == int32(59) {
-														t230 = 1
+														p230 = 1
 													}
-													t231 := t228 | t230
+													t231 := p228 | p230
 													if t231 != 0 {
 														goto l17
 													}
@@ -2367,17 +2367,17 @@ func (m *Module) _sql3parse_column(v0 int32) int32 {
 										t246 := v0
 										t247 := m._sql3lexer_next(t246)
 										v1 = t247
-										var t249 int32
-										_ = t249
+										var p249 int32
+										_ = p249
 										if t247 == int32(39) {
 											t250 := v0
 											t251 := m._sql3lexer_next(t250)
-											t249 = t251
+											p249 = t251
 										} else {
 											t252 := v1
-											t249 = t252
+											p249 = t252
 										}
-										if t249 != int32(15) {
+										if p249 != int32(15) {
 											goto l0
 										}
 									}
@@ -2415,11 +2415,11 @@ func (m *Module) _sql3parse_column(v0 int32) int32 {
 									_ = t273
 									t274 := v2
 									t275 := v1
-									t277 := int32(2)
+									p277 := int32(2)
 									if t275 == int32(40) {
-										t277 = int32(1)
+										p277 = int32(1)
 									}
-									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t274))+144:], uint32(t277))
+									binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t274))+144:], uint32(p277))
 									goto l15
 								}
 							l10:
@@ -2503,7 +2503,7 @@ func (m *Module) _sql3parse_column(v0 int32) int32 {
 						}
 						v3 = i32_const(0)
 						t319 := v4
-						t105 = i32_const(0)
+						p105 = i32_const(0)
 						if t319 != 0 {
 							goto l23
 						}
@@ -2517,10 +2517,10 @@ func (m *Module) _sql3parse_column(v0 int32) int32 {
 					t323 := v1
 					t324 := v9
 					t325 := t323 - t324
-					t105 = t325
+					p105 = t325
 				}
 			l23:
-				binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t104))+96:], uint32(t105))
+				binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t104))+96:], uint32(p105))
 				t326 := v2
 				t327 := v3
 				binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t326))+92:], uint32(t327))
@@ -2543,32 +2543,32 @@ func (m *Module) _sql3_array_grow(v0 int32, v1 int32, v2 int32) int32 {
 	_ = v3
 	t0 := v1
 	t1 := int32(bits.OnesCount32(uint32(t0)))
-	var t3 int32
-	_ = t3
+	var p3 int32
+	_ = p3
 	if t1 == int32(1) {
-		var t4 int32
-		_ = t4
+		var p4 int32
+		_ = p4
 		{
 			t5 := v1
 			t6 := i32_shl(t5, int32(1))
 			t7 := v1
-			t9 := t6
+			p9 := t6
 			if t7 == int32(1) {
-				t9 = int32(1)
+				p9 = int32(1)
 			}
 			t10 := v2
-			t11 := t9 * t10
+			t11 := p9 * t10
 			v1 = t11
 			t12 := v0
 			if t12 == 0 {
 				t14 := v1
 				t15 := m.Xmalloc(t14)
-				t4 = t15
+				p4 = t15
 				goto l0
 			}
 			t16 := v0
 			t17 := v1
-			t4 = t16
+			p4 = t16
 			if uint32(t17) < uint32(int32(17)) {
 				goto l0
 			}
@@ -2583,27 +2583,27 @@ func (m *Module) _sql3_array_grow(v0 int32, v1 int32, v2 int32) int32 {
 			t24 := v1
 			t25 := v1
 			t26 := v3
-			t28 := t24
+			p28 := t24
 			if uint32(t25) > uint32(t26) {
-				t28 = t23
+				p28 = t23
 			}
-			v1 = t28
-			if t28 != 0 {
+			v1 = p28
+			if p28 != 0 {
 				t29 := v2
 				t30 := v0
 				t31 := v1
 				memory_copy(m.Memory, t29, t30, t31)
 			}
 			t32 := v2
-			t4 = t32
+			p4 = t32
 		}
 	l0:
-		t3 = t4
+		p3 = p4
 	} else {
 		t33 := v0
-		t3 = t33
+		p3 = t33
 	}
-	return t3
+	return p3
 }
 func (m *Module) _sql3parse_expression(v0 int32, v1 int32) {
 	var v2, v3, v4, v5, v6, v7, v8, v9, v10, v11 int32
@@ -2923,11 +2923,11 @@ func (m *Module) _sql3parse_optionalorder(v0 int32, v1 int32) {
 		_ = t7
 		t8 := v1
 		t9 := v2
-		t11 := int32(2)
+		p11 := int32(2)
 		if t9 == int32(35) {
-			t11 = int32(1)
+			p11 = int32(1)
 		}
-		binary.LittleEndian.PutUint32(m.Memory[uint32(t8):], uint32(t11))
+		binary.LittleEndian.PutUint32(m.Memory[uint32(t8):], uint32(p11))
 	}
 }
 func (m *Module) _sql3parse_optionalconflitclause(v0 int32, v1 int32) int32 {
@@ -3046,23 +3046,23 @@ func (m *Module) _sql3parse_foreignkey_clause(v0 int32) int32 {
 			v2 = t42
 			t43 := t42 - int32(27)
 			v3 = t43
-			var t44 int32
+			var p44 int32
 			if uint32(t43) <= uint32(int32(26)) {
-				t44 = 1
+				p44 = 1
 			}
 			t45 := v3
 			t46 := i32_shl(int32(1), t45)
 			t47 := t46 & i32_const(0x6000001)
-			t48 := i32_const(0)
+			p48 := i32_const(0)
 			if t47 != 0 {
-				t48 = t44
+				p48 = p44
 			}
 			t49 := v2
-			var t50 int32
+			var p50 int32
 			if t49 == int32(10) {
-				t50 = 1
+				p50 = 1
 			}
-			t51 := t48 | t50
+			t51 := p48 | p50
 			if t51 == 0 {
 				t53 := v1
 				return t53
@@ -3070,15 +3070,15 @@ func (m *Module) _sql3parse_foreignkey_clause(v0 int32) int32 {
 			t54 := v0
 			t55 := m._sql3lexer_next(t54)
 			_ = t55
-			var t56 int32
-			_ = t56
+			var p56 int32
+			_ = p56
 			{
 				t57 := v2
 				if t57 != int32(10) {
 					t59 := v2
 					if t59 != int32(27) {
 						t61 := v2
-						t56 = i32_const(0)
+						p56 = i32_const(0)
 						if t61 != int32(52) {
 							goto l2
 						}
@@ -3192,21 +3192,21 @@ func (m *Module) _sql3parse_foreignkey_clause(v0 int32) int32 {
 				t105 := v0
 				t106 := m._sql3lexer_next(t105)
 				v2 = t106
-				t56 = int32(1)
+				p56 = int32(1)
 			}
 		l2:
-			v3 = t56
+			v3 = p56
 			t107 := v2
 			if t107 != int32(53) {
 				goto l0
 			}
 			t109 := v1
 			t110 := v3
-			t111 := int32(1)
+			p111 := int32(1)
 			if t110 != 0 {
-				t111 = int32(4)
+				p111 = int32(4)
 			}
-			binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t109))+32:], uint32(t111))
+			binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t109))+32:], uint32(p111))
 			t112 := v0
 			t113 := m._sql3lexer_peek(t112)
 			if t113 != int32(54) {
@@ -3232,21 +3232,21 @@ func (m *Module) _sql3parse_foreignkey_clause(v0 int32) int32 {
 			l8:
 				t120 := v1
 				t121 := v3
-				t122 := int32(2)
+				p122 := int32(2)
 				if t121 != 0 {
-					t122 = int32(5)
+					p122 = int32(5)
 				}
-				binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t120))+32:], uint32(t122))
+				binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t120))+32:], uint32(p122))
 				goto l3
 			}
 		l9:
 			t123 := v1
 			t124 := v3
-			t125 := int32(3)
+			p125 := int32(3)
 			if t124 != 0 {
-				t125 = int32(6)
+				p125 = int32(6)
 			}
-			binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t123))+32:], uint32(t125))
+			binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t123))+32:], uint32(p125))
 			goto l3
 		}
 	}
@@ -3325,8 +3325,8 @@ func (m *Module) _sql3lexer_comment(v0 int32) {
 	t0 := v0
 	t1 := int32(binary.LittleEndian.Uint32(m.Memory[uint32(t0):]))
 	v5 = t1
-	var t2 int32
-	_ = t2
+	var p2 int32
+	_ = p2
 	{
 		t3 := v0
 		t4 := int32(binary.LittleEndian.Uint32(m.Memory[int64(uint32(t3))+8:]))
@@ -3337,7 +3337,7 @@ func (m *Module) _sql3lexer_comment(v0 int32) {
 		if uint32(t4) >= uint32(t6) {
 			t8 := v1
 			v2 = t8
-			t2 = i32_const(0)
+			p2 = i32_const(0)
 			goto l0
 		}
 		t9 := v0
@@ -3349,14 +3349,14 @@ func (m *Module) _sql3lexer_comment(v0 int32) {
 		t13 := v5
 		t14 := t12 + t13
 		t15 := int32(m.Memory[uint32(t14)])
-		var t16 int32
+		var p16 int32
 		if t15 == int32(47) {
-			t16 = 1
+			p16 = 1
 		}
-		t2 = t16
+		p2 = p16
 	}
 l0:
-	v7 = t2
+	v7 = p2
 	{
 		t17 := v2
 		t18 := v6
@@ -3374,22 +3374,22 @@ l0:
 		t25 := v5
 		t26 := t24 + t25
 		t27 := int32(m.Memory[uint32(t26)])
-		var t28 int32
+		var p28 int32
 		if t27 == int32(42) {
-			t28 = 1
+			p28 = 1
 		}
-		v3 = t28
+		v3 = p28
 	}
 l1:
 	t29 := v1
 	t30 := v6
 	t31 := v1
 	t32 := v6
-	t34 := t30
+	p34 := t30
 	if uint32(t31) > uint32(t32) {
-		t34 = t29
+		p34 = t29
 	}
-	v4 = t34
+	v4 = p34
 	t35 := v3
 	t36 := v7
 	t37 := t35 & t36
@@ -3426,17 +3426,17 @@ l1:
 				t51 := v8
 				if t51 != 0 {
 					t52 := v10
-					var t53 int32
+					var p53 int32
 					if t52 != int32(42) {
-						t53 = 1
+						p53 = 1
 					}
 					t54 := v3
 					t55 := v6
-					var t56 int32
+					var p56 int32
 					if uint32(t54) >= uint32(t55) {
-						t56 = 1
+						p56 = 1
 					}
-					t57 := t53 | t56
+					t57 := p53 | p56
 					if t57 != 0 {
 						goto l3
 					}
@@ -3483,17 +3483,17 @@ l2:
 		binary.LittleEndian.PutUint32(m.Memory[uint32(t70):], uint32(t73))
 		t74 := v0
 		t75 := v8
-		t76 := i32_const(-1)
+		p76 := i32_const(-1)
 		if t75 != 0 {
-			t76 = i32_const(-2)
+			p76 = i32_const(-2)
 		}
 		t77 := v9
-		t78 := t76
+		p78 := p76
 		if t77 != 0 {
-			t78 = i32_const(0)
+			p78 = i32_const(0)
 		}
 		t79 := v1
-		t80 := t78 - t79
+		t80 := p78 - t79
 		t81 := v4
 		t82 := t80 + t81
 		binary.LittleEndian.PutUint32(m.Memory[int64(uint32(t74))+4:], uint32(t82))
@@ -3517,11 +3517,11 @@ func (m *Module) _str_nocasencmp(v0 int32, v1 int32, v2 int32) int32 {
 			t6 := v4
 			t7 := t6 - int32(65)
 			t8 := t7 & i32_const(255)
-			t10 := t5
+			p10 := t5
 			if uint32(t8) < uint32(int32(26)) {
-				t10 = t4
+				p10 = t4
 			}
-			v5 = t10
+			v5 = p10
 			t11 := v1
 			t12 := int32(m.Memory[uint32(t11)])
 			v3 = t12
@@ -3530,12 +3530,12 @@ func (m *Module) _str_nocasencmp(v0 int32, v1 int32, v2 int32) int32 {
 			t15 := v3
 			t16 := t15 - int32(65)
 			t17 := t16 & i32_const(255)
-			t19 := t14
+			p19 := t14
 			if uint32(t17) < uint32(int32(26)) {
-				t19 = t13
+				p19 = t13
 			}
-			v3 = t19
-			if t10 == t19 {
+			v3 = p19
+			if p10 == p19 {
 				t21 := v4
 				if t21 == 0 {
 					goto l0
@@ -3567,11 +3567,11 @@ func (m *Module) _token_is_column_constraint(v0 int32) int32 {
 	t2 := i64_shr_u(i64_const(0x844403608400), t1)
 	t3 := int32(t2)
 	t4 := v0
-	var t5 int32
+	var p5 int32
 	if uint32(t4) < uint32(int32(48)) {
-		t5 = 1
+		p5 = 1
 	}
-	t6 := t3 & t5
+	t6 := t3 & p5
 	return t6
 }
 func (m *Module) _sql3lexer_checkskip(v0 int32) {
@@ -3597,18 +3597,18 @@ l1:
 			v1 = t9
 			t10 := t9 - int32(9)
 			v3 = t10
-			var t11 int32
+			var p11 int32
 			if uint32(t10) > uint32(int32(23)) {
-				t11 = 1
+				p11 = 1
 			}
 			t12 := v3
 			t13 := i32_shl(int32(1), t12)
 			t14 := t13 & i32_const(8388639)
-			var t15 int32
+			var p15 int32
 			if t14 == 0 {
-				t15 = 1
+				p15 = 1
 			}
-			t16 := t11 | t15
+			t16 := p11 | p15
 			if t16 != 0 {
 				goto l0
 			}

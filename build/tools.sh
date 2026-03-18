@@ -24,8 +24,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   fi
 fi
 
-WASI_SDK="https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-30/wasi-sdk-30.0-$WASI_SDK.tar.gz"
-BINARYEN="https://github.com/WebAssembly/binaryen/releases/download/version_126/binaryen-version_126-$BINARYEN.tar.gz"
+WASI_SDK="https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-32/wasi-sdk-32.0-$WASI_SDK.tar.gz"
+BINARYEN="https://github.com/WebAssembly/binaryen/releases/download/version_128/binaryen-version_128-$BINARYEN.tar.gz"
 
 # Download tools
 rm -rf "tools/"

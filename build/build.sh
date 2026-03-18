@@ -20,7 +20,6 @@ trap 'rm -f sqlite3.tmp sqlite3.wasm' EXIT
 	-Wl,--stack-first \
 	-Wl,--import-memory \
 	-Wl,--import-undefined \
-	-Wl,--initial-memory=327680 \
 	-D_HAVE_SQLITE_CONFIG_H \
 	-DSQLITE_CUSTOM_INCLUDE=sqlite_opt.h \
 	$(awk '{print "-Wl,--export="$0}' exports.txt)

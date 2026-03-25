@@ -22,7 +22,7 @@ trap 'rm -f sql3parse_table.*' EXIT
 	-mmutable-globals -mmultivalue \
 	-mbulk-memory -mreference-types \
 	-msign-ext -mnontrapping-fptoint \
-	-mno-simd128 -mno-extended-const \
+	-mno-simd128 \
 	-fno-stack-protector \
 	-Wl,--no-entry \
 	-Wl,--stack-first \
@@ -37,7 +37,7 @@ mv sql3parse_table sql3parse_table.tmp
 	--enable-mutable-globals --enable-multivalue \
 	--enable-bulk-memory --enable-reference-types \
 	--enable-sign-ext --enable-nontrapping-float-to-int \
-	--disable-simd --disable-extended-const \
+	--disable-simd \
 	--strip --strip-producers
 
 go tool wasm2go < sql3parse_table.wasm > ../parser.go

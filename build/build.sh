@@ -15,7 +15,6 @@ trap 'rm -f sqlite3.tmp sqlite3.wasm' EXIT
 	-mmutable-globals -mmultivalue \
 	-mbulk-memory -mreference-types \
 	-msign-ext -mnontrapping-fptoint \
-	-mno-simd128 \
 	-fno-stack-protector \
 	-Wl,--stack-first \
 	-Wl,--import-memory \
@@ -27,11 +26,10 @@ trap 'rm -f sqlite3.tmp sqlite3.wasm' EXIT
 mv sqlite3.wasm sqlite3.tmp
 
 "$BINARYEN/wasm-opt" -g sqlite3.tmp -o sqlite3.wasm \
-	--gufa --generate-global-effects --low-memory-unused --converge -Oz \
+	--gufa --generate-global-effects --low-memory-unused --converge -O4 \
 	--enable-mutable-globals --enable-multivalue \
 	--enable-bulk-memory --enable-reference-types \
 	--enable-sign-ext --enable-nontrapping-float-to-int \
-	--disable-simd \
 	--strip --strip-producers
 
 go tool wasm2go -endian big < sqlite3.wasm > ../sqlite3.go

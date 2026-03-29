@@ -32,5 +32,4 @@ mv sqlite3.wasm sqlite3.tmp
 	--enable-sign-ext --enable-nontrapping-float-to-int \
 	--strip --strip-producers
 
-go tool wasm2go -endian big < sqlite3.wasm > ../sqlite3.go
-go tool wasm2go -endian little < sqlite3.wasm > ../sqlite3_little.go
+go tool wasm2go -unsafe < sqlite3.wasm > ../sqlite3.go

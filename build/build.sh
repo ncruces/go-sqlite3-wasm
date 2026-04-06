@@ -26,10 +26,12 @@ trap 'rm -f sqlite3.tmp sqlite3.wasm' EXIT
 mv sqlite3.wasm sqlite3.tmp
 
 "$BINARYEN/wasm-opt" -g sqlite3.tmp -o sqlite3.wasm \
-	--gufa --generate-global-effects --low-memory-unused --converge -O4 \
+	--gufa-optimizing --generate-global-effects \
+	--low-memory-unused --zero-filled-memory \
+	--converge -O4 \
 	--enable-mutable-globals --enable-multivalue \
 	--enable-bulk-memory --enable-reference-types \
 	--enable-sign-ext --enable-nontrapping-float-to-int \
 	--strip --strip-producers
 
-go tool wasm2go -unsafe < sqlite3.wasm > ../sqlite3.go
+go tool wasm2go -embed -unsafe -o ../sqlite3.go sqlite3.wasm

@@ -32,7 +32,9 @@ trap 'rm -f sql3parse_table.*' EXIT
 mv sql3parse_table sql3parse_table.tmp
 
 "$BINARYEN/wasm-opt" -g sql3parse_table.tmp -o sql3parse_table.wasm \
-	--gufa --generate-global-effects --low-memory-unused --converge -O4 \
+	--gufa-optimizing --generate-global-effects \
+	--low-memory-unused --zero-filled-memory \
+	--converge -O4 \
 	--enable-mutable-globals --enable-multivalue \
 	--enable-bulk-memory --enable-reference-types \
 	--enable-sign-ext --enable-nontrapping-float-to-int \

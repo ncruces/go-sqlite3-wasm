@@ -25,7 +25,7 @@
 void _initialize() {
   try_init_allocator();
   sqlite3_initialize();
-  sqlite3_auto_extension((void (*)(void))sqlite3_base_init);
+  sqlite3_auto_extension((void (*)(void))sqlite3_base64_init);
   sqlite3_auto_extension((void (*)(void))sqlite3_decimal_init);
   sqlite3_auto_extension((void (*)(void))sqlite3_ieee_init);
   sqlite3_auto_extension((void (*)(void))sqlite3_regexp_init);

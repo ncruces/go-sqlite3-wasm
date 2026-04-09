@@ -42567,13 +42567,13 @@ func _trunc(v0 float64) float64 {
 func (m *Module) _putchar() {
 	_ = m._fputc(i32(10), i32(1))
 }
-func (m *Module) _fprintf(v0, v1, v2 int32) {
-	var v3 int32
-	v3 = m.___stack_pointer - i32(16)
-	m.___stack_pointer = v3
-	store32((*m.memory)[int64(uint32(v3))+12:], uint32(v2))
-	m._vfprintf(v0, v1, v2)
-	m.___stack_pointer = v3 + i32(16)
+func (m *Module) _printf(v0, v1 int32) {
+	var v2 int32
+	v2 = m.___stack_pointer - i32(16)
+	m.___stack_pointer = v2
+	store32((*m.memory)[int64(uint32(v2))+12:], uint32(v1))
+	m._vfprintf(i32(1), v0, v1)
+	m.___stack_pointer = v2 + i32(16)
 }
 func (m *Module) _vfprintf(v0, v1, v2 int32) {
 	v1 = m._sqlite3_vmprintf(v1, v2)
@@ -42584,13 +42584,13 @@ func (m *Module) _vfprintf(v0, v1, v2 int32) {
 	_ = m._fwrite(t0, i32(1), m._strlen(v1), v0)
 	m.Xsqlite3_free(v1)
 }
-func (m *Module) _printf(v0, v1 int32) {
-	var v2 int32
-	v2 = m.___stack_pointer - i32(16)
-	m.___stack_pointer = v2
-	store32((*m.memory)[int64(uint32(v2))+12:], uint32(v1))
-	m._vfprintf(i32(1), v0, v1)
-	m.___stack_pointer = v2 + i32(16)
+func (m *Module) _fprintf(v0, v1, v2 int32) {
+	var v3 int32
+	v3 = m.___stack_pointer - i32(16)
+	m.___stack_pointer = v3
+	store32((*m.memory)[int64(uint32(v3))+12:], uint32(v2))
+	m._vfprintf(v0, v1, v2)
+	m.___stack_pointer = v3 + i32(16)
 }
 func (m *Module) _sqlite3Atoi(v0 int32) int32 {
 	var v1 int32

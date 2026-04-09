@@ -20,8 +20,9 @@ trap 'rm -f sql3parse_table.*' EXIT
 	-o sql3parse_table main.c -I"$ROOT/libc" \
 	-mexec-model=reactor \
 	-mmutable-globals -mmultivalue \
-	-mbulk-memory -mreference-types \
-	-msign-ext -mnontrapping-fptoint \
+	-mnontrapping-fptoint -msign-ext \
+	-mreference-types -mbulk-memory \
+	-mextended-const \
 	-fno-stack-protector \
 	-Wl,--no-entry \
 	-Wl,--stack-first \
@@ -36,8 +37,9 @@ mv sql3parse_table sql3parse_table.tmp
 	--low-memory-unused --zero-filled-memory \
 	--converge -O4 \
 	--enable-mutable-globals --enable-multivalue \
-	--enable-bulk-memory --enable-reference-types \
-	--enable-sign-ext --enable-nontrapping-float-to-int \
+	--enable-nontrapping-float-to-int --enable-sign-ext \
+	--enable-reference-types --enable-bulk-memory \
+	--enable-extended-const \
 	--strip --strip-producers
 
 go tool wasm2go < sql3parse_table.wasm > ../parser.go

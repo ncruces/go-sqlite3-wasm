@@ -67,10 +67,6 @@ int sqlite3_autovacuum_pages_go(sqlite3* db, go_handle app) {
   return sqlite3_autovacuum_pages(db, go_autovacuum_pages, app, go_destroy);
 }
 
-#ifndef sqliteBusyCallback
-
 static int sqliteBusyCallback(void* ptr, int count) {
   return go_busy_timeout(count, ((sqlite3*)ptr)->busyTimeout);
 }
-
-#endif

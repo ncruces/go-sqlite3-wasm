@@ -13,8 +13,9 @@ trap 'rm -f sqlite3.tmp sqlite3.wasm' EXIT
 	-o sqlite3.wasm main.c test_*.c -Ilibc -I. \
 	-mexec-model=reactor \
 	-mmutable-globals -mmultivalue \
-	-mbulk-memory -mreference-types \
-	-msign-ext -mnontrapping-fptoint \
+	-mnontrapping-fptoint -msign-ext \
+	-mreference-types -mbulk-memory \
+	-mextended-const \
 	-fno-stack-protector \
 	-Wl,--stack-first \
 	-Wl,--import-memory \
@@ -30,8 +31,9 @@ mv sqlite3.wasm sqlite3.tmp
 	--low-memory-unused --zero-filled-memory \
 	--converge -O4 \
 	--enable-mutable-globals --enable-multivalue \
-	--enable-bulk-memory --enable-reference-types \
-	--enable-sign-ext --enable-nontrapping-float-to-int \
+	--enable-nontrapping-float-to-int --enable-sign-ext \
+	--enable-reference-types --enable-bulk-memory \
+	--enable-extended-const \
 	--strip --strip-producers
 
 go tool wasm2go -embed -unsafe -o ../sqlite3.go sqlite3.wasm

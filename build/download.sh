@@ -30,7 +30,6 @@ curl -#OL "$GITHUB_TAG/ext/misc/decimal.c"
 curl -#OL "$GITHUB_TAG/ext/misc/ieee754.c"
 curl -#OL "$GITHUB_TAG/ext/misc/regexp.c"
 curl -#OL "$GITHUB_TAG/ext/misc/series.c"
-curl -#OL "$GITHUB_TAG/ext/misc/spellfix.c"
 curl -#OL "$GITHUB_TAG/ext/misc/uint.c"
 cd ~-
 

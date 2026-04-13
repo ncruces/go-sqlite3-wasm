@@ -4,9 +4,9 @@ __attribute__((always_inline)) void abort(void) { __builtin_trap(); }
 
 __attribute__((always_inline)) int(abs)(int x) { return __builtin_abs(x); }
 
-#ifdef SQLITE3_H
-int atoi(const char* z) { return sqlite3Atoi(z); }
-#endif
+__attribute__((always_inline)) int(atoi)(const char* s) {
+  return (int)strtol(s, NULL, 10);
+}
 
 // Shellsort with Gonnet & Baeza-Yates gap sequence.
 // Simple, no recursion, doesn't use the C stack.

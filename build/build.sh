@@ -16,7 +16,6 @@ trap 'rm -f sqlite3.tmp sqlite3.wasm' EXIT
 	-mnontrapping-fptoint -msign-ext \
 	-mreference-types -mbulk-memory \
 	-mextended-const \
-	-fno-stack-protector \
 	-Wl,--stack-first \
 	-Wl,--export-table \
 	-Wl,--import-memory \

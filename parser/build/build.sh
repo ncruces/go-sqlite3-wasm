@@ -23,7 +23,6 @@ trap 'rm -f sql3parse_table.*' EXIT
 	-mnontrapping-fptoint -msign-ext \
 	-mreference-types -mbulk-memory \
 	-mextended-const \
-	-fno-stack-protector \
 	-Wl,--no-entry \
 	-Wl,--stack-first \
 	-Wl,--import-undefined \

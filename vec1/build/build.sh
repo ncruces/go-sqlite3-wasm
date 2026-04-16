@@ -7,7 +7,7 @@ ROOT=../../build
 BINARYEN="$ROOT/tools/binaryen/bin/"
 WASI_SDK="$ROOT/tools/wasi-sdk/bin/"
 
-curl -# "https://sqlite.org/vec1/raw/3c89fa5bb9?at=vec1.c" > vec1.c
+curl -# "https://sqlite.org/vec1/raw/8ffe11d887?at=vec1.c" > vec1.c
 
 trap 'rm -f vec1.*' EXIT
 
@@ -20,7 +20,6 @@ trap 'rm -f vec1.*' EXIT
 	-mnontrapping-fptoint -msign-ext \
 	-mreference-types -mbulk-memory \
 	-mextended-const \
-	-fno-stack-protector \
 	-Wl,--no-entry \
 	-Wl,--stack-first \
 	-Wl,--import-undefined \

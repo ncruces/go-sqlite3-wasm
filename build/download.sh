@@ -24,8 +24,6 @@ GITHUB_TAG="https://github.com/sqlite/sqlite/raw/version-3.53.0"
 
 mkdir -p ext/
 cd ext/
-curl -#OL "$GITHUB_TAG/ext/misc/anycollseq.c"
-curl -#OL "$GITHUB_TAG/ext/misc/base64.c"
 curl -#OL "$GITHUB_TAG/ext/misc/decimal.c"
 curl -#OL "$GITHUB_TAG/ext/misc/ieee754.c"
 curl -#OL "$GITHUB_TAG/ext/misc/regexp.c"

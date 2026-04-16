@@ -1,8 +1,6 @@
 // Amalgamation
 #include "sqlite3.c"
 // Extensions
-#include "ext/anycollseq.c"
-#include "ext/base64.c"
 #include "ext/decimal.c"
 #include "ext/ieee754.c"
 #include "ext/regexp.c"
@@ -24,7 +22,6 @@
 void _initialize() {
   try_init_allocator();
   sqlite3_initialize();
-  sqlite3_auto_extension((void (*)(void))sqlite3_base64_init);
   sqlite3_auto_extension((void (*)(void))sqlite3_decimal_init);
   sqlite3_auto_extension((void (*)(void))sqlite3_ieee_init);
   sqlite3_auto_extension((void (*)(void))sqlite3_regexp_init);

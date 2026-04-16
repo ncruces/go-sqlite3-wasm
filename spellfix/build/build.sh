@@ -22,7 +22,6 @@ trap 'rm -f spellfix.*' EXIT
 	-mnontrapping-fptoint -msign-ext \
 	-mreference-types -mbulk-memory \
 	-mextended-const \
-	-fno-stack-protector \
 	-Wl,--no-entry \
 	-Wl,--stack-first \
 	-Wl,--import-undefined \

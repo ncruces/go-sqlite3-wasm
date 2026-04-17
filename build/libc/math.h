@@ -42,7 +42,6 @@ double logb(double);
 double modf(double, double*);
 double nextafter(double, double);
 double pow(double, double);
-double pow(double, double);
 double remainder(double, double);
 double rint(double);
 double round(double);

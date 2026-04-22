@@ -26,13 +26,10 @@
 
 #define HAVE_STRCHRNUL 1
 #define HAVE_NANOSLEEP 1
-#define HAVE_LOCALTIME_S 1
+#define HAVE_LOCALTIME_R 1
 
 // Implemented in malloc.c.
 size_t malloc_usable_size(void*);
 
 // Implemented in hooks.c.
 static int sqliteBusyCallback(void*, int);
-
-// Implemented in vfs.c.
-int localtime_s(struct tm* const pTm, time_t const* const pTime);

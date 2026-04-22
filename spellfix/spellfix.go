@@ -14,7 +14,7 @@ type Module struct {
 	t0               *[]any
 	elements         [][]any
 	memory           *[]byte
-	Memory           Memory
+	memImp           Memory
 	maxMem           int64
 	___stack_pointer *int32
 	___memory_base   *int32
@@ -29,8 +29,8 @@ func New(v0 Xenv) *Module {
 	m.___stack_pointer = v0.X__stack_pointer()
 	m.___memory_base = v0.X__memory_base()
 	m.___table_base = v0.X__table_base()
-	m.Memory = v0.Xmemory()
-	m.memory = m.Memory.Slice()
+	m.memImp = v0.Xmemory()
+	m.memory = m.memImp.Slice()
 	m.t0 = v0.X__indirect_function_table()
 	m.elements = [][]any{{m._transliterateSqlFunc, m._editdistSqlFunc, m._phoneticHashSqlFunc, m._scriptCodeSqlFunc, m._editDist3SqlFunc, m._editDist3ConfigDelete, m._local_sqlite3_free, m._spellfix1RowCompare, m._spellfix1Create, m._spellfix1Connect, m._spellfix1BestIndex, m._spellfix1Disconnect, m._spellfix1Destroy, m._spellfix1Open, m._spellfix1Close, m._spellfix1Filter, m._spellfix1Next, m._spellfix1Eof, m._spellfix1Column, m._spellfix1Rowid, m._spellfix1Update, m._spellfix1Rename}}
 	copy((*m.t0)[*m.___table_base:], m.elements[0])
@@ -51,7 +51,6 @@ type Xenv = interface {
 	Xsqlite3_create_function_v2(v0, v1, v2, v3, v4, v5, v6, v7, v8 int32) int32
 	Xsqlite3_free(v0 int32)
 	Xsqlite3_vmprintf(v0, v1 int32) int32
-	Xstrlen(v0 int32) int32
 	Xsqlite3_value_text(v0 int32) int32
 	Xsqlite3_value_bytes(v0 int32) int32
 	Xsqlite3_result_error_nomem(v0 int32)
@@ -75,8 +74,6 @@ type Xenv = interface {
 	Xsqlite3_result_null(v0 int32)
 	Xsqlite3_value_int64(v0 int32) int64
 	Xsqlite3_vtab_on_conflict(v0 int32) int32
-	Xstrcmp(v0, v1 int32) int32
-	Xstrncmp(v0, v1, v2 int32) int32
 	Xsqlite3_stricmp(v0, v1 int32) int32
 	Xsqlite3_value_type(v0 int32) int32
 	Xsqlite3_last_insert_rowid(v0 int32) int64
@@ -116,9 +113,6 @@ func (m *Module) _sqlite3_free(v0 int32) {
 }
 func (m *Module) _sqlite3_vmprintf(v0, v1 int32) int32 {
 	return m._env.Xsqlite3_vmprintf(v0, v1)
-}
-func (m *Module) _strlen(v0 int32) int32 {
-	return m._env.Xstrlen(v0)
 }
 func (m *Module) _sqlite3_value_text(v0 int32) int32 {
 	return m._env.Xsqlite3_value_text(v0)
@@ -188,12 +182,6 @@ func (m *Module) _sqlite3_value_int64(v0 int32) int64 {
 }
 func (m *Module) _sqlite3_vtab_on_conflict(v0 int32) int32 {
 	return m._env.Xsqlite3_vtab_on_conflict(v0)
-}
-func (m *Module) _strcmp(v0, v1 int32) int32 {
-	return m._env.Xstrcmp(v0, v1)
-}
-func (m *Module) _strncmp(v0, v1, v2 int32) int32 {
-	return m._env.Xstrncmp(v0, v1, v2)
 }
 func (m *Module) _sqlite3_stricmp(v0, v1 int32) int32 {
 	return m._env.Xsqlite3_stricmp(v0, v1)

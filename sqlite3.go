@@ -15,7 +15,7 @@ type Module struct {
 	t0               []any
 	elements         [][]any
 	memory           *[]byte
-	Memory           Memory
+	memImp           Memory
 	maxMem           int64
 	___stack_pointer int32
 	_env             Xenv
@@ -26,8 +26,8 @@ func New(v0 Xenv) *Module {
 	m._env = v0
 	m.t0 = make([]any, 585)
 	m.maxMem = 65536
-	m.Memory = v0.Xmemory()
-	m.memory = m.Memory.Slice()
+	m.memImp = v0.Xmemory()
+	m.memory = m.memImp.Slice()
 	m.elements = [][]any{{m._go_full_pathname, m._go_access, m._go_delete, m._go_open_wrapper, m._go_current_time_64, m._go_sleep, m._go_randomness, m._sqlite3RowSetClear, m._getPageError, m._getPageNormal, _sqlite3NoopDestructor, m.Xsqlite3_free, m._sqlite3RCStrUnref, m._sqlite3VdbeValueListFree, m._sqlite3VdbeFrameMemDel, m._sqlite3InitCallback, m._pagerStress, m._pageReinit, m._btreeInvokeBusyHandler, m._sqlite3BtreePayloadChecked, m._sqlite3BtreePutData, _sqlite3WalkWinDefnDummyCallback, m._fixSelectCb, m._fixExprCb, m._sqliteBusyCallback, m._sqlite3InvalidFunction, m._sqlite3WalDefaultHook, m._binCollFunc, m._nocaseCollatingFunc, m._rtrimCollFunc, m._sqlite3SchemaClear, m._geomCallback, m._rtreeFreeCallback, m._rtreeMatchArgFree, m._decimalSumStep, m._decimalSumFinalize, m._decimalSumValue, m._decimalSumInverse, m._decimalCollFunc, m._re_sql_func, m._re_next_char_nocase, m._re_next_char, m._re_free_voidptr, m._uintCollFunc, m._go_collation_needed, m._go_compare, m._go_destroy, m._go_func_wrapper, m._go_step_wrapper, m._go_final_wrapper, m._go_value_wrapper, m._go_inverse_wrapper, m._go_progress_handler, m._go_busy_handler, m._go_commit_hook, m._go_rollback_hook, m._go_update_hook, m._go_wal_hook, m._go_authorizer, m._go_trace, m._go_log, m._go_autovacuum_pages, m._time_collation, m._go_cur_rowid, m._go_cur_column, m._go_cur_eof, m._go_cur_next, m._go_cur_filter, m._go_cur_close_wrapper, m._go_cur_open_wrapper, m._go_vtab_disconnect_wrapper, m._go_vtab_best_index, m._go_vtab_connect_wrapper, m._go_vtab_create_wrapper, m._go_vtab_destroy_wrapper, m._go_vtab_update, m._go_vtab_rename, m._go_vtab_find_function_wrapper, m._go_vtab_integrity_wrapper, m._go_vtab_rollback, m._go_vtab_commit, m._go_vtab_sync, m._go_vtab_begin, m._go_vtab_rollback_to, m._go_vtab_release, m._go_vtab_savepoint, _go_vtab_shadown_name_wrapper, m._go_mod_destroy, m._sqlite3_decimal_init, m._sqlite3_ieee_init, m._sqlite3_regexp_init, m._sqlite3_series_init, m._sqlite3_uint_init, m._sqlite3_time_init, m._btreeParseCellPtr, m._cellSizePtrTableLeaf, m._btreeParseCellPtrIndex, m._cellSizePtrIdxLeaf, m._cellSizePtr, m._btreeParseCellPtrNoPayload, m._cellSizePtrNoPayload, m._sqlite3RowSetDelete, m._analysisLoader, m._sqlite3VdbeRecordCompare, m._vdbeRecordCompareInt, m._vdbeRecordCompareString, m._vdbeSorterCompareInt, m._vdbeSorterCompareText, m._vdbeSorterCompare, m._jsonCacheDeleteGeneric, m._sqlite3SelectPopWith, m._gatherSelectWindowsSelectCallback, m._gatherSelectWindowsCallback, m._renameUnmapExprCb, m._sqlite3ExprListDelete, _sqlite3_test_control, m._agginfoPersistExprCb, m._disallowAggregatesInOrderByCb, m._sqlite3WindowExtraAggFuncDepth, m._sqlite3WalkerDepthIncrease, m._sqlite3WalkerDepthDecrease, m._sqlite3DbFree, m._propagateConstantExprRewrite, m._agginfoFree, m._havingToWhereExprCb, m._aggregateIdxEprRefToColCallback, m._sqlite3SelectDelete, m._sqlite3DeleteTableGeneric, m._recomputeColumnsUsedExpr, m._sqlite3DeleteReturning, m._likeFunc, m._sqlite3WithDeleteGeneric, m._sqlite3SelectWalkFail, m._exprNodeIsConstant, m._renameUnmapSelectCb, _sqlite3_test_control, m._convertCompoundSelectToSubquery, m._selectExpander, m._selectAddSubqueryTypeInfo, m._selectWindowRewriteSelectCb, m._selectWindowRewriteExprCb, m._impliesNotNullRow, m._exprNodeIsDeterministic, m._analyzeAggregate, m._sqlite3ExprIfFalse, m._renumberCursorsCb, m._resolveExprStep, m._resolveSelectStep, m._checkConstraintExprNode, m._exprColumnFlagUnion, m._sqlite3ReturningSubqueryCorrelated, m._sqlite3ReturningSubqueryVarSelect, m._sqlite3ExprDelete, m._sqlite3ExprIfTrue, m._exprNodeCanReturnSubtype, m._exprRefToSrcList, m._selectRefEnter, m._selectRefLeave, m._selectCheckOnClausesSelect, m._selectCheckOnClausesExpr, m._incrAggDepth, m._resolveRemoveWindowsCb, m._exprSelectWalkTableConstant, m._exprNodeIsConstantOrGroupBy, m._whereIndexedExprCleanup, m._exprIdxCover, m._exprNodePatternLengthEst, m._whereIsCoveringIndexWalkCallback, _noopStepFunc, m._statAccumDestructor, m._renameColumnSelectCb, m._renameColumnExprCb, m._renameTableSelectCb, m._renameTableExprCb, m._renameQuotefixExprCb, m._fts5CreateAux, m._fts5FindTokenizer_v2, m._fts5CreateTokenizer_v2, m._fts5FindTokenizer, m._fts5CreateTokenizer, m._fts5ModuleDestroy, m._fts5Fts5Func, m._fts5SourceIdFunc, m._fts5LocaleFunc, m._fts5InsttokenFunc, m._fts5V1toV2Tokenize, m._fts5VtoVCreate, m._fts5VtoVDelete, m._fts5V2toV1Tokenize, m._rtreenode, m._rtreedepth, m._rtreecheck, m._geopolyBBoxStep, m._geopolyBBoxFinal, m._fts5StorageInsertCallback, m._fts5MergeChunkCallback, m._fts5StorageIntegrityCallback, m._fts5ApiCallback, m._fts5TriCreate, m._fts5ParseTokenize, m._fts5ExprNodeNext_OR, m._fts5ExprNodeNext_STRING, m._fts5ExprNodeNext_TERM, m._fts5ExprNodeNext_AND, m._fts5ExprNodeNext_NOT, m._fts5AppendRowid, m._fts5MergeRowidLists, m._fts5AppendPoslist, m._fts5MergePrefixLists, m._prefixIterSetupCb, _sqlite3WalkWinDefnDummyCallback, m._fts5SegIterNext_Reverse, m._fts5SegIterNext_None, m._fts5SegIterNext, m._fts5IterSetOutputs_None, m._fts5IterSetOutputs_Nocolset, m._fts5IterSetOutputs_ZeroColset, m._fts5IterSetOutputs_Full, m._fts5IterSetOutputs_Col100, m._fts5IterSetOutputs_Col, m._fts5PoslistCallback, m._fts5PoslistFilterCallback, m._fts5PoslistOffsetsCallback, m._fts5ColumnSizeCb, m._fts5ExprPopulatePoslistsCb, m._prefixIterSetupTokendataCb, m._fts5SentenceFinderCb, m._fts5HighlightCb, m._fts5CountCb, m._fts5PorterCb, m._parentWrite, m._rowidWrite, m._geopolyOverlapFunc, m._geopolyWithinFunc, m._decimalFunc, m._decimalCmpFunc, m._decimalAddFunc, m._decimalSubFunc, m._decimalMulFunc, m._decimalPow2Func, m._ieee754func, m._ieee754func_to_blob, m._ieee754func_from_blob, m._ieee754func_to_int, m._ieee754func_from_int, m._ieee754inc, m._seriesConnect, m._seriesBestIndex, m._pragmaVtabDisconnect, m._seriesOpen, m._pragmaVtabDisconnect, m._seriesFilter, m._seriesNext, m._seriesEof, m._seriesColumn, m._seriesRowid, m._memjrnlClose, m._memjrnlRead, m._memjrnlWrite, m._memjrnlTruncate, _sqlite3_test_control, m._memjrnlFileSize, m._pragmaVtabConnect, m._pragmaVtabBestIndex, m._pragmaVtabDisconnect, m._pragmaVtabOpen, m._pragmaVtabClose, m._pragmaVtabFilter, m._pragmaVtabNext, m._pragmaVtabEof, m._pragmaVtabColumn, m._pragmaVtabRowid, m._jsonEachConnect, m._jsonEachBestIndex, m._jsonEachDisconnect, m._jsonEachOpen, m._jsonEachClose, m._jsonEachFilter, m._jsonEachNext, m._jsonEachEof, m._jsonEachColumn, m._jsonEachRowid, m._attachFunc, m._detachFunc, m._statInit, m._statPush, m._statGet, m._soundexFunc, m._compileoptionusedFunc, m._compileoptiongetFunc, m._versionFunc, m._trimFunc, m._minmaxFunc, m._minmaxStep, m._minMaxFinalize, m._minMaxValue, m._typeofFunc, m._subtypeFunc, m._lengthFunc, m._bytelengthFunc, m._instrFunc, m._printfFunc, m._unicodeFunc, m._charFunc, m._absFunc, m._roundFunc, m._upperFunc, m._lowerFunc, m._hexFunc, m._unhexFunc, m._concatFunc, m._concatwsFunc, m._randomFunc, m._randomBlob, m._nullifFunc, m._sourceidFunc, m._errlogFunc, m._unistrFunc, m._quoteFunc, m._last_insert_rowid, m._changes, m._total_changes, m._replaceFunc, m._zeroblobFunc, m._substrFunc, m._sumStep, m._sumFinalize, m._sumInverse, m._totalFinalize, m._avgFinalize, m._countStep, m._countFinalize, m._countInverse, m._groupConcatStep, m._groupConcatFinalize, m._groupConcatValue, m._groupConcatInverse, _xCeil, m._ceilingFunc, _xFloor, _trunc, m._logFunc, m._exp, m._math1Func, m._pow, m._math2Func, m._fmod, m._acos, m._asin, m._atan, m._atan2, m._cos, m._sin, m._tan, m._cosh, m._sinh, m._tanh, m._acosh, m._asinh, m._atanh, _sqrt, _degToRad, _radToDeg, m._piFunc, m._signFunc, m._renameColumnFunc, m._renameTableFunc, m._renameTableTest, m._dropColumnFunc, m._renameQuotefixFunc, m._dropConstraintFunc, m._failConstraintFunc, m._addConstraintFunc, m._findConstraintFunc, m._row_numberStepFunc, m._row_numberValueFunc, m._dense_rankStepFunc, m._dense_rankValueFunc, m._rankStepFunc, m._rankValueFunc, m._percent_rankStepFunc, m._percent_rankValueFunc, m._percent_rankInvFunc, m._percent_rankStepFunc, m._cume_distValueFunc, m._percent_rankInvFunc, m._ntileStepFunc, m._ntileValueFunc, m._ntileInvFunc, m._last_valueStepFunc, m._last_valueFinalizeFunc, m._last_valueValueFunc, m._last_valueInvFunc, m._nth_valueStepFunc, m._nth_valueFinalizeFunc, _sqlite3NoopDestructor, m._first_valueStepFunc, m._first_valueFinalizeFunc, m._juliandayFunc, m._unixepochFunc, m._dateFunc, m._timeFunc, m._datetimeFunc, m._strftimeFunc, m._timediffFunc, m._ctimeFunc, m._ctimestampFunc, m._cdateFunc, m._jsonRemoveFunc, m._jsonArrayFunc, m._jsonSetFunc, m._jsonArrayLengthFunc, m._jsonErrorFunc, m._jsonExtractFunc, m._jsonObjectFunc, m._jsonPatchFunc, m._jsonPrettyFunc, m._jsonQuoteFunc, m._jsonReplaceFunc, m._jsonTypeFunc, m._jsonValidFunc, m._jsonArrayStep, m._jsonArrayFinal, m._jsonArrayValue, m._jsonGroupInverse, m._jsonObjectStep, m._jsonObjectFinal, m._jsonObjectValue, m._sqlite3MemMalloc, m._sqlite3MemFree, m._sqlite3MemRealloc, m._sqlite3MemSize, _sqlite3MemRoundup, _sqlite3MemInit, _sqlite3NoopDestructor, m._pcache1Init, m._pcache1Shutdown, m._pcache1Create, m._pcache1Cachesize, m._pcache1Pagecount, m._pcache1Fetch, m._pcache1Unpin, m._pcache1Rekey, m._pcache1Truncate, m._pcache1Destroy, m._pcache1Shrink, m._sqlite3Fts5Init, m._sqlite3RtreeInit, _sqlite3MemInit, m._fts5CreateMethod, m._fts5ConnectMethod, m._fts5BestIndexMethod, m._fts5DisconnectMethod, m._fts5DestroyMethod, m._fts5OpenMethod, m._fts5CloseMethod, m._fts5FilterMethod, m._fts5NextMethod, m._fts5EofMethod, m._fts5ColumnMethod, m._fts5RowidMethod, m._fts5UpdateMethod, m._fts5BeginMethod, m._fts5SyncMethod, _sqlite3MemInit, m._fts5RollbackMethod, m._fts5FindFunctionMethod, m._fts5RenameMethod, m._fts5SavepointMethod, m._fts5ReleaseMethod, m._fts5RollbackToMethod, m._fts5ShadowName, m._fts5IntegrityMethod, m._fts5ApiUserData, m._fts5ApiColumnCount, m._fts5ApiRowCount, m._fts5ApiColumnTotalSize, m._fts5ApiTokenize, m._fts5ApiPhraseCount, m._fts5ApiPhraseSize, m._fts5ApiInstCount, m._fts5ApiInst, m._fts5ApiRowid, m._fts5ApiColumnText, m._fts5ApiColumnSize, m._fts5ApiQueryPhrase, m._fts5ApiSetAuxdata, m._fts5ApiGetAuxdata, m._fts5ApiPhraseFirst, m._fts5ApiPhraseNext, m._fts5ApiPhraseFirstColumn, m._fts5ApiPhraseNextColumn, m._fts5ApiQueryToken, m._fts5ApiInstToken, m._fts5ApiColumnLocale, m._fts5ApiTokenize_v2, m._fts5SnippetFunction, m._fts5HighlightFunction, m._fts5Bm25Function, m._fts5GetLocaleFunction, m._fts5UnicodeCreate, m._fts5UnicodeDelete, m._fts5UnicodeTokenize, m._fts5AsciiCreate, m._sqlite3VdbeValueListFree, m._fts5AsciiTokenize, m._sqlite3VdbeValueListFree, m._fts5TriTokenize, m._fts5PorterCreate, m._fts5PorterDelete, m._fts5PorterTokenize, m._fts5VocabCreateMethod, m._fts5VocabCreateMethod, m._fts5VocabBestIndexMethod, m._pragmaVtabDisconnect, m._pragmaVtabDisconnect, m._fts5VocabOpenMethod, m._fts5VocabCloseMethod, m._fts5VocabFilterMethod, m._fts5VocabNextMethod, m._fts5VocabEofMethod, m._fts5VocabColumnMethod, m._fts5VocabRowidMethod, m._rtreeCreate, m._rtreeConnect, m._rtreeBestIndex, m._rtreeDisconnect, m._rtreeDestroy, m._rtreeOpen, m._rtreeClose, m._rtreeFilter, m._rtreeNext, m._rtreeEof, m._rtreeColumn, m._rtreeRowid, m._rtreeUpdate, m._rtreeBeginTransaction, m._rtreeEndTransaction, m._rtreeRollback, m._rtreeRename, m._rtreeSavepoint, m._rtreeShadowName, m._rtreeIntegrity, m._geopolyAreaFunc, m._geopolyBlobFunc, m._geopolyJsonFunc, m._geopolySvgFunc, m._geopolyContainsPointFunc, _noopStepFunc, m._geopolyBBoxFunc, m._geopolyXformFunc, m._geopolyRegularFunc, m._geopolyCcwFunc, m._geopolyCreate, m._geopolyConnect, m._geopolyBestIndex, m._geopolyFilter, m._geopolyColumn, m._geopolyUpdate, m._geopolyFindFunction, m._go_close, m._go_read, m._go_write, m._go_truncate, m._go_sync, m._go_file_size, m._go_lock, m._go_unlock, m._go_check_reserved_lock, m._go_file_control, m._go_sector_size, m._go_device_characteristics, m._go_shm_map, m._go_shm_lock, m._go_shm_barrier, m._go_shm_unmap, m._sqlErrorCallback, m._busyHandler, m._vfsNameFunc, m._evalFunc, m._evalCallback, m._xsliceGeometryCallback, m._randomFunc_2486, m._xCompileOptions}}
 	copy(m.t0[i32(1):], m.elements[0])
 	copy((*m.memory)[uint32(i32(65536)):], data[0:121677])
@@ -42,21 +42,14 @@ func New(v0 Xenv) *Module {
 }
 
 type Xenv = interface {
-	Xstrchrnul(v0, v1 int32) int32
-	Xstrlen(v0 int32) int32
 	Xgo_vfs_find(v0 int32) int32
-	Xstrcmp(v0, v1 int32) int32
 	Xgo_full_pathname(v0, v1, v2, v3 int32) int32
 	Xgo_access(v0, v1, v2, v3 int32) int32
 	Xgo_delete(v0, v1, v2 int32) int32
 	Xgo_current_time_64(v0, v1 int32) int32
 	Xgo_sleep(v0, v1 int32) int32
 	Xgo_randomness(v0, v1, v2 int32) int32
-	Xstrcspn(v0, v1 int32) int32
 	Xgo_busy_timeout(v0, v1 int32) int32
-	Xstrspn(v0, v1 int32) int32
-	Xstrncmp(v0, v1, v2 int32) int32
-	Xmemcmp(v0, v1, v2 int32) int32
 	Xgo_func(v0, v1, v2, v3 int32)
 	Xgo_step(v0, v1, v2, v3, v4 int32)
 	Xgo_value(v0, v1, v2, v3 int32)
@@ -75,7 +68,6 @@ type Xenv = interface {
 	Xgo_log(v0, v1, v2 int32)
 	Xgo_autovacuum_pages(v0, v1, v2, v3, v4 int32) int32
 	Xgo_open(v0, v1, v2, v3, v4, v5 int32) int32
-	Xgo_localtime(v0 int32, v1 int64) int32
 	Xgo_cur_rowid(v0, v1 int32) int32
 	Xgo_cur_column(v0, v1, v2 int32) int32
 	Xgo_cur_eof(v0 int32) int32
@@ -102,29 +94,6 @@ type Xenv = interface {
 	Xfputc(v0, v1 int32) int32
 	Xfseek(v0, v1, v2 int32) int32
 	Xfwrite(v0, v1, v2, v3 int32) int32
-	Xstrtol(v0, v1, v2 int32) int32
-	Xmemchr(v0, v1, v2 int32) int32
-	Xstrrchr(v0, v1 int32) int32
-	Xstrchr(v0, v1 int32) int32
-	Xlog(v0 float64) float64
-	Xlog10(v0 float64) float64
-	Xlog2(v0 float64) float64
-	Xexp(v0 float64) float64
-	Xpow(v0, v1 float64) float64
-	Xfmod(v0, v1 float64) float64
-	Xacos(v0 float64) float64
-	Xasin(v0 float64) float64
-	Xatan(v0 float64) float64
-	Xatan2(v0, v1 float64) float64
-	Xcos(v0 float64) float64
-	Xsin(v0 float64) float64
-	Xtan(v0 float64) float64
-	Xcosh(v0 float64) float64
-	Xsinh(v0 float64) float64
-	Xtanh(v0 float64) float64
-	Xacosh(v0 float64) float64
-	Xasinh(v0 float64) float64
-	Xatanh(v0 float64) float64
 	Xgo_close(v0 int32) int32
 	Xgo_read(v0, v1, v2 int32, v3 int64) int32
 	Xgo_write(v0, v1, v2 int32, v3 int64) int32
@@ -144,13 +113,11 @@ type Xenv = interface {
 	Xfopen(v0, v1 int32) int32
 	Xputs(v0 int32) int32
 	Xfflush(v0 int32) int32
-	Xstrcpy(v0, v1 int32) int32
 	Xexit(v0 int32)
 	Xftell(v0 int32) int32
 	Xfread(v0, v1, v2, v3 int32) int32
 	Xfclose(v0 int32) int32
 	Xsystem(v0 int32) int32
-	Xstrstr(v0, v1 int32) int32
 	Xmemory() Memory
 }
 type Memory = interface {
@@ -158,17 +125,8 @@ type Memory = interface {
 	Grow(delta, max int64) int64
 }
 
-func (m *Module) _strchrnul(v0, v1 int32) int32 {
-	return m._env.Xstrchrnul(v0, v1)
-}
-func (m *Module) _strlen(v0 int32) int32 {
-	return m._env.Xstrlen(v0)
-}
 func (m *Module) _go_vfs_find(v0 int32) int32 {
 	return m._env.Xgo_vfs_find(v0)
-}
-func (m *Module) _strcmp(v0, v1 int32) int32 {
-	return m._env.Xstrcmp(v0, v1)
 }
 func (m *Module) _go_full_pathname(v0, v1, v2, v3 int32) int32 {
 	return m._env.Xgo_full_pathname(v0, v1, v2, v3)
@@ -188,20 +146,8 @@ func (m *Module) _go_sleep(v0, v1 int32) int32 {
 func (m *Module) _go_randomness(v0, v1, v2 int32) int32 {
 	return m._env.Xgo_randomness(v0, v1, v2)
 }
-func (m *Module) _strcspn(v0, v1 int32) int32 {
-	return m._env.Xstrcspn(v0, v1)
-}
 func (m *Module) _go_busy_timeout(v0, v1 int32) int32 {
 	return m._env.Xgo_busy_timeout(v0, v1)
-}
-func (m *Module) _strspn(v0, v1 int32) int32 {
-	return m._env.Xstrspn(v0, v1)
-}
-func (m *Module) _strncmp(v0, v1, v2 int32) int32 {
-	return m._env.Xstrncmp(v0, v1, v2)
-}
-func (m *Module) _memcmp(v0, v1, v2 int32) int32 {
-	return m._env.Xmemcmp(v0, v1, v2)
 }
 func (m *Module) _go_func(v0, v1, v2, v3 int32) {
 	m._env.Xgo_func(v0, v1, v2, v3)
@@ -256,9 +202,6 @@ func (m *Module) _go_autovacuum_pages(v0, v1, v2, v3, v4 int32) int32 {
 }
 func (m *Module) _go_open(v0, v1, v2, v3, v4, v5 int32) int32 {
 	return m._env.Xgo_open(v0, v1, v2, v3, v4, v5)
-}
-func (m *Module) _go_localtime(v0 int32, v1 int64) int32 {
-	return m._env.Xgo_localtime(v0, v1)
 }
 func (m *Module) _go_cur_rowid(v0, v1 int32) int32 {
 	return m._env.Xgo_cur_rowid(v0, v1)
@@ -338,75 +281,6 @@ func (m *Module) _fseek(v0, v1, v2 int32) int32 {
 func (m *Module) _fwrite(v0, v1, v2, v3 int32) int32 {
 	return m._env.Xfwrite(v0, v1, v2, v3)
 }
-func (m *Module) _strtol(v0, v1, v2 int32) int32 {
-	return m._env.Xstrtol(v0, v1, v2)
-}
-func (m *Module) _memchr(v0, v1, v2 int32) int32 {
-	return m._env.Xmemchr(v0, v1, v2)
-}
-func (m *Module) _strrchr(v0, v1 int32) int32 {
-	return m._env.Xstrrchr(v0, v1)
-}
-func (m *Module) _strchr(v0, v1 int32) int32 {
-	return m._env.Xstrchr(v0, v1)
-}
-func (m *Module) _log(v0 float64) float64 {
-	return m._env.Xlog(v0)
-}
-func (m *Module) _log10(v0 float64) float64 {
-	return m._env.Xlog10(v0)
-}
-func (m *Module) _log2(v0 float64) float64 {
-	return m._env.Xlog2(v0)
-}
-func (m *Module) _exp(v0 float64) float64 {
-	return m._env.Xexp(v0)
-}
-func (m *Module) _pow(v0, v1 float64) float64 {
-	return m._env.Xpow(v0, v1)
-}
-func (m *Module) _fmod(v0, v1 float64) float64 {
-	return m._env.Xfmod(v0, v1)
-}
-func (m *Module) _acos(v0 float64) float64 {
-	return m._env.Xacos(v0)
-}
-func (m *Module) _asin(v0 float64) float64 {
-	return m._env.Xasin(v0)
-}
-func (m *Module) _atan(v0 float64) float64 {
-	return m._env.Xatan(v0)
-}
-func (m *Module) _atan2(v0, v1 float64) float64 {
-	return m._env.Xatan2(v0, v1)
-}
-func (m *Module) _cos(v0 float64) float64 {
-	return m._env.Xcos(v0)
-}
-func (m *Module) _sin(v0 float64) float64 {
-	return m._env.Xsin(v0)
-}
-func (m *Module) _tan(v0 float64) float64 {
-	return m._env.Xtan(v0)
-}
-func (m *Module) _cosh(v0 float64) float64 {
-	return m._env.Xcosh(v0)
-}
-func (m *Module) _sinh(v0 float64) float64 {
-	return m._env.Xsinh(v0)
-}
-func (m *Module) _tanh(v0 float64) float64 {
-	return m._env.Xtanh(v0)
-}
-func (m *Module) _acosh(v0 float64) float64 {
-	return m._env.Xacosh(v0)
-}
-func (m *Module) _asinh(v0 float64) float64 {
-	return m._env.Xasinh(v0)
-}
-func (m *Module) _atanh(v0 float64) float64 {
-	return m._env.Xatanh(v0)
-}
 func (m *Module) _go_close(v0 int32) int32 {
 	return m._env.Xgo_close(v0)
 }
@@ -464,9 +338,6 @@ func (m *Module) _puts(v0 int32) int32 {
 func (m *Module) _fflush(v0 int32) int32 {
 	return m._env.Xfflush(v0)
 }
-func (m *Module) _strcpy(v0, v1 int32) int32 {
-	return m._env.Xstrcpy(v0, v1)
-}
 func (m *Module) _exit(v0 int32) {
 	m._env.Xexit(v0)
 }
@@ -481,9 +352,6 @@ func (m *Module) _fclose(v0 int32) int32 {
 }
 func (m *Module) _system(v0 int32) int32 {
 	return m._env.Xsystem(v0)
-}
-func (m *Module) _strstr(v0, v1 int32) int32 {
-	return m._env.Xstrstr(v0, v1)
 }
 func (m *Module) ___wasm_init_memory() {
 	memory_zero(*m.memory, uint32(i32(187216)), uint32(i32(4236)))
@@ -42193,7 +42061,7 @@ func (m *Module) _sbrk(v0 int32) int32 {
 		return int32(len(*m.memory)>>16) << 16
 	}
 	if v0&i32(-0x7fff0001) == 0 {
-		v0 = int32(m.Memory.Grow(int64(int32(uint32(v0)>>16)), m.maxMem))
+		v0 = int32(m.memImp.Grow(int64(int32(uint32(v0)>>16)), m.maxMem))
 		p0 := v0 << 16
 		if v0 == i32(-1) {
 			p0 = i32(-1)
@@ -128349,9 +128217,10 @@ func (m *Module) _toLocaltime(v0, v1 int32) int32 {
 	p0 = i32(1900)
 l0:
 	v3 = p0
+	store64((*m.memory)[int64(uint32(v2))+8:], uint64(v6-i64(210866760000)))
 	var p3 int32
 	{
-		if m._go_localtime(v2+i32(60), v6-i64(210866760000)) != 0 {
+		if m._localtime_r(v2+i32(8), v2+i32(60)) == 0 {
 			m.Xsqlite3_result_error(v1, i32(85320), i32(-1))
 			p3 = i32(1)
 			goto l1

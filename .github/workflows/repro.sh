@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-tools.sh
+./tools.sh
 build/download.sh
 build/build.sh
 parser/build/build.sh

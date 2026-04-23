@@ -77,16 +77,7 @@ func (m *Module) Xsql3parse_table(v0, v1, v2 int32) int32 {
 		if v1 != 0 {
 			goto l1
 		}
-		v1 = i32(0)
-	l2:
-		{
-			t0 := v0 + v1
-			v1 = v1 + i32(1)
-			if int32(m.memory[uint32(t0)]) != 0 {
-				goto l2
-			}
-		}
-		v1 = v1 - i32(1)
+		v1 = m._strlen(v0)
 		if v1 != 0 {
 			goto l1
 		}
@@ -101,7 +92,7 @@ func (m *Module) Xsql3parse_table(v0, v1, v2 int32) int32 {
 			store32(m.memory[uint32(v2):], uint32(i32(0)))
 		}
 		{
-			var p1 int32
+			var p0 int32
 			v8 = m.Xmalloc(i32(64))
 			if v8 != 0 {
 				store32(m.memory[int64(uint32(v3))+28:], uint32(i32(0)))
@@ -115,54 +106,57 @@ func (m *Module) Xsql3parse_table(v0, v1, v2 int32) int32 {
 				v1 = m._sql3lexer_next(v5)
 				if v1 != i32(57) {
 					if v1 != i32(6) {
-						goto l3
+						goto l2
 					}
 					v4 = int32(load32(m.memory[int64(uint32(v3))+36:]))
 					store32(m.memory[int64(uint32(v4))+44:], uint32(i32(1)))
 					v1 = m._sql3lexer_next(v5)
+					var p1 int32
 					if v1 == i32(7) {
 						m.memory[int64(uint32(v4))+24] = byte(i32(1))
-						v1 = m._sql3lexer_next(v5)
+						p1 = m._sql3lexer_next(v5)
+					} else {
+						p1 = v1
 					}
-					if v1 != i32(8) {
-						goto l3
+					if p1 != i32(8) {
+						goto l2
 					}
 					v1 = v3 + i32(12)
 					if m._sql3lexer_peek(v1) == i32(9) {
 						_ = m._sql3lexer_next(v1)
 						v0 = i32(2)
 						if m._sql3lexer_next(v1) != i32(10) {
-							goto l3
+							goto l2
 						}
 						if m._sql3lexer_next(v1) != i32(11) {
-							goto l3
+							goto l2
 						}
 						m.memory[int64(uint32(v4))+25] = byte(i32(1))
 					}
 					v1 = v3 + i32(12)
 					v0 = m._sql3parse_schema_identifier(v1)
 					if v0 != 0 {
-						goto l3
+						goto l2
 					}
 					v0 = i32(3)
 					switch m._sql3lexer_next(v1) - i32(15) {
 					case 0:
-						goto l3
+						goto l2
 					case 4:
-						goto l8
+						goto l7
 					default:
-						goto l4
+						goto l3
 					}
-				l8:
+				l7:
 					{
 						v0 = i32(2)
 						v1 = v3 + i32(12)
 						if m._sql3lexer_peek(v1) != i32(2) {
-							goto l3
+							goto l2
 						}
 						v5 = m._sql3parse_column(v1)
 						if v5 == 0 {
-							goto l3
+							goto l2
 						}
 						t2 := v4
 						v0 = int32(load32(m.memory[int64(uint32(v4))+28:])) + i32(1)
@@ -172,7 +166,7 @@ func (m *Module) Xsql3parse_table(v0, v1, v2 int32) int32 {
 							t3 := v4
 							store32(m.memory[int64(uint32(t3))+28:], uint32(int32(load32(m.memory[int64(uint32(v4))+28:]))-i32(1)))
 							v0 = i32(1)
-							goto l3
+							goto l2
 						}
 						store32(m.memory[int64(uint32(v4))+32:], uint32(v1))
 						v0 = i32(2)
@@ -180,35 +174,35 @@ func (m *Module) Xsql3parse_table(v0, v1, v2 int32) int32 {
 						store32(m.memory[uint32(t4+int32(load32(m.memory[int64(uint32(v4))+28:]))<<2-i32(4)):], uint32(v5))
 						switch m._sql3lexer_peek(v3+i32(12)) - i32(18) {
 						case 0:
-							goto l6
+							goto l5
 						case 2:
-							goto l7
+							goto l6
 						default:
-							goto l3
+							goto l2
 						}
-					l6:
+					l5:
 						v0 = v3 + i32(12)
 						_ = m._sql3lexer_next(v0)
 						v0 = m._sql3lexer_peek(v0) - i32(21)
 						if uint32(v0) > uint32(i32(5)) {
-							goto l8
+							goto l7
 						}
 						if i32_shr_u(i32(59), v0)&i32(1) == 0 {
-							goto l8
+							goto l7
 						}
 					}
 					t5 := int32(load32(m.memory[int64(uint32(v0<<2))+65904:]))
-					p1 = t5
-					goto l9
+					p0 = t5
+					goto l8
 				}
 				v1 = int32(load32(m.memory[int64(uint32(v3))+36:]))
 				v4 = v3 + i32(12)
 				if m._sql3lexer_next(v4) != i32(8) {
-					goto l3
+					goto l2
 				}
 				v0 = m._sql3parse_schema_identifier(v4)
 				if v0 != 0 {
-					goto l3
+					goto l2
 				}
 				v5 = m._sql3lexer_next(v4)
 				v4 = m._sql3lexer_peek(v4)
@@ -218,58 +212,58 @@ func (m *Module) Xsql3parse_table(v0, v1, v2 int32) int32 {
 						{
 							switch v5 - i32(58) {
 							case 0:
-								goto l10
+								goto l9
 							case 1:
-								goto l11
+								goto l10
 							case 2:
-								goto l12
+								goto l11
 							default:
-								goto l3
+								goto l2
 							}
-						l10:
+						l9:
 							{
 								switch v4 - i32(61) {
 								case 0:
-									goto l13
+									goto l12
 								case 1:
-									goto l14
+									goto l13
 								default:
-									goto l15
+									goto l14
 								}
-							l14:
+							l13:
 								v4 = v3 + i32(12)
 								_ = m._sql3lexer_next(v4)
 								v0 = i32(2)
 								store32(m.memory[int64(uint32(v1))+44:], uint32(i32(2)))
 								if m._sql3lexer_next(v4) != i32(2) {
-									goto l3
+									goto l2
 								}
 								t6 := v1
 								store64(m.memory[int64(uint32(t6))+56:], uint64(int64(load64(m.memory[int64(uint32(v3))+24:]))))
-								goto l16
+								goto l15
 							}
-						l13:
+						l12:
 							_ = m._sql3lexer_next(v3 + i32(12))
-						l15:
+						l14:
 							store32(m.memory[int64(uint32(v1))+44:], uint32(i32(3)))
 							v0 = i32(2)
 							v4 = v3 + i32(12)
 							if m._sql3lexer_next(v4) != i32(2) {
-								goto l3
+								goto l2
 							}
 							t7 := v1
 							store64(m.memory[int64(uint32(t7))+48:], uint64(int64(load64(m.memory[int64(uint32(v3))+24:]))))
 							if m._sql3lexer_next(v4) != i32(62) {
-								goto l3
+								goto l2
 							}
 							if m._sql3lexer_next(v4) != i32(2) {
-								goto l3
+								goto l2
 							}
 							t8 := v1
 							store64(m.memory[int64(uint32(t8))+56:], uint64(int64(load64(m.memory[int64(uint32(v3))+24:]))))
-							goto l16
+							goto l15
 						}
-					l11:
+					l10:
 						if v4 == i32(61) {
 							_ = m._sql3lexer_next(v3 + i32(12))
 						}
@@ -277,11 +271,11 @@ func (m *Module) Xsql3parse_table(v0, v1, v2 int32) int32 {
 						v0 = i32(2)
 						v4 = v3 + i32(12)
 						if m._sql3lexer_peek(v4) != i32(2) {
-							goto l3
+							goto l2
 						}
 						v5 = m._sql3parse_column(v4)
 						if v5 == 0 {
-							goto l3
+							goto l2
 						}
 						v0 = i32(1)
 						t9 := v1
@@ -291,33 +285,33 @@ func (m *Module) Xsql3parse_table(v0, v1, v2 int32) int32 {
 						if v4 == 0 {
 							t10 := v1
 							store32(m.memory[int64(uint32(t10))+28:], uint32(int32(load32(m.memory[int64(uint32(v1))+28:]))-i32(1)))
-							goto l3
+							goto l2
 						}
 						store32(m.memory[int64(uint32(v1))+32:], uint32(v4))
 						t11 := v4
 						store32(m.memory[uint32(t11+int32(load32(m.memory[int64(uint32(v1))+28:]))<<2-i32(4)):], uint32(v5))
-						goto l16
+						goto l15
 					}
-				l12:
+				l11:
 					if v4 == i32(61) {
 						_ = m._sql3lexer_next(v3 + i32(12))
 					}
 					store32(m.memory[int64(uint32(v1))+44:], uint32(i32(5)))
 					v0 = i32(2)
 					if m._sql3lexer_next(v3+i32(12)) != i32(2) {
-						goto l3
+						goto l2
 					}
 					t12 := v1
 					store64(m.memory[int64(uint32(t12))+48:], uint64(int64(load64(m.memory[int64(uint32(v3))+24:]))))
 				}
-			l16:
+			l15:
 				v0 = i32(0)
 				v1 = v3 + i32(12)
 				if m._sql3lexer_peek(v1) != i32(17) {
-					goto l3
+					goto l2
 				}
 				_ = m._sql3lexer_next(v1)
-				goto l3
+				goto l2
 			}
 			v0 = i32(0)
 			if v2 == 0 {
@@ -325,280 +319,288 @@ func (m *Module) Xsql3parse_table(v0, v1, v2 int32) int32 {
 			}
 			store32(m.memory[uint32(v2):], uint32(i32(1)))
 			goto l0
-		l7:
-			p1 = m._sql3lexer_peek(v3 + i32(12))
-		l9:
-			v0 = p1
+		l6:
+			p0 = m._sql3lexer_peek(v3 + i32(12))
+		l8:
+			v0 = p0
 			v9 = v4 + i32(16)
 			v10 = v3 + i32(56)
-		l25:
+		l24:
 			{
 				if uint32(v0) > uint32(i32(26)) {
-					goto l17
+					goto l16
 				}
 				if i32_shl(i32(1), v0)&i32(0x7600000) == 0 {
-					goto l17
+					goto l16
 				}
 				store32(m.memory[int64(uint32(v3))+32:], uint32(v9))
 				v5 = v3 + i32(12)
 				v0 = m._sql3lexer_peek(v5)
 				v1 = m.Xmalloc(i32(48))
 				if v1 == 0 {
-					goto l4
-				}
-				if v0 == i32(21) {
-					_ = m._sql3lexer_next(v5)
-					v0 = i32(2)
-					if m._sql3lexer_next(v5) != i32(2) {
-						goto l3
-					}
-					t13 := v1
-					store64(m.memory[int64(uint32(t13))+4:], uint64(int64(load64(m.memory[int64(uint32(v3))+24:]))))
-					v5 = m._sql3lexer_peek(v5) - i32(22)
-					if uint32(v5) > uint32(i32(4)) {
-						goto l3
-					}
-					if i32_shr_u(i32(29), v5)&i32(1) == 0 {
-						goto l3
-					}
-					v0 = int32(load32(m.memory[int64(uint32(v5<<2))+65928:]))
+					goto l3
 				}
 				{
 					{
-						switch v0 - i32(22) {
-						case 0, 2:
-							goto l18
-						case 3:
-							goto l20
-						case 4:
-							goto l21
-						default:
-							goto l19
+						{
+							var p13 int32
+							if v0 == i32(21) {
+								_ = m._sql3lexer_next(v5)
+								v0 = i32(2)
+								if m._sql3lexer_next(v5) != i32(2) {
+									goto l2
+								}
+								t14 := v1
+								store64(m.memory[int64(uint32(t14))+4:], uint64(int64(load64(m.memory[int64(uint32(v3))+24:]))))
+								v5 = m._sql3lexer_peek(v5) - i32(22)
+								if uint32(v5) > uint32(i32(4)) {
+									goto l2
+								}
+								if i32_shr_u(i32(29), v5)&i32(1) == 0 {
+									goto l2
+								}
+								p13 = int32(load32(m.memory[int64(uint32(v5<<2))+65928:]))
+							} else {
+								p13 = v0
+							}
+							switch p13 - i32(22) {
+							case 0, 2:
+								goto l17
+							case 3:
+								goto l19
+							case 4:
+								goto l20
+							default:
+								goto l18
+							}
 						}
-					l20:
+					l19:
 						v5 = v3 + i32(12)
 						_ = m._sql3lexer_next(v5)
 						v0 = i32(2)
 						store32(m.memory[uint32(v1):], uint32(i32(2)))
 						m._sql3parse_expression(v3+i32(40), v5)
-						t14 := v1
+						t15 := v1
 						v12 = int64(load64(m.memory[int64(uint32(v3))+40:]))
-						store64(m.memory[int64(uint32(t14))+28:], uint64(v12))
+						store64(m.memory[int64(uint32(t15))+28:], uint64(v12))
 						if int32(v12) != 0 {
-							goto l19
+							goto l18
 						}
-						goto l3
+						goto l2
 					}
-				l18:
-					t15 := v1
-					var p16 int32
-					if m._sql3lexer_next(v3+i32(12)) != i32(22) {
-						p16 = 1
-					}
-					v7 = p16
+				l17:
+					t16 := v1
 					var p17 int32
+					if m._sql3lexer_next(v3+i32(12)) != i32(22) {
+						p17 = 1
+					}
+					v7 = p17
+					var p18 int32
 					if v7 != 0 {
-						p17 = i32(1)
+						p18 = i32(1)
 					} else {
 						if m._sql3lexer_next(v3+i32(12)) != i32(23) {
-							goto l4
+							goto l3
 						}
-						p17 = i32(0)
+						p18 = i32(0)
 					}
-					store32(m.memory[uint32(t15):], uint32(p17))
+					store32(m.memory[uint32(t16):], uint32(p18))
 					if m._sql3lexer_next(v3+i32(12)) != i32(19) {
-						goto l4
+						goto l3
 					}
-				l22:
+				l21:
 					{
 						store64(m.memory[int64(uint32(v3))+48:], uint64(i64(0)))
 						v0 = v3 + i32(12)
 						if m._sql3lexer_next(v0) != i32(2) {
-							goto l4
+							goto l3
 						}
-						t18 := v3
-						store64(m.memory[int64(uint32(t18))+40:], uint64(int64(load64(m.memory[int64(uint32(v3))+24:]))))
+						t19 := v3
+						store64(m.memory[int64(uint32(t19))+40:], uint64(int64(load64(m.memory[int64(uint32(v3))+24:]))))
 						if m._sql3lexer_peek(v0) == i32(34) {
 							_ = m._sql3lexer_next(v0)
 							if m._sql3lexer_next(v0) != i32(2) {
-								goto l4
+								goto l3
 							}
-							t19 := v3
-							store64(m.memory[int64(uint32(t19))+48:], uint64(int64(load64(m.memory[int64(uint32(v3))+24:]))))
+							t20 := v3
+							store64(m.memory[int64(uint32(t20))+48:], uint64(int64(load64(m.memory[int64(uint32(v3))+24:]))))
 						}
 						v5 = v3 + i32(12)
 						m._sql3parse_optionalorder(v5, v10)
-						t20 := v1
+						t21 := v1
 						v11 = int32(load32(m.memory[int64(uint32(v1))+12:]))
 						v0 = v11 + i32(1)
-						store32(m.memory[int64(uint32(t20))+12:], uint32(v0))
+						store32(m.memory[int64(uint32(t21))+12:], uint32(v0))
 						v6 = m._sql3_array_grow(int32(load32(m.memory[int64(uint32(v1))+16:])), v0, i32(20))
 						if v6 == 0 {
-							goto l4
+							goto l3
 						}
 						store32(m.memory[int64(uint32(v1))+16:], uint32(v6))
 						v0 = v6 + v0*i32(20) - i32(20)
-						t21 := v0
-						store32(m.memory[int64(uint32(t21))+16:], uint32(int32(load32(m.memory[int64(uint32(v3))+56:]))))
 						t22 := v0
-						store64(m.memory[int64(uint32(t22))+8:], uint64(int64(load64(m.memory[int64(uint32(v3))+48:]))))
+						store32(m.memory[int64(uint32(t22))+16:], uint32(int32(load32(m.memory[int64(uint32(v3))+56:]))))
 						t23 := v0
-						store64(m.memory[uint32(t23):], uint64(int64(load64(m.memory[int64(uint32(v3))+40:]))))
+						store64(m.memory[int64(uint32(t23))+8:], uint64(int64(load64(m.memory[int64(uint32(v3))+48:]))))
+						t24 := v0
+						store64(m.memory[uint32(t24):], uint64(int64(load64(m.memory[int64(uint32(v3))+40:]))))
 						v0 = m._sql3lexer_peek(v5)
+						var p25 int32
 						if v0 == i32(37) {
 							_ = m._sql3lexer_next(v5)
 							if v7 != 0 {
-								goto l4
+								goto l3
 							}
 							m.memory[int64(uint32(v1))+24] = byte(i32(1))
-							v0 = m._sql3lexer_peek(v5)
+							p25 = m._sql3lexer_peek(v5)
+						} else {
+							p25 = v0
 						}
-						if v0 == i32(18) {
+						if p25 == i32(18) {
 							_ = m._sql3lexer_next(v3 + i32(12))
-							goto l22
+							goto l21
 						}
 					}
 					if v11 != 0 {
 						if int32(m.memory[int64(uint32(v1))+24])&i32(1) != 0 {
-							goto l4
+							goto l3
 						}
 					}
 					v5 = v3 + i32(12)
 					if m._sql3lexer_next(v5) != i32(20) {
-						goto l4
+						goto l3
 					}
 					v0 = i32(2)
 					if m._sql3parse_optionalconflitclause(v5, v1+i32(20)) == 0 {
-						goto l19
+						goto l18
 					}
-					goto l3
+					goto l2
 				}
-			l21:
+			l20:
 				v5 = v3 + i32(12)
 				_ = m._sql3lexer_next(v5)
 				if m._sql3lexer_next(v5) != i32(23) {
-					goto l4
+					goto l3
 				}
 				v0 = i32(2)
 				if m._sql3lexer_next(v5) != i32(19) {
-					goto l3
+					goto l2
 				}
 				store32(m.memory[uint32(v1):], uint32(i32(3)))
-			l23:
+			l22:
 				{
 					v5 = v3 + i32(12)
 					if m._sql3lexer_next(v5) != i32(2) {
-						goto l3
+						goto l2
 					}
-					t24 := v1
+					t26 := v1
 					v6 = int32(load32(m.memory[int64(uint32(v1))+36:])) + i32(1)
-					store32(m.memory[int64(uint32(t24))+36:], uint32(v6))
+					store32(m.memory[int64(uint32(t26))+36:], uint32(v6))
 					v7 = m._sql3_array_grow(int32(load32(m.memory[int64(uint32(v1))+40:])), v6, i32(8))
 					if v7 == 0 {
-						goto l3
+						goto l2
 					}
 					store32(m.memory[int64(uint32(v1))+40:], uint32(v7))
-					t25 := v7 + v6<<3 - i32(8)
-					store64(m.memory[uint32(t25):], uint64(int64(load64(m.memory[int64(uint32(v3))+24:]))))
-					t26 := m._sql3lexer_peek(v5)
+					t27 := v7 + v6<<3 - i32(8)
+					store64(m.memory[uint32(t27):], uint64(int64(load64(m.memory[int64(uint32(v3))+24:]))))
+					t28 := m._sql3lexer_peek(v5)
 					v7 = m._sql3lexer_next(v5)
-					if t26 == i32(18) {
-						goto l23
+					if t28 == i32(18) {
+						goto l22
 					}
 				}
 				if v7 != i32(20) {
-					goto l3
+					goto l2
 				}
 				if m._sql3lexer_next(v5) != i32(42) {
-					goto l3
+					goto l2
 				}
 				v5 = m._sql3parse_foreignkey_clause(v5)
 				if v5 == 0 {
-					goto l3
+					goto l2
 				}
 				store32(m.memory[int64(uint32(v1))+44:], uint32(v5))
-			l19:
-				t27 := v4
+			l18:
+				t29 := v4
 				v0 = int32(load32(m.memory[int64(uint32(v4))+36:])) + i32(1)
-				store32(m.memory[int64(uint32(t27))+36:], uint32(v0))
+				store32(m.memory[int64(uint32(t29))+36:], uint32(v0))
 				v5 = m._sql3_array_grow(int32(load32(m.memory[int64(uint32(v4))+40:])), v0, i32(4))
 				if v5 == 0 {
-					t28 := v4
-					store32(m.memory[int64(uint32(t28))+36:], uint32(int32(load32(m.memory[int64(uint32(v4))+36:]))-i32(1)))
+					t30 := v4
+					store32(m.memory[int64(uint32(t30))+36:], uint32(int32(load32(m.memory[int64(uint32(v4))+36:]))-i32(1)))
 					v0 = i32(1)
-					goto l3
+					goto l2
 				}
 				store32(m.memory[int64(uint32(v4))+40:], uint32(v5))
 				v0 = i32(2)
-				t29 := v5
-				store32(m.memory[uint32(t29+int32(load32(m.memory[int64(uint32(v4))+36:]))<<2-i32(4)):], uint32(v1))
+				t31 := v5
+				store32(m.memory[uint32(t31+int32(load32(m.memory[int64(uint32(v4))+36:]))<<2-i32(4)):], uint32(v1))
 				switch m._sql3lexer_peek(v3+i32(12)) - i32(18) {
 				case 0:
-					goto l24
+					goto l23
 				case 2:
-					goto l17
+					goto l16
 				default:
-					goto l3
+					goto l2
 				}
-			l24:
+			l23:
 				v0 = v3 + i32(12)
 				_ = m._sql3lexer_next(v0)
 				v0 = m._sql3lexer_peek(v0)
-				goto l25
+				goto l24
 			}
-		l17:
+		l16:
 			v0 = i32(2)
 			if m._sql3lexer_next(v3+i32(12)) != i32(20) {
-				goto l3
+				goto l2
 			}
 			store32(m.memory[int64(uint32(v3))+32:], uint32(v9))
-		l30:
+		l29:
 			switch m._sql3lexer_peek(v3+i32(12)) - i32(12) {
 			case 0:
-				goto l26
+				goto l25
 			case 2:
-				goto l28
-			default:
 				goto l27
+			default:
+				goto l26
 			}
-		l26:
+		l25:
 			v1 = v3 + i32(12)
 			_ = m._sql3lexer_next(v1)
 			if m._sql3lexer_next(v1) != i32(13) {
-				goto l3
+				goto l2
 			}
 			m.memory[int64(uint32(int32(load32(m.memory[int64(uint32(v3))+36:]))))+26] = byte(i32(1))
-			goto l29
-		l28:
+			goto l28
+		l27:
 			_ = m._sql3lexer_next(v3 + i32(12))
 			m.memory[int64(uint32(int32(load32(m.memory[int64(uint32(v3))+36:]))))+27] = byte(i32(1))
-		l29:
+		l28:
 			v1 = v3 + i32(12)
 			if m._sql3lexer_peek(v1) != i32(18) {
-				goto l27
+				goto l26
 			}
 			_ = m._sql3lexer_next(v1)
-			goto l30
-		l27:
+			goto l29
+		l26:
 			v0 = i32(0)
 			v1 = v3 + i32(12)
 			if m._sql3lexer_peek(v1) != i32(17) {
-				goto l3
+				goto l2
 			}
 			_ = m._sql3lexer_next(v1)
-			goto l3
+			goto l2
 		}
-	l4:
-		v0 = i32(2)
 	l3:
+		v0 = i32(2)
+	l2:
 		if v2 != 0 {
 			store32(m.memory[uint32(v2):], uint32(v0))
 		}
-		p30 := v8
+		p32 := v8
 		if v0 != 0 {
-			p30 = i32(0)
+			p32 = i32(0)
 		}
-		v0 = p30
+		v0 = p32
 	}
 l0:
 	m.___stack_pointer = v3 - i32(-64)

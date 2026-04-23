@@ -29,3 +29,5 @@ jobs:
           sqlite3.go
           sqlite3.dat
           parser/parser.go
+          spellfix/spellfix.go
+          vec1/vec1.go

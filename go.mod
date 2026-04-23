@@ -2,9 +2,12 @@ module github.com/ncruces/go-sqlite3-wasm
 
 go 1.25.0
 
-tool github.com/ncruces/wasm2go
+tool (
+	github.com/ncruces/wasm2go
+	github.com/ncruces/wasm2go/libc-gen
+)
 
 require (
-	github.com/ncruces/wasm2go v0.3.3 // indirect
+	github.com/ncruces/wasm2go v0.4.0 // indirect
 	golang.org/x/tools v0.43.0 // indirect
 )

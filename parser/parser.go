@@ -36,27 +36,38 @@ func (m *wasmMemory) Grow(delta, max int64) int64 {
 	return memory_grow((*[]byte)(m), delta, max)
 }
 func (m *Module) Xmalloc(v0 int32) int32 {
-	var v1, v2, v3 int32
-	{
-		if v0 == 0 {
+	var v1, v2, v3, v4, v5, v6 int32
+	if v0 == 0 {
+		goto l0
+	}
+	v2 = (v0 + i32(15)) & i32(-16)
+	v1 = int32(load32(m.memory[uint32(i32(65948)):]))
+	v3 = int32(load32(m.memory[uint32(i32(65952)):]))
+	v0 = v3
+l2:
+	v0 = v1 - v0
+	if uint32(v0) < uint32(v2) {
+		v5 = v2 - v0 + i32(0xffff)
+		v6 = int32(uint32(v5) >> 16)
+		v4 = int32(memory_grow(&m.memory, int64(v6), m.maxMem))
+		if v4 == i32(-1) {
 			goto l0
 		}
-		v0 = (v0 + i32(15)) & i32(-16)
-		t0 := v0
-		v3 = int32(load32(m.memory[uint32(i32(65948)):]))
-		t1 := v3
-		v2 = int32(load32(m.memory[uint32(i32(65952)):]))
-		v1 = t1 - v2
-		if uint32(t0) > uint32(v1) {
-			v1 = v0 - v1 + i32(0xffff)
-			if int32(memory_grow(&m.memory, int64(int32(uint32(v1)>>16)), m.maxMem)) == i32(-1) {
-				goto l0
-			}
-			store32(m.memory[uint32(i32(65948)):], uint32(v3+v1&i32(-65536)))
+		t0 := v1
+		v0 = v4 << 16
+		if t0 != v0 {
+			goto l1
 		}
-		store32(m.memory[uint32(i32(65952)):], uint32(v0+v2))
-		return v2
+		store32(m.memory[uint32(i32(65948)):], uint32(v1+v5&i32(-65536)))
 	}
+	store32(m.memory[uint32(i32(65952)):], uint32(v2+v3))
+	return v3
+l1:
+	store32(m.memory[uint32(i32(65952)):], uint32(v0))
+	v1 = (v4 + v6) << 16
+	store32(m.memory[uint32(i32(65948)):], uint32(v1))
+	v3 = v0
+	goto l2
 l0:
 	return i32(0)
 }
@@ -1466,17 +1477,26 @@ func (m *Module) _sql3_array_grow(v0, v1, v2 int32) int32 {
 			if uint32(v2) < uint32(i32(17)) {
 				goto l0
 			}
-			t1 := int32(load32(m.memory[uint32(i32(65952)):]))
-			v1 = m.Xmalloc(v2)
-			v3 = t1 - v0
-			p2 := v2
-			if uint32(v2) > uint32(v3) {
-				p2 = v3
+			v3 = int32(load32(m.memory[uint32(i32(65952)):])) - v0
+			if v3 == i32(16) {
+				store32(m.memory[uint32(i32(65952)):], uint32(v0))
 			}
-			v2 = p2
-			if v2 != 0 {
+			{
+				v1 = m.Xmalloc(v2)
+				if v1 == v0 {
+					goto l1
+				}
+				p1 := v2
+				if uint32(v2) > uint32(v3) {
+					p1 = v3
+				}
+				v2 = p1
+				if v2 == 0 {
+					goto l1
+				}
 				memory_copy(m.memory, uint32(v1), uint32(v0), uint32(v2))
 			}
+		l1:
 			v0 = v1
 		}
 	l0:

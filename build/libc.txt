@@ -21,7 +21,6 @@ sinh
 strchr
 strchrnul
 strcmp
-strcpy
 strcspn
 strlen
 strncmp

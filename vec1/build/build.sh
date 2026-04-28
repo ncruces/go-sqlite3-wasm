@@ -8,14 +8,12 @@ BINARYEN="$ROOT/tools/binaryen/bin/"
 WASI_SDK="$ROOT/tools/wasi-sdk/bin/"
 
 trap 'rm -f vec1*' EXIT
-
-curl -# "https://sqlite.org/vec1/raw/2a973b083d?at=vec1.c" > vec1.c
+curl -# "https://sqlite.org/vec1/raw/9e654d6c20?at=vec1.c" > vec1.c
 
 go tool libc-gen -pkg vec1 -deref-mem -o ../libc.go -c-out "$ROOT/libc" \
 	memcmp strtod
 
 "$WASI_SDK/clang" --target=wasm32 -nostdlib -std=c23 -g0 -Oz \
-	-Wall -Wextra -Wno-unused-parameter -Wno-unused-function \
 	-o vec1 vec1.c -I"$ROOT/libc" -I"$ROOT/build" \
 	-DNDEBUG -DSQLITE_OMIT_LOAD_EXTENSION \
 	-mexec-model=reactor -shared -fPIC \

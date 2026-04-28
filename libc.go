@@ -25,7 +25,6 @@ func (m *Module) _exp(x float64) float64 { return math.Exp(x) }
 
 func (m *Module) _fmod(x, y float64) float64 { return math.Mod(x, y) }
 func (m *Module) _localtime_r(timer, buf int32) int32 {
-	const size = 32 / 8
 	t := load64((*m.memory)[uint32(timer):])
 	m._storetime_r((*m.memory)[uint32(buf):], time.Unix(int64(t), 0))
 	return buf
@@ -57,6 +56,7 @@ func (m *Module) _pow(x, y float64) float64 { return math.Pow(x, y) }
 
 func (m *Module) _sin(x float64) float64  { return math.Sin(x) }
 func (m *Module) _sinh(x float64) float64 { return math.Sinh(x) }
+
 func (m *Module) _strchr(s, c int32) int32 {
 	s = m._strchrnul(s, c)
 	if (*m.memory)[uint32(s)] == byte(c) {
@@ -87,12 +87,6 @@ func (m *Module) _strcmp(s1, s2 int32) int32 {
 	return int32(bytes.Compare(b1[:sz], b2[:sz]))
 }
 
-func (m *Module) _strcpy(d, s int32) int32 {
-	b := (*m.memory)[uint32(s):]
-	b = b[:bytes.IndexByte(b, 0)+1]
-	copy((*m.memory)[uint32(d):], b)
-	return d
-}
 func (m *Module) _strcspn(s, reject int32) int32 {
 	b := (*m.memory)[uint32(s):]
 	r := (*m.memory)[uint32(reject):]
@@ -139,7 +133,6 @@ func (m *Module) _strspn(s, accept int32) int32 {
 	}
 	return int32(len(b))
 }
-
 func (m *Module) _strstr(haystack, needle int32) int32 {
 	h := (*m.memory)[uint32(haystack):]
 	n := (*m.memory)[uint32(needle):]
@@ -184,6 +177,7 @@ func (m *Module) _storetime_r(buf []byte, t time.Time) {
 	if t.IsDST() {
 		isdst = 1
 	}
+	_, zone := t.Zone()
 
 	store32(buf[0*size:], uint32(t.Second()))
 	store32(buf[1*size:], uint32(t.Minute()))
@@ -194,4 +188,6 @@ func (m *Module) _storetime_r(buf []byte, t time.Time) {
 	store32(buf[6*size:], uint32(t.Weekday()-time.Sunday))
 	store32(buf[7*size:], uint32(t.YearDay()-1))
 	store32(buf[8*size:], isdst)
+	store32(buf[9*size:], uint32(zone))
+	store32(buf[10*size:], 0)
 }

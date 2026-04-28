@@ -68,6 +68,7 @@ sqlite3_database_file_object
 sqlite3_db_cacheflush
 sqlite3_db_config
 sqlite3_db_filename
+sqlite3_db_handle
 sqlite3_db_name
 sqlite3_db_readonly
 sqlite3_db_release_memory
@@ -134,6 +135,7 @@ sqlite3_stmt_readonly
 sqlite3_stmt_status
 sqlite3_str_appendall
 sqlite3_str_appendf
+sqlite3_str_errcode
 sqlite3_str_finish
 sqlite3_str_new
 sqlite3_stricmp

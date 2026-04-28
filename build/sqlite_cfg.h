@@ -6,7 +6,6 @@
 #define SQLITE_OS_OTHER 1
 #define SQLITE_BYTEORDER 1234
 #define SQLITE_MAX_PATHLEN 4096
-#define SQLITE_MALLOCSIZE(x) malloc_usable_size(x)
 
 #define HAVE_INT8_T 1
 #define HAVE_INT16_T 1
@@ -19,17 +18,18 @@
 #define HAVE_UINT64_T 1
 #define HAVE_UINTPTR_T 1
 #define HAVE_STDINT_H 1
+#define HAVE_INTTYPES_H 1
+
+#define HAVE_MALLOC_H 1
+#define HAVE_MALLOC_USABLE_SIZE 1
 
 #define HAVE_LOG2 1
 #define HAVE_LOG10 1
 #define HAVE_ISNAN 1
 
 #define HAVE_STRCHRNUL 1
-#define HAVE_NANOSLEEP 1
+#define HAVE_GMTIME_R 1
 #define HAVE_LOCALTIME_R 1
-
-// Implemented in malloc.c.
-size_t malloc_usable_size(void*);
 
 // Implemented in hooks.c.
 static int sqliteBusyCallback(void*, int);

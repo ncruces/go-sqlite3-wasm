@@ -13,7 +13,7 @@ go tool libc-gen -pkg sqlite3_wasm -deref-mem \
 	-o ../libc.go -c-out ../libc \
 	$(awk '{print $0}' libc.txt)
 
-"$WASI_SDK/clang" --target=wasm32 -nostdlib -std=c23 -g0 -Oz \
+"$WASI_SDK/clang" --target=wasm32 -nostdlib -ffreestanding -std=c23 -g0 -Oz \
 	-Wall -Wextra -Wno-unused-parameter -Wno-unused-function \
 	-o sqlite3.wasm main.c test_*.c -I. -I../libc \
 	-mexec-model=reactor \

@@ -20,7 +20,7 @@
 #include "malloc_sbrk.c"
 
 void _initialize() {
-  try_init_allocator();
+  init_allocator();
   sqlite3_initialize();
   sqlite3_auto_extension((void (*)(void))sqlite3_decimal_init);
   sqlite3_auto_extension((void (*)(void))sqlite3_ieee_init);

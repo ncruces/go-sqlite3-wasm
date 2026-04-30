@@ -17,7 +17,7 @@ mv LICENSE ../LICENSE
 
 go tool libc-gen -pkg sql3parse_table -o ../libc.go -c-out "$ROOT/libc" strlen
 
-"$WASI_SDK/clang" --target=wasm32 -nostdlib -ffreestanding -std=c23 -g0 -Oz \
+"$WASI_SDK/clang" --target=wasm32 -ffreestanding -nostdlib -std=c23 -g0 -Oz \
 	-Wall -Wextra -Wno-unused-parameter -Wno-unused-function \
 	-o sql3parse_table main.c -I"$ROOT/libc" \
 	-mexec-model=reactor \

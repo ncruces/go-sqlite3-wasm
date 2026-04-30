@@ -952,7 +952,7 @@ func (m *Module) _vec1TrainFinal(v0 int32) {
 				(*m.memory)[int64(uint32(t24))+7] = byte(t25 | p23)
 				(*m.memory)[int64(uint32(v11))+6] = byte(i32(0))
 				store16((*m.memory)[int64(uint32(v11))+4:], uint16(i32(0)))
-				store32((*m.memory)[uint32(v11):], uint32(i32(0x37000000)))
+				store32((*m.memory)[uint32(v11):], uint32(i32(0x4000000)))
 				(*m.memory)[int64(uint32(v11))+22] = byte(int32(uint32(v5) >> 8))
 				(*m.memory)[int64(uint32(v11))+21] = byte(int32(uint32(v5) >> 16))
 				(*m.memory)[int64(uint32(v11))+20] = byte(int32(uint32(v5) >> 24))
@@ -2337,7 +2337,7 @@ l16:
 							goto l7
 						}
 					l6:
-						if m._sqlite3_column_int(v5, i32(1)) == i32(1) {
+						if m._sqlite3_column_int(v5, i32(1)) == i32(4) {
 							goto l7
 						}
 						t11 := v0
@@ -2618,7 +2618,7 @@ func (m *Module) _vec1CreateConnect(v0, v1, v2, v3, v4, v5, v6 int32) int32 {
 				}
 				v0 = int32(load32((*m.memory)[int64(uint32(v7))+176:]))
 				_ = m._sqlite3_bind_int(v0, i32(1), i32(5))
-				_ = m._sqlite3_bind_int(v0, i32(2), i32(1))
+				_ = m._sqlite3_bind_int(v0, i32(2), i32(4))
 				_ = m._sqlite3_step(v0)
 				m._vec1StmtReset(v7+i32(172), v0)
 				v9 = int32(load32((*m.memory)[int64(uint32(v7))+172:]))
@@ -2811,8 +2811,10 @@ l4:
 		v2 = v2 + i32(1)
 		goto l11
 	}
-	v10 = v10 & i64(4)
+	v10 = v10 & i64(12)
 	if v6 >= i32(0) {
+		store64((*m.memory)[int64(uint32(v1))+48:], uint64(i64(1)))
+		store64((*m.memory)[int64(uint32(v1))+40:], uint64(i64(0x4024000000000000)))
 		t11 := v1
 		p10 := i32(3)
 		if v10 == 0 {
@@ -2907,11 +2909,11 @@ l0:
 	return v2
 }
 func (m *Module) _vec1Open(v0, v1 int32) int32 {
-	v0 = m._sqlite3_malloc(i32(28))
+	v0 = m._sqlite3_malloc(i32(32))
 	if v0 == 0 {
 		return i32(7)
 	}
-	store32((*m.memory)[int64(uint32(v0))+24:], uint32(i32(0)))
+	store64((*m.memory)[int64(uint32(v0))+24:], uint64(i64(0)))
 	store64((*m.memory)[int64(uint32(v0))+16:], uint64(i64(0)))
 	store64((*m.memory)[int64(uint32(v0))+8:], uint64(i64(0)))
 	store64((*m.memory)[uint32(v0):], uint64(i64(0)))
@@ -2924,12 +2926,12 @@ func (m *Module) _vec1Close(v0 int32) int32 {
 	return i32(0)
 }
 func (m *Module) _vec1ResetCsr(v0 int32) {
-	m._vec1QueryFree(int32(load32((*m.memory)[int64(uint32(v0))+24:])))
+	m._vec1QueryFree(int32(load32((*m.memory)[int64(uint32(v0))+28:])))
 	_ = m._sqlite3_finalize(int32(load32((*m.memory)[int64(uint32(v0))+4:])))
 	store32((*m.memory)[int64(uint32(v0))+16:], uint32(i32(0)))
 	store32((*m.memory)[int64(uint32(v0))+4:], uint32(i32(0)))
-	m._sqlite3_free(int32(load32((*m.memory)[int64(uint32(v0))+20:])))
-	store32((*m.memory)[int64(uint32(v0))+20:], uint32(i32(0)))
+	m._sqlite3_free(int32(load32((*m.memory)[int64(uint32(v0))+24:])))
+	store32((*m.memory)[int64(uint32(v0))+24:], uint32(i32(0)))
 }
 func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 	var v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15 int32
@@ -2940,12 +2942,18 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 	*m.___stack_pointer = v5
 	v10 = int32(load32((*m.memory)[uint32(v0):]))
 	m._vec1ResetCsr(v0)
-	if v1&i32(1) != 0 {
-		v3 = m._vec1LoadConfig(v10)
-		if v3 != 0 {
-			goto l0
-		}
+	if v1&i32(1) == 0 {
+		goto l0
 	}
+	if int32(load32((*m.memory)[int64(uint32(v0))+20:])) != 0 {
+		goto l0
+	}
+	v3 = m._vec1LoadConfig(v10)
+	if v3 != 0 {
+		goto l1
+	}
+	store32((*m.memory)[int64(uint32(v0))+20:], uint32(i32(1)))
+l0:
 	{
 		if uint32(v1) <= uint32(i32(1)) {
 			t0 := v5
@@ -2953,7 +2961,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 			t1 := v10
 			t2 := v0 + i32(4)
 			v3 = m._vec1PrepareSql(t1, t2, *m.___memory_base+i32(4111), v5)
-			goto l1
+			goto l2
 		}
 		if uint32(v1) <= uint32(i32(3)) {
 			t3 := v5
@@ -2963,11 +2971,11 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 			t5 := v1
 			v3 = m._vec1PrepareSql(t4, t5, *m.___memory_base+i32(2450), v5+i32(16))
 			if v3 != 0 {
-				goto l0
+				goto l1
 			}
 			t6 := int32(load32((*m.memory)[uint32(v1):]))
 			_ = m._sqlite3_bind_value(t6, i32(1), int32(load32((*m.memory)[uint32(v4):])))
-			goto l2
+			goto l3
 		}
 		v9 = i32(1)
 		if int32((*m.memory)[int64(uint32(v10))+148])&i32(2) == 0 {
@@ -2980,37 +2988,37 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 		v6 = i32(1)
 		v3 = i32(0)
 		v1 = i32(0)
-	l10:
+	l11:
 		{
 			v8 = int32((*m.memory)[uint32(v2+v7)])
 			switch v8 - i32(76) {
 			case 0, 4:
-				goto l3
-			case 1, 2, 3:
 				goto l4
-			default:
+			case 1, 2, 3:
 				goto l5
-			}
-		l5:
-			if v8 == i32(73) {
+			default:
 				goto l6
 			}
-			if v8 == 0 {
+		l6:
+			if v8 == i32(73) {
 				goto l7
 			}
-		l4:
+			if v8 == 0 {
+				goto l8
+			}
+		l5:
 			v1 = v1 + i32(1)
-			goto l8
-		l6:
+			goto l9
+		l7:
 			store32((*m.memory)[int64(uint32(v5))+136:], uint32(i32(0)))
 			v1 = v1 + i32(1)
 			v3 = int32(load32((*m.memory)[uint32(v4+v6<<2):]))
 			v8 = m._sqlite3_vtab_in_first(v3, v5+i32(136))
-		l9:
+		l10:
 			if v8 == 0 {
 				v1 = v1 + i32(1)
 				v8 = m._sqlite3_vtab_in_next(v3, v5+i32(136))
-				goto l9
+				goto l10
 			}
 			p8 := i32(0)
 			if v8 != i32(101) {
@@ -3018,13 +3026,13 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 			}
 			v3 = p8
 		}
-	l8:
+	l9:
 		v7 = v7 + i32(2)
-	l3:
+	l4:
 		v7 = v7 + i32(1)
 		v6 = v6 + i32(1)
-		goto l10
-	l7:
+		goto l11
+	l8:
 		store32((*m.memory)[int64(uint32(v5))+192:], uint32(v3))
 		{
 			v1 = v1 * i32(40)
@@ -3033,7 +3041,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 			v7 = m._vec1MallocZero(int64(uint32(t9 + v8 + v8*v9 + i32(104))))
 			if v7 == 0 {
 				v3 = i32(7)
-				goto l11
+				goto l12
 			}
 			t10 := v7
 			v8 = v7 + i32(104)
@@ -3074,7 +3082,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 				t19 := v1
 				if t19 != int32(load32((*m.memory)[int64(uint32(v10))+136:]))<<2 {
 					m._vec1VectorSizeError(v10, v1)
-					goto l12
+					goto l13
 				}
 				v1 = m._sqlite3_value_blob(int32(load32((*m.memory)[uint32(v4):])))
 				v8 = int32(load32((*m.memory)[int64(uint32(v10))+136:])) << 2
@@ -3082,14 +3090,14 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 					memory_copy(*m.memory, uint32(int32(load32((*m.memory)[int64(uint32(v7))+32:]))), uint32(v1), uint32(v8))
 				}
 				if v3 != 0 {
-					goto l13
+					goto l14
 				}
 				var p20 int32
 				v1 = int32((*m.memory)[uint32(v2)])
 				if v1 != i32(80) {
 					v9 = i32(1)
 					p20 = i32(0)
-					goto l14
+					goto l15
 				}
 				{
 					v1 = int32(load32((*m.memory)[int64(uint32(v4))+4:]))
@@ -3099,12 +3107,12 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 						v16 = int64(v1)
 						store64((*m.memory)[int64(uint32(t21))+8:], uint64(v16))
 						if v1 > i32(0) {
-							goto l15
+							goto l16
 						}
 						store64((*m.memory)[int64(uint32(v5))+32:], uint64(v16))
 						t22 := v10
 						m._vec1VtabError(t22, *m.___memory_base+i32(3476), v5+i32(32))
-						goto l12
+						goto l13
 					}
 					t23 := v5
 					t24 := int32(load32((*m.memory)[int64(uint32(v10))+12:]))
@@ -3112,19 +3120,19 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 					v3 = m._vec1ParseJsonConfig(t24, t25, *m.___table_base+i32(5), v7, v10+i32(8))
 					store32((*m.memory)[int64(uint32(t23))+192:], uint32(v3))
 					if v3 != 0 {
-						goto l13
+						goto l14
 					}
 				}
-			l15:
+			l16:
 				v1 = int32((*m.memory)[int64(uint32(v2))+1])
 				v9 = i32(2)
 				p20 = i32(1)
-			l14:
+			l15:
 				v3 = p20
 				if v1&i32(255) == 0 {
-					goto l16
+					goto l17
 				}
-			l25:
+			l26:
 				v12 = v1 & i32(255)
 				if v12 != 0 {
 					v8 = v3 + i32(1)
@@ -3132,7 +3140,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 					if v12 == i32(76) {
 						v1 = m._sqlite3_value_int(v11)
 						if v1 < i32(0) {
-							goto l17
+							goto l18
 						}
 						t26 := v7
 						v16 = int64(uint32(v1))
@@ -3147,7 +3155,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 							p29 = t27
 						}
 						store64((*m.memory)[int64(uint32(t26))+8:], uint64(p29))
-						goto l17
+						goto l18
 					}
 					t30 := v7
 					v6 = int32(load32((*m.memory)[int64(uint32(v7))+24:]))
@@ -3172,22 +3180,22 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 					v3 = v3 + i32(3)
 					switch v12 - i32(71) {
 					case 0:
-						goto l18
-					case 1:
 						goto l19
-					case 2:
+					case 1:
 						goto l20
-					default:
+					case 2:
 						goto l21
+					default:
+						goto l22
 					}
-				l20:
+				l21:
 					store32((*m.memory)[int64(uint32(v5))+136:], uint32(i32(0)))
 					v1 = m._sqlite3_vtab_in_first(v11, v5+i32(136))
-				l23:
+				l24:
 					{
 						store32((*m.memory)[int64(uint32(v5))+192:], uint32(v1))
 						if v1 != 0 {
-							goto l22
+							goto l23
 						}
 						t36 := v7
 						v1 = int32(load32((*m.memory)[int64(uint32(v7))+24:]))
@@ -3198,7 +3206,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 						m._vec1ValueToFilter(t37, t38, v8)
 						v1 = int32(load32((*m.memory)[int64(uint32(v5))+192:]))
 						if v1 != 0 {
-							goto l22
+							goto l23
 						}
 						(*m.memory)[uint32(v8)] = byte(i32(65))
 						t39 := v8
@@ -3206,65 +3214,65 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 						t40 := v6
 						store64((*m.memory)[int64(uint32(t40))+16:], uint64(int64(load64((*m.memory)[int64(uint32(v6))+16:]))+i64(1)))
 						v1 = m._sqlite3_vtab_in_next(v11, v5+i32(136))
-						goto l23
-					}
-				l22:
-					if v1 != i32(101) {
 						goto l24
 					}
+				l23:
+					if v1 != i32(101) {
+						goto l25
+					}
 					store32((*m.memory)[int64(uint32(v5))+192:], uint32(i32(0)))
-					goto l24
-				l19:
+					goto l25
+				l20:
 					store64((*m.memory)[int64(uint32(v6))+16:], uint64(i64(0)))
 					store32((*m.memory)[int64(uint32(v6))+8:], uint32(i32(4)))
-					goto l24
-				l18:
+					goto l25
+				l19:
 					(*m.memory)[uint32(v6)] = byte(i32(70))
 					store32((*m.memory)[int64(uint32(v6))+8:], uint32(i32(5)))
-					goto l24
-				l21:
+					goto l25
+				l22:
 					m._vec1ValueToFilter(v5+i32(192), v11, v6)
-					goto l24
+					goto l25
 				}
 				v3 = int32(load32((*m.memory)[int64(uint32(v5))+192:]))
 				if v3 != 0 {
-					goto l13
+					goto l14
 				}
-				goto l16
-			l17:
+				goto l17
+			l18:
 				v3 = v8
-			l24:
+			l25:
 				v9 = v9 + i32(1)
 				v1 = int32((*m.memory)[uint32(v2+v3)])
-				goto l25
-			l16:
+				goto l26
+			l17:
 				if int64(load64((*m.memory)[int64(uint32(v7))+8:])) >= i64(0) {
 					v6 = int32(load32((*m.memory)[int64(uint32(v7))+24:]))
 					v3 = i32(0)
 					v4 = i32(40)
-					goto l52
+					goto l53
 				}
 				t41 := v10
 				m._vec1VtabError(t41, *m.___memory_base+i32(1528), i32(0))
 			}
-		l12:
-			v3 = i32(1)
 		l13:
+			v3 = i32(1)
+		l14:
 			m._vec1QueryFree(v7)
 		}
-	l11:
-		store32((*m.memory)[int64(uint32(v0))+24:], uint32(i32(0)))
-		goto l27
-	l52:
+	l12:
+		store32((*m.memory)[int64(uint32(v0))+28:], uint32(i32(0)))
+		goto l28
+	l53:
 		{
 			if v3 < v6 {
 				v1 = v4
 				v2 = v3 + i32(1)
 				v8 = v2
-			l29:
+			l30:
 				{
 					if v6 <= v8 {
-						goto l28
+						goto l29
 					}
 					v9 = int32(load32((*m.memory)[int64(uint32(v7))+28:]))
 					v11 = v9 + v1
@@ -3279,16 +3287,16 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 					}
 					v1 = v1 + i32(40)
 					v8 = v8 + i32(1)
-					goto l29
+					goto l30
 				}
 			}
-			store32((*m.memory)[int64(uint32(v0))+24:], uint32(v7))
+			store32((*m.memory)[int64(uint32(v0))+28:], uint32(v7))
 			if int32((*m.memory)[int64(uint32(v10))+148])&i32(1) == 0 {
 				v2 = *m.___memory_base + i32(4462)
 				v8 = int32(load32((*m.memory)[uint32(v0):]))
 				v4 = m._sqlite3_str_new(int32(load32((*m.memory)[int64(uint32(v8))+12:])))
 				v6 = i32(0)
-			l40:
+			l41:
 				if int32(load32((*m.memory)[int64(uint32(v7))+24:])) > v6 {
 					v1 = *m.___memory_base + i32(2843)
 					{
@@ -3297,23 +3305,23 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 								v3 = int32(load32((*m.memory)[int64(uint32(v7))+28:])) + v6*i32(40)
 								switch int32((*m.memory)[uint32(v3)]) - i32(65) {
 								case 0:
-									goto l30
-								case 1:
 									goto l31
-								case 2:
+								case 1:
 									goto l32
-								case 3:
+								case 2:
 									goto l33
-								case 4:
+								case 3:
 									goto l34
-								case 5:
+								case 4:
 									goto l35
-								case 8:
-									goto l37
-								default:
+								case 5:
 									goto l36
+								case 8:
+									goto l38
+								default:
+									goto l37
 								}
-							l37:
+							l38:
 								t43 := v5
 								store32((*m.memory)[int64(uint32(t43))+68:], uint32(int32(load32((*m.memory)[int64(uint32(v3))+4:]))))
 								store32((*m.memory)[int64(uint32(v5))+64:], uint32(v2))
@@ -3323,7 +3331,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 								v1 = v3 + i32(80)
 								v17 = int64(v6)
 								v16 = i64(2)
-							l38:
+							l39:
 								v18 = int64(load64((*m.memory)[int64(uint32(v3))+16:])) + v17
 								if v18 >= v16 {
 									t45 := v4
@@ -3331,26 +3339,26 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 									m._vec1AppendFilterValue(v4, v1)
 									v1 = v1 + i32(40)
 									v16 = v16 + i64(1)
-									goto l38
+									goto l39
 								}
 								t46 := v4
 								m._sqlite3_str_appendf(t46, *m.___memory_base+i32(3950), i32(0))
 								v6 = int32(v18)
-								goto l39
+								goto l40
 							}
-						l32:
-							v1 = *m.___memory_base + i32(2837)
-							goto l30
 						l33:
-							v1 = *m.___memory_base + i32(2842)
-							goto l30
+							v1 = *m.___memory_base + i32(2837)
+							goto l31
 						l34:
-							v1 = *m.___memory_base + i32(2839)
-							goto l30
+							v1 = *m.___memory_base + i32(2842)
+							goto l31
 						l35:
-							v1 = *m.___memory_base + i32(2364)
-							goto l30
+							v1 = *m.___memory_base + i32(2839)
+							goto l31
 						l36:
+							v1 = *m.___memory_base + i32(2364)
+							goto l31
+						l37:
 							v1 = int32(load32((*m.memory)[int64(uint32(v3))+4:]))
 							t47 := v5
 							store32((*m.memory)[int64(uint32(t47))+56:], uint32(*m.___memory_base+i32(2374)))
@@ -3358,11 +3366,11 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 							store32((*m.memory)[int64(uint32(v5))+48:], uint32(v2))
 							t48 := v4
 							m._sqlite3_str_appendf(t48, *m.___memory_base+i32(918), v5+i32(48))
-							goto l39
+							goto l40
 						}
-					l31:
+					l32:
 						v1 = *m.___memory_base + i32(2845)
-					l30:
+					l31:
 						v9 = int32(load32((*m.memory)[int64(uint32(v3))+4:]))
 						store32((*m.memory)[int64(uint32(v5))+88:], uint32(v1))
 						store32((*m.memory)[int64(uint32(v5))+84:], uint32(v9))
@@ -3371,16 +3379,16 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 						m._sqlite3_str_appendf(t49, *m.___memory_base+i32(918), v5+i32(80))
 						m._vec1AppendFilterValue(v4, v3)
 					}
-				l39:
+				l40:
 					v2 = *m.___memory_base + i32(4282)
 					v6 = v6 + i32(1)
-					goto l40
+					goto l41
 				}
 				v3 = m._sqlite3_str_errcode(v4)
 				v1 = m._sqlite3_str_finish(v4)
 				{
 					if v3 != 0 {
-						goto l41
+						goto l42
 					}
 					v16 = int64(load64((*m.memory)[int64(uint32(v8))+16:]))
 					v2 = int32(load32((*m.memory)[int64(uint32(v8))+164:]))
@@ -3407,18 +3415,18 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 					t58 := v2
 					v3 = m._vec1PrepareSql(t57, t58, *m.___memory_base+i32(1897), v5+i32(96))
 					if v3 != 0 {
-						goto l41
+						goto l42
 					}
 					t59 := int32(load32((*m.memory)[uint32(v2):]))
 					t60 := int32(load32((*m.memory)[int64(uint32(v7))+32:]))
 					_ = m._sqlite3_bind_blob(t59, i32(1), t60, int32(load32((*m.memory)[int64(uint32(v8))+136:]))<<2, i32(-1))
 					v3 = i32(0)
 				}
-			l41:
+			l42:
 				m._vec1QueryFree(v7)
-				store32((*m.memory)[int64(uint32(v0))+24:], uint32(i32(0)))
+				store32((*m.memory)[int64(uint32(v0))+28:], uint32(i32(0)))
 				m._sqlite3_free(v1)
-				goto l27
+				goto l28
 			}
 			t61 := v5
 			store64((*m.memory)[int64(uint32(t61))+128:], uint64(int64(load64((*m.memory)[int64(uint32(v10))+16:]))))
@@ -3426,9 +3434,9 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 			t63 := v0 + i32(4)
 			v3 = m._vec1PrepareSql(t62, t63, *m.___memory_base+i32(2590), v5+i32(128))
 			if v3 != 0 {
-				goto l27
+				goto l28
 			}
-			v6 = int32(load32((*m.memory)[int64(uint32(v0))+24:]))
+			v6 = int32(load32((*m.memory)[int64(uint32(v0))+28:]))
 			v1 = int32(load32((*m.memory)[int64(uint32(v6))+32:]))
 			v9 = int32(load32((*m.memory)[uint32(v0):]))
 			v4 = i32(0)
@@ -3461,7 +3469,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 						t69 := v9
 						store64((*m.memory)[int64(uint32(t69))+280:], uint64(int64(load64((*m.memory)[int64(uint32(v9))+280:]))+i64(1)))
 						v3 = i32(7)
-						goto l42
+						goto l43
 					}
 					store64((*m.memory)[int64(uint32(v6))+80:], uint64(v17))
 					store64((*m.memory)[int64(uint32(v6))+72:], uint64(v16))
@@ -3472,7 +3480,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 					store64((*m.memory)[int64(uint32(t70))+280:], uint64(int64(load64((*m.memory)[int64(uint32(v9))+280:]))+i64(1)))
 					v7 = int32(load32((*m.memory)[int64(uint32(v9))+160:]))
 					if v7 == 0 {
-						goto l43
+						goto l44
 					}
 					v12 = int32(load32((*m.memory)[int64(uint32(v9))+152:]))
 					v11 = int32(load32((*m.memory)[int64(uint32(v6))+16:]))
@@ -3480,13 +3488,13 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 					v3 = i32(7)
 					v4 = m._sqlite3_malloc(v7 << 3)
 					if v4 != 0 {
-						goto l44
+						goto l45
 					}
 				}
-			l42:
+			l43:
 				v4 = i32(0)
-				goto l45
-			l44:
+				goto l46
+			l45:
 				v2 = i32(0)
 				p71 := i32(0)
 				if v7 > i32(0) {
@@ -3496,7 +3504,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 				v15 = v12 << 2
 				v8 = v4
 				v1 = i32(0)
-			l46:
+			l47:
 				if v1 != v14 {
 					store32((*m.memory)[uint32(v8):], uint32(v1))
 					t72 := v8
@@ -3505,14 +3513,14 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 					v8 = v8 + i32(8)
 					v2 = v2 + v15
 					v1 = v1 + i32(1)
-					goto l46
+					goto l47
 				}
 				if v7 <= v11 {
-					goto l43
+					goto l44
 				}
 				v12 = v7 - i32(1)
 				v7 = i32(0)
-			l48:
+			l49:
 				{
 					p74 := v7
 					if v7 < v12 {
@@ -3523,7 +3531,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 					v13 = v4 + v12<<3
 					v20 = math.Float32frombits(load32((*m.memory)[int64(uint32(v13))+4:]))
 					v2 = v7
-				l47:
+				l48:
 					if v7 != v8 {
 						t75 := v20
 						if t75 > math.Float32frombits(load32((*m.memory)[int64(uint32(v1))+4:])) {
@@ -3536,7 +3544,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 						}
 						v8 = v8 - i32(1)
 						v1 = v1 + i32(8)
-						goto l47
+						goto l48
 					}
 					v1 = v4 + v2<<3
 					v16 = int64(load64((*m.memory)[uint32(v1):]))
@@ -3561,36 +3569,36 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 							p82 = v2 - i32(1)
 						}
 						v12 = p82
-						goto l48
+						goto l49
 					}
 				}
 				if v11 < i32(2) {
-					goto l43
+					goto l44
 				}
 				v1 = m._sqlite3_malloc64(int64(uint32(v11)) << 3)
 				if v1 == 0 {
-					goto l45
+					goto l46
 				}
 				v3 = i32(0)
 				m._vec1BucketMergeSort(v4, v1, i32(0), v11)
 				m._sqlite3_free(v1)
-				goto l45
+				goto l46
 			}
-		l43:
+		l44:
 			v3 = i32(0)
-		l45:
+		l46:
 			t83 := v9
 			store64((*m.memory)[int64(uint32(t83))+288:], uint64(int64(load64((*m.memory)[int64(uint32(v9))+288:]))+i64(1)))
 			v8 = v4
 			v1 = i32(0)
-		l50:
+		l51:
 			{
 				v2 = int32(load32((*m.memory)[int64(uint32(v6))+16:]))
 				if v2 <= v1 {
-					goto l49
+					goto l50
 				}
 				if v3 != 0 {
-					goto l49
+					goto l50
 				}
 				var p84 int32
 				if int32(load32((*m.memory)[int64(uint32(v9))+160:])) != 0 {
@@ -3605,14 +3613,14 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 				v8 = v8 + i32(8)
 				v1 = v1 + i32(1)
 				v3 = m._vec1DoKANNBucket(v6, v2, v5+i32(176), v5+i32(136), v5+i32(192))
-				goto l50
+				goto l51
 			}
-		l49:
+		l50:
 			if v3 == 0 {
 				v16 = int64(load64((*m.memory)[int64(uint32(v6))+64:]))
 				{
 					if int32(load32((*m.memory)[int64(uint32(v6))+20:])) == 0 {
-						goto l51
+						goto l52
 					}
 					t86 := v6
 					p85 := v16
@@ -3631,7 +3639,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 					}
 					v16 = p89
 					if v1 <= i32(0) {
-						goto l51
+						goto l52
 					}
 					v2 = v2 << 3
 					if v2 != 0 {
@@ -3640,7 +3648,7 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 					store32((*m.memory)[int64(uint32(v6))+44:], uint32(v4))
 					v4 = i32(0)
 				}
-			l51:
+			l52:
 				v3 = m._vec1AnnResultSort(int32(load32((*m.memory)[int64(uint32(v6))+56:])), v16)
 				store32((*m.memory)[int64(uint32(v0))+12:], uint32(v16))
 			}
@@ -3651,23 +3659,23 @@ func (m *Module) _vec1FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 			t90 := v9
 			store64((*m.memory)[int64(uint32(t90))+336:], uint64(int64(load64((*m.memory)[int64(uint32(v9))+336:]))+i64(1)))
 			store32((*m.memory)[int64(uint32(v0))+8:], uint32(i32(-1)))
-			goto l27
+			goto l28
 		}
-	l28:
+	l29:
 		v4 = v4 + i32(40)
 		v3 = v2
-		goto l52
-	l27:
+		goto l53
+	l28:
 		t91 := v10
 		store64((*m.memory)[int64(uint32(t91))+272:], uint64(int64(load64((*m.memory)[int64(uint32(v10))+272:]))+i64(1)))
 	}
-l1:
-	if v3 != 0 {
-		goto l0
-	}
 l2:
+	if v3 != 0 {
+		goto l1
+	}
+l3:
 	v3 = m._vec1NextMethod(v0)
-l0:
+l1:
 	*m.___stack_pointer = v5 + i32(208)
 	return v3
 }
@@ -4560,12 +4568,12 @@ func (m *Module) _vec1NextMethod(v0 int32) int32 {
 	var v8, v9 int64
 	v2 = *m.___stack_pointer - i32(48)
 	*m.___stack_pointer = v2
-	v1 = int32(load32((*m.memory)[int64(uint32(v0))+20:]))
+	v1 = int32(load32((*m.memory)[int64(uint32(v0))+24:]))
 	if v1 != 0 {
 		m._sqlite3_free(v1)
-		store32((*m.memory)[int64(uint32(v0))+20:], uint32(i32(0)))
+		store32((*m.memory)[int64(uint32(v0))+24:], uint32(i32(0)))
 	}
-	v1 = int32(load32((*m.memory)[int64(uint32(v0))+24:]))
+	v1 = int32(load32((*m.memory)[int64(uint32(v0))+28:]))
 	if v1 != 0 {
 		store32((*m.memory)[int64(uint32(v0))+16:], uint32(i32(0)))
 		t0 := v0
@@ -4838,7 +4846,7 @@ func (m *Module) _vec1ColumnMethod(v0, v1, v2 int32) int32 {
 				goto l2
 			}
 		l0:
-			v2 = int32(load32((*m.memory)[int64(uint32(v0))+24:]))
+			v2 = int32(load32((*m.memory)[int64(uint32(v0))+28:]))
 			if v2 != 0 {
 				t0 := v1
 				t1 := int32(load32((*m.memory)[int64(uint32(v2))+56:]))
@@ -4846,7 +4854,7 @@ func (m *Module) _vec1ColumnMethod(v0, v1, v2 int32) int32 {
 				goto l3
 			}
 			t2 := v1
-			v2 = int32(load32((*m.memory)[int64(uint32(v0))+20:]))
+			v2 = int32(load32((*m.memory)[int64(uint32(v0))+24:]))
 			var p3 int32
 			if v2 != 0 {
 				p3 = v2
@@ -4906,7 +4914,7 @@ func (m *Module) _vec1ColumnMethod(v0, v1, v2 int32) int32 {
 					store64((*m.memory)[int64(uint32(t11))+8:], math.Float64bits(math.Sqrt(float64(math.Float64frombits(load64((*m.memory)[int64(uint32(v3))+168:]))/v11))))
 					t12 := v0
 					t13 := v3 + i32(188)
-					store32((*m.memory)[int64(uint32(t12))+20:], uint32(m._vec1MPrintf(t13, *m.___memory_base+i32(50), v3)))
+					store32((*m.memory)[int64(uint32(t12))+24:], uint32(m._vec1MPrintf(t13, *m.___memory_base+i32(50), v3)))
 					v4 = int32(load32((*m.memory)[int64(uint32(v3))+188:]))
 				}
 			l4:
@@ -4914,7 +4922,7 @@ func (m *Module) _vec1ColumnMethod(v0, v1, v2 int32) int32 {
 				if v4 != 0 {
 					goto l5
 				}
-				p3 = int32(load32((*m.memory)[int64(uint32(v0))+20:]))
+				p3 = int32(load32((*m.memory)[int64(uint32(v0))+24:]))
 			}
 			m._sqlite3_result_text(t2, p3, i32(-1), i32(-1))
 			goto l3
@@ -5138,7 +5146,7 @@ l0:
 func (m *Module) _vec1SeekCsr(v0 int32) int32 {
 	var v1, v2 int32
 	{
-		v1 = int32(load32((*m.memory)[int64(uint32(v0))+24:]))
+		v1 = int32(load32((*m.memory)[int64(uint32(v0))+28:]))
 		if v1 == 0 {
 			goto l0
 		}
@@ -5165,7 +5173,7 @@ l0:
 func (m *Module) _vec1Rowid(v0, v1 int32) int32 {
 	t1 := v1
 	var p0 int64
-	v1 = int32(load32((*m.memory)[int64(uint32(v0))+24:]))
+	v1 = int32(load32((*m.memory)[int64(uint32(v0))+28:]))
 	if v1 != 0 {
 		t2 := int32(load32((*m.memory)[int64(uint32(v1))+56:]))
 		t3 := int64(load64((*m.memory)[uint32(t2+int32(load32((*m.memory)[int64(uint32(v0))+8:]))<<4):]))
@@ -5286,7 +5294,7 @@ func (m *Module) _vec1UpdateMethod(v0, v1, v2, v3 int32) int32 {
 						store64((*m.memory)[int64(uint32(v4))+104:], uint64(i64(0)))
 						(*m.memory)[int64(uint32(v4))+102] = byte(i32(0))
 						store16((*m.memory)[int64(uint32(v4))+100:], uint16(i32(0)))
-						store32((*m.memory)[int64(uint32(v4))+96:], uint32(i32(0x37000000)))
+						store32((*m.memory)[int64(uint32(v4))+96:], uint32(i32(0x4000000)))
 						store32((*m.memory)[int64(uint32(v4))+112:], uint32(i32(0)))
 						t15 := v4
 						var p16 int32

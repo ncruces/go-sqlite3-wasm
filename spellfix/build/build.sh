@@ -16,7 +16,7 @@ curl -#OL "$GITHUB_TAG/ext/misc/spellfix.c"
 go tool libc-gen -pkg spellfix -deref-mem -o ../libc.go -c-out "$ROOT/libc" \
 	strlen strcmp strncmp
 
-"$WASI_SDK/clang" --target=wasm32 -nostdlib -ffreestanding -std=c23 -g0 -Oz \
+"$WASI_SDK/clang" --target=wasm32 -ffreestanding -nostdlib -std=c23 -g0 -Oz \
 	-Wall -Wextra -Wno-unused-parameter -Wno-unused-function \
 	-o spellfix main.c -I"$ROOT/libc" -I"$ROOT/build" \
 	-DNDEBUG -DSQLITE_OMIT_LOAD_EXTENSION \

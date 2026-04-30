@@ -5,6 +5,7 @@ package sqlite3_wasm
 import (
 	"bytes"
 	"math"
+	"math/bits"
 	"strconv"
 	"time"
 	"unsafe"
@@ -51,7 +52,6 @@ func (m *Module) _memcmp(s1, s2, n int32) int32 {
 	b2 := (*m.memory)[uint32(s2):uint32(e2)]
 	return int32(bytes.Compare(b1, b2))
 }
-
 func (m *Module) _pow(x, y float64) float64 { return math.Pow(x, y) }
 
 func (m *Module) _sin(x float64) float64  { return math.Sin(x) }
@@ -92,8 +92,9 @@ func (m *Module) _strcspn(s, reject int32) int32 {
 	r := (*m.memory)[uint32(reject):]
 	r = r[:bytes.IndexByte(r, 0)+1]
 
-	for i, b := range b {
-		if bytes.IndexByte(r, b) >= 0 {
+	set := m._makeByteSet(r)
+	for i, c := range b {
+		if set[c/bits.UintSize]&(1<<(c%bits.UintSize)) != 0 {
 			return int32(i)
 		}
 	}
@@ -126,8 +127,9 @@ func (m *Module) _strspn(s, accept int32) int32 {
 	a := (*m.memory)[uint32(accept):]
 	a = a[:bytes.IndexByte(a, 0)]
 
-	for i, b := range b {
-		if bytes.IndexByte(a, b) < 0 {
+	set := m._makeByteSet(a)
+	for i, c := range b {
+		if set[c/bits.UintSize]&(1<<(c%bits.UintSize)) == 0 {
 			return int32(i)
 		}
 	}
@@ -145,30 +147,9 @@ func (m *Module) _strstr(haystack, needle int32) int32 {
 	return haystack + int32(i)
 }
 func (m *Module) _strtol(s, endptr int32, base int32) int32 {
-	m0 := (*m.memory)[uint32(s):]
-	m1 := bytes.TrimLeft(m0, " \t\n\v\f\r")
-	m2 := bytes.TrimLeft(m1, "+-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
-	spaces := len(m0) - len(m1)
-	digits := len(m1) - len(m2)
-
-	var val int64
-	for ; digits > 0; digits-- {
-		var err error
-		str := unsafe.String(&m1[0], digits)
-		val, err = strconv.ParseInt(str, int(base), 32)
-		if e, ok := err.(*strconv.NumError); !ok || e.Err == strconv.ErrRange {
-			break
-		}
-	}
-
-	if endptr != 0 {
-		if digits > 0 {
-			s += int32(spaces + digits)
-		}
-		store32((*m.memory)[uint32(endptr):], uint32(s))
-	}
-	return int32(val)
+	return int32(m._strtoll_helper(s, endptr, base, 32))
 }
+
 func (m *Module) _tan(x float64) float64  { return math.Tan(x) }
 func (m *Module) _tanh(x float64) float64 { return math.Tanh(x) }
 func (m *Module) _storetime_r(buf []byte, t time.Time) {
@@ -190,4 +171,36 @@ func (m *Module) _storetime_r(buf []byte, t time.Time) {
 	store32(buf[8*size:], isdst)
 	store32(buf[9*size:], uint32(zone))
 	store32(buf[10*size:], 0)
+}
+
+func (m *Module) _makeByteSet(chars []byte) (set [256 / bits.UintSize]uint) {
+	for _, c := range chars {
+		set[c/bits.UintSize] |= 1 << (c % bits.UintSize)
+	}
+	return set
+}
+func (m *Module) _strtoll_helper(s, endptr int32, base int32, bitSize int) int64 {
+	m0 := (*m.memory)[uint32(s):]
+	m1 := bytes.TrimLeft(m0, " \t\n\v\f\r")
+	m2 := bytes.TrimLeft(m1, "+-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+	prefix := len(m0) - len(m1)
+	digits := len(m1) - len(m2)
+
+	var val int64
+	for ; digits > 0; digits-- {
+		var err error
+		str := unsafe.String(&m1[0], digits)
+		val, err = strconv.ParseInt(str, int(base), bitSize)
+		if e, ok := err.(*strconv.NumError); !ok || e.Err == strconv.ErrRange {
+			break
+		}
+	}
+
+	if endptr != 0 {
+		if digits > 0 {
+			s += int32(prefix + digits)
+		}
+		store32((*m.memory)[uint32(endptr):], uint32(s))
+	}
+	return val
 }

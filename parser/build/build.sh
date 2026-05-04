@@ -33,8 +33,7 @@ go tool libc-gen -pkg sql3parse_table -o ../libc.go -c-out "$ROOT/libc" strlen
 
 "$BINARYEN/wasm-opt" -g sql3parse_table -o sql3parse_table.wasm \
 	--gufa-optimizing --generate-global-effects \
-	--low-memory-unused --zero-filled-memory \
-	--converge -O4 \
+	--low-memory-unused --converge -O4 \
 	--enable-mutable-globals --enable-multivalue \
 	--enable-nontrapping-float-to-int --enable-sign-ext \
 	--enable-reference-types --enable-bulk-memory \

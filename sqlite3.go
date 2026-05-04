@@ -28,9 +28,9 @@ func New(v0 Xenv) *Module {
 	m.maxMem = 65536
 	m.memImp = v0.Xmemory()
 	m.memory = m.memImp.Slice()
-	m.elements = [][]any{{m._go_current_time_64, m._go_sleep, m._go_randomness, m._go_full_pathname, m._go_access, m._go_delete, m._go_open_wrapper, m._sqlite3RowSetClear, m._getPageError, m._getPageNormal, _sqlite3NoopDestructor, m.Xsqlite3_free, m._sqlite3RCStrUnref, m._sqlite3VdbeValueListFree, m._sqlite3VdbeFrameMemDel, m._sqlite3InitCallback, m._pagerStress, m._pageReinit, m._btreeInvokeBusyHandler, m._sqlite3BtreePayloadChecked, m._sqlite3BtreePutData, _sqlite3WalkWinDefnDummyCallback, m._fixSelectCb, m._fixExprCb, m._sqliteBusyCallback, m._sqlite3InvalidFunction, m._sqlite3WalDefaultHook, m._binCollFunc, m._nocaseCollatingFunc, m._rtrimCollFunc, m._sqlite3SchemaClear, m._geomCallback, m._rtreeFreeCallback, m._rtreeMatchArgFree, m._decimalSumStep, m._decimalSumFinalize, m._decimalSumValue, m._decimalSumInverse, m._decimalCollFunc, m._re_sql_func, m._re_next_char_nocase, m._re_next_char, m._re_free_voidptr, m._uintCollFunc, m._go_collation_needed, m._go_compare, m._go_destroy, m._go_func_wrapper, m._go_step_wrapper, m._go_final_wrapper, m._go_value_wrapper, m._go_inverse_wrapper, m._go_progress_handler, m._go_busy_handler, m._go_commit_hook, m._go_rollback_hook, m._go_update_hook, m._go_wal_hook, m._go_authorizer, m._go_trace, m._go_log, m._go_autovacuum_pages, m._time_collation, m._go_cur_rowid, m._go_cur_column, m._go_cur_eof, m._go_cur_next, m._go_cur_filter, m._go_cur_close_wrapper, m._go_cur_open_wrapper, m._go_vtab_disconnect_wrapper, m._go_vtab_best_index, m._go_vtab_connect_wrapper, m._go_vtab_create_wrapper, m._go_vtab_destroy_wrapper, m._go_vtab_update, m._go_vtab_rename, m._go_vtab_find_function_wrapper, m._go_vtab_integrity_wrapper, m._go_vtab_rollback, m._go_vtab_commit, m._go_vtab_sync, m._go_vtab_begin, m._go_vtab_rollback_to, m._go_vtab_release, m._go_vtab_savepoint, _go_vtab_shadown_name_wrapper, m._go_mod_destroy, m._sqlite3_decimal_init, m._sqlite3_ieee_init, m._sqlite3_regexp_init, m._sqlite3_series_init, m._sqlite3_uint_init, m._sqlite3_time_init, m._btreeParseCellPtr, m._cellSizePtrTableLeaf, m._btreeParseCellPtrIndex, m._cellSizePtrIdxLeaf, m._cellSizePtr, m._btreeParseCellPtrNoPayload, m._cellSizePtrNoPayload, m._sqlite3RowSetDelete, m._analysisLoader, m._sqlite3VdbeRecordCompare, m._vdbeRecordCompareInt, m._vdbeRecordCompareString, m._vdbeSorterCompareInt, m._vdbeSorterCompareText, m._vdbeSorterCompare, m._jsonCacheDeleteGeneric, m._sqlite3SelectPopWith, m._gatherSelectWindowsSelectCallback, m._gatherSelectWindowsCallback, m._renameUnmapExprCb, m._sqlite3ExprListDelete, _sqlite3_test_control, m._agginfoPersistExprCb, m._disallowAggregatesInOrderByCb, m._sqlite3WindowExtraAggFuncDepth, m._sqlite3WalkerDepthIncrease, m._sqlite3WalkerDepthDecrease, m._sqlite3DbFree, m._propagateConstantExprRewrite, m._agginfoFree, m._havingToWhereExprCb, m._aggregateIdxEprRefToColCallback, m._sqlite3SelectDelete, m._sqlite3DeleteTableGeneric, m._recomputeColumnsUsedExpr, m._sqlite3DeleteReturning, m._likeFunc, m._sqlite3WithDeleteGeneric, m._sqlite3SelectWalkFail, m._exprNodeIsConstant, m._renameUnmapSelectCb, _sqlite3_test_control, m._convertCompoundSelectToSubquery, m._selectExpander, m._selectAddSubqueryTypeInfo, m._selectWindowRewriteSelectCb, m._selectWindowRewriteExprCb, m._impliesNotNullRow, m._exprNodeIsDeterministic, m._analyzeAggregate, m._sqlite3ExprIfFalse, m._renumberCursorsCb, m._resolveExprStep, m._resolveSelectStep, m._checkConstraintExprNode, m._exprColumnFlagUnion, m._sqlite3ReturningSubqueryCorrelated, m._sqlite3ReturningSubqueryVarSelect, m._sqlite3ExprDelete, m._sqlite3ExprIfTrue, m._exprNodeCanReturnSubtype, m._exprRefToSrcList, m._selectRefEnter, m._selectRefLeave, m._selectCheckOnClausesSelect, m._selectCheckOnClausesExpr, m._incrAggDepth, m._resolveRemoveWindowsCb, m._exprSelectWalkTableConstant, m._exprNodeIsConstantOrGroupBy, m._whereIndexedExprCleanup, m._exprIdxCover, m._exprNodePatternLengthEst, m._whereIsCoveringIndexWalkCallback, _noopStepFunc, m._statAccumDestructor, m._renameColumnSelectCb, m._renameColumnExprCb, m._renameTableSelectCb, m._renameTableExprCb, m._renameQuotefixExprCb, m._fts5CreateAux, m._fts5FindTokenizer_v2, m._fts5CreateTokenizer_v2, m._fts5FindTokenizer, m._fts5CreateTokenizer, m._fts5ModuleDestroy, m._fts5Fts5Func, m._fts5SourceIdFunc, m._fts5LocaleFunc, m._fts5InsttokenFunc, m._fts5V1toV2Tokenize, m._fts5VtoVCreate, m._fts5VtoVDelete, m._fts5V2toV1Tokenize, m._rtreenode, m._rtreedepth, m._rtreecheck, m._geopolyBBoxStep, m._geopolyBBoxFinal, m._fts5StorageInsertCallback, m._fts5MergeChunkCallback, m._fts5StorageIntegrityCallback, m._fts5ApiCallback, m._fts5TriCreate, m._fts5ParseTokenize, m._fts5ExprNodeNext_OR, m._fts5ExprNodeNext_STRING, m._fts5ExprNodeNext_TERM, m._fts5ExprNodeNext_AND, m._fts5ExprNodeNext_NOT, m._fts5AppendRowid, m._fts5MergeRowidLists, m._fts5AppendPoslist, m._fts5MergePrefixLists, m._prefixIterSetupCb, _sqlite3WalkWinDefnDummyCallback, m._fts5SegIterNext_Reverse, m._fts5SegIterNext_None, m._fts5SegIterNext, m._fts5IterSetOutputs_None, m._fts5IterSetOutputs_Nocolset, m._fts5IterSetOutputs_ZeroColset, m._fts5IterSetOutputs_Full, m._fts5IterSetOutputs_Col100, m._fts5IterSetOutputs_Col, m._fts5PoslistCallback, m._fts5PoslistFilterCallback, m._fts5PoslistOffsetsCallback, m._fts5ColumnSizeCb, m._fts5ExprPopulatePoslistsCb, m._prefixIterSetupTokendataCb, m._fts5SentenceFinderCb, m._fts5HighlightCb, m._fts5CountCb, m._fts5PorterCb, m._parentWrite, m._rowidWrite, m._geopolyOverlapFunc, m._geopolyWithinFunc, m._decimalFunc, m._decimalCmpFunc, m._decimalAddFunc, m._decimalSubFunc, m._decimalMulFunc, m._decimalPow2Func, m._ieee754func, m._ieee754func_to_blob, m._ieee754func_from_blob, m._ieee754func_to_int, m._ieee754func_from_int, m._ieee754inc, m._seriesConnect, m._seriesBestIndex, m._pragmaVtabDisconnect, m._seriesOpen, m._pragmaVtabDisconnect, m._seriesFilter, m._seriesNext, m._seriesEof, m._seriesColumn, m._seriesRowid, m._memjrnlClose, m._memjrnlRead, m._memjrnlWrite, m._memjrnlTruncate, _sqlite3_test_control, m._memjrnlFileSize, m._pragmaVtabConnect, m._pragmaVtabBestIndex, m._pragmaVtabDisconnect, m._pragmaVtabOpen, m._pragmaVtabClose, m._pragmaVtabFilter, m._pragmaVtabNext, m._pragmaVtabEof, m._pragmaVtabColumn, m._pragmaVtabRowid, m._jsonEachConnect, m._jsonEachBestIndex, m._jsonEachDisconnect, m._jsonEachOpen, m._jsonEachClose, m._jsonEachFilter, m._jsonEachNext, m._jsonEachEof, m._jsonEachColumn, m._jsonEachRowid, m._attachFunc, m._detachFunc, m._statInit, m._statPush, m._statGet, m._soundexFunc, m._compileoptionusedFunc, m._compileoptiongetFunc, m._versionFunc, m._trimFunc, m._minmaxFunc, m._minmaxStep, m._minMaxFinalize, m._minMaxValue, m._typeofFunc, m._subtypeFunc, m._lengthFunc, m._bytelengthFunc, m._instrFunc, m._printfFunc, m._unicodeFunc, m._charFunc, m._absFunc, m._roundFunc, m._upperFunc, m._lowerFunc, m._hexFunc, m._unhexFunc, m._concatFunc, m._concatwsFunc, m._randomFunc, m._randomBlob, m._nullifFunc, m._sourceidFunc, m._errlogFunc, m._unistrFunc, m._quoteFunc, m._last_insert_rowid, m._changes, m._total_changes, m._replaceFunc, m._zeroblobFunc, m._substrFunc, m._sumStep, m._sumFinalize, m._sumInverse, m._totalFinalize, m._avgFinalize, m._countStep, m._countFinalize, m._countInverse, m._groupConcatStep, m._groupConcatFinalize, m._groupConcatValue, m._groupConcatInverse, _xCeil, m._ceilingFunc, _xFloor, _trunc, m._logFunc, m._exp, m._math1Func, m._pow, m._math2Func, m._fmod, m._acos, m._asin, m._atan, m._atan2, m._cos, m._sin, m._tan, m._cosh, m._sinh, m._tanh, m._acosh, m._asinh, m._atanh, _sqrt, _degToRad, _radToDeg, m._piFunc, m._signFunc, m._renameColumnFunc, m._renameTableFunc, m._renameTableTest, m._dropColumnFunc, m._renameQuotefixFunc, m._dropConstraintFunc, m._failConstraintFunc, m._addConstraintFunc, m._findConstraintFunc, m._row_numberStepFunc, m._row_numberValueFunc, m._dense_rankStepFunc, m._dense_rankValueFunc, m._rankStepFunc, m._rankValueFunc, m._percent_rankStepFunc, m._percent_rankValueFunc, m._percent_rankInvFunc, m._percent_rankStepFunc, m._cume_distValueFunc, m._percent_rankInvFunc, m._ntileStepFunc, m._ntileValueFunc, m._ntileInvFunc, m._last_valueStepFunc, m._last_valueFinalizeFunc, m._last_valueValueFunc, m._last_valueInvFunc, m._nth_valueStepFunc, m._nth_valueFinalizeFunc, _sqlite3NoopDestructor, m._first_valueStepFunc, m._first_valueFinalizeFunc, m._juliandayFunc, m._unixepochFunc, m._dateFunc, m._timeFunc, m._datetimeFunc, m._strftimeFunc, m._timediffFunc, m._ctimeFunc, m._ctimestampFunc, m._cdateFunc, m._jsonRemoveFunc, m._jsonArrayFunc, m._jsonSetFunc, m._jsonArrayLengthFunc, m._jsonErrorFunc, m._jsonExtractFunc, m._jsonObjectFunc, m._jsonPatchFunc, m._jsonPrettyFunc, m._jsonQuoteFunc, m._jsonReplaceFunc, m._jsonTypeFunc, m._jsonValidFunc, m._jsonArrayStep, m._jsonArrayFinal, m._jsonArrayValue, m._jsonGroupInverse, m._jsonObjectStep, m._jsonObjectFinal, m._jsonObjectValue, m._sqlite3MemMalloc, m._sqlite3MemFree, m._sqlite3MemRealloc, m._sqlite3MemSize, _sqlite3MemRoundup, _sqlite3MemInit, _sqlite3NoopDestructor, m._pcache1Init, m._pcache1Shutdown, m._pcache1Create, m._pcache1Cachesize, m._pcache1Pagecount, m._pcache1Fetch, m._pcache1Unpin, m._pcache1Rekey, m._pcache1Truncate, m._pcache1Destroy, m._pcache1Shrink, m._sqlite3Fts5Init, m._sqlite3RtreeInit, _sqlite3MemInit, m._fts5CreateMethod, m._fts5ConnectMethod, m._fts5BestIndexMethod, m._fts5DisconnectMethod, m._fts5DestroyMethod, m._fts5OpenMethod, m._fts5CloseMethod, m._fts5FilterMethod, m._fts5NextMethod, m._fts5EofMethod, m._fts5ColumnMethod, m._fts5RowidMethod, m._fts5UpdateMethod, m._fts5BeginMethod, m._fts5SyncMethod, _sqlite3MemInit, m._fts5RollbackMethod, m._fts5FindFunctionMethod, m._fts5RenameMethod, m._fts5SavepointMethod, m._fts5ReleaseMethod, m._fts5RollbackToMethod, m._fts5ShadowName, m._fts5IntegrityMethod, m._fts5ApiUserData, m._fts5ApiColumnCount, m._fts5ApiRowCount, m._fts5ApiColumnTotalSize, m._fts5ApiTokenize, m._fts5ApiPhraseCount, m._fts5ApiPhraseSize, m._fts5ApiInstCount, m._fts5ApiInst, m._fts5ApiRowid, m._fts5ApiColumnText, m._fts5ApiColumnSize, m._fts5ApiQueryPhrase, m._fts5ApiSetAuxdata, m._fts5ApiGetAuxdata, m._fts5ApiPhraseFirst, m._fts5ApiPhraseNext, m._fts5ApiPhraseFirstColumn, m._fts5ApiPhraseNextColumn, m._fts5ApiQueryToken, m._fts5ApiInstToken, m._fts5ApiColumnLocale, m._fts5ApiTokenize_v2, m._fts5SnippetFunction, m._fts5HighlightFunction, m._fts5Bm25Function, m._fts5GetLocaleFunction, m._fts5UnicodeCreate, m._fts5UnicodeDelete, m._fts5UnicodeTokenize, m._fts5AsciiCreate, m._sqlite3VdbeValueListFree, m._fts5AsciiTokenize, m._sqlite3VdbeValueListFree, m._fts5TriTokenize, m._fts5PorterCreate, m._fts5PorterDelete, m._fts5PorterTokenize, m._fts5VocabCreateMethod, m._fts5VocabCreateMethod, m._fts5VocabBestIndexMethod, m._pragmaVtabDisconnect, m._pragmaVtabDisconnect, m._fts5VocabOpenMethod, m._fts5VocabCloseMethod, m._fts5VocabFilterMethod, m._fts5VocabNextMethod, m._fts5VocabEofMethod, m._fts5VocabColumnMethod, m._fts5VocabRowidMethod, m._rtreeCreate, m._rtreeConnect, m._rtreeBestIndex, m._rtreeDisconnect, m._rtreeDestroy, m._rtreeOpen, m._rtreeClose, m._rtreeFilter, m._rtreeNext, m._rtreeEof, m._rtreeColumn, m._rtreeRowid, m._rtreeUpdate, m._rtreeBeginTransaction, m._rtreeEndTransaction, m._rtreeRollback, m._rtreeRename, m._rtreeSavepoint, m._rtreeShadowName, m._rtreeIntegrity, m._geopolyAreaFunc, m._geopolyBlobFunc, m._geopolyJsonFunc, m._geopolySvgFunc, m._geopolyContainsPointFunc, _noopStepFunc, m._geopolyBBoxFunc, m._geopolyXformFunc, m._geopolyRegularFunc, m._geopolyCcwFunc, m._geopolyCreate, m._geopolyConnect, m._geopolyBestIndex, m._geopolyFilter, m._geopolyColumn, m._geopolyUpdate, m._geopolyFindFunction, m._go_close, m._go_read, m._go_write, m._go_truncate, m._go_sync, m._go_file_size, m._go_lock, m._go_unlock, m._go_check_reserved_lock, m._go_file_control, m._go_sector_size, m._go_device_characteristics, m._go_shm_map, m._go_shm_lock, m._go_shm_barrier, m._go_shm_unmap, m._sqlErrorCallback, m._busyHandler, m._vfsNameFunc, m._evalFunc, m._evalCallback, m._xsliceGeometryCallback, m._randomFunc_2487, m._xCompileOptions}}
+	m.elements = [][]any{{m._go_current_time_64, m._go_sleep, m._go_randomness, m._go_full_pathname, m._go_access, m._go_delete, m._go_open_wrapper, m._sqlite3RowSetClear, m._getPageError, m._getPageNormal, _sqlite3NoopDestructor, m.Xsqlite3_free, m._sqlite3RCStrUnref, m._sqlite3VdbeValueListFree, m._sqlite3VdbeFrameMemDel, m._sqlite3InitCallback, m._pagerStress, m._pageReinit, m._btreeInvokeBusyHandler, m._sqlite3BtreePayloadChecked, m._sqlite3BtreePutData, _sqlite3WalkWinDefnDummyCallback, m._fixSelectCb, m._fixExprCb, m._sqliteBusyCallback, m._sqlite3InvalidFunction, m._sqlite3WalDefaultHook, m._binCollFunc, m._nocaseCollatingFunc, m._rtrimCollFunc, m._sqlite3SchemaClear, m._geomCallback, m._rtreeFreeCallback, m._rtreeMatchArgFree, m._decimalSumStep, m._decimalSumFinalize, m._decimalSumValue, m._decimalSumInverse, m._decimalCollFunc, m._re_sql_func, m._re_next_char_nocase, m._re_next_char, m._re_free_voidptr, m._uintCollFunc, m._go_collation_needed, m._go_compare, m._go_destroy, m._go_func_wrapper, m._go_step_wrapper, m._go_final_wrapper, m._go_value_wrapper, m._go_inverse_wrapper, m._go_progress_handler, m._go_busy_handler, m._go_commit_hook, m._go_rollback_hook, m._go_update_hook, m._go_wal_hook, m._go_authorizer, m._go_trace, m._go_log, m._go_autovacuum_pages, m._time_collation, m._go_cur_rowid, m._go_cur_column, m._go_cur_eof, m._go_cur_next, m._go_cur_filter, m._go_cur_close_wrapper, m._go_cur_open_wrapper, m._go_vtab_disconnect_wrapper, m._go_vtab_best_index, m._go_vtab_connect_wrapper, m._go_vtab_create_wrapper, m._go_vtab_destroy_wrapper, m._go_vtab_update, m._go_vtab_rename, m._go_vtab_find_function_wrapper, m._go_vtab_integrity_wrapper, m._go_vtab_rollback, m._go_vtab_commit, m._go_vtab_sync, m._go_vtab_begin, m._go_vtab_rollback_to, m._go_vtab_release, m._go_vtab_savepoint, _go_vtab_shadown_name_wrapper, m._go_mod_destroy, m._sqlite3_decimal_init, m._sqlite3_ieee_init, m._sqlite3_regexp_init, m._sqlite3_series_init, m._sqlite3_uint_init, m._sqlite3_time_init, m._btreeParseCellPtr, m._cellSizePtrTableLeaf, m._btreeParseCellPtrIndex, m._cellSizePtrIdxLeaf, m._cellSizePtr, m._btreeParseCellPtrNoPayload, m._cellSizePtrNoPayload, m._sqlite3RowSetDelete, m._analysisLoader, m._sqlite3VdbeRecordCompare, m._vdbeRecordCompareInt, m._vdbeRecordCompareString, m._vdbeSorterCompareInt, m._vdbeSorterCompareText, m._vdbeSorterCompare, m._jsonCacheDeleteGeneric, m._sqlite3SelectPopWith, m._gatherSelectWindowsSelectCallback, m._gatherSelectWindowsCallback, m._renameUnmapExprCb, m._sqlite3ExprListDelete, _sqlite3_test_control, m._agginfoPersistExprCb, m._disallowAggregatesInOrderByCb, m._sqlite3WindowExtraAggFuncDepth, m._sqlite3WalkerDepthIncrease, m._sqlite3WalkerDepthDecrease, m._sqlite3DbFree, m._propagateConstantExprRewrite, m._agginfoFree, m._havingToWhereExprCb, m._aggregateIdxEprRefToColCallback, m._sqlite3SelectDelete, m._sqlite3DeleteTableGeneric, m._recomputeColumnsUsedExpr, m._sqlite3DeleteReturning, m._likeFunc, m._sqlite3WithDeleteGeneric, m._sqlite3SelectWalkFail, m._exprNodeIsConstant, m._renameUnmapSelectCb, _sqlite3_test_control, m._convertCompoundSelectToSubquery, m._selectExpander, m._selectAddSubqueryTypeInfo, m._selectWindowRewriteSelectCb, m._selectWindowRewriteExprCb, m._impliesNotNullRow, m._exprNodeIsDeterministic, m._analyzeAggregate, m._sqlite3ExprIfFalse, m._renumberCursorsCb, m._resolveExprStep, m._resolveSelectStep, m._checkConstraintExprNode, m._exprColumnFlagUnion, m._sqlite3ReturningSubqueryCorrelated, m._sqlite3ReturningSubqueryVarSelect, m._sqlite3ExprDelete, m._sqlite3ExprIfTrue, m._exprNodeCanReturnSubtype, m._exprRefToSrcList, m._selectRefEnter, m._selectRefLeave, m._selectCheckOnClausesSelect, m._selectCheckOnClausesExpr, m._incrAggDepth, m._resolveRemoveWindowsCb, m._exprSelectWalkTableConstant, m._exprNodeIsConstantOrGroupBy, m._whereIndexedExprCleanup, m._exprIdxCover, m._exprNodePatternLengthEst, m._whereIsCoveringIndexWalkCallback, _noopStepFunc, m._statAccumDestructor, m._renameColumnSelectCb, m._renameColumnExprCb, m._renameTableSelectCb, m._renameTableExprCb, m._renameQuotefixExprCb, m._fts5CreateAux, m._fts5FindTokenizer_v2, m._fts5CreateTokenizer_v2, m._fts5FindTokenizer, m._fts5CreateTokenizer, m._fts5ModuleDestroy, m._fts5Fts5Func, m._fts5SourceIdFunc, m._fts5LocaleFunc, m._fts5InsttokenFunc, m._fts5V1toV2Tokenize, m._fts5VtoVCreate, m._fts5VtoVDelete, m._fts5V2toV1Tokenize, m._rtreenode, m._rtreedepth, m._rtreecheck, m._geopolyBBoxStep, m._geopolyBBoxFinal, m._fts5StorageInsertCallback, m._fts5MergeChunkCallback, m._fts5StorageIntegrityCallback, m._fts5ApiCallback, m._fts5TriCreate, m._fts5ParseTokenize, m._fts5ExprNodeNext_OR, m._fts5ExprNodeNext_STRING, m._fts5ExprNodeNext_TERM, m._fts5ExprNodeNext_AND, m._fts5ExprNodeNext_NOT, m._fts5AppendRowid, m._fts5MergeRowidLists, m._fts5AppendPoslist, m._fts5MergePrefixLists, m._prefixIterSetupCb, _sqlite3WalkWinDefnDummyCallback, m._fts5SegIterNext_Reverse, m._fts5SegIterNext_None, m._fts5SegIterNext, m._fts5IterSetOutputs_None, m._fts5IterSetOutputs_Nocolset, m._fts5IterSetOutputs_ZeroColset, m._fts5IterSetOutputs_Full, m._fts5IterSetOutputs_Col100, m._fts5IterSetOutputs_Col, m._fts5PoslistCallback, m._fts5PoslistFilterCallback, m._fts5PoslistOffsetsCallback, m._fts5ColumnSizeCb, m._fts5ExprPopulatePoslistsCb, m._prefixIterSetupTokendataCb, m._fts5SentenceFinderCb, m._fts5HighlightCb, m._fts5CountCb, m._fts5PorterCb, m._parentWrite, m._rowidWrite, m._geopolyOverlapFunc, m._geopolyWithinFunc, m._decimalFunc, m._decimalCmpFunc, m._decimalAddFunc, m._decimalSubFunc, m._decimalMulFunc, m._decimalPow2Func, m._ieee754func, m._ieee754func_to_blob, m._ieee754func_from_blob, m._ieee754func_to_int, m._ieee754func_from_int, m._ieee754inc, m._seriesConnect, m._seriesBestIndex, m._pragmaVtabDisconnect, m._seriesOpen, m._pragmaVtabDisconnect, m._seriesFilter, m._seriesNext, m._seriesEof, m._seriesColumn, m._seriesRowid, m._memjrnlClose, m._memjrnlRead, m._memjrnlWrite, m._memjrnlTruncate, _sqlite3_test_control, m._memjrnlFileSize, m._pragmaVtabConnect, m._pragmaVtabBestIndex, m._pragmaVtabDisconnect, m._pragmaVtabOpen, m._pragmaVtabClose, m._pragmaVtabFilter, m._pragmaVtabNext, m._pragmaVtabEof, m._pragmaVtabColumn, m._pragmaVtabRowid, m._jsonEachConnect, m._jsonEachBestIndex, m._jsonEachDisconnect, m._jsonEachOpen, m._jsonEachClose, m._jsonEachFilter, m._jsonEachNext, m._jsonEachEof, m._jsonEachColumn, m._jsonEachRowid, m._attachFunc, m._detachFunc, m._statInit, m._statPush, m._statGet, m._soundexFunc, m._compileoptionusedFunc, m._compileoptiongetFunc, m._versionFunc, m._trimFunc, m._minmaxFunc, m._minmaxStep, m._minMaxFinalize, m._minMaxValue, m._typeofFunc, m._subtypeFunc, m._lengthFunc, m._bytelengthFunc, m._instrFunc, m._printfFunc, m._unicodeFunc, m._charFunc, m._absFunc, m._roundFunc, m._upperFunc, m._lowerFunc, m._hexFunc, m._unhexFunc, m._concatFunc, m._concatwsFunc, m._randomFunc, m._randomBlob, m._nullifFunc, m._sourceidFunc, m._errlogFunc, m._unistrFunc, m._quoteFunc, m._last_insert_rowid, m._changes, m._total_changes, m._replaceFunc, m._zeroblobFunc, m._substrFunc, m._sumStep, m._sumFinalize, m._sumInverse, m._totalFinalize, m._avgFinalize, m._countStep, m._countFinalize, m._countInverse, m._groupConcatStep, m._groupConcatFinalize, m._groupConcatValue, m._groupConcatInverse, _xCeil, m._ceilingFunc, _xFloor, _trunc, m._logFunc, m._exp, m._math1Func, m._pow, m._math2Func, m._fmod, m._acos, m._asin, m._atan, m._atan2, m._cos, m._sin, m._tan, m._cosh, m._sinh, m._tanh, m._acosh, m._asinh, m._atanh, _sqrt, _degToRad, _radToDeg, m._piFunc, m._signFunc, m._renameColumnFunc, m._renameTableFunc, m._renameTableTest, m._dropColumnFunc, m._renameQuotefixFunc, m._dropConstraintFunc, m._failConstraintFunc, m._addConstraintFunc, m._findConstraintFunc, m._row_numberStepFunc, m._row_numberValueFunc, m._dense_rankStepFunc, m._dense_rankValueFunc, m._rankStepFunc, m._rankValueFunc, m._percent_rankStepFunc, m._percent_rankValueFunc, m._percent_rankInvFunc, m._percent_rankStepFunc, m._cume_distValueFunc, m._percent_rankInvFunc, m._ntileStepFunc, m._ntileValueFunc, m._ntileInvFunc, m._last_valueStepFunc, m._last_valueFinalizeFunc, m._last_valueValueFunc, m._last_valueInvFunc, m._nth_valueStepFunc, m._nth_valueFinalizeFunc, _sqlite3NoopDestructor, m._first_valueStepFunc, m._first_valueFinalizeFunc, m._juliandayFunc, m._unixepochFunc, m._dateFunc, m._timeFunc, m._datetimeFunc, m._strftimeFunc, m._timediffFunc, m._ctimeFunc, m._ctimestampFunc, m._cdateFunc, m._jsonRemoveFunc, m._jsonArrayFunc, m._jsonSetFunc, m._jsonArrayLengthFunc, m._jsonErrorFunc, m._jsonExtractFunc, m._jsonObjectFunc, m._jsonPatchFunc, m._jsonPrettyFunc, m._jsonQuoteFunc, m._jsonReplaceFunc, m._jsonTypeFunc, m._jsonValidFunc, m._jsonArrayStep, m._jsonArrayFinal, m._jsonArrayValue, m._jsonGroupInverse, m._jsonObjectStep, m._jsonObjectFinal, m._jsonObjectValue, m._sqlite3MemMalloc, m._sqlite3MemFree, m._sqlite3MemRealloc, m._sqlite3MemSize, _sqlite3MemRoundup, _sqlite3MemInit, _sqlite3NoopDestructor, m._pcache1Init, m._pcache1Shutdown, m._pcache1Create, m._pcache1Cachesize, m._pcache1Pagecount, m._pcache1Fetch, m._pcache1Unpin, m._pcache1Rekey, m._pcache1Truncate, m._pcache1Destroy, m._pcache1Shrink, m._sqlite3Fts5Init, m._sqlite3RtreeInit, _sqlite3MemInit, m._fts5CreateMethod, m._fts5ConnectMethod, m._fts5BestIndexMethod, m._fts5DisconnectMethod, m._fts5DestroyMethod, m._fts5OpenMethod, m._fts5CloseMethod, m._fts5FilterMethod, m._fts5NextMethod, m._fts5EofMethod, m._fts5ColumnMethod, m._fts5RowidMethod, m._fts5UpdateMethod, m._fts5BeginMethod, m._fts5SyncMethod, _sqlite3MemInit, m._fts5RollbackMethod, m._fts5FindFunctionMethod, m._fts5RenameMethod, m._fts5SavepointMethod, m._fts5ReleaseMethod, m._fts5RollbackToMethod, m._fts5ShadowName, m._fts5IntegrityMethod, m._fts5ApiUserData, m._fts5ApiColumnCount, m._fts5ApiRowCount, m._fts5ApiColumnTotalSize, m._fts5ApiTokenize, m._fts5ApiPhraseCount, m._fts5ApiPhraseSize, m._fts5ApiInstCount, m._fts5ApiInst, m._fts5ApiRowid, m._fts5ApiColumnText, m._fts5ApiColumnSize, m._fts5ApiQueryPhrase, m._fts5ApiSetAuxdata, m._fts5ApiGetAuxdata, m._fts5ApiPhraseFirst, m._fts5ApiPhraseNext, m._fts5ApiPhraseFirstColumn, m._fts5ApiPhraseNextColumn, m._fts5ApiQueryToken, m._fts5ApiInstToken, m._fts5ApiColumnLocale, m._fts5ApiTokenize_v2, m._fts5SnippetFunction, m._fts5HighlightFunction, m._fts5Bm25Function, m._fts5GetLocaleFunction, m._fts5UnicodeCreate, m._fts5UnicodeDelete, m._fts5UnicodeTokenize, m._fts5AsciiCreate, m._sqlite3VdbeValueListFree, m._fts5AsciiTokenize, m._sqlite3VdbeValueListFree, m._fts5TriTokenize, m._fts5PorterCreate, m._fts5PorterDelete, m._fts5PorterTokenize, m._fts5VocabCreateMethod, m._fts5VocabCreateMethod, m._fts5VocabBestIndexMethod, m._pragmaVtabDisconnect, m._pragmaVtabDisconnect, m._fts5VocabOpenMethod, m._fts5VocabCloseMethod, m._fts5VocabFilterMethod, m._fts5VocabNextMethod, m._fts5VocabEofMethod, m._fts5VocabColumnMethod, m._fts5VocabRowidMethod, m._rtreeCreate, m._rtreeConnect, m._rtreeBestIndex, m._rtreeDisconnect, m._rtreeDestroy, m._rtreeOpen, m._rtreeClose, m._rtreeFilter, m._rtreeNext, m._rtreeEof, m._rtreeColumn, m._rtreeRowid, m._rtreeUpdate, m._rtreeBeginTransaction, m._rtreeEndTransaction, m._rtreeRollback, m._rtreeRename, m._rtreeSavepoint, m._rtreeShadowName, m._rtreeIntegrity, m._geopolyAreaFunc, m._geopolyBlobFunc, m._geopolyJsonFunc, m._geopolySvgFunc, m._geopolyContainsPointFunc, _noopStepFunc, m._geopolyBBoxFunc, m._geopolyXformFunc, m._geopolyRegularFunc, m._geopolyCcwFunc, m._geopolyCreate, m._geopolyConnect, m._geopolyBestIndex, m._geopolyFilter, m._geopolyColumn, m._geopolyUpdate, m._geopolyFindFunction, m._go_close, m._go_read, m._go_write, m._go_truncate, m._go_sync, m._go_file_size, m._go_lock, m._go_unlock, m._go_check_reserved_lock, m._go_file_control, m._go_sector_size, m._go_device_characteristics, m._go_shm_map, m._go_shm_lock, m._go_shm_barrier, m._go_shm_unmap, m._sqlErrorCallback, m._busyHandler, m._vfsNameFunc, m._evalFunc, m._evalCallback, m._xsliceGeometryCallback, m._randomFunc_2491, m._xCompileOptions}}
 	copy(m.t0[i32(1):], m.elements[0])
-	copy((*m.memory)[uint32(i32(65536)):], data[0:121757])
+	copy((*m.memory)[uint32(i32(65536)):], data[0:121758])
 	m.___stack_pointer = i32(65536)
 	if i, ok := any(v0).(interface {
 		Init(any)
@@ -1466,7 +1466,7 @@ l2:
 func (m *Module) Xsqlite3_realloc64(v0 int32, v1 int64) int32 {
 	return m._sqlite3Realloc(v0, v1)
 }
-func (m *Module) _sqlite3_str_vappendf(v0, v1, v2 int32) {
+func (m *Module) Xsqlite3_str_vappendf(v0, v1, v2 int32) {
 	var v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28 int32
 	var v29, v30, v31, v32 int64
 	var v33 float64
@@ -1494,7 +1494,7 @@ l129:
 			t0 := v0
 			t1 := v1
 			v3 = m._strchrnul(v1, i32(37))
-			m._sqlite3_str_append(t0, t1, v3-v1)
+			m.Xsqlite3_str_append(t0, t1, v3-v1)
 			v5 = v1
 			if int32((*m.memory)[uint32(v3)]) == 0 {
 				goto l1
@@ -2034,11 +2034,11 @@ l129:
 						if v24&i32(255) != 0 {
 							goto l51
 						}
-						m._sqlite3_str_appendchar(v0, v11-i32(1), i32(32))
+						m.Xsqlite3_str_appendchar(v0, v11-i32(1), i32(32))
 						v11 = i32(0)
 					}
 				l51:
-					m._sqlite3_str_append(v0, v6+i32(80), v3)
+					m.Xsqlite3_str_append(v0, v6+i32(80), v3)
 					v31 = int64(uint32(v3))
 					v29 = i64(1)
 				l52:
@@ -2062,7 +2062,7 @@ l129:
 						t48 := int32(load32((*m.memory)[int64(uint32(v0))+4:]))
 						t49 := int32(load32((*m.memory)[int64(uint32(v0))+16:]))
 						v8 = int32(v30)
-						m._sqlite3_str_append(t47, t48+(t49-v8), v8)
+						m.Xsqlite3_str_append(t47, t48+(t49-v8), v8)
 						v29 = v32 << 1
 						v1 = v1 - int32(v32)
 						goto l52
@@ -2384,7 +2384,7 @@ l129:
 				v30 = v30 - i64(1)
 				goto l72
 			}
-			m._sqlite3_str_append(v0, i32(127909), i32(1))
+			m.Xsqlite3_str_append(v0, i32(127909), i32(1))
 			goto l1
 		l31:
 			if int32((*m.memory)[int64(uint32(v0))+21])&i32(1) == 0 {
@@ -2418,7 +2418,7 @@ l129:
 						goto l74
 					}
 					m.Xsqlite3_str_appendall(v0, v1)
-					m._sqlite3_str_append(v0, i32(121543), i32(1))
+					m.Xsqlite3_str_append(v0, i32(121543), i32(1))
 					v3 = int32(load32((*m.memory)[uint32(v4):]))
 				l74:
 					m.Xsqlite3_str_appendall(v0, v3)
@@ -2477,7 +2477,7 @@ l129:
 				goto l47
 			}
 			t90 := v0
-			m._sqlite3_str_append(t90, int32(load32((*m.memory)[uint32(v2):])), v1)
+			m.Xsqlite3_str_append(t90, int32(load32((*m.memory)[uint32(v2):])), v1)
 			v3 = int32(load32((*m.memory)[uint32(v0):]))
 			if v3 == 0 {
 				goto l47
@@ -3310,13 +3310,13 @@ l44:
 		if v24&i32(255) != 0 {
 			goto l127
 		}
-		m._sqlite3_str_appendchar(v0, v1, i32(32))
+		m.Xsqlite3_str_appendchar(v0, v1, i32(32))
 	}
-	m._sqlite3_str_append(v0, v5, v7)
+	m.Xsqlite3_str_append(v0, v5, v7)
 	goto l128
 l127:
-	m._sqlite3_str_append(v0, v5, v7)
-	m._sqlite3_str_appendchar(v0, v1, i32(32))
+	m.Xsqlite3_str_append(v0, v5, v7)
+	m.Xsqlite3_str_appendchar(v0, v1, i32(32))
 l128:
 	if v9 == 0 {
 		goto l126
@@ -3326,7 +3326,7 @@ l126:
 	v1 = v10 + i32(1)
 	goto l129
 }
-func (m *Module) _sqlite3_str_append(v0, v1, v2 int32) {
+func (m *Module) Xsqlite3_str_append(v0, v1, v2 int32) {
 	var v3, v4, v5 int32
 	v3 = int32(load32((*m.memory)[int64(uint32(v0))+16:]))
 	v4 = v3 + v2
@@ -3462,7 +3462,7 @@ func (m *Module) _sqlite3AppendOneUtf8Character(v0, v1 int32) int32 {
 	(*m.memory)[uint32(v0)] = byte(int32(uint32(v1)>>18)&i32(7) | i32(240))
 	return i32(4)
 }
-func (m *Module) _sqlite3_str_appendchar(v0, v1, v2 int32) {
+func (m *Module) Xsqlite3_str_appendchar(v0, v1, v2 int32) {
 	var v3 int64
 	var v4 int32
 	{
@@ -3532,14 +3532,14 @@ l1:
 func (m *Module) Xsqlite3_str_appendall(v0, v1 int32) {
 	t0 := v0
 	t1 := v1
-	m._sqlite3_str_append(t0, t1, m._sqlite3Strlen30(v1))
+	m.Xsqlite3_str_append(t0, t1, m._sqlite3Strlen30(v1))
 }
 func (m *Module) Xsqlite3_str_appendf(v0, v1, v2 int32) {
 	var v3 int32
 	v3 = m.___stack_pointer - i32(16)
 	m.___stack_pointer = v3
 	store32((*m.memory)[int64(uint32(v3))+12:], uint32(v2))
-	m._sqlite3_str_vappendf(v0, v1, v2)
+	m.Xsqlite3_str_vappendf(v0, v1, v2)
 	m.___stack_pointer = v3 + i32(16)
 }
 func (m *Module) _sqlite3RecordErrorOffsetOfExpr(v0, v1 int32) {
@@ -3797,7 +3797,7 @@ func (m *Module) _sqlite3DbMallocRaw(v0 int32, v1 int64) int32 {
 func (m *Module) _sqlite3StrAccumSetError(v0, v1 int32) {
 	(*m.memory)[int64(uint32(v0))+20] = byte(v1)
 	if int32(load32((*m.memory)[int64(uint32(v0))+12:])) != 0 {
-		m._sqlite3_str_reset(v0)
+		m.Xsqlite3_str_reset(v0)
 	}
 	if v1 == i32(18) {
 		{
@@ -3845,7 +3845,7 @@ func (m *Module) _sqlite3StrAccumEnlarge(v0 int32, v1 int64) int32 {
 			}
 			v2 = p4
 			if v2 > v3 {
-				m._sqlite3_str_reset(v0)
+				m.Xsqlite3_str_reset(v0)
 				m._sqlite3StrAccumSetError(v0, i32(18))
 				return i32(0)
 			}
@@ -3894,14 +3894,14 @@ func (m *Module) _sqlite3StrAccumEnlarge(v0 int32, v1 int64) int32 {
 		return p0
 	}
 l1:
-	m._sqlite3_str_reset(v0)
+	m.Xsqlite3_str_reset(v0)
 	m._sqlite3StrAccumSetError(v0, i32(7))
 	return i32(0)
 }
 func (m *Module) Xsqlite3_value_text(v0 int32) int32 {
 	return m._sqlite3ValueText(v0, i32(1))
 }
-func (m *Module) _sqlite3_str_reset(v0 int32) {
+func (m *Module) Xsqlite3_str_reset(v0 int32) {
 	if int32((*m.memory)[int64(uint32(v0))+21])&i32(4) != 0 {
 		t0 := int32(load32((*m.memory)[uint32(v0):]))
 		m._sqlite3DbFree(t0, int32(load32((*m.memory)[int64(uint32(v0))+4:])))
@@ -4032,6 +4032,43 @@ func (m *Module) Xsqlite3_str_errcode(v0 int32) int32 {
 	}
 	return int32((*m.memory)[int64(uint32(v0))+20])
 }
+func (m *Module) Xsqlite3_str_length(v0 int32) int32 {
+	if v0 == 0 {
+		return i32(0)
+	}
+	return int32(load32((*m.memory)[int64(uint32(v0))+16:]))
+}
+func (m *Module) Xsqlite3_str_truncate(v0, v1 int32) {
+	{
+		if v0 == 0 {
+			goto l0
+		}
+		if v1 < i32(0) {
+			goto l0
+		}
+		t0 := v1
+		if uint32(t0) >= uint32(int32(load32((*m.memory)[int64(uint32(v0))+16:]))) {
+			goto l0
+		}
+		store32((*m.memory)[int64(uint32(v0))+16:], uint32(v1))
+		(*m.memory)[uint32(int32(load32((*m.memory)[int64(uint32(v0))+4:]))+v1)] = byte(i32(0))
+	}
+l0:
+}
+func (m *Module) Xsqlite3_str_value(v0 int32) int32 {
+	var v1, v2 int32
+	if v0 == 0 {
+		goto l0
+	}
+	v1 = int32(load32((*m.memory)[int64(uint32(v0))+16:]))
+	if v1 == 0 {
+		goto l0
+	}
+	(*m.memory)[uint32(int32(load32((*m.memory)[int64(uint32(v0))+4:]))+v1)] = byte(i32(0))
+	v2 = int32(load32((*m.memory)[int64(uint32(v0))+4:]))
+l0:
+	return v2
+}
 func (m *Module) Xsqlite3_str_new(v0 int32) int32 {
 	var v1 int32
 	v1 = m._sqlite3Malloc(i64(24))
@@ -4068,7 +4105,7 @@ func (m *Module) Xsqlite3_vmprintf(v0, v1 int32) int32 {
 	store32((*m.memory)[int64(uint32(v2))+8:], uint32(i32(0)))
 	store32((*m.memory)[int64(uint32(v2))+12:], uint32(v2+i32(32)))
 	v3 = v2 + i32(8)
-	m._sqlite3_str_vappendf(v3, v0, v1)
+	m.Xsqlite3_str_vappendf(v3, v0, v1)
 	p0 = m._sqlite3StrAccumFinish(v3)
 l0:
 	m.___stack_pointer = v2 + i32(112)
@@ -4113,7 +4150,7 @@ func (m *Module) _sqlite3_snprintf(v0, v1, v2, v3 int32) int32 {
 		store32((*m.memory)[int64(uint32(v4))+8:], uint32(i32(0)))
 		store32((*m.memory)[int64(uint32(v4))+4:], uint32(v3))
 		store32((*m.memory)[int64(uint32(v4))+12:], uint32(v1))
-		m._sqlite3_str_vappendf(v4+i32(8), v2, v3)
+		m.Xsqlite3_str_vappendf(v4+i32(8), v2, v3)
 		t2 := v1
 		(*m.memory)[uint32(t2+int32(load32((*m.memory)[int64(uint32(v4))+24:])))] = byte(i32(0))
 	}
@@ -4133,7 +4170,7 @@ func (m *Module) _sqlite3_log(v0, v1, v2 int32) {
 		store32((*m.memory)[int64(uint32(v3))+728:], uint32(i32(0)))
 		store32((*m.memory)[int64(uint32(v3))+732:], uint32(v3+i32(16)))
 		v4 = v3 + i32(728)
-		m._sqlite3_str_vappendf(v4, v1, v2)
+		m.Xsqlite3_str_vappendf(v4, v1, v2)
 		v1 = int32(load32((*m.memory)[uint32(i32(180060)):]))
 		t0 := int32(load32((*m.memory)[uint32(i32(180064)):]))
 		t1 := v0
@@ -6270,7 +6307,7 @@ l0:
 l1:
 	return v2
 }
-func (m *Module) _sqlite3_strnicmp(v0, v1, v2 int32) int32 {
+func (m *Module) Xsqlite3_strnicmp(v0, v1, v2 int32) int32 {
 	var v3 int32
 	if v0 == 0 {
 		p0 := i32(0)
@@ -6510,7 +6547,7 @@ func (m *Module) _sqlite3VMPrintf(v0, v1, v2 int32) int32 {
 	store32((*m.memory)[int64(uint32(t0))+20:], uint32(int32(load32((*m.memory)[int64(uint32(v0))+120:]))))
 	store32((*m.memory)[int64(uint32(v3))+12:], uint32(v3+i32(32)))
 	v4 = v3 + i32(8)
-	m._sqlite3_str_vappendf(v4, v1, v2)
+	m.Xsqlite3_str_vappendf(v4, v1, v2)
 	t1 := m._sqlite3StrAccumFinish(v4)
 	if int32((*m.memory)[int64(uint32(v3))+28]) == i32(7) {
 		m._sqlite3OomFault(v0)
@@ -13796,7 +13833,7 @@ l44:
 																v1 = v1 + i32(1)
 																goto l33
 															}
-															m._sqlite3_str_append(v2+i32(200), i32(126064), i32(1))
+															m.Xsqlite3_str_append(v2+i32(200), i32(126064), i32(1))
 															goto l34
 														}
 													l32:
@@ -13898,7 +13935,7 @@ l44:
 							v1 = v1 + i32(1)
 							goto l36
 						}
-						m._sqlite3_str_append(v2+i32(200), i32(90735), i32(1))
+						m.Xsqlite3_str_append(v2+i32(200), i32(90735), i32(1))
 						goto l34
 					l29:
 						t39 := int32(load32((*m.memory)[int64(uint32(v4))+16:]))
@@ -17904,7 +17941,7 @@ func (m *Module) _sqlite3VdbeExec(v0 int32) int32 {
 																																																																											var p467 int32
 																																																																											v3 = int32(load32((*m.memory)[int64(uint32(v6))+444:]))
 																																																																											if v3 == 0 {
-																																																																												m._sqlite3_str_reset(v31)
+																																																																												m.Xsqlite3_str_reset(v31)
 																																																																												p467 = i32(0)
 																																																																												goto l282
 																																																																											}
@@ -23143,7 +23180,7 @@ func (m *Module) Xsqlite3_bind_value(v0, v1, v2 int32) int32 {
 			if v3&i32(1024) != 0 {
 				t6 := v0
 				t7 := v1
-				return m._sqlite3_bind_zeroblob(t6, t7, int32(load32((*m.memory)[uint32(v2):])))
+				return m.Xsqlite3_bind_zeroblob(t6, t7, int32(load32((*m.memory)[uint32(v2):])))
 			}
 			t8 := v0
 			t9 := v1
@@ -23160,7 +23197,7 @@ func (m *Module) Xsqlite3_bind_value(v0, v1, v2 int32) int32 {
 l4:
 	return m.Xsqlite3_bind_null(v0, v1)
 }
-func (m *Module) _sqlite3_bind_zeroblob(v0, v1, v2 int32) int32 {
+func (m *Module) Xsqlite3_bind_zeroblob(v0, v1, v2 int32) int32 {
 	var v3 int32
 	t0 := v0
 	v1 = v1 - i32(1)
@@ -23180,7 +23217,7 @@ func (m *Module) Xsqlite3_bind_zeroblob64(v0, v1 int32, v2 int64) int32 {
 	v4 = int32(load32((*m.memory)[uint32(v0):]))
 	var p0 int32
 	if uint64(int64(int32(load32((*m.memory)[int64(uint32(v4))+120:])))) >= uint64(v2) {
-		v3 = m._sqlite3_bind_zeroblob(v0, v1, int32(v2))
+		v3 = m.Xsqlite3_bind_zeroblob(v0, v1, int32(v2))
 		p0 = int32(load32((*m.memory)[uint32(v0):]))
 	} else {
 		p0 = v4
@@ -23369,8 +23406,8 @@ func (m *Module) Xsqlite3_expanded_sql(v0 int32) int32 {
 				}
 			l2:
 				v2 = v1 + i32(128)
-				m._sqlite3_str_append(v2, i32(130056), i32(3))
-				m._sqlite3_str_append(v2, v4, v6)
+				m.Xsqlite3_str_append(v2, i32(130056), i32(3))
+				m.Xsqlite3_str_append(v2, v4, v6)
 				v4 = v0
 				goto l4
 			}
@@ -23396,7 +23433,7 @@ func (m *Module) Xsqlite3_expanded_sql(v0 int32) int32 {
 					t2 := v1 + i32(128)
 					t3 := v4
 					v2 = int32(v10)
-					m._sqlite3_str_append(t2, t3, v2)
+					m.Xsqlite3_str_append(t2, t3, v2)
 					if v9 == 0 {
 						goto l1
 					}
@@ -23427,7 +23464,7 @@ func (m *Module) Xsqlite3_expanded_sql(v0 int32) int32 {
 					v3 = int32(load32((*m.memory)[int64(uint32(v0))+100:])) + v2*i32(40)
 					v2 = int32(load16((*m.memory)[uint32(v3-i32(24)):]))
 					if v2&i32(1) != 0 {
-						m._sqlite3_str_append(v1+i32(128), i32(93155), i32(4))
+						m.Xsqlite3_str_append(v1+i32(128), i32(93155), i32(4))
 						goto l7
 					}
 					v5 = v3 - i32(40)
@@ -23476,7 +23513,7 @@ func (m *Module) Xsqlite3_expanded_sql(v0 int32) int32 {
 						m.Xsqlite3_str_appendf(v1+i32(128), i32(122806), v1+i32(16))
 						goto l7
 					}
-					m._sqlite3_str_append(v1+i32(128), i32(126313), i32(2))
+					m.Xsqlite3_str_append(v1+i32(128), i32(126313), i32(2))
 					v2 = i32(0)
 					v5 = int32(load32((*m.memory)[uint32(v3-i32(28)):]))
 					p13 := i32(0)
@@ -23493,7 +23530,7 @@ func (m *Module) Xsqlite3_expanded_sql(v0 int32) int32 {
 						v2 = v2 + i32(1)
 						goto l8
 					}
-					m._sqlite3_str_append(v1+i32(128), i32(127894), i32(1))
+					m.Xsqlite3_str_append(v1+i32(128), i32(127894), i32(1))
 					goto l7
 				}
 			l5:
@@ -23504,11 +23541,11 @@ func (m *Module) Xsqlite3_expanded_sql(v0 int32) int32 {
 			}
 			t15 := v1 + i32(128)
 			t16 := v4
-			m._sqlite3_str_append(t15, t16, m._sqlite3Strlen30(v4))
+			m.Xsqlite3_str_append(t15, t16, m._sqlite3Strlen30(v4))
 		}
 	l1:
 		if int32((*m.memory)[int64(uint32(v1))+148]) != 0 {
-			m._sqlite3_str_reset(v1 + i32(128))
+			m.Xsqlite3_str_reset(v1 + i32(128))
 		}
 		v2 = m._sqlite3StrAccumFinish(v1 + i32(128))
 	}
@@ -24923,7 +24960,7 @@ func (m *Module) _sqlite3LocateTable(v0, v1, v2, v3 int32) int32 {
 						if v5 != 0 {
 							goto l2
 						}
-						if m._sqlite3_strnicmp(v2, i32(90462), i32(7)) != 0 {
+						if m.Xsqlite3_strnicmp(v2, i32(90462), i32(7)) != 0 {
 							goto l3
 						}
 						v8 = m._pragmaLocate(v2 + i32(7))
@@ -24938,7 +24975,7 @@ func (m *Module) _sqlite3LocateTable(v0, v1, v2, v3 int32) int32 {
 							goto l2
 						}
 					l3:
-						if m._sqlite3_strnicmp(v2, i32(79018), i32(4)) != 0 {
+						if m.Xsqlite3_strnicmp(v2, i32(79018), i32(4)) != 0 {
 							goto l1
 						}
 						v5 = i32(-20)
@@ -25612,7 +25649,7 @@ func (m *Module) _sqlite3FindTable(v0, v1, v2 int32) int32 {
 				goto l2
 			}
 			v3 = i32(0)
-			if m._sqlite3_strnicmp(v1, i32(90454), i32(7)) != 0 {
+			if m.Xsqlite3_strnicmp(v1, i32(90454), i32(7)) != 0 {
 				goto l2
 			}
 			v1 = v1 + i32(7)
@@ -25660,7 +25697,7 @@ func (m *Module) _sqlite3FindTable(v0, v1, v2 int32) int32 {
 			}
 		}
 		v3 = i32(0)
-		if m._sqlite3_strnicmp(v1, i32(90454), i32(7)) != 0 {
+		if m.Xsqlite3_strnicmp(v1, i32(90454), i32(7)) != 0 {
 			goto l2
 		}
 		v1 = v1 + i32(7)
@@ -25922,7 +25959,7 @@ func (m *Module) _vtabCallConstructor(v0, v1, v2, v3, v4 int32) int32 {
 							goto l5
 						}
 						v4 = v5 + v8
-						if m._sqlite3_strnicmp(i32(80361), v4, i32(6)) != 0 {
+						if m.Xsqlite3_strnicmp(i32(80361), v4, i32(6)) != 0 {
 							goto l6
 						}
 						if v5 != 0 {
@@ -29523,7 +29560,7 @@ l444:
 																																																																																																																																																																																												if v5 != i32(5) {
 																																																																																																																																																																																													goto l311
 																																																																																																																																																																																												}
-																																																																																																																																																																																												if m._sqlite3_strnicmp(v4, i32(86578), i32(5)) != 0 {
+																																																																																																																																																																																												if m.Xsqlite3_strnicmp(v4, i32(86578), i32(5)) != 0 {
 																																																																																																																																																																																													goto l311
 																																																																																																																																																																																												}
 																																																																																																																																																																																												store32((*m.memory)[uint32(v2-i32(8)):], uint32(i32(640)))
@@ -29542,7 +29579,7 @@ l444:
 																																																																																																																																																																																												if v5 != i32(6) {
 																																																																																																																																																																																													goto l312
 																																																																																																																																																																																												}
-																																																																																																																																																																																												if m._sqlite3_strnicmp(v4, i32(68966), i32(6)) != 0 {
+																																																																																																																																																																																												if m.Xsqlite3_strnicmp(v4, i32(68966), i32(6)) != 0 {
 																																																																																																																																																																																													goto l312
 																																																																																																																																																																																												}
 																																																																																																																																																																																												p57 = i32(65536)
@@ -32014,7 +32051,7 @@ l444:
 																																																								goto l368
 																																																							l375:
 																																																								v8 = int32(load32((*m.memory)[uint32(v15):]))
-																																																								if m._sqlite3_strnicmp(v8, i32(90454), i32(7)) == 0 {
+																																																								if m.Xsqlite3_strnicmp(v8, i32(90454), i32(7)) == 0 {
 																																																									m._sqlite3ErrorMsg(v3, i32(84791), i32(0))
 																																																									goto l376
 																																																								}
@@ -34806,6 +34843,12 @@ l6:
 func (m *Module) Xsqlite3_vtab_distinct(v0 int32) int32 {
 	return int32(load32((*m.memory)[int64(uint32(v0))+80:]))
 }
+func (m *Module) Xsqlite3_libversion() int32 {
+	return i32(65536)
+}
+func (m *Module) Xsqlite3_libversion_number() int32 {
+	return i32(3053000)
+}
 func (m *Module) _sqlite3_initialize() {
 	var v0, v1, v2, v3 int32
 	{
@@ -37139,6 +37182,23 @@ func (m *Module) Xsqlite3_errcode(v0 int32) int32 {
 l0:
 	return v1
 }
+func (m *Module) Xsqlite3_extended_errcode(v0 int32) int32 {
+	var v1 int32
+	v1 = i32(7)
+	if v0 == 0 {
+		goto l0
+	}
+	if m._sqlite3SafetyCheckSickOrOk(v0) == 0 {
+		m._sqlite3ReportError(i32(21), i32(189904), i32(82938))
+		return i32(21)
+	}
+	if int32((*m.memory)[int64(uint32(v0))+87]) != 0 {
+		goto l0
+	}
+	v1 = int32(load32((*m.memory)[int64(uint32(v0))+64:]))
+l0:
+	return v1
+}
 func (m *Module) Xsqlite3_errstr(v0 int32) int32 {
 	return m._sqlite3ErrStr(v0)
 }
@@ -37520,7 +37580,7 @@ func (m *Module) _nocaseCollatingFunc(v0, v1, v2, v3, v4 int32) int32 {
 	if v1 < v3 {
 		p0 = v1
 	}
-	v0 = m._sqlite3_strnicmp(t1, t2, p0)
+	v0 = m.Xsqlite3_strnicmp(t1, t2, p0)
 	p3 := v1 - v3
 	if v0 != 0 {
 		p3 = v0
@@ -38833,7 +38893,7 @@ l2:
 		if t0 != int32((*m.memory)[uint32(v3+i32(163977))]) {
 			goto l1
 		}
-		if m._sqlite3_strnicmp(int32((*m.memory)[uint32(v3+i32(163969))])+i32(163936), v0, v4) != 0 {
+		if m.Xsqlite3_strnicmp(int32((*m.memory)[uint32(v3+i32(163969))])+i32(163936), v0, v4) != 0 {
 			goto l1
 		}
 		var p1 int32
@@ -38996,7 +39056,7 @@ func (m *Module) _sqlite3_compileoption_used(v0 int32) int32 {
 	v1 = i32(-244)
 	t0 := v0
 	p1 := i32(7)
-	if m._sqlite3_strnicmp(v0, i32(90470), i32(7)) != 0 {
+	if m.Xsqlite3_strnicmp(v0, i32(90470), i32(7)) != 0 {
 		p1 = i32(0)
 	}
 	v2 = t0 + p1
@@ -39007,7 +39067,7 @@ l1:
 		if v1 != 0 {
 			t3 := v2
 			v3 = int32(load32((*m.memory)[uint32(v1+i32(176068)):]))
-			if m._sqlite3_strnicmp(t3, v3, v0) != 0 {
+			if m.Xsqlite3_strnicmp(t3, v3, v0) != 0 {
 				goto l0
 			}
 			if int32((*m.memory)[int64(uint32(int32((*m.memory)[uint32(v0+v3)])))+141888])&i32(70) != 0 {
@@ -39098,6 +39158,9 @@ l0:
 		goto l0
 	}
 	m.Xsqlite3_free(v0)
+}
+func (m *Module) Xsqlite3_sourceid() int32 {
+	return i32(90165)
 }
 func (m *Module) _sqlite3_decimal_init(v0, v1, v2 int32) int32 {
 	var v3 int32
@@ -42328,11 +42391,11 @@ func (m *Module) Xsqlite3_vtab_config_go(v0, v1, v2 int32) int32 {
 	m.___stack_pointer = v3 + i32(16)
 	return t0
 }
-func _sqrt(v0 float64) float64 {
-	return math.Sqrt(v0)
-}
 func _trunc(v0 float64) float64 {
 	return math.Trunc(v0)
+}
+func _sqrt(v0 float64) float64 {
+	return math.Sqrt(v0)
 }
 func (m *Module) _printf(v0, v1 int32) {
 	var v2 int32
@@ -52336,7 +52399,7 @@ func (m *Module) _checkAppendMsg(v0, v1, v2 int32) {
 		store32((*m.memory)[int64(uint32(v3))+12:], uint32(v2))
 		v2 = v0 + i32(48)
 		if int32(load32((*m.memory)[int64(uint32(v0))+64:])) != 0 {
-			m._sqlite3_str_append(v2, i32(141258), i32(1))
+			m.Xsqlite3_str_append(v2, i32(141258), i32(1))
 		}
 		v4 = int32(load32((*m.memory)[int64(uint32(v0))+32:]))
 		if v4 != 0 {
@@ -52348,7 +52411,7 @@ func (m *Module) _checkAppendMsg(v0, v1, v2 int32) {
 		}
 		t2 := v2
 		t3 := v1
-		m._sqlite3_str_vappendf(t2, t3, int32(load32((*m.memory)[int64(uint32(v3))+12:])))
+		m.Xsqlite3_str_vappendf(t2, t3, int32(load32((*m.memory)[int64(uint32(v3))+12:])))
 		if int32((*m.memory)[int64(uint32(v0))+68]) != i32(7) {
 			goto l0
 		}
@@ -61760,7 +61823,7 @@ l0:
 		v6 = v6 + i32(1)
 	}
 	v3 = v2 + i32(248)
-	m._sqlite3_str_append(v3, i32(126064), i32(1))
+	m.Xsqlite3_str_append(v3, i32(126064), i32(1))
 	_ = m._sqlite3StrAccumFinish(v3)
 	{
 		v8 = m.Xsqlite3_declare_vtab(v0, v2+i32(48))
@@ -64439,7 +64502,7 @@ func (m *Module) _jsonTranslateTextToBlob(v0, v1 int32) int32 {
 						if p7&p8 != 0 {
 							goto l32
 						}
-						if m._sqlite3_strnicmp(v3, i32(81949), i32(3)) != 0 {
+						if m.Xsqlite3_strnicmp(v3, i32(81949), i32(3)) != 0 {
 							goto l32
 						}
 						(*m.memory)[int64(uint32(v0))+37] = byte(i32(1))
@@ -64450,7 +64513,7 @@ func (m *Module) _jsonTranslateTextToBlob(v0, v1 int32) int32 {
 						m._jsonBlobAppendNode(v0, i32(5), i64(5), i32(117018))
 					l40:
 						p9 := i32(9)
-						if m._sqlite3_strnicmp(v5+i32(4), i32(65656), i32(5)) != 0 {
+						if m.Xsqlite3_strnicmp(v5+i32(4), i32(65656), i32(5)) != 0 {
 							p9 = i32(4)
 						}
 						v2 = p9 + v1
@@ -64826,7 +64889,7 @@ func (m *Module) _jsonTranslateTextToBlob(v0, v1 int32) int32 {
 				t27 := v5
 				t28 := int32(load32((*m.memory)[int64(uint32(v3))+8:]))
 				v2 = int32(int8((*m.memory)[int64(uint32(v3))+2]))
-				if m._sqlite3_strnicmp(t27, t28, v2) != 0 {
+				if m.Xsqlite3_strnicmp(t27, t28, v2) != 0 {
 					goto l68
 				}
 				t29 := v6
@@ -66166,7 +66229,7 @@ func (m *Module) _jsonPrintf(v0, v1, v2, v3 int32) {
 			store32((*m.memory)[int64(uint32(v4))+16:], uint32(v0))
 			store32((*m.memory)[int64(uint32(v4))+8:], uint32(i32(0)))
 			store32((*m.memory)[int64(uint32(v4))+12:], uint32(v5))
-			m._sqlite3_str_vappendf(v4+i32(8), v2, v3)
+			m.Xsqlite3_str_vappendf(v4+i32(8), v2, v3)
 			t4 := v5
 			(*m.memory)[uint32(t4+int32(load32((*m.memory)[int64(uint32(v4))+24:])))] = byte(i32(0))
 		}
@@ -68882,7 +68945,7 @@ func (m *Module) _sqlite3AddColumn(v0, v1, v2 int32) {
 				goto l1
 			}
 			v7 = int32(load32((*m.memory)[uint32(v2):]))
-			if m._sqlite3_strnicmp(v7+v4-i32(6), i32(69240), i32(6)) != 0 {
+			if m.Xsqlite3_strnicmp(v7+v4-i32(6), i32(69240), i32(6)) != 0 {
 				goto l2
 			}
 			v3 = v4 - i32(16)
@@ -68903,7 +68966,7 @@ func (m *Module) _sqlite3AddColumn(v0, v1, v2 int32) {
 			if uint32(v4) < uint32(i32(9)) {
 				goto l1
 			}
-			if m._sqlite3_strnicmp(v8+i32(1), i32(87444), i32(9)) != 0 {
+			if m.Xsqlite3_strnicmp(v8+i32(1), i32(87444), i32(9)) != 0 {
 				goto l2
 			}
 		l5:
@@ -68945,7 +69008,7 @@ func (m *Module) _sqlite3AddColumn(v0, v1, v2 int32) {
 				goto l7
 			}
 			t5 := v8
-			if m._sqlite3_strnicmp(t5, int32(load32((*m.memory)[uint32(v6):])), v4) != 0 {
+			if m.Xsqlite3_strnicmp(t5, int32(load32((*m.memory)[uint32(v6):])), v4) != 0 {
 				goto l7
 			}
 			p6 := i32(1)
@@ -69413,7 +69476,7 @@ func (m *Module) _sqlite3CreateIndex(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10
 		v15 = p0
 		t14 := int32(load32((*m.memory)[int64(uint32(v13))+16:]))
 		v11 = int32(load32((*m.memory)[uint32(v2):]))
-		if m._sqlite3_strnicmp(v11, i32(90454), i32(7)) != 0 {
+		if m.Xsqlite3_strnicmp(v11, i32(90454), i32(7)) != 0 {
 			goto l5
 		}
 		if v3 == 0 {
@@ -70401,13 +70464,13 @@ func (m *Module) _sqlite3AddGenerated(v0, v1, v2 int32) {
 					goto l1
 				}
 			l3:
-				if m._sqlite3_strnicmp(i32(87551), int32(load32((*m.memory)[uint32(v2):])), i32(6)) != 0 {
+				if m.Xsqlite3_strnicmp(i32(87551), int32(load32((*m.memory)[uint32(v2):])), i32(6)) != 0 {
 					goto l1
 				}
 				p0 = i32(64)
 				goto l5
 			l4:
-				if m._sqlite3_strnicmp(i32(80814), int32(load32((*m.memory)[uint32(v2):])), i32(7)) == 0 {
+				if m.Xsqlite3_strnicmp(i32(80814), int32(load32((*m.memory)[uint32(v2):])), i32(7)) == 0 {
 					goto l2
 				}
 			l1:
@@ -70560,12 +70623,12 @@ func (m *Module) _sqlite3DropTable(v0, v1, v2, v3 int32) {
 		{
 			var p15 int32
 			v3 = int32(load32((*m.memory)[uint32(v4):]))
-			if m._sqlite3_strnicmp(v3, i32(90454), i32(7)) == 0 {
+			if m.Xsqlite3_strnicmp(v3, i32(90454), i32(7)) == 0 {
 				v5 = v3 + i32(7)
-				if m._sqlite3_strnicmp(v5, i32(69100), i32(4)) == 0 {
+				if m.Xsqlite3_strnicmp(v5, i32(69100), i32(4)) == 0 {
 					goto l3
 				}
-				t16 := m._sqlite3_strnicmp(v5, i32(70238), i32(10))
+				t16 := m.Xsqlite3_strnicmp(v5, i32(70238), i32(10))
 				p15 = t16
 				goto l4
 			}
@@ -76479,7 +76542,7 @@ l4:
 		}
 		if int32((*m.memory)[uint32(v6+i32(163702))]) == v9 {
 			t0 := int32(load32((*m.memory)[uint32(v8):]))
-			if m._sqlite3_strnicmp(t0, int32((*m.memory)[uint32(v6+i32(163701))])+i32(163632), v9) == 0 {
+			if m.Xsqlite3_strnicmp(t0, int32((*m.memory)[uint32(v6+i32(163701))])+i32(163632), v9) == 0 {
 				goto l2
 			}
 		}
@@ -81068,7 +81131,7 @@ func (m *Module) _sqlite3Pragma(v0, v1, v2, v3, v4 int32) {
 																											goto l54
 																										}
 																										t24 := v8
-																										if m._sqlite3_strnicmp(t24, int32(load32((*m.memory)[uint32(v3):])), v0) != 0 {
+																										if m.Xsqlite3_strnicmp(t24, int32(load32((*m.memory)[uint32(v3):])), v0) != 0 {
 																											v3 = v3 + i32(4)
 																											v4 = v4 + i32(1)
 																											goto l55
@@ -81261,7 +81324,7 @@ func (m *Module) _sqlite3Pragma(v0, v1, v2, v3, v4 int32) {
 																							if int32((*m.memory)[int64(uint32(v18))+43]) != 0 {
 																								goto l66
 																							}
-																							if m._sqlite3_strnicmp(int32(load32((*m.memory)[uint32(v18):])), i32(90454), i32(7)) == 0 {
+																							if m.Xsqlite3_strnicmp(int32(load32((*m.memory)[uint32(v18):])), i32(90454), i32(7)) == 0 {
 																								goto l66
 																							}
 																							v3 = int32(load16((*m.memory)[int64(uint32(v18))+38:]))
@@ -83037,7 +83100,7 @@ func (m *Module) _sqlite3Pragma(v0, v1, v2, v3, v4 int32) {
 										l151:
 											v13 = int32(load32((*m.memory)[uint32(int32(load32((*m.memory)[int64(uint32(v7))+16:]))+v12):]))
 											v0 = int32(load32((*m.memory)[uint32(v9):]))
-											if m._sqlite3_strnicmp(v0, i32(90454), i32(7)) != 0 {
+											if m.Xsqlite3_strnicmp(v0, i32(90454), i32(7)) != 0 {
 												goto l153
 											}
 											v2 = v0 + i32(7)
@@ -83678,7 +83741,7 @@ func (m *Module) _sqlite3CheckObjectName(v0, v1, v2, v3 int32) int32 {
 		goto l2
 	}
 	if int32((*m.memory)[int64(uint32(v0))+18]) == 0 {
-		if m._sqlite3_strnicmp(v1, i32(90454), i32(7)) == 0 {
+		if m.Xsqlite3_strnicmp(v1, i32(90454), i32(7)) == 0 {
 			goto l3
 		}
 	}
@@ -84324,7 +84387,7 @@ func (m *Module) _sqlite3IsShadowTableOf(v0, v1, v2 int32) int32 {
 		}
 		v3 = m._sqlite3Strlen30(int32(load32((*m.memory)[uint32(v1):])))
 		t0 := v2
-		if m._sqlite3_strnicmp(t0, int32(load32((*m.memory)[uint32(v1):])), v3) != 0 {
+		if m.Xsqlite3_strnicmp(t0, int32(load32((*m.memory)[uint32(v1):])), v3) != 0 {
 			goto l0
 		}
 		v2 = v2 + v3
@@ -84354,7 +84417,7 @@ func (m *Module) _isAlterableTable(v0, v1 int32) int32 {
 	v2 = m.___stack_pointer - i32(16)
 	m.___stack_pointer = v2
 	v3 = int32(load32((*m.memory)[uint32(v1):]))
-	if m._sqlite3_strnicmp(v3, i32(90454), i32(7)) == 0 {
+	if m.Xsqlite3_strnicmp(v3, i32(90454), i32(7)) == 0 {
 		goto l0
 	}
 	v4 = int32(load32((*m.memory)[int64(uint32(v1))+28:]))
@@ -85029,7 +85092,7 @@ func (m *Module) _sqlite3VtabFinishParse(v0, v1 int32) {
 				}
 				v8 = int32(load32((*m.memory)[uint32(v4):]))
 				t15 := v8
-				if m._sqlite3_strnicmp(t15, int32(load32((*m.memory)[uint32(v3):])), v7) != 0 {
+				if m.Xsqlite3_strnicmp(t15, int32(load32((*m.memory)[uint32(v3):])), v7) != 0 {
 					goto l2
 				}
 				v8 = v7 + v8
@@ -100856,7 +100919,7 @@ func (m *Module) _codeInteger(v0, v1, v2, v3 int32) {
 		}
 	}
 l1:
-	if m._sqlite3_strnicmp(v6, i32(66393), i32(2)) == 0 {
+	if m.Xsqlite3_strnicmp(v6, i32(66393), i32(2)) == 0 {
 		store32((*m.memory)[int64(uint32(v4))+4:], uint32(v1))
 		t5 := v4
 		p4 := i32(141259)
@@ -105527,7 +105590,7 @@ l2:
 l1:
 	if v3 != 0 {
 		v5 = i32(0)
-		if m._sqlite3_strnicmp(v6, v3, v0) != 0 {
+		if m.Xsqlite3_strnicmp(v6, v3, v0) != 0 {
 			goto l0
 		}
 		if int32((*m.memory)[uint32(v0+v3)]) != 0 {
@@ -105550,7 +105613,7 @@ l4:
 l3:
 	if v2 != 0 {
 		v5 = i32(0)
-		if m._sqlite3_strnicmp(v3, v2, v0) != 0 {
+		if m.Xsqlite3_strnicmp(v3, v2, v0) != 0 {
 			goto l0
 		}
 		if int32((*m.memory)[uint32(v0+v2)]) != 0 {
@@ -105632,7 +105695,7 @@ func (m *Module) _extendFJMatch(v0, v1, v2, v3 int32) {
 	}
 }
 func (m *Module) _isValidSchemaTableName(v0, v1, v2 int32) int32 {
-	if m._sqlite3_strnicmp(v0, i32(90454), i32(7)) != 0 {
+	if m.Xsqlite3_strnicmp(v0, i32(90454), i32(7)) != 0 {
 		goto l0
 	}
 	v0 = v0 + i32(7)
@@ -107949,12 +108012,12 @@ func (m *Module) _sqlite3UniqueConstraint(v0, v1, v2 int32) {
 				t3 := int32(load32((*m.memory)[int64(uint32(v6))+4:]))
 				v8 = int32(load32((*m.memory)[uint32(t3+int32(int16(load16((*m.memory)[uint32(int32(load32((*m.memory)[int64(uint32(v2))+4:]))+v5):])))*i32(12)):]))
 				if v5 != 0 {
-					m._sqlite3_str_append(v3+i32(8), i32(130060), i32(2))
+					m.Xsqlite3_str_append(v3+i32(8), i32(130060), i32(2))
 				}
 				v7 = v3 + i32(8)
 				t4 := v7
 				m.Xsqlite3_str_appendall(t4, int32(load32((*m.memory)[uint32(v6):])))
-				m._sqlite3_str_append(v7, i32(121543), i32(1))
+				m.Xsqlite3_str_append(v7, i32(121543), i32(1))
 				m.Xsqlite3_str_appendall(v7, v8)
 				v5 = v5 + i32(2)
 				v4 = v4 + i32(1)
@@ -110876,7 +110939,7 @@ func (m *Module) _sqlite3WhereAddExplainText(v0, v1, v2, v3, v4 int32) {
 			l3:
 				v1 = p7
 				v0 = v5 + i32(216)
-				m._sqlite3_str_append(v0, i32(129841), i32(7))
+				m.Xsqlite3_str_append(v0, i32(129841), i32(7))
 				t9 := v5
 				store32((*m.memory)[int64(uint32(t9))+16:], uint32(int32(load32((*m.memory)[uint32(v2):]))))
 				m.Xsqlite3_str_appendf(v0, v1, v5+i32(16))
@@ -110888,13 +110951,13 @@ func (m *Module) _sqlite3WhereAddExplainText(v0, v1, v2, v3, v4 int32) {
 						goto l4
 					}
 				}
-				m._sqlite3_str_append(v5+i32(216), i32(126100), i32(2))
+				m.Xsqlite3_str_append(v5+i32(216), i32(126100), i32(2))
 				v0 = i32(0)
 			l5:
 				if v0 != v2 {
 					v8 = m._explainIndexColumnName(v4, v0)
 					if v0 != 0 {
-						m._sqlite3_str_append(v5+i32(216), i32(129885), i32(5))
+						m.Xsqlite3_str_append(v5+i32(216), i32(129885), i32(5))
 					}
 					store32((*m.memory)[uint32(v5):], uint32(v8))
 					t11 := v5 + i32(216)
@@ -110920,7 +110983,7 @@ func (m *Module) _sqlite3WhereAddExplainText(v0, v1, v2, v3, v4 int32) {
 					t15 := v4
 					m._explainAppendTerm(t14, t15, int32(load16((*m.memory)[int64(uint32(v3))+28:])), v2, v1, i32(94815))
 				}
-				m._sqlite3_str_append(v5+i32(216), i32(126064), i32(1))
+				m.Xsqlite3_str_append(v5+i32(216), i32(126064), i32(1))
 				goto l4
 			}
 			{
@@ -115247,7 +115310,7 @@ l2:
 		}
 		v4 = m._explainIndexColumnName(int32(load32((*m.memory)[int64(uint32(v1))+32:])), v2)
 		if uint32(int32(load16((*m.memory)[int64(uint32(v1))+46:]))) < uint32(v2) {
-			m._sqlite3_str_append(v3+i32(152), i32(129885), i32(5))
+			m.Xsqlite3_str_append(v3+i32(152), i32(129885), i32(5))
 		}
 		store32((*m.memory)[uint32(v3):], uint32(v4))
 		m.Xsqlite3_str_appendf(v3+i32(152), i32(94397), v3)
@@ -115258,7 +115321,7 @@ l0:
 	m.Xsqlite3_str_appendf(v3+i32(152), i32(94447), i32(0))
 l1:
 	v1 = v3 + i32(152)
-	m._sqlite3_str_append(v1, i32(126064), i32(1))
+	m.Xsqlite3_str_append(v1, i32(126064), i32(1))
 	v1 = m._sqlite3StrAccumFinish(v1)
 	t3 := v6
 	t4 := int32(load32((*m.memory)[int64(uint32(v6))+108:]))
@@ -118413,16 +118476,16 @@ l0:
 }
 func (m *Module) _explainAppendTerm(v0, v1, v2, v3, v4, v5 int32) {
 	if v4 != 0 {
-		m._sqlite3_str_append(v0, i32(129885), i32(5))
+		m.Xsqlite3_str_append(v0, i32(129885), i32(5))
 	}
 	if uint32(v2) >= uint32(i32(2)) {
-		m._sqlite3_str_append(v0, i32(126101), i32(1))
+		m.Xsqlite3_str_append(v0, i32(126101), i32(1))
 	}
 	v4 = i32(0)
 l0:
 	if v2 != v4 {
 		if v4 != 0 {
-			m._sqlite3_str_append(v0, i32(121556), i32(1))
+			m.Xsqlite3_str_append(v0, i32(121556), i32(1))
 		}
 		t0 := v0
 		m.Xsqlite3_str_appendall(t0, m._explainIndexColumnName(v1, v3+v4))
@@ -118430,23 +118493,23 @@ l0:
 		goto l0
 	}
 	if uint32(v2) >= uint32(i32(2)) {
-		m._sqlite3_str_append(v0, i32(126064), i32(1))
-		m._sqlite3_str_append(v0, v5, i32(1))
+		m.Xsqlite3_str_append(v0, i32(126064), i32(1))
+		m.Xsqlite3_str_append(v0, v5, i32(1))
 		v5 = i32(126101)
 	}
-	m._sqlite3_str_append(v0, v5, i32(1))
+	m.Xsqlite3_str_append(v0, v5, i32(1))
 	v4 = i32(0)
 l1:
 	if v2 != v4 {
 		if v4 != 0 {
-			m._sqlite3_str_append(v0, i32(121556), i32(1))
+			m.Xsqlite3_str_append(v0, i32(121556), i32(1))
 		}
-		m._sqlite3_str_append(v0, i32(94768), i32(1))
+		m.Xsqlite3_str_append(v0, i32(94768), i32(1))
 		v4 = v4 + i32(1)
 		goto l1
 	}
 	if uint32(v2) >= uint32(i32(2)) {
-		m._sqlite3_str_append(v0, i32(126064), i32(1))
+		m.Xsqlite3_str_append(v0, i32(126064), i32(1))
 	}
 }
 func (m *Module) _sqlite3ExprNeedsNoAffinityChange(v0, v1 int32) int32 {
@@ -121513,7 +121576,7 @@ func (m *Module) _sqlite3ResultStrAccum(v0, v1 int32) {
 	}
 	m.Xsqlite3_result_text(v0, i32(141259), i32(0), i32(0))
 l0:
-	m._sqlite3_str_reset(v1)
+	m.Xsqlite3_str_reset(v1)
 }
 func (m *Module) _soundexFunc(v0, v1, v2 int32) {
 	var v3, v4, v5 int32
@@ -122849,7 +122912,7 @@ func (m *Module) _quoteFunc(v0, v1, v2 int32) {
 		goto l5
 	}
 l4:
-	m._sqlite3_str_append(v1+i32(40), i32(93155), i32(4))
+	m.Xsqlite3_str_append(v1+i32(40), i32(93155), i32(4))
 l5:
 	t10 := v0
 	t11 := m._sqlite3StrAccumFinish(v1 + i32(40))
@@ -123487,7 +123550,7 @@ func (m *Module) _groupConcatStep(v0, v1, v2 int32) {
 		store32((*m.memory)[int64(uint32(t0))+12:], uint32(int32(load32((*m.memory)[int64(uint32(int32(load32((*m.memory)[int64(uint32(int32(load32((*m.memory)[uint32(v0):]))))+20:]))))+120:]))))
 		if v1 == i32(1) {
 			if v4 != 0 {
-				m._sqlite3_str_appendchar(v3, i32(1), i32(44))
+				m.Xsqlite3_str_appendchar(v3, i32(1), i32(44))
 				goto l1
 			}
 			store32((*m.memory)[int64(uint32(v3))+28:], uint32(i32(1)))
@@ -123503,7 +123566,7 @@ func (m *Module) _groupConcatStep(v0, v1, v2 int32) {
 						v5 = i32(0)
 						goto l2
 					}
-					m._sqlite3_str_append(v3, v0, v5)
+					m.Xsqlite3_str_append(v3, v0, v5)
 				l2:
 					v0 = int32(load32((*m.memory)[int64(uint32(v3))+32:]))
 					if int32(load32((*m.memory)[int64(uint32(v3))+28:])) == v5 {
@@ -123568,7 +123631,7 @@ func (m *Module) _groupConcatStep(v0, v1, v2 int32) {
 		if v0 == 0 {
 			goto l0
 		}
-		m._sqlite3_str_append(v3, v0, v1)
+		m.Xsqlite3_str_append(v3, v0, v1)
 	}
 l0:
 }
@@ -124106,7 +124169,7 @@ func (m *Module) _renameParseSql(v0, v1, v2, v3, v4 int32) int32 {
 	if v3 == 0 {
 		return i32(7)
 	}
-	if m._sqlite3_strnicmp(v3, i32(129863), i32(7)) != 0 {
+	if m.Xsqlite3_strnicmp(v3, i32(129863), i32(7)) != 0 {
 		m._sqlite3ReportError(i32(11), i32(121492), i32(79058))
 		return i32(11)
 	}
@@ -126605,7 +126668,7 @@ func (m *Module) _isDate(v0, v1, v2, v3 int32) int32 {
 							if t28 != int32((*m.memory)[uint32(v8)]) {
 								goto l19
 							}
-							if m._sqlite3_strnicmp(v8+i32(1), v6, v7) != 0 {
+							if m.Xsqlite3_strnicmp(v8+i32(1), v6, v7) != 0 {
 								goto l19
 							}
 							t29 := v18
@@ -126894,7 +126957,7 @@ func (m *Module) _isDate(v0, v1, v2, v3 int32) int32 {
 				store64((*m.memory)[uint32(v3):], uint64(v20))
 				goto l37
 			l35:
-				if m._sqlite3_strnicmp(v4, i32(129139), i32(8)) != 0 {
+				if m.Xsqlite3_strnicmp(v4, i32(129139), i32(8)) != 0 {
 					goto l1
 				}
 				if m._sqlite3AtoF(v4+i32(8), v5+i32(168)) <= i32(0) {
@@ -126930,7 +126993,7 @@ func (m *Module) _isDate(v0, v1, v2, v3 int32) int32 {
 				goto l37
 			}
 		l33:
-			if m._sqlite3_strnicmp(v4, i32(129401), i32(9)) != 0 {
+			if m.Xsqlite3_strnicmp(v4, i32(129401), i32(9)) != 0 {
 				if m._sqlite3StrICmp(v4, i32(89919)) != 0 {
 					if m._sqlite3StrICmp(v4, i32(86111)) != 0 {
 						goto l1
@@ -127374,13 +127437,13 @@ func (m *Module) _strftimeFunc(v0, v1, v2 int32) {
 				goto l1
 			}
 			if uint32(v1) > uint32(v2) {
-				m._sqlite3_str_append(v3+i32(360), v2+v6, v1-v2)
+				m.Xsqlite3_str_append(v3+i32(360), v2+v6, v1-v2)
 			}
 			m._sqlite3ResultStrAccum(v0, v3+i32(360))
 			goto l0
 		}
 		if uint32(v1) > uint32(v2) {
-			m._sqlite3_str_append(v3+i32(360), v2+v6, v1-v2)
+			m.Xsqlite3_str_append(v3+i32(360), v2+v6, v1-v2)
 		}
 		v2 = v1 + i32(2)
 		{
@@ -127554,7 +127617,7 @@ func (m *Module) _strftimeFunc(v0, v1, v2 int32) {
 													if v4 == i32(112) {
 														p24 = i32(92812)
 													}
-													m._sqlite3_str_append(t25, p24, i32(2))
+													m.Xsqlite3_str_append(t25, p24, i32(2))
 													goto l1
 												}
 												t27 := v3 + i32(360)
@@ -127562,7 +127625,7 @@ func (m *Module) _strftimeFunc(v0, v1, v2 int32) {
 												if v4 == i32(112) {
 													p26 = i32(92821)
 												}
-												m._sqlite3_str_append(t27, p26, i32(2))
+												m.Xsqlite3_str_append(t27, p26, i32(2))
 												goto l1
 											}
 										l10:
@@ -127607,7 +127670,7 @@ func (m *Module) _strftimeFunc(v0, v1, v2 int32) {
 								if v4 == i32(117) {
 									p34 = p33
 								}
-								m._sqlite3_str_appendchar(t32, i32(1), int32(int8(p34)))
+								m.Xsqlite3_str_appendchar(t32, i32(1), int32(int8(p34)))
 								goto l1
 							}
 						l13:
@@ -127648,7 +127711,7 @@ func (m *Module) _strftimeFunc(v0, v1, v2 int32) {
 				goto l24
 			}
 		l7:
-			m._sqlite3_str_reset(v3 + i32(360))
+			m.Xsqlite3_str_reset(v3 + i32(360))
 			goto l0
 		l17:
 			t43 := v3
@@ -127662,7 +127725,7 @@ func (m *Module) _strftimeFunc(v0, v1, v2 int32) {
 			goto l1
 		}
 	l24:
-		m._sqlite3_str_appendchar(v3+i32(360), i32(1), i32(37))
+		m.Xsqlite3_str_appendchar(v3+i32(360), i32(1), i32(37))
 	l1:
 		v1 = v1 + i32(1)
 		goto l25
@@ -131451,7 +131514,7 @@ func (m *Module) _rtreenode(v0, v1, v2 int32) {
 			if uint32(t7|int32((*m.memory)[int64(uint32(v5))+2])<<8) > uint32(v6) {
 				m._nodeGetCell(v3+i32(72), v3+i32(576), v6, v3+i32(24))
 				if v6 != 0 {
-					m._sqlite3_str_append(v4, i32(130081), i32(1))
+					m.Xsqlite3_str_append(v4, i32(130081), i32(1))
 				}
 				t8 := v3
 				store64((*m.memory)[int64(uint32(t8))+16:], uint64(int64(load64((*m.memory)[int64(uint32(v3))+24:]))))
@@ -131467,7 +131530,7 @@ func (m *Module) _rtreenode(v0, v1, v2 int32) {
 					v2 = v2 + i32(4)
 					goto l1
 				}
-				m._sqlite3_str_append(v4, i32(65544), i32(1))
+				m.Xsqlite3_str_append(v4, i32(65544), i32(1))
 				v6 = v6 + i32(1)
 				goto l2
 			}
@@ -131750,7 +131813,7 @@ func (m *Module) _fts5InitVtab(v0, v1, v2, v3, v4, v5, v6 int32) int32 {
 						}
 						v7 = p9
 						v12 = m._strlen(v7)
-						if m._sqlite3_strnicmp(i32(66201), v7, v12) != 0 {
+						if m.Xsqlite3_strnicmp(i32(66201), v7, v12) != 0 {
 							goto l10
 						}
 						v15 = int32(load32((*m.memory)[int64(uint32(v9))+32:]))
@@ -132263,7 +132326,7 @@ func (m *Module) _fts5InitVtab(v0, v1, v2, v3, v4, v5, v6 int32) int32 {
 					goto l6
 				}
 			l10:
-				if m._sqlite3_strnicmp(i32(82187), v7, v12) == 0 {
+				if m.Xsqlite3_strnicmp(i32(82187), v7, v12) == 0 {
 					{
 						t40 := v8 + i32(304)
 						v12 = m._strlen(v10) + i32(1)
@@ -132328,7 +132391,7 @@ func (m *Module) _fts5InitVtab(v0, v1, v2, v3, v4, v5, v6 int32) int32 {
 					v7 = int32(load32((*m.memory)[int64(uint32(v8))+304:]))
 					goto l11
 				}
-				if m._sqlite3_strnicmp(i32(67959), v7, v12) == 0 {
+				if m.Xsqlite3_strnicmp(i32(67959), v7, v12) == 0 {
 					if int32(load32((*m.memory)[int64(uint32(v9))+36:])) != 0 {
 						t46 := v6
 						store32((*m.memory)[uint32(t46):], uint32(m.Xsqlite3_mprintf(i32(71387), i32(0))))
@@ -132347,7 +132410,7 @@ func (m *Module) _fts5InitVtab(v0, v1, v2, v3, v4, v5, v6 int32) int32 {
 					store32((*m.memory)[int64(uint32(v9))+36:], uint32(i32(1)))
 					goto l15
 				}
-				if m._sqlite3_strnicmp(i32(82747), v7, v12) == 0 {
+				if m.Xsqlite3_strnicmp(i32(82747), v7, v12) == 0 {
 					{
 						v7 = int32((*m.memory)[uint32(v10)])
 						if v7&i32(254) == i32(48) {
@@ -132368,7 +132431,7 @@ func (m *Module) _fts5InitVtab(v0, v1, v2, v3, v4, v5, v6 int32) int32 {
 					store32((*m.memory)[int64(uint32(t49))+40:], uint32(p50))
 					goto l15
 				}
-				if m._sqlite3_strnicmp(i32(86780), v7, v12) == 0 {
+				if m.Xsqlite3_strnicmp(i32(86780), v7, v12) == 0 {
 					{
 						v7 = int32((*m.memory)[uint32(v10)])
 						if v7&i32(254) == i32(48) {
@@ -132389,7 +132452,7 @@ func (m *Module) _fts5InitVtab(v0, v1, v2, v3, v4, v5, v6 int32) int32 {
 					store32((*m.memory)[int64(uint32(t52))+44:], uint32(p53))
 					goto l15
 				}
-				if m._sqlite3_strnicmp(i32(86393), v7, v12) == 0 {
+				if m.Xsqlite3_strnicmp(i32(86393), v7, v12) == 0 {
 					if int32(load32((*m.memory)[int64(uint32(v9))+52:])) != 0 {
 						t54 := v6
 						store32((*m.memory)[uint32(t54):], uint32(m.Xsqlite3_mprintf(i32(71452), i32(0))))
@@ -132400,7 +132463,7 @@ func (m *Module) _fts5InitVtab(v0, v1, v2, v3, v4, v5, v6 int32) int32 {
 					v7 = int32(load32((*m.memory)[int64(uint32(v8))+304:]))
 					goto l11
 				}
-				if m._sqlite3_strnicmp(i32(82099), v7, v12) == 0 {
+				if m.Xsqlite3_strnicmp(i32(82099), v7, v12) == 0 {
 					{
 						v7 = int32((*m.memory)[uint32(v10)])
 						if v7&i32(254) == i32(48) {
@@ -132421,7 +132484,7 @@ func (m *Module) _fts5InitVtab(v0, v1, v2, v3, v4, v5, v6 int32) int32 {
 					store32((*m.memory)[int64(uint32(t57))+56:], uint32(p58))
 					goto l15
 				}
-				if m._sqlite3_strnicmp(i32(85454), v7, v12) == 0 {
+				if m.Xsqlite3_strnicmp(i32(85454), v7, v12) == 0 {
 					{
 						v7 = int32((*m.memory)[uint32(v10)])
 						if v7&i32(254) == i32(48) {
@@ -132442,13 +132505,13 @@ func (m *Module) _fts5InitVtab(v0, v1, v2, v3, v4, v5, v6 int32) int32 {
 					store32((*m.memory)[int64(uint32(t60))+64:], uint32(p61))
 					goto l15
 				}
-				if m._sqlite3_strnicmp(i32(80782), v7, v12) == 0 {
+				if m.Xsqlite3_strnicmp(i32(80782), v7, v12) == 0 {
 					v12 = i32(-1)
 					v7 = i32(-24)
 					v11 = m._strlen(v10)
 				l67:
 					if v7 != 0 {
-						if m._sqlite3_strnicmp(int32(load32((*m.memory)[uint32(v7+i32(166008)):])), v10, v11) == 0 {
+						if m.Xsqlite3_strnicmp(int32(load32((*m.memory)[uint32(v7+i32(166008)):])), v10, v11) == 0 {
 							if v12 >= i32(0) {
 								goto l66
 							}
@@ -132466,7 +132529,7 @@ func (m *Module) _fts5InitVtab(v0, v1, v2, v3, v4, v5, v6 int32) int32 {
 					store32((*m.memory)[uint32(t62):], uint32(m.Xsqlite3_mprintf(i32(82336), i32(0))))
 					goto l16
 				}
-				if m._sqlite3_strnicmp(i32(90257), v7, v12) == 0 {
+				if m.Xsqlite3_strnicmp(i32(90257), v7, v12) == 0 {
 					{
 						v7 = int32((*m.memory)[uint32(v10)])
 						if v7&i32(254) == i32(48) {
@@ -133220,7 +133283,7 @@ func (m *Module) _fts5FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 										goto l15
 									}
 								l16:
-									if m._sqlite3_strnicmp(i32(73908), v7, i32(5)) != 0 {
+									if m.Xsqlite3_strnicmp(i32(73908), v7, i32(5)) != 0 {
 										goto l15
 									}
 									t8 := v0
@@ -133229,7 +133292,7 @@ func (m *Module) _fts5FilterMethod(v0, v1, v2, v3, v4 int32) int32 {
 									goto l17
 								}
 							l14:
-								if m._sqlite3_strnicmp(i32(86751), v7, i32(2)) != 0 {
+								if m.Xsqlite3_strnicmp(i32(86751), v7, i32(2)) != 0 {
 									goto l15
 								}
 								t9 := v0
@@ -140740,7 +140803,7 @@ func (m *Module) _fts5ConfigSkipLiteral(v0 int32) int32 {
 			}
 			t1 := v0 + i32(4)
 			p2 := t1
-			if m._sqlite3_strnicmp(i32(80661), v0, i32(4)) != 0 {
+			if m.Xsqlite3_strnicmp(i32(80661), v0, i32(4)) != 0 {
 				p2 = i32(0)
 			}
 			return p2
@@ -161047,7 +161110,7 @@ func (m *Module) _rtreeSqlInit(v0, v1, v2, v3, v4 int32) int32 {
 	l9:
 		if uint32(int32((*m.memory)[int64(uint32(v0))+25])) > uint32(v4) {
 			if v4 != 0 {
-				m._sqlite3_str_append(v7, i32(121556), i32(1))
+				m.Xsqlite3_str_append(v7, i32(121556), i32(1))
 			}
 			v2 = v4 + i32(2)
 			if uint32(int32((*m.memory)[int64(uint32(v0))+26])) > uint32(v4) {
@@ -162348,7 +162411,7 @@ func (m *Module) _geopolyJsonFunc(v0, v1, v2 int32) {
 			p1 = i32(0)
 		}
 		v5 = m.Xsqlite3_str_new(p1)
-		m._sqlite3_str_append(v5, i32(90737), i32(1))
+		m.Xsqlite3_str_append(v5, i32(90737), i32(1))
 		v4 = v3 + i32(8)
 		v2 = i32(0)
 	l0:
@@ -171092,7 +171155,7 @@ l5:
 	}
 	return int32(p5)
 }
-func (m *Module) _randomFunc_2487(v0, v1, v2 int32) {
+func (m *Module) _randomFunc_2491(v0, v1, v2 int32) {
 	t0 := v0
 	m.Xsqlite3_result_int64(t0, int64(uint32(m._speedtest1_random())))
 }

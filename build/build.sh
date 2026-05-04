@@ -33,8 +33,7 @@ mv sqlite3.wasm sqlite3
 
 "$BINARYEN/wasm-opt" -g sqlite3 -o sqlite3.wasm \
 	--gufa-optimizing --generate-global-effects \
-	--low-memory-unused --zero-filled-memory \
-	--converge -O4 \
+	--low-memory-unused --converge -O4 \
 	--enable-mutable-globals --enable-multivalue \
 	--enable-nontrapping-float-to-int --enable-sign-ext \
 	--enable-reference-types --enable-bulk-memory \

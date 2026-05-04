@@ -32,8 +32,7 @@ go tool libc-gen -pkg spellfix -deref-mem -o ../libc.go -c-out "$ROOT/libc" \
 
 "$BINARYEN/wasm-opt" -g spellfix -o spellfix.wasm \
 	--gufa-optimizing --generate-global-effects \
-	--low-memory-unused --zero-filled-memory \
-	--converge -O4 \
+	--low-memory-unused --converge -O4 \
 	--enable-mutable-globals --enable-multivalue \
 	--enable-nontrapping-float-to-int --enable-sign-ext \
 	--enable-reference-types --enable-bulk-memory \

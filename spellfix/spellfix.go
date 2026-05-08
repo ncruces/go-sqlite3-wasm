@@ -23,7 +23,7 @@ type Module struct {
 }
 
 func New(v0 Xenv) *Module {
-	m := &Module{}
+	m := new(Module)
 	m._env = v0
 	m.maxMem = 65536
 	m.___stack_pointer = v0.X__stack_pointer()
@@ -3472,85 +3472,99 @@ func DylinkInfo() (memorySize, memoryAlignment, tableSize, tableAlignment int64)
 	return 4196, 16, 22, 1
 }
 
+// Compiler error if endianess is unknown.
+var _ = map[bool]struct{}{big: {}, little: {}}
+
+// go.dev/src/cmd/compile/internal/ssa/config.go
+const (
+	big = false ||
+		runtime.GOARCH == "ppc64" || runtime.GOARCH == "s390x" ||
+		runtime.GOARCH == "mips" || runtime.GOARCH == "mips64"
+
+	little = false ||
+		runtime.GOARCH == "386" || runtime.GOARCH == "amd64" ||
+		runtime.GOARCH == "arm" || runtime.GOARCH == "arm64" ||
+		runtime.GOARCH == "riscv64" || runtime.GOARCH == "wasm" ||
+		runtime.GOARCH == "ppc64le" || runtime.GOARCH == "loong64" ||
+		runtime.GOARCH == "mipsle" || runtime.GOARCH == "mips64le"
+
+	unalignedOK = false ||
+		runtime.GOARCH == "386" || runtime.GOARCH == "amd64" ||
+		runtime.GOARCH == "arm64" || runtime.GOARCH == "loong64" ||
+		runtime.GOARCH == "ppc64" || runtime.GOARCH == "ppc64le" ||
+		runtime.GOARCH == "s390x" || runtime.GOARCH == "wasm"
+)
+
 //go:nosplit
 func load16(b []byte) uint16 {
-	switch runtime.GOARCH {
-	case "386", "amd64", "arm64", "loong64", "ppc64", "ppc64le", "s390x", "wasm":
-		v := *(*uint16)(unsafe.Pointer((*[2]byte)(b)))
-		switch runtime.GOARCH {
-		case "ppc64", "s390x":
-			return bits.ReverseBytes16(v)
-		}
-		return v
+	if !unalignedOK {
+		return binary.LittleEndian.Uint16(b)
 	}
-	return binary.LittleEndian.Uint16(b)
+	v := *(*uint16)(unsafe.Pointer((*[2]byte)(b)))
+	if big {
+		return bits.ReverseBytes16(v)
+	}
+	return v
 }
 
 //go:nosplit
 func store16(b []byte, v uint16) {
-	switch runtime.GOARCH {
-	default:
+	if !unalignedOK {
 		binary.LittleEndian.PutUint16(b, v)
-	case "ppc64", "s390x":
-		v = bits.ReverseBytes16(v)
-		fallthrough
-	case "386", "amd64", "arm64", "loong64", "ppc64le", "wasm":
-		*(*uint16)(unsafe.Pointer((*[2]byte)(b))) = v
+		return
 	}
+	if big {
+		v = bits.ReverseBytes16(v)
+	}
+	*(*uint16)(unsafe.Pointer((*[2]byte)(b))) = v
 }
 
 //go:nosplit
 func load32(b []byte) uint32 {
-	switch runtime.GOARCH {
-	case "386", "amd64", "arm64", "loong64", "ppc64", "ppc64le", "s390x", "wasm":
-		v := *(*uint32)(unsafe.Pointer((*[4]byte)(b)))
-		switch runtime.GOARCH {
-		case "ppc64", "s390x":
-			return bits.ReverseBytes32(v)
-		}
-		return v
+	if !unalignedOK {
+		return binary.LittleEndian.Uint32(b)
 	}
-	return binary.LittleEndian.Uint32(b)
+	v := *(*uint32)(unsafe.Pointer((*[4]byte)(b)))
+	if big {
+		return bits.ReverseBytes32(v)
+	}
+	return v
 }
 
 //go:nosplit
 func store32(b []byte, v uint32) {
-	switch runtime.GOARCH {
-	default:
+	if !unalignedOK {
 		binary.LittleEndian.PutUint32(b, v)
-	case "ppc64", "s390x":
-		v = bits.ReverseBytes32(v)
-		fallthrough
-	case "386", "amd64", "arm64", "loong64", "ppc64le", "wasm":
-		*(*uint32)(unsafe.Pointer((*[4]byte)(b))) = v
+		return
 	}
+	if big {
+		v = bits.ReverseBytes32(v)
+	}
+	*(*uint32)(unsafe.Pointer((*[4]byte)(b))) = v
 }
 
 //go:nosplit
 func load64(b []byte) uint64 {
-	switch runtime.GOARCH {
-	case "386", "amd64", "arm64", "loong64", "ppc64", "ppc64le", "s390x", "wasm":
-		v := *(*uint64)(unsafe.Pointer((*[8]byte)(b)))
-		switch runtime.GOARCH {
-		case "ppc64", "s390x":
-			return bits.ReverseBytes64(v)
-		}
-		return v
+	if !unalignedOK {
+		return binary.LittleEndian.Uint64(b)
 	}
-	return binary.LittleEndian.Uint64(b)
+	v := *(*uint64)(unsafe.Pointer((*[8]byte)(b)))
+	if big {
+		return bits.ReverseBytes64(v)
+	}
+	return v
 }
 
 //go:nosplit
 func store64(b []byte, v uint64) {
-	switch runtime.GOARCH {
-	default:
+	if !unalignedOK {
 		binary.LittleEndian.PutUint64(b, v)
-	case "ppc64", "s390x":
-		v = bits.ReverseBytes64(v)
-		fallthrough
-	case "386", "amd64", "arm64", "loong64", "ppc64le", "wasm":
-		*(*uint64)(unsafe.Pointer((*[8]byte)(b))) = v
+		return
 	}
+	if big {
+		v = bits.ReverseBytes64(v)
+	}
+	*(*uint64)(unsafe.Pointer((*[8]byte)(b))) = v
 }
 
 //go:nosplit

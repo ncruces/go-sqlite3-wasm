@@ -15,7 +15,7 @@ type Module struct {
 }
 
 func New() *Module {
-	m := &Module{}
+	m := new(Module)
 	m.maxMem = 65536
 	m.memory = make([]byte, 0x20000)
 	copy(m.memory[uint32(i32(65536)):], data0)

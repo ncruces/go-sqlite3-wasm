@@ -489,7 +489,7 @@ func (m *Module) _editDist3SqlFunc(v0, v1, v2 int32) {
 		if v1 == i32(1) {
 			v1 = m._editDist3ConfigLoad(v4, v3, v5)
 			if v1 == 0 {
-				goto l0
+				return
 			}
 			m._sqlite3_result_error_code(v0, v1)
 			return
@@ -516,7 +516,6 @@ func (m *Module) _editDist3SqlFunc(v0, v1, v2 int32) {
 		}
 		m._sqlite3_result_int(v0, v1)
 	}
-l0:
 	return
 l1:
 	m._sqlite3_result_error_nomem(v0)
@@ -1259,7 +1258,7 @@ func (m *Module) _spellfix1Init(v0, v1, v2, v3, v4, v5 int32) int32 {
 				}
 			l2:
 				t12 := v6
-				store32((*m.memory)[uint32(t12):], uint32(int32(load32((*m.memory)[uint32(v3):]))))
+				store32((*m.memory)[uint32(t12):], load32((*m.memory)[uint32(v3):]))
 				t13 := v5
 				store32((*m.memory)[uint32(t13):], uint32(m._sqlite3_mprintf(*m.___memory_base+i32(1120), v6)))
 				p8 = i32(1)
@@ -1534,7 +1533,7 @@ func (m *Module) _spellfix1Uninit(v0, v1 int32) int32 {
 	if v0 != 0 {
 		v0 = int32(load32((*m.memory)[int64(uint32(v1))+12:]))
 		t0 := v2
-		store64((*m.memory)[uint32(t0):], uint64(int64(load64((*m.memory)[int64(uint32(v1))+16:]))))
+		store64((*m.memory)[uint32(t0):], load64((*m.memory)[int64(uint32(v1))+16:]))
 		t1 := v2 + i32(12)
 		t2 := v0
 		m._spellfix1DbExec(t1, t2, *m.___memory_base+i32(1154), v2)
@@ -1933,7 +1932,7 @@ func (m *Module) _spellfix1Filter(v0, v1, v2, v3, v4 int32) int32 {
 				store32((*m.memory)[int64(uint32(v1))+12:], uint32(v9))
 				store64((*m.memory)[uint32(v1):], uint64(v18))
 				t35 := v1
-				store32((*m.memory)[int64(uint32(t35))+24:], uint32(int32(load32((*m.memory)[int64(uint32(v6))+60:]))))
+				store32((*m.memory)[int64(uint32(t35))+24:], load32((*m.memory)[int64(uint32(v6))+60:]))
 				if v12 != 0 {
 					memory_copy(*m.memory, uint32(v1+i32(28)), uint32(v6+i32(96)), uint32(v12))
 				}
@@ -2194,7 +2193,7 @@ func (m *Module) _editDist3ConfigLoad(v0, v1, v2 int32) int32 {
 				memory_copy(*m.memory, uint32(v2+v6), uint32(v8), uint32(v1))
 			}
 			t7 := v3
-			store32((*m.memory)[uint32(t7):], uint32(int32(load32((*m.memory)[int64(uint32(v5))+16:]))))
+			store32((*m.memory)[uint32(t7):], load32((*m.memory)[int64(uint32(v5))+16:]))
 			store32((*m.memory)[int64(uint32(v5))+16:], uint32(v3))
 			goto l2
 		}
@@ -2514,7 +2513,7 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 					v8 = v16 + v6*i32(12)
 					v9 = int32(load32((*m.memory)[int64(uint32(v8))+4:])) + v6
 					v22 = t10 + v9*v14<<2
-					if uint32(t9) < uint32(int32(load32((*m.memory)[uint32(v22):]))) {
+					if uint32(t9) < load32((*m.memory)[uint32(v22):]) {
 						store32((*m.memory)[uint32(v22):], uint32(v0))
 					}
 					v5 = i32(0)
@@ -2540,7 +2539,7 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 							v30 = int32(load32((*m.memory)[int64(uint32(v10))+8:]))
 							v31 = v30 << 2
 							v7 = t13 + v31
-							if uint32(t12) < uint32(int32(load32((*m.memory)[uint32(v7):]))) {
+							if uint32(t12) < load32((*m.memory)[uint32(v7):]) {
 								store32((*m.memory)[uint32(v7):], uint32(v5))
 							}
 							v6 = i32(0)
@@ -2553,7 +2552,7 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 								t15 := v12
 								t16 := v0
 								v18 = t16 + int32((*m.memory)[int64(uint32(v18))+4])<<2
-								if uint32(t15) < uint32(int32(load32((*m.memory)[uint32(v18):]))) {
+								if uint32(t15) < load32((*m.memory)[uint32(v18):]) {
 									store32((*m.memory)[uint32(v18):], uint32(v12))
 								}
 								v6 = v6 + i32(4)
@@ -2613,7 +2612,7 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 									t25 := t24 + int32((*m.memory)[int64(uint32(v0))+4])<<2
 									t26 := v14
 									v0 = t25 + t26*int32((*m.memory)[int64(uint32(v0))+5])<<2
-									if uint32(t23) >= uint32(int32(load32((*m.memory)[uint32(v0):]))) {
+									if uint32(t23) >= load32((*m.memory)[uint32(v0):]) {
 										goto l9
 									}
 									store32((*m.memory)[uint32(v0):], uint32(v7))
@@ -2634,7 +2633,7 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 						t29 := v11
 						t30 := v6
 						v10 = t29 + (t30+int32((*m.memory)[int64(uint32(v10))+5]))*v14<<2
-						if uint32(t28) < uint32(int32(load32((*m.memory)[uint32(v10):]))) {
+						if uint32(t28) < load32((*m.memory)[uint32(v10):]) {
 							store32((*m.memory)[uint32(v10):], uint32(v7))
 						}
 						v5 = v5 + i32(4)
@@ -2707,7 +2706,7 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 			v8 = v20 + v6*i32(20)
 			v6 = int32(load32((*m.memory)[int64(uint32(v8))+8:])) + v6
 			v5 = t40 + v6<<2
-			if uint32(t39) < uint32(int32(load32((*m.memory)[uint32(v5):]))) {
+			if uint32(t39) < load32((*m.memory)[uint32(v5):]) {
 				store32((*m.memory)[uint32(v5):], uint32(v0))
 			}
 			v5 = i32(0)
@@ -2724,7 +2723,7 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 				t43 := v7
 				t44 := v9
 				v10 = t44 + int32((*m.memory)[int64(uint32(v10))+4])<<2
-				if uint32(t43) < uint32(int32(load32((*m.memory)[uint32(v10):]))) {
+				if uint32(t43) < load32((*m.memory)[uint32(v10):]) {
 					store32((*m.memory)[uint32(v10):], uint32(v7))
 				}
 				v5 = v5 + i32(4)
@@ -2776,7 +2775,7 @@ func (m *Module) _spellfix1Next(v0 int32) int32 {
 			v1 = m._sqlite3_step(v2)
 			if v1 != i32(100) {
 				t1 := v0
-				store32((*m.memory)[int64(uint32(t1))+24:], uint32(int32(load32((*m.memory)[int64(uint32(v0))+16:]))))
+				store32((*m.memory)[int64(uint32(t1))+24:], load32((*m.memory)[int64(uint32(v0))+16:]))
 			}
 			p2 := i32(0)
 			if v1&i32(-2) != i32(100) {
@@ -3083,7 +3082,7 @@ func (m *Module) _spellfix1Update(v0, v1, v2, v3 int32) int32 {
 			v1 = m._sqlite3_value_text(int32(load32((*m.memory)[int64(uint32(v2))+52:])))
 			if v1 == 0 {
 				t3 := v4
-				store32((*m.memory)[int64(uint32(t3))+16:], uint32(int32(load32((*m.memory)[int64(uint32(v0))+20:]))))
+				store32((*m.memory)[int64(uint32(t3))+16:], load32((*m.memory)[int64(uint32(v0))+20:]))
 				t4 := v0
 				store32((*m.memory)[int64(uint32(t4))+8:], uint32(m._sqlite3_mprintf(*m.___memory_base+i32(221), v4+i32(16))))
 				v6 = i32(1299)

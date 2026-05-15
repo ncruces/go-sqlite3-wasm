@@ -1,4 +1,4 @@
-github.com/ncruces/wasm2go v0.4.3 h1:CYJe6pP5U/m39hw+aD8tmIc0e1I98NsJhl61zqyruwo=
-github.com/ncruces/wasm2go v0.4.3/go.mod h1:r+Zzd2Ka61D3bAVrQR7gsFkK2f8rgQIvyviE/naOEQ8=
+github.com/ncruces/wasm2go v0.4.4 h1:7FTZimiYxlBIprovL6PE6JgulYuMW43FZEkLUrKIOk8=
+github.com/ncruces/wasm2go v0.4.4/go.mod h1:r+Zzd2Ka61D3bAVrQR7gsFkK2f8rgQIvyviE/naOEQ8=
 golang.org/x/tools v0.43.0 h1:12BdW9CeB3Z+J/I/wj34VMl8X+fEXBxVR90JeMX5E7s=
 golang.org/x/tools v0.43.0/go.mod h1:uHkMso649BX2cZK6+RpuIPXS3ho2hZo4FVwfoy1vIk0=

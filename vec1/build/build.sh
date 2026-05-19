@@ -10,8 +10,7 @@ WASI_SDK="$ROOT/tools/wasi-sdk/bin/"
 trap 'rm -f vec1*' EXIT
 curl -# "https://sqlite.org/vec1/raw/3e0b52fe43?at=vec1.c" > vec1.c
 
-go tool libc-gen -pkg vec1 -deref-mem -o ../libc.go -c-out "$ROOT/libc" \
-	memcmp strtod
+go tool libc-gen -c-out "$ROOT/libc"
 
 "$WASI_SDK/clang" --target=wasm32 -nostdlib -std=c23 -g0 -Oz \
 	-o vec1 vec1.c -I"$ROOT/libc" -I"$ROOT/build" \
@@ -20,7 +19,7 @@ go tool libc-gen -pkg vec1 -deref-mem -o ../libc.go -c-out "$ROOT/libc" \
 	-mmutable-globals -mmultivalue \
 	-mnontrapping-fptoint -msign-ext \
 	-mreference-types -mbulk-memory \
-	-mextended-const \
+	-mextended-const -mtail-call \
 	-Wl,--no-entry \
 	-Wl,--stack-first \
 	-Wl,--import-undefined \
@@ -32,7 +31,8 @@ go tool libc-gen -pkg vec1 -deref-mem -o ../libc.go -c-out "$ROOT/libc" \
 	--enable-mutable-globals --enable-multivalue \
 	--enable-nontrapping-float-to-int --enable-sign-ext \
 	--enable-reference-types --enable-bulk-memory \
-	--enable-extended-const \
+	--enable-extended-const --enable-tail-call \
 	--strip --strip-producers
 
+go tool libc-gen -wasm vec1.wasm -o ../libc.go
 go tool wasm2go -unsafe -provided ../libc.go -o ../vec1.go vec1.wasm

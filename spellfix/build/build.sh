@@ -13,8 +13,7 @@ GITHUB_TAG="https://github.com/sqlite/sqlite/raw/version-3.53.1"
 
 curl -#OL "$GITHUB_TAG/ext/misc/spellfix.c"
 
-go tool libc-gen -pkg spellfix -deref-mem -o ../libc.go -c-out "$ROOT/libc" \
-	strlen strcmp strncmp
+go tool libc-gen -c-out "$ROOT/libc"
 
 "$WASI_SDK/clang" --target=wasm32 -ffreestanding -nostdlib -std=c23 -g0 -Oz \
 	-Wall -Wextra -Wno-unused-parameter -Wno-unused-function \
@@ -24,7 +23,7 @@ go tool libc-gen -pkg spellfix -deref-mem -o ../libc.go -c-out "$ROOT/libc" \
 	-mmutable-globals -mmultivalue \
 	-mnontrapping-fptoint -msign-ext \
 	-mreference-types -mbulk-memory \
-	-mextended-const \
+	-mextended-const -mtail-call \
 	-Wl,--no-entry \
 	-Wl,--stack-first \
 	-Wl,--import-undefined \
@@ -36,7 +35,8 @@ go tool libc-gen -pkg spellfix -deref-mem -o ../libc.go -c-out "$ROOT/libc" \
 	--enable-mutable-globals --enable-multivalue \
 	--enable-nontrapping-float-to-int --enable-sign-ext \
 	--enable-reference-types --enable-bulk-memory \
-	--enable-extended-const \
+	--enable-extended-const --enable-tail-call \
 	--strip --strip-producers
 
+go tool libc-gen -wasm spellfix.wasm -o ../libc.go
 go tool wasm2go -unsafe -provided ../libc.go -o ../spellfix.go spellfix.wasm

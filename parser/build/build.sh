@@ -15,7 +15,7 @@ curl -#OL "https://github.com/ncruces/sqlite-createtable-parser/raw/master/sql3p
 
 mv LICENSE ../LICENSE
 
-go tool libc-gen -pkg sql3parse_table -o ../libc.go -c-out "$ROOT/libc" strlen
+go tool libc-gen -c-out "$ROOT/libc"
 
 "$WASI_SDK/clang" --target=wasm32 -ffreestanding -nostdlib -std=c23 -g0 -Oz \
 	-Wall -Wextra -Wno-unused-parameter -Wno-unused-function \
@@ -24,7 +24,7 @@ go tool libc-gen -pkg sql3parse_table -o ../libc.go -c-out "$ROOT/libc" strlen
 	-mmutable-globals -mmultivalue \
 	-mnontrapping-fptoint -msign-ext \
 	-mreference-types -mbulk-memory \
-	-mextended-const \
+	-mextended-const -mtail-call \
 	-Wl,--no-entry \
 	-Wl,--stack-first \
 	-Wl,--import-undefined \
@@ -37,7 +37,8 @@ go tool libc-gen -pkg sql3parse_table -o ../libc.go -c-out "$ROOT/libc" strlen
 	--enable-mutable-globals --enable-multivalue \
 	--enable-nontrapping-float-to-int --enable-sign-ext \
 	--enable-reference-types --enable-bulk-memory \
-	--enable-extended-const \
+	--enable-extended-const --enable-tail-call \
 	--strip --strip-producers
 
+go tool libc-gen -wasm sql3parse_table.wasm -o ../libc.go
 go tool wasm2go -provided ../libc.go < sql3parse_table.wasm > ../parser.go

@@ -9,9 +9,7 @@ WASI_SDK="$ROOT/tools/wasi-sdk/bin/"
 
 trap 'rm -f sqlite3 sqlite3.wasm' EXIT
 
-go tool libc-gen -pkg sqlite3_wasm -deref-mem \
-	-o ../libc.go -c-out ../libc \
-	$(awk '{print $0}' libc.txt)
+go tool libc-gen -c-out "$ROOT/libc"
 
 "$WASI_SDK/clang" --target=wasm32 -ffreestanding -nostdlib -std=c23 -g0 -Oz \
 	-Wall -Wextra -Wno-unused-parameter -Wno-unused-function \
@@ -20,7 +18,7 @@ go tool libc-gen -pkg sqlite3_wasm -deref-mem \
 	-mmutable-globals -mmultivalue \
 	-mnontrapping-fptoint -msign-ext \
 	-mreference-types -mbulk-memory \
-	-mextended-const \
+	-mextended-const -mtail-call \
 	-Wl,--stack-first \
 	-Wl,--export-table \
 	-Wl,--import-memory \
@@ -37,7 +35,8 @@ mv sqlite3.wasm sqlite3
 	--enable-mutable-globals --enable-multivalue \
 	--enable-nontrapping-float-to-int --enable-sign-ext \
 	--enable-reference-types --enable-bulk-memory \
-	--enable-extended-const \
+	--enable-extended-const --enable-tail-call \
 	--strip --strip-producers
 
+go tool libc-gen -wasm sqlite3.wasm -o ../libc.go
 go tool wasm2go -embed -unsafe -provided ../libc.go -o ../sqlite3.go sqlite3.wasm

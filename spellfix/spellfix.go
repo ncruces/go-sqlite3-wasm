@@ -477,8 +477,8 @@ l5:
 l9:
 	v2 = i32(160)
 l2:
-	m._sqlite3_result_int(v0, v2)
 	*m.___stack_pointer = v4 + i32(16)
+	m._sqlite3_result_int(v0, v2)
 }
 func (m *Module) _editDist3SqlFunc(v0, v1, v2 int32) {
 	var v3, v4, v5, v6, v7 int32

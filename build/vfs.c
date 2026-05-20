@@ -162,7 +162,8 @@ sqlite3_vfs* sqlite3_vfs_find(const char* zVfsName) {
 int sqlite3_os_init() { return SQLITE_OK; }
 
 int sqlite3_invoke_busy_handler_go(sqlite3_int64 token) {
-  void** ap = (void**)&token;
+  void* ap[2];
+  memcpy(ap, &token, sizeof(ap));
   return ((int (*)(void*))(ap[0]))(ap[1]);
 }
 

@@ -1483,7 +1483,10 @@ func (m *Module) _sql3_array_grow(v0, v1, v2 int32) int32 {
 			}
 			{
 				v1 = m.Xmalloc(v2)
-				if v1 == v0 {
+				if v1 == 0 {
+					goto l1
+				}
+				if v0 == v1 {
 					goto l1
 				}
 				p1 := v2

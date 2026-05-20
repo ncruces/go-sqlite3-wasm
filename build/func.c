@@ -47,6 +47,7 @@ void go_final_wrapper(sqlite3_context* ctx) {
 
 void go_inverse_wrapper(sqlite3_context* ctx, int nArg, sqlite3_value** pArg) {
   go_handle* agg = sqlite3_aggregate_context(ctx, 0);
+  // Step must've been called, so agg is never NULL.
   go_inverse(ctx, *agg, nArg, pArg);
 }
 

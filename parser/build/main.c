@@ -1,7 +1,5 @@
 #include <stddef.h>
 
-#define WANT_STRLEN 1
-
 #include "libc.c"
 #include "malloc_bump.c"
 #include "sql3parse_table.c"

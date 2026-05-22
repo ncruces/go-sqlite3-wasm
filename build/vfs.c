@@ -6,7 +6,6 @@
 #include "sqlite3.h"
 
 int go_vfs_find(const char* zVfsName);
-int go_localtime(struct tm*, sqlite3_int64);
 
 int go_randomness(sqlite3_vfs*, int nByte, char* zOut);
 int go_sleep(sqlite3_vfs*, int microseconds);
@@ -160,14 +159,11 @@ sqlite3_vfs* sqlite3_vfs_find(const char* zVfsName) {
   return go_vfs_list;
 }
 
-int localtime_s(struct tm* const pTm, time_t const* const pTime) {
-  return go_localtime(pTm, (sqlite3_int64)*pTime);
-}
-
 int sqlite3_os_init() { return SQLITE_OK; }
 
 int sqlite3_invoke_busy_handler_go(sqlite3_int64 token) {
-  void** ap = (void**)&token;
+  void* ap[2];
+  memcpy(ap, &token, sizeof(ap));
   return ((int (*)(void*))(ap[0]))(ap[1]);
 }
 

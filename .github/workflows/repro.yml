@@ -1,0 +1,33 @@
+name: Reproducible build
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+  attestations: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Build
+      shell: bash
+      run: .github/workflows/repro.sh
+
+    - uses: actions/attest-build-provenance@v4
+      if: matrix.os == 'ubuntu-latest'
+      with:
+        subject-path: |
+          sqlite3.go
+          sqlite3.dat
+          parser/parser.go
+          spellfix/spellfix.go
+          vec1/vec1.go

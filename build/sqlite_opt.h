@@ -28,8 +28,12 @@
 #define SQLITE_ENABLE_SETLK_TIMEOUT 2
 #define SQLITE_ENABLE_STAT4 1
 
+// Skip these for the CLI
+
+#ifdef __wasm__
 #define SQLITE_OMIT_DESERIALIZE
 #define SQLITE_OMIT_LOAD_EXTENSION
+#endif
 
 // Amalgamated Extensions
 

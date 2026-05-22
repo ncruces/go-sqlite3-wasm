@@ -3,6 +3,8 @@ set -euo pipefail
 
 cd -P -- "$(dirname -- "$0")"
 
+trap 'rm -r sqlite-autoconf-*' EXIT
+
 curl -#OL "https://sqlite.org/2026/sqlite-autoconf-3530100.tar.gz"
 
 # Verify download.
@@ -15,10 +17,9 @@ fi 2> /dev/null
 
 tar xzf sqlite-autoconf-*.tar.gz
 
-mv sqlite-*/sqlite3.c .
-mv sqlite-*/sqlite3.h .
-mv sqlite-*/sqlite3ext.h .
-rm -r sqlite-*
+mv sqlite-autoconf-*/sqlite3.c .
+mv sqlite-autoconf-*/sqlite3.h .
+mv sqlite-autoconf-*/sqlite3ext.h .
 
 GITHUB_TAG="https://github.com/sqlite/sqlite/raw/version-3.53.1"
 

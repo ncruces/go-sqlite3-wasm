@@ -20,6 +20,7 @@ go tool libc-gen -c-out "$ROOT/libc"
 	-mnontrapping-fptoint -msign-ext \
 	-mreference-types -mbulk-memory \
 	-mextended-const -mtail-call \
+	-mwide-arithmetic \
 	-Wl,--no-entry \
 	-Wl,--stack-first \
 	-Wl,--import-undefined \
@@ -32,6 +33,7 @@ go tool libc-gen -c-out "$ROOT/libc"
 	--enable-nontrapping-float-to-int --enable-sign-ext \
 	--enable-reference-types --enable-bulk-memory \
 	--enable-extended-const --enable-tail-call \
+	--enable-wide-arithmetic \
 	--strip --strip-producers
 
 go tool libc-gen -wasm vec1.wasm -o ../libc.go

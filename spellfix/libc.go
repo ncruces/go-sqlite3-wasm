@@ -4,10 +4,6 @@ package spellfix
 
 import "bytes"
 
-func (m *Module) _strlen(s int32) int32 {
-	return int32(bytes.IndexByte((*m.memory)[uint32(s):], 0))
-}
-
 func (m *Module) _strcmp(s1, s2 int32) int32 {
 	b1 := (*m.memory)[uint32(s1):]
 	b2 := (*m.memory)[uint32(s2):]
@@ -16,6 +12,9 @@ func (m *Module) _strcmp(s1, s2 int32) int32 {
 		sz = i + 1
 	}
 	return int32(bytes.Compare(b1[:sz], b2[:sz]))
+}
+func (m *Module) _strlen(s int32) int32 {
+	return int32(bytes.IndexByte((*m.memory)[uint32(s):], 0))
 }
 
 func (m *Module) _strncmp(s1, s2, n int32) int32 {

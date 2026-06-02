@@ -19,6 +19,7 @@ go tool libc-gen -c-out "$ROOT/libc"
 	-mnontrapping-fptoint -msign-ext \
 	-mreference-types -mbulk-memory \
 	-mextended-const -mtail-call \
+	-mwide-arithmetic \
 	-Wl,--stack-first \
 	-Wl,--export-table \
 	-Wl,--import-memory \
@@ -36,6 +37,7 @@ mv sqlite3.wasm sqlite3
 	--enable-nontrapping-float-to-int --enable-sign-ext \
 	--enable-reference-types --enable-bulk-memory \
 	--enable-extended-const --enable-tail-call \
+	--enable-wide-arithmetic \
 	--strip --strip-producers
 
 go tool libc-gen -wasm sqlite3.wasm -o ../libc.go

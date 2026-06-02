@@ -145821,8 +145821,8 @@ func (m *Module) _zeroblobFunc(v0, v1, v2 int32) {
 	}
 }
 func (m *Module) _substrFunc(v0, v1, v2 int32) {
-	var v3, v4, v5, v6 int64
-	var v7, v8, v9, v10 int32
+	var v3, v4, v5, v6, v7, v8 int64
+	var v9, v10, v11, v12 int32
 	t0 := int32(load32((*m.memory)[uint32(v2):]))
 	t1 := int64(load16((*m.memory)[int64(uint32(t0))+16:]))
 	v5 = t1
@@ -145830,51 +145830,51 @@ func (m *Module) _substrFunc(v0, v1, v2 int32) {
 	t3 := m._sqlite3VdbeIntValue(t2)
 	v3 = t3
 	t4 := int32(load32((*m.memory)[uint32(v2):]))
-	v7 = t4
+	v9 = t4
 	{
 		{
-			v6 = i64_shl(i64(1), v5) & i64(0x1000000010001)
-			if v6 != i64(0) {
-				t5 := m._sqlite3ValueBytes(v7, i32(1))
-				v9 = t5
+			v8 = i64_shl(i64(1), v5) & i64(0x1000000010001)
+			if v8 != i64(0) {
+				t5 := m._sqlite3ValueBytes(v9, i32(1))
+				v11 = t5
 				t6 := int32(load32((*m.memory)[uint32(v2):]))
 				t7 := m.Xsqlite3_value_blob(t6)
-				v7 = t7
-				if v7 == 0 {
+				v9 = t7
+				if v9 == 0 {
 					return
 				}
 				goto l1
 			}
-			t8 := m._sqlite3ValueText(v7, i32(1))
-			v7 = t8
-			if v7 == 0 {
+			t8 := m._sqlite3ValueText(v9, i32(1))
+			v9 = t8
+			if v9 == 0 {
 				return
 			}
 			if v3 >= i64(0) {
 				goto l1
 			}
-			v8 = v7
+			v10 = v9
 		l4:
 			{
-				t9 := int32((*m.memory)[uint32(v8)])
-				v10 = t9
-				if v10 == 0 {
+				t9 := int32((*m.memory)[uint32(v10)])
+				v12 = t9
+				if v12 == 0 {
 					goto l1
 				}
-				if uint32(v10) < uint32(i32(192)) {
-					v8 = v8 + i32(1)
+				if uint32(v12) < uint32(i32(192)) {
+					v10 = v10 + i32(1)
 					goto l2
 				}
 			l3:
 				{
-					v8 = v8 + i32(1)
-					t10 := int32(int8((*m.memory)[uint32(v8)]))
+					v10 = v10 + i32(1)
+					t10 := int32(int8((*m.memory)[uint32(v10)]))
 					if t10 < i32(-64) {
 						goto l3
 					}
 				}
 			l2:
-				v9 = v9 + i32(1)
+				v11 = v11 + i32(1)
 				goto l4
 			}
 		}
@@ -145918,7 +145918,7 @@ func (m *Module) _substrFunc(v0, v1, v2 int32) {
 				goto l6
 			}
 			if v3 < i64(0) {
-				v5 = v3 + int64(v9)
+				v5 = v3 + int64(v11)
 				if v5 >= i64(0) {
 					v3 = v5
 					goto l6
@@ -145945,91 +145945,97 @@ func (m *Module) _substrFunc(v0, v1, v2 int32) {
 			v3 = t23 - v4
 		}
 	l7:
-		if v6 == 0 {
-		l11:
+		if v8 == 0 {
+		l10:
 			{
-				t24 := int32((*m.memory)[uint32(v7)])
-				v9 = t24
-				if v9 == 0 {
+				t24 := int32((*m.memory)[uint32(v9)])
+				v11 = t24
+				if v11 == 0 {
 					goto l8
 				}
-				if v3 == 0 {
+				t25, t26 := i64_add_wide(v3, i64(-1))
+				v7 = t26
+				v6 = t25
+				v3 = v6
+				if int32(v7) == 0 {
 					goto l8
 				}
-				if uint32(v9) < uint32(i32(192)) {
-					v7 = v7 + i32(1)
-					goto l9
-				}
-			l10:
-				{
-					v7 = v7 + i32(1)
-					t25 := int32(int8((*m.memory)[uint32(v7)]))
-					if t25 < i32(-64) {
-						goto l10
+				if uint32(v11) < uint32(i32(192)) {
+					v9 = v9 + i32(1)
+				} else {
+				l9:
+					{
+						v9 = v9 + i32(1)
+						t27 := int32(int8((*m.memory)[uint32(v9)]))
+						if t27 < i32(-64) {
+							goto l9
+						}
 					}
 				}
-			l9:
-				v3 = v3 - i64(1)
-				goto l11
+				goto l10
 			}
 		}
-		t26 := v0
-		t27 := v7
-		t28 := int32(v3)
-		v5 = int64(v9)
-		var p29 int32
+		t28 := v0
+		t29 := v9
+		t30 := int32(v3)
+		v5 = int64(v11)
+		var p31 int32
 		if v5 > v3 {
-			p29 = 1
+			p31 = 1
 		}
-		v0 = p29
-		p30 := i32(0)
+		v0 = p31
+		p32 := i32(0)
 		if v0 != 0 {
-			p30 = t28
+			p32 = t30
 		}
-		t31 := t27 + p30
-		t32 := v4
+		t33 := t29 + p32
+		t34 := v4
 		v3 = v5 - v3
-		p33 := v3
+		p35 := v3
 		if v3 > v4 {
-			p33 = t32
+			p35 = t34
 		}
-		p34 := i64(0)
+		p36 := i64(0)
 		if v0 != 0 {
-			p34 = p33
+			p36 = p35
 		}
-		m._sqlite3_result_blob64(t26, t31, p34, i32(-1))
+		m._sqlite3_result_blob64(t28, t33, p36, i32(-1))
 	}
 	return
 l8:
-	v8 = v7
-l15:
-	v1 = v9 & i32(255)
-	if v1 == 0 {
-		goto l12
-	}
-	if v4 == 0 {
-		goto l12
-	}
-	if uint32(v1) < uint32(i32(192)) {
-		v8 = v8 + i32(1)
-		t35 := int32((*m.memory)[uint32(v8)])
-		v9 = t35
+	v10 = v9
+l13:
+	{
+		v1 = v11 & i32(255)
+		if v1 == 0 {
+			goto l11
+		}
+		t37, t38 := i64_add_wide(v4, i64(-1))
+		v7 = t38
+		v6 = t37
+		v4 = v6
+		if int32(v7) == 0 {
+			goto l11
+		}
+		if uint32(v1) < uint32(i32(192)) {
+			v10 = v10 + i32(1)
+			t39 := int32((*m.memory)[uint32(v10)])
+			v11 = t39
+		} else {
+		l12:
+			{
+				v10 = v10 + i32(1)
+				t40 := int32(int8((*m.memory)[uint32(v10)]))
+				v11 = t40
+				if v11 < i32(-64) {
+					goto l12
+				}
+			}
+		}
 		goto l13
 	}
-l14:
-	{
-		v8 = v8 + i32(1)
-		t36 := int32(int8((*m.memory)[uint32(v8)]))
-		v9 = t36
-		if v9 < i32(-64) {
-			goto l14
-		}
-	}
-l13:
-	v4 = v4 - i64(1)
-	goto l15
-l12:
-	m._sqlite3_result_text64(v0, v7, int64(v8-v7), i32(-1), i32(1))
+l11:
+	m._sqlite3_result_text64(v0, v9, int64(v10-v9), i32(-1), i32(1))
 }
 func (m *Module) _sumStep(v0, v1, v2 int32) {
 	var v3 int32
@@ -202360,6 +202366,12 @@ func i64_trunc_sat_f64_u(f float64) int64 {
 		i = uint64(f)
 	}
 	return int64(i)
+}
+
+//go:nosplit
+func i64_add_wide(x, y int64) (int64, int64) {
+	lo, carry := bits.Add64(uint64(x), uint64(y), 0)
+	return int64(lo), int64(carry)
 }
 
 func memory_copy[T uint32 | uint64](mem []byte, dest, src, n T) {

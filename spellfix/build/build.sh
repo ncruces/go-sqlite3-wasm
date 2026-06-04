@@ -9,7 +9,7 @@ WASI_SDK="$ROOT/tools/wasi-sdk/bin/"
 
 trap 'rm -f spellfix*' EXIT
 
-GITHUB_TAG="https://github.com/sqlite/sqlite/raw/version-3.53.1"
+GITHUB_TAG="https://github.com/sqlite/sqlite/raw/version-3.53.2"
 
 curl -#OL "$GITHUB_TAG/ext/misc/spellfix.c"
 

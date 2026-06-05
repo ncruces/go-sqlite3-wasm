@@ -1,0 +1,58 @@
+# Make these available.
+# They are needed by the R-tree module.
+--- sqlite3.c.orig
++++ sqlite3.c
+@@ -22470,7 +22470,7 @@
+   Expr *pExpr              /* The parsed CHECK expression */
+ );
+ SQLITE_PRIVATE void sqlite3AlterSetNotNull(Parse*, SrcList*, Token*, Token*);
+-SQLITE_PRIVATE i64 sqlite3GetToken(const unsigned char *, int *);
++i64 sqlite3GetToken(const unsigned char *, int *);
+ SQLITE_PRIVATE void sqlite3NestedParse(Parse*, const char*, ...);
+ SQLITE_PRIVATE void sqlite3ExpirePreparedStatements(sqlite3*, int);
+ SQLITE_PRIVATE void sqlite3CodeRhsOfIN(Parse*, Expr*, int, int);
+@@ -24914,7 +24914,7 @@
+ SQLITE_PRIVATE int sqlite3VdbeMemZeroTerminateIfAble(Mem*);
+ SQLITE_PRIVATE int sqlite3VdbeMemMakeWriteable(Mem*);
+ SQLITE_PRIVATE int sqlite3VdbeMemStringify(Mem*, u8, u8);
+-SQLITE_PRIVATE int sqlite3IntFloatCompare(i64,double);
++int sqlite3IntFloatCompare(i64,double);
+ SQLITE_PRIVATE i64 sqlite3VdbeIntValue(const Mem*);
+ SQLITE_PRIVATE int sqlite3VdbeMemIntegerify(Mem*);
+ SQLITE_PRIVATE double sqlite3VdbeRealValue(Mem*);
+@@ -92297,7 +92297,7 @@
+ ** number.  Return negative, zero, or positive if the first (i64) is less than,
+ ** equal to, or greater than the second (double).
+ */
+-SQLITE_PRIVATE int sqlite3IntFloatCompare(i64 i, double r){
++int sqlite3IntFloatCompare(i64 i, double r){
+   if( sqlite3IsNaN(r) ){
+     /* SQLite considers NaN to be a NULL. And all integer values are greater
+     ** than NULL */
+@@ -186179,7 +186179,7 @@
+ ** Return the length (in bytes) of the token that begins at z[0].
+ ** Store the token type in *tokenType before returning.
+ */
+-SQLITE_PRIVATE i64 sqlite3GetToken(const unsigned char *z, int *tokenType){
++i64 sqlite3GetToken(const unsigned char *z, int *tokenType){
+   i64 i;
+   int c;
+   switch( aiClass[*z] ){  /* Switch on the character-class of the first byte
+@@ -218312,7 +218312,7 @@
+ #else
+ /*   #include "sqlite3.h" */
+ #endif
+-SQLITE_PRIVATE sqlite3_int64 sqlite3GetToken(const unsigned char*,int*); /* In SQLite core */
++sqlite3_int64 sqlite3GetToken(const unsigned char*,int*); /* In SQLite core */
+ 
+ /* #include <stddef.h> */
+ 
+@@ -220124,7 +220124,7 @@
+   return SQLITE_OK;
+ }
+ 
+-SQLITE_PRIVATE int sqlite3IntFloatCompare(i64,double);
++int sqlite3IntFloatCompare(i64,double);
+ 
+ /*
+ ** Rtree virtual table module xFilter method.

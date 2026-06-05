@@ -169,6 +169,7 @@ sqlite3_value_int
 sqlite3_value_int64
 sqlite3_value_nochange
 sqlite3_value_numeric_type
+sqlite3_value_pointer
 sqlite3_value_pointer_go
 sqlite3_value_subtype
 sqlite3_value_text
@@ -187,3 +188,5 @@ sqlite3_vtab_rhs_value
 sqlite3_wal_autocheckpoint
 sqlite3_wal_checkpoint_v2
 sqlite3_wal_hook_go
+sqlite3GetToken
+sqlite3IntFloatCompare

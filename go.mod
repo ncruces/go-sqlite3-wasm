@@ -1,4 +1,4 @@
-module github.com/ncruces/go-sqlite3-wasm/v2
+module github.com/ncruces/go-sqlite3-wasm/v3
 
 go 1.25.0
 

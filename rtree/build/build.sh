@@ -7,14 +7,21 @@ ROOT=../../
 BINARYEN="$ROOT/tools/binaryen/bin/"
 WASI_SDK="$ROOT/tools/wasi-sdk/bin/"
 
-trap 'rm -f vec1*' EXIT
-curl -# "https://sqlite.org/vec1/raw/7b8bc78f89?at=vec1.c" > vec1.c
+trap 'rm -f *rtree* geopoly*' EXIT
+
+GITHUB_TAG="https://github.com/sqlite/sqlite/raw/version-3.53.2"
+
+curl -#OL "$GITHUB_TAG/ext/rtree/rtree.h"
+curl -#OL "$GITHUB_TAG/ext/rtree/rtree.c"
+curl -#OL "$GITHUB_TAG/ext/rtree/geopoly.c"
+curl -#OL "$GITHUB_TAG/ext/rtree/sqlite3rtree.h"
 
 go tool libc-gen -c-out "$ROOT/libc"
 
 "$WASI_SDK/clang" --target=wasm32 -ffreestanding -nostdlib -std=c23 -g0 -Oz \
-	-o vec1 vec1.c -I"$ROOT/libc" -I"$ROOT/build" \
-	-DSQLITE_OMIT_LOAD_EXTENSION \
+	-Wall -Wextra -Wno-unused-parameter -Wno-unused-function \
+	-o rtree main.c -I"$ROOT/libc" -I"$ROOT/build" \
+	-DSQLITE_OMIT_LOAD_EXTENSION -DSQLITE_ENABLE_GEOPOLY \
 	-mexec-model=reactor -shared -fPIC \
 	-mmutable-globals -mmultivalue \
 	-mnontrapping-fptoint -msign-ext \
@@ -26,7 +33,7 @@ go tool libc-gen -c-out "$ROOT/libc"
 	-Wl,--import-undefined \
 	-Wl,--export=sqlite3_extension_init
 
-"$BINARYEN/wasm-opt" -g vec1 -o vec1.wasm \
+"$BINARYEN/wasm-opt" -g rtree -o rtree.wasm \
 	--gufa-optimizing --generate-global-effects \
 	--low-memory-unused --converge -O4 \
 	--enable-mutable-globals --enable-multivalue \
@@ -36,5 +43,5 @@ go tool libc-gen -c-out "$ROOT/libc"
 	--enable-wide-arithmetic \
 	--strip --strip-producers
 
-go tool libc-gen -wasm vec1.wasm -o ../libc.go
-go tool wasm2go -embed -unsafe -provided ../libc.go -o ../vec1.go vec1.wasm
+go tool libc-gen -wasm rtree.wasm -o ../libc.go
+go tool wasm2go -embed -unsafe -provided ../libc.go -o ../rtree.go rtree.wasm

@@ -28,6 +28,12 @@ jobs:
         subject-path: |
           sqlite3.go
           sqlite3.dat
-          parser/parser.go
+          fts5/fts5.go
+          fts5/fts5.dat
+          rtree/rtree.go
+          rtree/rtree.dat
           spellfix/spellfix.go
+          spellfix/spellfix.dat
           vec1/vec1.go
+          vec1/vec1.dat
+          parser/parser.go

@@ -18,7 +18,7 @@ go tool libc-gen -c-out "$ROOT/libc"
 "$WASI_SDK/clang" --target=wasm32 -ffreestanding -nostdlib -std=c23 -g0 -Oz \
 	-Wall -Wextra -Wno-unused-parameter -Wno-unused-function \
 	-o spellfix main.c -I"$ROOT/libc" -I"$ROOT/build" \
-	-DNDEBUG -DSQLITE_OMIT_LOAD_EXTENSION \
+	-DSQLITE_OMIT_LOAD_EXTENSION \
 	-mexec-model=reactor -shared -fPIC \
 	-mmutable-globals -mmultivalue \
 	-mnontrapping-fptoint -msign-ext \
@@ -41,4 +41,4 @@ go tool libc-gen -c-out "$ROOT/libc"
 	--strip --strip-producers
 
 go tool libc-gen -wasm spellfix.wasm -o ../libc.go
-go tool wasm2go -unsafe -provided ../libc.go -o ../spellfix.go spellfix.wasm
+go tool wasm2go -embed -unsafe -provided ../libc.go -o ../spellfix.go spellfix.wasm

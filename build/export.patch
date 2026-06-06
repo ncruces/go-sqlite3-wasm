@@ -38,21 +38,3 @@
    i64 i;
    int c;
    switch( aiClass[*z] ){  /* Switch on the character-class of the first byte
-@@ -218312,7 +218312,7 @@
- #else
- /*   #include "sqlite3.h" */
- #endif
--SQLITE_PRIVATE sqlite3_int64 sqlite3GetToken(const unsigned char*,int*); /* In SQLite core */
-+sqlite3_int64 sqlite3GetToken(const unsigned char*,int*); /* In SQLite core */
- 
- /* #include <stddef.h> */
- 
-@@ -220124,7 +220124,7 @@
-   return SQLITE_OK;
- }
- 
--SQLITE_PRIVATE int sqlite3IntFloatCompare(i64,double);
-+int sqlite3IntFloatCompare(i64,double);
- 
- /*
- ** Rtree virtual table module xFilter method.

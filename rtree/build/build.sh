@@ -44,4 +44,4 @@ go tool libc-gen -c-out "$ROOT/libc"
 	--strip --strip-producers
 
 go tool libc-gen -wasm rtree.wasm -o ../libc.go
-go tool wasm2go -unsafe -provided ../libc.go -o ../rtree.go rtree.wasm
+go tool wasm2go -embed -unsafe -provided ../libc.go -o ../rtree.go rtree.wasm

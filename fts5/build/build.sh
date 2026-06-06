@@ -37,4 +37,4 @@ go tool libc-gen -c-out "$ROOT/libc"
 	--strip --strip-producers
 
 go tool libc-gen -wasm fts5.wasm -o ../libc.go
-go tool wasm2go -unsafe -provided ../libc.go -o ../fts5.go fts5.wasm
+go tool wasm2go -embed -unsafe -provided ../libc.go -o ../fts5.go fts5.wasm

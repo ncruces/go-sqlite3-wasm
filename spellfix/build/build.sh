@@ -41,4 +41,4 @@ go tool libc-gen -c-out "$ROOT/libc"
 	--strip --strip-producers
 
 go tool libc-gen -wasm spellfix.wasm -o ../libc.go
-go tool wasm2go -unsafe -provided ../libc.go -o ../spellfix.go spellfix.wasm
+go tool wasm2go -embed -unsafe -provided ../libc.go -o ../spellfix.go spellfix.wasm

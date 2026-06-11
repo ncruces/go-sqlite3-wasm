@@ -18,7 +18,7 @@ func New() *Module {
 	m := new(Module)
 	m.maxMem = 65536
 	m.memory = make([]byte, 0x20000)
-	copy(m.memory[uint32(i32(65536)):], data0)
+	memory_init(m.memory, data0, uint32(i32(65536)), 0, len(data0))
 	m.___stack_pointer = i32(65536)
 	return m
 }
@@ -2480,26 +2480,34 @@ func store64(b []byte, v uint64) {
 
 func memory_grow(mem *[]byte, delta, max int64) int64 {
 	buf := *mem
-	len := len(buf)
-	old := int64(len) >> 16
+	len := int64(len(buf))
+	old := len >> 16
 	if delta == 0 {
 		return old
 	}
 	new := old + delta
-	add := int(new)<<16 - len
-	if new > max || add < 0 {
+	add := new<<16 - len
+	max = min(max, int64(math.MaxInt)>>16)
+	if new > max || new < old || add < 0 {
 		return -1
 	}
 	*mem = append(buf, make([]byte, add)...)
 	return old
 }
 
+func memory_init[T1, T2 int | uint32 | uint64](mem []byte, data string, dest T1, src, n T2) {
+	x := uint64(dest)
+	z := uint64(src)
+	y := x + uint64(n)
+	w := z + uint64(n)
+	copy(mem[x:y], data[z:w])
+}
+
 func memory_copy[T uint32 | uint64](mem []byte, dest, src, n T) {
-	x := uint(min(uint64(dest), math.MaxUint))
-	z := uint(min(uint64(src), math.MaxUint))
-	c := uint(min(uint64(n), math.MaxUint))
-	y := x + c
-	w := z + c
+	x := uint64(dest)
+	z := uint64(src)
+	y := x + uint64(n)
+	w := z + uint64(n)
 	copy(mem[x:y], mem[z:w])
 }
 

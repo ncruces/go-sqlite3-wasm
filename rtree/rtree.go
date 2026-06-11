@@ -34,10 +34,10 @@ func New(v0 Xenv) *Module {
 	m.memory = m.memImp.Slice()
 	m.t0 = v0.X__indirect_function_table()
 	m.elements = [][]any{{m._rtreenode, m._rtreedepth, m._rtreecheck, m._geopolyBBoxStep, m._geopolyBBoxFinal, m._local_sqlite3_free, m._parentWrite, m._rowidWrite, m._geopolyOverlapFunc, m._geopolyWithinFunc, m._rtreeCreate, m._rtreeConnect, m._rtreeBestIndex, m._rtreeDisconnect, m._rtreeDestroy, m._rtreeOpen, m._rtreeClose, m._rtreeFilter, m._rtreeNext, m._rtreeEof, m._rtreeColumn, m._rtreeRowid, m._rtreeUpdate, m._rtreeBeginTransaction, m._rtreeEndTransaction, m._rtreeRollback, m._rtreeRename, m._rtreeSavepoint, m._rtreeShadowName, m._rtreeIntegrity, m._geopolyAreaFunc, m._geopolyBlobFunc, m._geopolyJsonFunc, m._geopolySvgFunc, m._geopolyContainsPointFunc, _geopolyDebugFunc, m._geopolyBBoxFunc, m._geopolyXformFunc, m._geopolyRegularFunc, m._geopolyCcwFunc, m._geopolyCreate, m._geopolyConnect, m._geopolyBestIndex, m._geopolyFilter, m._geopolyColumn, m._geopolyUpdate, m._geopolyFindFunction}}
-	copy((*m.t0)[m.___table_base:], m.elements[0])
+	table_init(*m.t0, m.elements[0], int32(m.___table_base), 0, len(m.elements[0]))
 	m.elements[0] = nil
-	copy((*m.memory)[uint32(m.___memory_base):], data[0:3104])
-	copy((*m.memory)[uint32(m.___memory_base+i32(3104)):], data[3104:3540])
+	memory_init(*m.memory, data[0:3104], uint32(m.___memory_base), 0, len(data[0:3104]))
+	memory_init(*m.memory, data[3104:3540], uint32(m.___memory_base+i32(3104)), 0, len(data[3104:3540]))
 	if i, ok := any(v0).(interface {
 		Init(any)
 	}); ok {
@@ -47,78 +47,78 @@ func New(v0 Xenv) *Module {
 }
 
 type Xenv = interface {
+	X__indirect_function_table() *[]any
+	X__memory_base() *int32
+	X__stack_pointer() *int32
+	X__table_base() *int32
+	Xmemory() Memory
+	Xsqlite3GetToken(v0, v1 int32) int64
+	Xsqlite3IntFloatCompare(v0 int64, v1 float64) int32
+	Xsqlite3_aggregate_context(v0, v1 int32) int32
+	Xsqlite3_bind_blob(v0, v1, v2, v3, v4 int32) int32
+	Xsqlite3_bind_int64(v0, v1 int32, v2 int64) int32
+	Xsqlite3_bind_null(v0, v1 int32) int32
+	Xsqlite3_bind_value(v0, v1, v2 int32) int32
+	Xsqlite3_blob_bytes(v0 int32) int32
+	Xsqlite3_blob_close(v0 int32) int32
+	Xsqlite3_blob_open(v0, v1, v2, v3 int32, v4 int64, v5, v6 int32) int32
+	Xsqlite3_blob_read(v0, v1, v2, v3 int32) int32
+	Xsqlite3_blob_reopen(v0 int32, v1 int64) int32
+	Xsqlite3_column_blob(v0, v1 int32) int32
+	Xsqlite3_column_bytes(v0, v1 int32) int32
+	Xsqlite3_column_count(v0 int32) int32
+	Xsqlite3_column_int(v0, v1 int32) int32
+	Xsqlite3_column_int64(v0, v1 int32) int64
+	Xsqlite3_column_name(v0, v1 int32) int32
+	Xsqlite3_column_type(v0, v1 int32) int32
+	Xsqlite3_column_value(v0, v1 int32) int32
+	Xsqlite3_context_db_handle(v0 int32) int32
 	Xsqlite3_create_function(v0, v1, v2, v3, v4, v5, v6, v7 int32) int32
 	Xsqlite3_create_module_v2(v0, v1, v2, v3, v4 int32) int32
-	Xsqlite3_value_int(v0 int32) int32
-	Xsqlite3_value_blob(v0 int32) int32
-	Xsqlite3_value_bytes(v0 int32) int32
-	Xsqlite3_str_new(v0 int32) int32
+	Xsqlite3_declare_vtab(v0, v1 int32) int32
+	Xsqlite3_errmsg(v0 int32) int32
+	Xsqlite3_exec(v0, v1, v2, v3, v4 int32) int32
+	Xsqlite3_finalize(v0 int32) int32
+	Xsqlite3_free(v0 int32)
+	Xsqlite3_last_insert_rowid(v0 int32) int64
+	Xsqlite3_malloc(v0 int32) int32
+	Xsqlite3_malloc64(v0 int64) int32
+	Xsqlite3_mprintf(v0, v1 int32) int32
+	Xsqlite3_prepare_v2(v0, v1, v2, v3, v4 int32) int32
+	Xsqlite3_prepare_v3(v0, v1, v2, v3, v4, v5 int32) int32
+	Xsqlite3_realloc64(v0 int32, v1 int64) int32
+	Xsqlite3_reset(v0 int32) int32
+	Xsqlite3_result_blob(v0, v1, v2, v3 int32)
+	Xsqlite3_result_double(v0 int32, v1 float64)
+	Xsqlite3_result_error(v0, v1, v2 int32)
+	Xsqlite3_result_error_code(v0, v1 int32)
+	Xsqlite3_result_error_nomem(v0 int32)
+	Xsqlite3_result_int(v0, v1 int32)
+	Xsqlite3_result_int64(v0 int32, v1 int64)
+	Xsqlite3_result_text(v0, v1, v2, v3 int32)
+	Xsqlite3_result_value(v0, v1 int32)
+	Xsqlite3_step(v0 int32) int32
 	Xsqlite3_str_append(v0, v1, v2 int32)
 	Xsqlite3_str_appendf(v0, v1, v2 int32)
 	Xsqlite3_str_errcode(v0 int32) int32
-	Xsqlite3_result_error_code(v0, v1 int32)
 	Xsqlite3_str_finish(v0 int32) int32
-	Xsqlite3_result_text(v0, v1, v2, v3 int32)
-	Xsqlite3_value_type(v0 int32) int32
-	Xsqlite3_result_error(v0, v1, v2 int32)
-	Xsqlite3_result_int(v0, v1 int32)
-	Xsqlite3_result_error_nomem(v0 int32)
-	Xsqlite3_value_text(v0 int32) int32
-	Xsqlite3_context_db_handle(v0 int32) int32
-	Xsqlite3_free(v0 int32)
-	Xsqlite3_malloc(v0 int32) int32
-	Xsqlite3_malloc64(v0 int64) int32
-	Xsqlite3_value_double(v0 int32) float64
-	Xsqlite3_vmprintf(v0, v1 int32) int32
-	Xsqlite3_column_count(v0 int32) int32
-	Xsqlite3_finalize(v0 int32) int32
-	Xsqlite3_step(v0 int32) int32
-	Xsqlite3_column_type(v0, v1 int32) int32
-	Xsqlite3_prepare_v2(v0, v1, v2, v3, v4 int32) int32
-	Xsqlite3_mprintf(v0, v1 int32) int32
-	Xsqlite3_bind_int64(v0, v1 int32, v2 int64) int32
-	Xsqlite3_column_bytes(v0, v1 int32) int32
-	Xsqlite3_column_blob(v0, v1 int32) int32
-	Xsqlite3_column_int64(v0, v1 int32) int64
-	Xsqlite3_reset(v0 int32) int32
-	Xsqlite3_exec(v0, v1, v2, v3, v4 int32) int32
-	Xsqlite3_value_int64(v0 int32) int64
-	Xsqlite3_value_numeric_type(v0 int32) int32
-	Xsqlite3IntFloatCompare(v0 int64, v1 float64) int32
-	Xsqlite3_value_pointer(v0, v1 int32) int32
-	Xsqlite3_result_int64(v0 int32, v1 int64)
-	Xsqlite3_result_double(v0 int32, v1 float64)
-	Xsqlite3_prepare_v3(v0, v1, v2, v3, v4, v5 int32) int32
-	Xsqlite3_column_value(v0, v1 int32) int32
-	Xsqlite3_result_value(v0, v1 int32)
-	Xsqlite3_vtab_on_conflict(v0 int32) int32
-	Xsqlite3_bind_value(v0, v1, v2 int32) int32
+	Xsqlite3_str_new(v0 int32) int32
 	Xsqlite3_stricmp(v0, v1 int32) int32
-	Xsqlite3_vtab_config(v0, v1, v2 int32) int32
-	Xsqlite3_declare_vtab(v0, v1 int32) int32
-	Xsqlite3_errmsg(v0 int32) int32
-	Xsqlite3GetToken(v0, v1 int32) int64
 	Xsqlite3_table_column_metadata(v0, v1, v2, v3, v4, v5, v6, v7, v8 int32) int32
-	Xsqlite3_column_int(v0, v1 int32) int32
-	Xsqlite3_blob_close(v0 int32) int32
-	Xsqlite3_bind_null(v0, v1 int32) int32
-	Xsqlite3_bind_blob(v0, v1, v2, v3, v4 int32) int32
-	Xsqlite3_last_insert_rowid(v0 int32) int64
-	Xsqlite3_blob_reopen(v0 int32, v1 int64) int32
-	Xsqlite3_blob_open(v0, v1, v2, v3 int32, v4 int64, v5, v6 int32) int32
-	Xsqlite3_blob_bytes(v0 int32) int32
-	Xsqlite3_blob_read(v0, v1, v2, v3 int32) int32
-	Xsqlite3_realloc64(v0 int32, v1 int64) int32
-	Xsqlite3_column_name(v0, v1 int32) int32
-	Xsqlite3_result_blob(v0, v1, v2, v3 int32)
-	Xsqlite3_aggregate_context(v0, v1 int32) int32
-	Xsqlite3_vtab_nochange(v0 int32) int32
+	Xsqlite3_value_blob(v0 int32) int32
+	Xsqlite3_value_bytes(v0 int32) int32
+	Xsqlite3_value_double(v0 int32) float64
+	Xsqlite3_value_int(v0 int32) int32
+	Xsqlite3_value_int64(v0 int32) int64
 	Xsqlite3_value_nochange(v0 int32) int32
-	X__stack_pointer() *int32
-	X__memory_base() *int32
-	X__table_base() *int32
-	Xmemory() Memory
-	X__indirect_function_table() *[]any
+	Xsqlite3_value_numeric_type(v0 int32) int32
+	Xsqlite3_value_pointer(v0, v1 int32) int32
+	Xsqlite3_value_text(v0 int32) int32
+	Xsqlite3_value_type(v0 int32) int32
+	Xsqlite3_vmprintf(v0, v1 int32) int32
+	Xsqlite3_vtab_config(v0, v1, v2 int32) int32
+	Xsqlite3_vtab_nochange(v0 int32) int32
+	Xsqlite3_vtab_on_conflict(v0 int32) int32
 }
 type Memory = interface {
 	Slice() *[]byte
@@ -8531,19 +8531,34 @@ func i32_rotr(x, y int32) int32 {
 	return int32(bits.RotateLeft32(uint32(x), -int(y)))
 }
 
+func memory_init[T1, T2 int | uint32 | uint64](mem []byte, data string, dest T1, src, n T2) {
+	x := uint64(dest)
+	z := uint64(src)
+	y := x + uint64(n)
+	w := z + uint64(n)
+	copy(mem[x:y], data[z:w])
+}
+
 func memory_copy[T uint32 | uint64](mem []byte, dest, src, n T) {
-	x := uint(min(uint64(dest), math.MaxUint))
-	z := uint(min(uint64(src), math.MaxUint))
-	c := uint(min(uint64(n), math.MaxUint))
-	y := x + c
-	w := z + c
+	x := uint64(dest)
+	z := uint64(src)
+	y := x + uint64(n)
+	w := z + uint64(n)
 	copy(mem[x:y], mem[z:w])
 }
 
 func memory_zero[T uint32 | uint64](mem []byte, dest, n T) {
-	x := uint(min(uint64(dest), math.MaxUint))
-	y := x + uint(min(uint64(n), math.MaxUint))
+	x := uint64(dest)
+	y := x + uint64(n)
 	clear(mem[x:y])
+}
+
+func table_init[T1, T2, T3 int | int32 | int64](tab, elems []any, dest T1, src T2, n T3) {
+	x := uint64(dest)
+	z := uint64(src)
+	y := x + uint64(n)
+	w := z + uint64(n)
+	copy(tab[x:y], elems[z:w])
 }
 //go:embed rtree.dat
 var data string

@@ -8,7 +8,7 @@ BINARYEN="$ROOT/tools/binaryen/bin/"
 WASI_SDK="$ROOT/tools/wasi-sdk/bin/"
 
 trap 'rm -f vec1*' EXIT
-curl -# "https://sqlite.org/vec1/raw/7b8bc78f89?at=vec1.c" > vec1.c
+curl -# "https://sqlite.org/vec1/raw/5c8d435ad7?at=vec1.c" > vec1.c
 
 go tool libc-gen -c-out "$ROOT/libc"
 

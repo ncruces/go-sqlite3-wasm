@@ -34,10 +34,10 @@ func New(v0 Xenv) *Module {
 	m.memory = m.memImp.Slice()
 	m.t0 = v0.X__indirect_function_table()
 	m.elements = [][]any{{m._transliterateSqlFunc, m._editdistSqlFunc, m._phoneticHashSqlFunc, m._scriptCodeSqlFunc, m._editDist3SqlFunc, m._editDist3ConfigDelete, m._local_sqlite3_free, m._spellfix1RowCompare, m._spellfix1Create, m._spellfix1Connect, m._spellfix1BestIndex, m._spellfix1Disconnect, m._spellfix1Destroy, m._spellfix1Open, m._spellfix1Close, m._spellfix1Filter, m._spellfix1Next, m._spellfix1Eof, m._spellfix1Column, m._spellfix1Rowid, m._spellfix1Update, m._spellfix1Rename}}
-	copy((*m.t0)[m.___table_base:], m.elements[0])
+	table_init(*m.t0, m.elements[0], int32(m.___table_base), 0, len(m.elements[0]))
 	m.elements[0] = nil
-	copy((*m.memory)[uint32(m.___memory_base):], data[0:4052])
-	copy((*m.memory)[uint32(m.___memory_base+i32(4064)):], data[4052:4184])
+	memory_init(*m.memory, data[0:4052], uint32(m.___memory_base), 0, len(data[0:4052]))
+	memory_init(*m.memory, data[4052:4184], uint32(m.___memory_base+i32(4064)), 0, len(data[4052:4184]))
 	if i, ok := any(v0).(interface {
 		Init(any)
 	}); ok {
@@ -47,52 +47,52 @@ func New(v0 Xenv) *Module {
 }
 
 type Xenv = interface {
-	Xsqlite3_create_function(v0, v1, v2, v3, v4, v5, v6, v7 int32) int32
-	Xsqlite3_create_module(v0, v1, v2, v3 int32) int32
-	Xsqlite3_malloc64(v0 int64) int32
-	Xsqlite3_create_function_v2(v0, v1, v2, v3, v4, v5, v6, v7, v8 int32) int32
-	Xsqlite3_free(v0 int32)
-	Xsqlite3_vmprintf(v0, v1 int32) int32
-	Xsqlite3_value_text(v0 int32) int32
-	Xsqlite3_value_bytes(v0 int32) int32
-	Xsqlite3_result_error_nomem(v0 int32)
-	Xsqlite3_result_text(v0, v1, v2, v3 int32)
-	Xsqlite3_result_error_toobig(v0 int32)
-	Xsqlite3_result_error(v0, v1, v2 int32)
-	Xsqlite3_result_int(v0, v1 int32)
-	Xsqlite3_value_int(v0 int32) int32
-	Xsqlite3_mprintf(v0, v1 int32) int32
-	Xsqlite3_prepare_v2(v0, v1, v2, v3, v4 int32) int32
-	Xsqlite3_bind_value(v0, v1, v2 int32) int32
-	Xsqlite3_step(v0 int32) int32
-	Xsqlite3_bind_text(v0, v1, v2, v3, v4 int32) int32
-	Xsqlite3_column_int(v0, v1 int32) int32
-	Xsqlite3_column_bytes(v0, v1 int32) int32
-	Xsqlite3_column_text(v0, v1 int32) int32
-	Xsqlite3_column_int64(v0, v1 int32) int64
-	Xsqlite3_reset(v0 int32) int32
-	Xsqlite3_finalize(v0 int32) int32
-	Xsqlite3_column_value(v0, v1 int32) int32
-	Xsqlite3_result_value(v0, v1 int32)
-	Xsqlite3_result_null(v0 int32)
-	Xsqlite3_value_int64(v0 int32) int64
-	Xsqlite3_vtab_on_conflict(v0 int32) int32
-	Xsqlite3_stricmp(v0, v1 int32) int32
-	Xsqlite3_value_type(v0 int32) int32
-	Xsqlite3_last_insert_rowid(v0 int32) int64
-	Xsqlite3_vtab_config(v0, v1, v2 int32) int32
-	Xsqlite3_declare_vtab(v0, v1 int32) int32
-	Xsqlite3_exec(v0, v1, v2, v3, v4 int32) int32
-	Xsqlite3_realloc64(v0 int32, v1 int64) int32
-	Xsqlite3_prepare(v0, v1, v2, v3, v4 int32) int32
-	Xsqlite3_user_data(v0 int32) int32
-	Xsqlite3_context_db_handle(v0 int32) int32
-	Xsqlite3_result_error_code(v0, v1 int32)
-	X__stack_pointer() *int32
+	X__indirect_function_table() *[]any
 	X__memory_base() *int32
+	X__stack_pointer() *int32
 	X__table_base() *int32
 	Xmemory() Memory
-	X__indirect_function_table() *[]any
+	Xsqlite3_bind_text(v0, v1, v2, v3, v4 int32) int32
+	Xsqlite3_bind_value(v0, v1, v2 int32) int32
+	Xsqlite3_column_bytes(v0, v1 int32) int32
+	Xsqlite3_column_int(v0, v1 int32) int32
+	Xsqlite3_column_int64(v0, v1 int32) int64
+	Xsqlite3_column_text(v0, v1 int32) int32
+	Xsqlite3_column_value(v0, v1 int32) int32
+	Xsqlite3_context_db_handle(v0 int32) int32
+	Xsqlite3_create_function(v0, v1, v2, v3, v4, v5, v6, v7 int32) int32
+	Xsqlite3_create_function_v2(v0, v1, v2, v3, v4, v5, v6, v7, v8 int32) int32
+	Xsqlite3_create_module(v0, v1, v2, v3 int32) int32
+	Xsqlite3_declare_vtab(v0, v1 int32) int32
+	Xsqlite3_exec(v0, v1, v2, v3, v4 int32) int32
+	Xsqlite3_finalize(v0 int32) int32
+	Xsqlite3_free(v0 int32)
+	Xsqlite3_last_insert_rowid(v0 int32) int64
+	Xsqlite3_malloc64(v0 int64) int32
+	Xsqlite3_mprintf(v0, v1 int32) int32
+	Xsqlite3_prepare(v0, v1, v2, v3, v4 int32) int32
+	Xsqlite3_prepare_v2(v0, v1, v2, v3, v4 int32) int32
+	Xsqlite3_realloc64(v0 int32, v1 int64) int32
+	Xsqlite3_reset(v0 int32) int32
+	Xsqlite3_result_error(v0, v1, v2 int32)
+	Xsqlite3_result_error_code(v0, v1 int32)
+	Xsqlite3_result_error_nomem(v0 int32)
+	Xsqlite3_result_error_toobig(v0 int32)
+	Xsqlite3_result_int(v0, v1 int32)
+	Xsqlite3_result_null(v0 int32)
+	Xsqlite3_result_text(v0, v1, v2, v3 int32)
+	Xsqlite3_result_value(v0, v1 int32)
+	Xsqlite3_step(v0 int32) int32
+	Xsqlite3_stricmp(v0, v1 int32) int32
+	Xsqlite3_user_data(v0 int32) int32
+	Xsqlite3_value_bytes(v0 int32) int32
+	Xsqlite3_value_int(v0 int32) int32
+	Xsqlite3_value_int64(v0 int32) int64
+	Xsqlite3_value_text(v0 int32) int32
+	Xsqlite3_value_type(v0 int32) int32
+	Xsqlite3_vmprintf(v0, v1 int32) int32
+	Xsqlite3_vtab_config(v0, v1, v2 int32) int32
+	Xsqlite3_vtab_on_conflict(v0 int32) int32
 }
 type Memory = interface {
 	Slice() *[]byte
@@ -4034,18 +4034,25 @@ func i32_shl(x, y int32) int32 {
 	return x << (y & 31)
 }
 
+func memory_init[T1, T2 int | uint32 | uint64](mem []byte, data string, dest T1, src, n T2) {
+	x := uint64(dest)
+	z := uint64(src)
+	y := x + uint64(n)
+	w := z + uint64(n)
+	copy(mem[x:y], data[z:w])
+}
+
 func memory_copy[T uint32 | uint64](mem []byte, dest, src, n T) {
-	x := uint(min(uint64(dest), math.MaxUint))
-	z := uint(min(uint64(src), math.MaxUint))
-	c := uint(min(uint64(n), math.MaxUint))
-	y := x + c
-	w := z + c
+	x := uint64(dest)
+	z := uint64(src)
+	y := x + uint64(n)
+	w := z + uint64(n)
 	copy(mem[x:y], mem[z:w])
 }
 
 func memory_fill[T uint32 | uint64](mem []byte, dest T, val int32, n T) {
-	x := uint(min(uint64(dest), math.MaxUint))
-	y := x + uint(min(uint64(n), math.MaxUint))
+	x := uint64(dest)
+	y := x + uint64(n)
 	buf := mem[x:y]
 	if len(buf) > 0 {
 		buf[0] = byte(val)
@@ -4057,9 +4064,17 @@ func memory_fill[T uint32 | uint64](mem []byte, dest T, val int32, n T) {
 }
 
 func memory_zero[T uint32 | uint64](mem []byte, dest, n T) {
-	x := uint(min(uint64(dest), math.MaxUint))
-	y := x + uint(min(uint64(n), math.MaxUint))
+	x := uint64(dest)
+	y := x + uint64(n)
 	clear(mem[x:y])
+}
+
+func table_init[T1, T2, T3 int | int32 | int64](tab, elems []any, dest T1, src T2, n T3) {
+	x := uint64(dest)
+	z := uint64(src)
+	y := x + uint64(n)
+	w := z + uint64(n)
+	copy(tab[x:y], elems[z:w])
 }
 //go:embed spellfix.dat
 var data string

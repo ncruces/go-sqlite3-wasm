@@ -5,11 +5,11 @@ cd -P -- "$(dirname -- "$0")"
 
 trap 'rm -rf sqlite-src-*' EXIT
 
-curl -#OL "https://sqlite.org/2026/sqlite-src-3530200.zip"
+curl -#OL "https://sqlite.org/2026/sqlite-src-3530300.zip"
 
 # Verify download.
 if hash=$(openssl dgst -sha3-256 sqlite-src-*.zip); then
-  if ! [[ $hash =~ 490ec7af32a6bfa5f3e05dc279c04286cfe3f328def4a8b7344e3fa20be18a4c ]]; then
+  if ! [[ $hash =~ 2daecfa16e3b19e058dc2e2cb717b80ade361e0315aa5376c3619f66aa81e181 ]]; then
     echo $hash
     exit 1
   fi

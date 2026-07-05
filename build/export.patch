@@ -2,7 +2,7 @@
 # They are needed by the R-tree module.
 --- sqlite3.c.orig
 +++ sqlite3.c
-@@ -22470,7 +22470,7 @@
+@@ -22480,7 +22480,7 @@
    Expr *pExpr              /* The parsed CHECK expression */
  );
  SQLITE_PRIVATE void sqlite3AlterSetNotNull(Parse*, SrcList*, Token*, Token*);
@@ -11,7 +11,7 @@
  SQLITE_PRIVATE void sqlite3NestedParse(Parse*, const char*, ...);
  SQLITE_PRIVATE void sqlite3ExpirePreparedStatements(sqlite3*, int);
  SQLITE_PRIVATE void sqlite3CodeRhsOfIN(Parse*, Expr*, int, int);
-@@ -24914,7 +24914,7 @@
+@@ -24924,7 +24924,7 @@
  SQLITE_PRIVATE int sqlite3VdbeMemZeroTerminateIfAble(Mem*);
  SQLITE_PRIVATE int sqlite3VdbeMemMakeWriteable(Mem*);
  SQLITE_PRIVATE int sqlite3VdbeMemStringify(Mem*, u8, u8);
@@ -20,7 +20,7 @@
  SQLITE_PRIVATE i64 sqlite3VdbeIntValue(const Mem*);
  SQLITE_PRIVATE int sqlite3VdbeMemIntegerify(Mem*);
  SQLITE_PRIVATE double sqlite3VdbeRealValue(Mem*);
-@@ -92297,7 +92297,7 @@
+@@ -92422,7 +92422,7 @@
  ** number.  Return negative, zero, or positive if the first (i64) is less than,
  ** equal to, or greater than the second (double).
  */
@@ -29,7 +29,7 @@
    if( sqlite3IsNaN(r) ){
      /* SQLite considers NaN to be a NULL. And all integer values are greater
      ** than NULL */
-@@ -186179,7 +186179,7 @@
+@@ -186343,7 +186343,7 @@
  ** Return the length (in bytes) of the token that begins at z[0].
  ** Store the token type in *tokenType before returning.
  */

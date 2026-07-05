@@ -5,11 +5,11 @@ cd -P -- "$(dirname -- "$0")"
 
 trap 'rm -r sqlite-autoconf-*' EXIT
 
-curl -#OL "https://sqlite.org/2026/sqlite-autoconf-3530200.tar.gz"
+curl -#OL "https://sqlite.org/2026/sqlite-autoconf-3530300.tar.gz"
 
 # Verify download.
 if hash=$(openssl dgst -sha3-256 sqlite-autoconf-*.tar.gz); then
-  if ! [[ $hash =~ 025328da165109f48abccc6e7478508060804412bed2bd81d47e98ba1b72983b ]]; then
+  if ! [[ $hash =~ 98f2b3f3c11be6a03ea32346937b032c2472ebbd7a716bed36ca2f5693e7ce8b ]]; then
     echo $hash
     exit 1
   fi
@@ -21,7 +21,7 @@ mv sqlite-autoconf-*/sqlite3.c .
 mv sqlite-autoconf-*/sqlite3.h .
 mv sqlite-autoconf-*/sqlite3ext.h .
 
-GITHUB_TAG="https://github.com/sqlite/sqlite/raw/version-3.53.2"
+GITHUB_TAG="https://github.com/sqlite/sqlite/raw/version-3.53.3"
 
 mkdir -p ext/
 cd ext/

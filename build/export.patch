@@ -29,7 +29,7 @@
    if( sqlite3IsNaN(r) ){
      /* SQLite considers NaN to be a NULL. And all integer values are greater
      ** than NULL */
-@@ -186343,7 +186343,7 @@
+@@ -186352,7 +186352,7 @@
  ** Return the length (in bytes) of the token that begins at z[0].
  ** Store the token type in *tokenType before returning.
  */

@@ -2,7 +2,7 @@
 # handle, and interrupt, sqlite3_busy_timeout.
 --- sqlite3.c.orig
 +++ sqlite3.c
-@@ -189220,7 +189220,7 @@
+@@ -189229,7 +189229,7 @@
  #endif
    sqlite3_mutex_enter(db->mutex);
    if( ms>0 ){

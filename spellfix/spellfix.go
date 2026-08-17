@@ -27,12 +27,12 @@ func New(v0 Xenv) *Module {
 	m := new(Module)
 	m._env = v0
 	m.maxMem = 65536
-	m.___stack_pointer = v0.X__stack_pointer()
-	m.___memory_base = *v0.X__memory_base()
-	m.___table_base = *v0.X__table_base()
 	m.memImp = v0.Xmemory()
 	m.memory = m.memImp.Slice()
 	m.t0 = v0.X__indirect_function_table()
+	m.___stack_pointer = v0.X__stack_pointer()
+	m.___memory_base = *v0.X__memory_base()
+	m.___table_base = *v0.X__table_base()
 	m.elements = [][]any{{m._transliterateSqlFunc, m._editdistSqlFunc, m._phoneticHashSqlFunc, m._scriptCodeSqlFunc, m._editDist3SqlFunc, m._editDist3ConfigDelete, m._local_sqlite3_free, m._spellfix1RowCompare, m._spellfix1Create, m._spellfix1Connect, m._spellfix1BestIndex, m._spellfix1Disconnect, m._spellfix1Destroy, m._spellfix1Open, m._spellfix1Close, m._spellfix1Filter, m._spellfix1Next, m._spellfix1Eof, m._spellfix1Column, m._spellfix1Rowid, m._spellfix1Update, m._spellfix1Rename}}
 	table_init(*m.t0, m.elements[0], int32(m.___table_base), 0, len(m.elements[0]))
 	m.elements[0] = nil

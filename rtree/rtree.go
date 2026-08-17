@@ -27,12 +27,12 @@ func New(v0 Xenv) *Module {
 	m := new(Module)
 	m._env = v0
 	m.maxMem = 65536
-	m.___stack_pointer = v0.X__stack_pointer()
-	m.___memory_base = *v0.X__memory_base()
-	m.___table_base = *v0.X__table_base()
 	m.memImp = v0.Xmemory()
 	m.memory = m.memImp.Slice()
 	m.t0 = v0.X__indirect_function_table()
+	m.___stack_pointer = v0.X__stack_pointer()
+	m.___memory_base = *v0.X__memory_base()
+	m.___table_base = *v0.X__table_base()
 	m.elements = [][]any{{m._rtreenode, m._rtreedepth, m._rtreecheck, m._geopolyBBoxStep, m._geopolyBBoxFinal, m._local_sqlite3_free, m._parentWrite, m._rowidWrite, m._geopolyOverlapFunc, m._geopolyWithinFunc, m._rtreeCreate, m._rtreeConnect, m._rtreeBestIndex, m._rtreeDisconnect, m._rtreeDestroy, m._rtreeOpen, m._rtreeClose, m._rtreeFilter, m._rtreeNext, m._rtreeEof, m._rtreeColumn, m._rtreeRowid, m._rtreeUpdate, m._rtreeBeginTransaction, m._rtreeEndTransaction, m._rtreeRollback, m._rtreeRename, m._rtreeSavepoint, m._rtreeShadowName, m._rtreeIntegrity, m._geopolyAreaFunc, m._geopolyBlobFunc, m._geopolyJsonFunc, m._geopolySvgFunc, m._geopolyContainsPointFunc, _geopolyDebugFunc, m._geopolyBBoxFunc, m._geopolyXformFunc, m._geopolyRegularFunc, m._geopolyCcwFunc, m._geopolyCreate, m._geopolyConnect, m._geopolyBestIndex, m._geopolyFilter, m._geopolyColumn, m._geopolyUpdate, m._geopolyFindFunction}}
 	table_init(*m.t0, m.elements[0], int32(m.___table_base), 0, len(m.elements[0]))
 	m.elements[0] = nil

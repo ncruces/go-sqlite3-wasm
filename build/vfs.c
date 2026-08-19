@@ -36,9 +36,12 @@ int go_shm_lock(sqlite3_file*, int offset, int n, int flags);
 int go_shm_unmap(sqlite3_file*, int deleteFlag);
 void go_shm_barrier(sqlite3_file*);
 
+int go_fetch(sqlite3_file*, sqlite3_int64 iOfst, int iAmt, void** pp);
+int go_unfetch(sqlite3_file*, sqlite3_int64 iOfst, void* p);
+
 static int go_open_wrapper(sqlite3_vfs* vfs, sqlite3_filename zName,
                            sqlite3_file* file, int flags, int* pOutFlags) {
-  static const sqlite3_io_methods go_io[2] = {
+  static const sqlite3_io_methods go_io[] = {
       {
           .iVersion = 1,
           .xClose = go_close,
@@ -72,6 +75,44 @@ static int go_open_wrapper(sqlite3_vfs* vfs, sqlite3_filename zName,
           .xShmLock = go_shm_lock,
           .xShmBarrier = go_shm_barrier,
           .xShmUnmap = go_shm_unmap,
+      },
+      {
+          .iVersion = 3,
+          .xClose = go_close,
+          .xRead = go_read,
+          .xWrite = go_write,
+          .xTruncate = go_truncate,
+          .xSync = go_sync,
+          .xFileSize = go_file_size,
+          .xLock = go_lock,
+          .xUnlock = go_unlock,
+          .xCheckReservedLock = go_check_reserved_lock,
+          .xFileControl = go_file_control,
+          .xSectorSize = go_sector_size,
+          .xDeviceCharacteristics = go_device_characteristics,
+          .xFetch = go_fetch,
+          .xUnfetch = go_unfetch,
+      },
+      {
+          .iVersion = 3,
+          .xClose = go_close,
+          .xRead = go_read,
+          .xWrite = go_write,
+          .xTruncate = go_truncate,
+          .xSync = go_sync,
+          .xFileSize = go_file_size,
+          .xLock = go_lock,
+          .xUnlock = go_unlock,
+          .xCheckReservedLock = go_check_reserved_lock,
+          .xFileControl = go_file_control,
+          .xSectorSize = go_sector_size,
+          .xDeviceCharacteristics = go_device_characteristics,
+          .xShmMap = go_shm_map,
+          .xShmLock = go_shm_lock,
+          .xShmBarrier = go_shm_barrier,
+          .xShmUnmap = go_shm_unmap,
+          .xFetch = go_fetch,
+          .xUnfetch = go_unfetch,
       }};
   int vfsID = 0;
   memset(file, 0, vfs->szOsFile);

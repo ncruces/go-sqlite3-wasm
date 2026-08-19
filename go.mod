@@ -1,6 +1,6 @@
-module github.com/ncruces/go-sqlite3-wasm/v3
+module github.com/ncruces/go-sqlite3-wasm/v4
 
-go 1.25.0
+go 1.26.0
 
 tool (
 	github.com/ncruces/wasm2go

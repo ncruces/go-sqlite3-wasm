@@ -1,0 +1,17 @@
+fts5_xColumnCount
+fts5_xColumnLocale
+fts5_xColumnSize
+fts5_xColumnText
+fts5_xColumnTotalSize
+fts5_xCreateFunction
+fts5_xCreateTokenizer_v2
+fts5_xInst
+fts5_xInstCount
+fts5_xInstToken
+fts5_xPhraseCount
+fts5_xPhraseSize
+fts5_xQueryToken
+fts5_xRowCount
+fts5_xRowid
+fts5_xToken
+sqlite3_extension_init

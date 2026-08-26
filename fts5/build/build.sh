@@ -24,9 +24,7 @@ go tool libc-gen -c-out "$ROOT/libc"
 	-Wl,--no-entry \
 	-Wl,--stack-first \
 	-Wl,--import-undefined \
-	-Wl,--export=sqlite3_extension_init \
-	-Wl,--export=fts5_xCreateTokenizer_v2 \
-	-Wl,--export=fts5_xToken
+	$(awk '{print "-Wl,--export="$0}' exports.txt)
 
 "$BINARYEN/wasm-opt" -g fts5 -o fts5.wasm \
 	--gufa-optimizing --generate-global-effects \

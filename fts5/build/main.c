@@ -18,18 +18,17 @@ void go_destroy(go_handle);
 int go_fts5_create(go_handle app, const char** azArg, int nArg,
                    go_handle* pOut);
 
-int go_fts5_tokenize(go_handle handle, void* pCtx, int flags, const char* pText,
+int go_fts5_tokenize(go_handle app, void* pCtx, int flags, const char* pText,
                      int nText, const char* pLocale, int nLocale,
                      int (*xToken)(void*, int, const char*, int, int, int));
 
 // Callback wrappers.
-// Needed for functions for which the address is taken.
 
-static void go_destroy_wrapper(void* p) { go_destroy(p); }
+static void go_destroy_wrapper(void* app) { go_destroy(app); }
 
 static int go_fts5_create_wrapper(void* app, const char** azArg, int nArg,
                                   Fts5Tokenizer** ppOut) {
-  return go_fts5_create((go_handle)app, azArg, nArg, (go_handle*)ppOut);
+  return go_fts5_create(app, azArg, nArg, (go_handle*)ppOut);
 }
 
 static int go_fts5_tokenize_wrapper(Fts5Tokenizer* pTokenizer, void* pCtx,
@@ -37,12 +36,12 @@ static int go_fts5_tokenize_wrapper(Fts5Tokenizer* pTokenizer, void* pCtx,
                                     const char* pLocale, int nLocale,
                                     int (*xToken)(void*, int, const char*, int,
                                                   int, int)) {
-  return go_fts5_tokenize((go_handle)pTokenizer, pCtx, flags, pText, nText,
-                          pLocale, nLocale, xToken);
+  return go_fts5_tokenize(pTokenizer, pCtx, flags, pText, nText, pLocale,
+                          nLocale, xToken);
 }
 
 static void go_fts5_delete_wrapper(Fts5Tokenizer* pTokenizer) {
-  go_destroy((go_handle)pTokenizer);
+  go_destroy(pTokenizer);
 }
 
 // Public API.
@@ -55,7 +54,7 @@ int sqlite3_extension_init(sqlite3* db, char**, const sqlite3_api_routines*) {
   rc = sqlite3_prepare_v2(db, "SELECT fts5(?1)", -1, &pStmt, 0);
   if (rc) return rc;
 
-  if (!sqlite3_bind_pointer(pStmt, 1, (void*)&pFts5Api, "fts5_api_ptr", NULL)) {
+  if (!sqlite3_bind_pointer(pStmt, 1, &pFts5Api, "fts5_api_ptr", NULL)) {
     sqlite3_step(pStmt);
   }
   return sqlite3_finalize(pStmt);

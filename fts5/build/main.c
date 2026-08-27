@@ -130,6 +130,14 @@ int fts5_xColumnSize(Fts5Context* pCtx, int iCol, int* pnToken) {
   return sFts5Api.xColumnSize(pCtx, iCol, pnToken);
 }
 
+int fts5_xSetAuxdata(Fts5Context* pCtx, go_handle aux) {
+  return sFts5Api.xSetAuxdata(pCtx, aux, go_destroy_wrapper);
+}
+
+go_handle fts5_xGetAuxdata(Fts5Context* pCtx, int bClear) {
+  return sFts5Api.xGetAuxdata(pCtx, bClear);
+}
+
 int fts5_xQueryToken(Fts5Context* pCtx, int iPhrase, int iToken,
                      const char** ppToken, int* pnToken) {
   return sFts5Api.xQueryToken(pCtx, iPhrase, iToken, ppToken, pnToken);

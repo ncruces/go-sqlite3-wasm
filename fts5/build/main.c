@@ -1,3 +1,4 @@
+#include "include.h"
 #include "sqlite3ext.h"
 
 // Need this for functions for which the address is taken.
@@ -143,6 +144,30 @@ int fts5_xQueryToken(Fts5Context* pCtx, int iPhrase, int iToken,
   return sFts5Api.xQueryToken(pCtx, iPhrase, iToken, ppToken, pnToken);
 }
 
+struct phrase_iter {
+  Fts5PhraseIter iter;
+  int iCol;
+  int iOff;
+};
+
+int fts5_xPhraseFirst(Fts5Context* pCtx, int iPhrase, struct phrase_iter* pIt) {
+  return sFts5Api.xPhraseFirst(pCtx, iPhrase, &pIt->iter, &pIt->iCol,
+                               &pIt->iOff);
+}
+
+void fts5_xPhraseNext(Fts5Context* pCtx, struct phrase_iter* pIt) {
+  sFts5Api.xPhraseNext(pCtx, &pIt->iter, &pIt->iCol, &pIt->iOff);
+}
+
+int fts5_xPhraseFirstColumn(Fts5Context* pCtx, int iPhrase,
+                            struct phrase_iter* pIt) {
+  return sFts5Api.xPhraseFirstColumn(pCtx, iPhrase, &pIt->iter, &pIt->iCol);
+}
+
+void fts5_xPhraseNextColumn(Fts5Context* pCtx, struct phrase_iter* pIt) {
+  sFts5Api.xPhraseNextColumn(pCtx, &pIt->iter, &pIt->iCol);
+}
+
 int fts5_xInstToken(Fts5Context* pCtx, int iIdx, int iToken,
                     const char** ppToken, int* pnToken) {
   return sFts5Api.xInstToken(pCtx, iIdx, iToken, ppToken, pnToken);
@@ -151,3 +176,8 @@ int fts5_xInstToken(Fts5Context* pCtx, int iIdx, int iToken,
 int fts5_xColumnLocale(Fts5Context* pCtx, int iCol, const char** pz, int* pn) {
   return sFts5Api.xColumnLocale(pCtx, iCol, pz, pn);
 }
+
+static_assert(offsetof(struct phrase_iter, iter) == 0, "Unexpected offset");
+static_assert(offsetof(struct phrase_iter, iCol) == 8, "Unexpected offset");
+static_assert(offsetof(struct phrase_iter, iOff) == 12, "Unexpected offset");
+static_assert(sizeof(struct phrase_iter) == 16, "Unexpected size");

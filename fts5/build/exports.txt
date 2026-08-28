@@ -10,6 +10,10 @@ fts5_xInst
 fts5_xInstCount
 fts5_xInstToken
 fts5_xPhraseCount
+fts5_xPhraseFirst
+fts5_xPhraseFirstColumn
+fts5_xPhraseNext
+fts5_xPhraseNextColumn
 fts5_xPhraseSize
 fts5_xQueryToken
 fts5_xRowCount

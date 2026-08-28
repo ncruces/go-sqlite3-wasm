@@ -1417,6 +1417,255 @@ func (m *Module) _fts5ApiQueryToken(v0, v1, v2, v3, v4 int32) int32 {
 l0:
 	return v5
 }
+func (m *Module) Xfts5_xPhraseFirst(v0, v1, v2 int32) int32 {
+	return m._fts5ApiPhraseFirst(v0, v1, v2, v2+i32(8), v2+i32(12))
+}
+func (m *Module) _fts5ApiPhraseFirst(v0, v1, v2, v3, v4 int32) int32 {
+	var v5, v6 int32
+	t0 := *m.___stack_pointer
+	v5 = t0 - i32(16)
+	*m.___stack_pointer = v5
+	t1 := m._fts5CsrPoslist(v0, v1, v2, v5+i32(12))
+	v1 = t1
+	if v1 == 0 {
+		store32((*m.memory)[uint32(v3):], uint32(i32(0)))
+		store32((*m.memory)[uint32(v4):], uint32(i32(0)))
+		t2 := int32(load32((*m.memory)[uint32(v2):]))
+		t3 := v2
+		v6 = t2
+		t4 := int32(load32((*m.memory)[int64(uint32(v5))+12:]))
+		p5 := i32(0)
+		if v6 != 0 {
+			p5 = v6 + t4
+		}
+		store32((*m.memory)[int64(uint32(t3))+4:], uint32(p5))
+		m._fts5ApiPhraseNext(v0, v2, v3, v4)
+	}
+	*m.___stack_pointer = v5 + i32(16)
+	return v1
+}
+func (m *Module) Xfts5_xPhraseNext(v0, v1 int32) {
+	m._fts5ApiPhraseNext(v0, v1, v1+i32(8), v1+i32(12))
+}
+func (m *Module) _fts5ApiPhraseNext(v0, v1, v2, v3 int32) {
+	var v4, v5, v6, v7 int32
+	t0 := *m.___stack_pointer
+	v4 = t0 - i32(16)
+	*m.___stack_pointer = v4
+	{
+		t1 := int32(load32((*m.memory)[uint32(v1):]))
+		v5 = t1
+		t2 := int32(load32((*m.memory)[int64(uint32(v1))+4:]))
+		if uint32(v5) >= uint32(t2) {
+			store32((*m.memory)[uint32(v2):], uint32(i32(-1)))
+			store32((*m.memory)[uint32(v3):], uint32(i32(-1)))
+			goto l0
+		}
+		t3 := m._sqlite3Fts5GetVarint32(v5, v4+i32(12))
+		t4 := v1
+		v5 = t3 + v5
+		store32((*m.memory)[uint32(t4):], uint32(v5))
+		var p5 int32
+		{
+			t6 := int32(load32((*m.memory)[int64(uint32(v4))+12:]))
+			v6 = t6
+			if v6 != i32(1) {
+				t7 := int32(load32((*m.memory)[uint32(v3):]))
+				p5 = t7
+				goto l1
+			}
+			t8 := int32(load32((*m.memory)[uint32(v0):]))
+			t9 := int32(load32((*m.memory)[int64(uint32(t8))+12:]))
+			t10 := int32(load32((*m.memory)[int64(uint32(t9))+16:]))
+			v0 = t10
+			t11 := v5
+			v6 = v4 + i32(12)
+			t12 := m._sqlite3Fts5GetVarint32(t11, v6)
+			v7 = t12
+			t13 := int32(load32((*m.memory)[int64(uint32(v4))+12:]))
+			t14 := v2
+			v2 = t13
+			t15 := v2
+			v0 = v0 - i32(1)
+			p16 := v0
+			if v0 > v2 {
+				p16 = t15
+			}
+			store32((*m.memory)[uint32(t14):], uint32(p16))
+			t17 := v1
+			v0 = v5 + v7
+			store32((*m.memory)[uint32(t17):], uint32(v0))
+			store32((*m.memory)[uint32(v3):], uint32(i32(0)))
+			t18 := m._sqlite3Fts5GetVarint32(v0, v6)
+			store32((*m.memory)[uint32(v1):], uint32(t18+v0))
+			t19 := int32(load32((*m.memory)[int64(uint32(v4))+12:]))
+			v6 = t19
+			p5 = i32(0)
+		}
+	l1:
+		v0 = p5
+		store32((*m.memory)[uint32(v3):], uint32(v0+v6-i32(2)))
+	}
+l0:
+	*m.___stack_pointer = v4 + i32(16)
+}
+func (m *Module) Xfts5_xPhraseFirstColumn(v0, v1, v2 int32) int32 {
+	return m._fts5ApiPhraseFirstColumn(v0, v1, v2, v2+i32(8))
+}
+func (m *Module) _fts5ApiPhraseFirstColumn(v0, v1, v2, v3 int32) int32 {
+	var v4, v5, v6, v7 int32
+	t0 := *m.___stack_pointer
+	v5 = t0 - i32(16)
+	*m.___stack_pointer = v5
+	{
+		t1 := int32(load32((*m.memory)[uint32(v0):]))
+		t2 := int32(load32((*m.memory)[int64(uint32(t1))+12:]))
+		t3 := int32(load32((*m.memory)[int64(uint32(t2))+68:]))
+		if t3 == i32(2) {
+			v4 = i32(25)
+			if v1 < i32(0) {
+				goto l0
+			}
+			t4 := int32(load32((*m.memory)[int64(uint32(v0))+52:]))
+			v6 = t4
+			if v6 == 0 {
+				goto l0
+			}
+			t5 := int32(load32((*m.memory)[int64(uint32(v6))+16:]))
+			if v1 >= t5 {
+				goto l0
+			}
+			var p6 int32
+			{
+				t7 := int32(load32((*m.memory)[int64(uint32(v0))+56:]))
+				v4 = t7
+				if v4 != 0 {
+					t9 := v2
+					var p8 int32
+					if v1 != 0 {
+						t10 := int32(load32((*m.memory)[int64(uint32(v4+v1<<2))+20:]))
+						p8 = t10
+					} else {
+						p8 = i32(0)
+					}
+					v6 = p8
+					t11 := int32(load32((*m.memory)[int64(uint32(v4))+16:]))
+					v7 = v6 + t11
+					store32((*m.memory)[uint32(t9):], uint32(v7))
+					t12 := int32(load32((*m.memory)[int64(uint32(v4+v1<<2))+24:]))
+					t13 := t12 - v6
+					p6 = t13
+					goto l1
+				}
+				t14 := m._sqlite3Fts5ExprPhraseCollist(v6, v1, v2, v5+i32(12))
+				v4 = t14
+				if v4 != 0 {
+					goto l0
+				}
+				t15 := int32(load32((*m.memory)[uint32(v2):]))
+				v7 = t15
+				t16 := int32(load32((*m.memory)[int64(uint32(v5))+12:]))
+				p6 = t16
+			}
+		l1:
+			v1 = p6
+			v4 = i32(0)
+			store32((*m.memory)[uint32(v3):], uint32(i32(0)))
+			t18 := v2
+			p17 := i32(0)
+			if v7 != 0 {
+				p17 = v1 + v7
+			}
+			store32((*m.memory)[int64(uint32(t18))+4:], uint32(p17))
+			m._fts5ApiPhraseNextColumn(v0, v2, v3)
+			goto l0
+		}
+		t19 := m._fts5CsrPoslist(v0, v1, v2, v5+i32(8))
+		v4 = t19
+		if v4 != 0 {
+			goto l0
+		}
+		t20 := int32(load32((*m.memory)[uint32(v2):]))
+		t21 := v2
+		v0 = t20
+		t22 := int32(load32((*m.memory)[int64(uint32(v5))+8:]))
+		t23 := v0
+		v1 = t22
+		p24 := i32(0)
+		if v0 != 0 {
+			p24 = t23 + v1
+		}
+		store32((*m.memory)[int64(uint32(t21))+4:], uint32(p24))
+		if v1 <= i32(0) {
+			store32((*m.memory)[uint32(v3):], uint32(i32(-1)))
+			goto l0
+		}
+		t25 := int32((*m.memory)[uint32(v0)])
+		if t25 == i32(1) {
+			t26 := m._sqlite3Fts5GetVarint32(v0+i32(1), v3)
+			t27 := int32(load32((*m.memory)[uint32(v2):]))
+			store32((*m.memory)[uint32(v2):], uint32(t26+t27+i32(1)))
+			goto l0
+		}
+		store32((*m.memory)[uint32(v3):], uint32(i32(0)))
+	}
+l0:
+	*m.___stack_pointer = v5 + i32(16)
+	return v4
+}
+func (m *Module) Xfts5_xPhraseNextColumn(v0, v1 int32) {
+	m._fts5ApiPhraseNextColumn(v0, v1, v1+i32(8))
+}
+func (m *Module) _fts5ApiPhraseNextColumn(v0, v1, v2 int32) {
+	var v3, v4 int32
+	t0 := *m.___stack_pointer
+	v3 = t0 - i32(16)
+	*m.___stack_pointer = v3
+	{
+		t1 := int32(load32((*m.memory)[uint32(v0):]))
+		t2 := int32(load32((*m.memory)[int64(uint32(t1))+12:]))
+		t3 := int32(load32((*m.memory)[int64(uint32(t2))+68:]))
+		if t3 != i32(2) {
+			t4 := int32(load32((*m.memory)[uint32(v1):]))
+			v0 = t4
+			t5 := int32(load32((*m.memory)[int64(uint32(v1))+4:]))
+			v4 = t5
+		l1:
+			{
+				if uint32(v0) >= uint32(v4) {
+					store32((*m.memory)[uint32(v2):], uint32(i32(-1)))
+					goto l0
+				}
+				t6 := int32((*m.memory)[uint32(v0)])
+				if t6 != i32(1) {
+					t7 := m._sqlite3Fts5GetVarint32(v0, v3+i32(8))
+					t8 := v1
+					v0 = t7 + v0
+					store32((*m.memory)[uint32(t8):], uint32(v0))
+					goto l1
+				}
+			}
+			t9 := m._sqlite3Fts5GetVarint32(v0+i32(1), v2)
+			t10 := int32(load32((*m.memory)[uint32(v1):]))
+			store32((*m.memory)[uint32(v1):], uint32(t9+t10+i32(1)))
+			goto l0
+		}
+		t11 := int32(load32((*m.memory)[uint32(v1):]))
+		v0 = t11
+		t12 := int32(load32((*m.memory)[int64(uint32(v1))+4:]))
+		if uint32(v0) >= uint32(t12) {
+			store32((*m.memory)[uint32(v2):], uint32(i32(-1)))
+			goto l0
+		}
+		t13 := m._sqlite3Fts5GetVarint32(v0, v3+i32(12))
+		store32((*m.memory)[uint32(v1):], uint32(t13+v0))
+		t14 := int32(load32((*m.memory)[int64(uint32(v3))+12:]))
+		t15 := int32(load32((*m.memory)[uint32(v2):]))
+		store32((*m.memory)[uint32(v2):], uint32(t14+t15-i32(2)))
+	}
+l0:
+	*m.___stack_pointer = v3 + i32(16)
+}
 func (m *Module) Xfts5_xInstToken(v0, v1, v2, v3, v4 int32) int32 {
 	return m._fts5ApiInstToken(v0, v1, v2, v3, v4)
 }
@@ -30078,30 +30327,6 @@ l0:
 	*m.___stack_pointer = v5 + i32(32)
 	return v4
 }
-func (m *Module) _fts5ApiPhraseFirst(v0, v1, v2, v3, v4 int32) int32 {
-	var v5, v6 int32
-	t0 := *m.___stack_pointer
-	v5 = t0 - i32(16)
-	*m.___stack_pointer = v5
-	t1 := m._fts5CsrPoslist(v0, v1, v2, v5+i32(12))
-	v1 = t1
-	if v1 == 0 {
-		store32((*m.memory)[uint32(v3):], uint32(i32(0)))
-		store32((*m.memory)[uint32(v4):], uint32(i32(0)))
-		t2 := int32(load32((*m.memory)[uint32(v2):]))
-		t3 := v2
-		v6 = t2
-		t4 := int32(load32((*m.memory)[int64(uint32(v5))+12:]))
-		p5 := i32(0)
-		if v6 != 0 {
-			p5 = v6 + t4
-		}
-		store32((*m.memory)[int64(uint32(t3))+4:], uint32(p5))
-		m._fts5ApiPhraseNext(v0, v2, v3, v4)
-	}
-	*m.___stack_pointer = v5 + i32(16)
-	return v1
-}
 func (m *Module) _fts5CsrPoslist(v0, v1, v2, v3 int32) int32 {
 	var v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15 int32
 	var v16, v17 int64
@@ -30358,219 +30583,6 @@ l0:
 l2:
 	*m.___stack_pointer = v6 + i32(32)
 	return v4
-}
-func (m *Module) _fts5ApiPhraseNext(v0, v1, v2, v3 int32) {
-	var v4, v5, v6, v7 int32
-	t0 := *m.___stack_pointer
-	v4 = t0 - i32(16)
-	*m.___stack_pointer = v4
-	{
-		t1 := int32(load32((*m.memory)[uint32(v1):]))
-		v5 = t1
-		t2 := int32(load32((*m.memory)[int64(uint32(v1))+4:]))
-		if uint32(v5) >= uint32(t2) {
-			store32((*m.memory)[uint32(v2):], uint32(i32(-1)))
-			store32((*m.memory)[uint32(v3):], uint32(i32(-1)))
-			goto l0
-		}
-		t3 := m._sqlite3Fts5GetVarint32(v5, v4+i32(12))
-		t4 := v1
-		v5 = t3 + v5
-		store32((*m.memory)[uint32(t4):], uint32(v5))
-		var p5 int32
-		{
-			t6 := int32(load32((*m.memory)[int64(uint32(v4))+12:]))
-			v6 = t6
-			if v6 != i32(1) {
-				t7 := int32(load32((*m.memory)[uint32(v3):]))
-				p5 = t7
-				goto l1
-			}
-			t8 := int32(load32((*m.memory)[uint32(v0):]))
-			t9 := int32(load32((*m.memory)[int64(uint32(t8))+12:]))
-			t10 := int32(load32((*m.memory)[int64(uint32(t9))+16:]))
-			v0 = t10
-			t11 := v5
-			v6 = v4 + i32(12)
-			t12 := m._sqlite3Fts5GetVarint32(t11, v6)
-			v7 = t12
-			t13 := int32(load32((*m.memory)[int64(uint32(v4))+12:]))
-			t14 := v2
-			v2 = t13
-			t15 := v2
-			v0 = v0 - i32(1)
-			p16 := v0
-			if v0 > v2 {
-				p16 = t15
-			}
-			store32((*m.memory)[uint32(t14):], uint32(p16))
-			t17 := v1
-			v0 = v5 + v7
-			store32((*m.memory)[uint32(t17):], uint32(v0))
-			store32((*m.memory)[uint32(v3):], uint32(i32(0)))
-			t18 := m._sqlite3Fts5GetVarint32(v0, v6)
-			store32((*m.memory)[uint32(v1):], uint32(t18+v0))
-			t19 := int32(load32((*m.memory)[int64(uint32(v4))+12:]))
-			v6 = t19
-			p5 = i32(0)
-		}
-	l1:
-		v0 = p5
-		store32((*m.memory)[uint32(v3):], uint32(v0+v6-i32(2)))
-	}
-l0:
-	*m.___stack_pointer = v4 + i32(16)
-}
-func (m *Module) _fts5ApiPhraseFirstColumn(v0, v1, v2, v3 int32) int32 {
-	var v4, v5, v6, v7 int32
-	t0 := *m.___stack_pointer
-	v5 = t0 - i32(16)
-	*m.___stack_pointer = v5
-	{
-		t1 := int32(load32((*m.memory)[uint32(v0):]))
-		t2 := int32(load32((*m.memory)[int64(uint32(t1))+12:]))
-		t3 := int32(load32((*m.memory)[int64(uint32(t2))+68:]))
-		if t3 == i32(2) {
-			v4 = i32(25)
-			if v1 < i32(0) {
-				goto l0
-			}
-			t4 := int32(load32((*m.memory)[int64(uint32(v0))+52:]))
-			v6 = t4
-			if v6 == 0 {
-				goto l0
-			}
-			t5 := int32(load32((*m.memory)[int64(uint32(v6))+16:]))
-			if v1 >= t5 {
-				goto l0
-			}
-			var p6 int32
-			{
-				t7 := int32(load32((*m.memory)[int64(uint32(v0))+56:]))
-				v4 = t7
-				if v4 != 0 {
-					t9 := v2
-					var p8 int32
-					if v1 != 0 {
-						t10 := int32(load32((*m.memory)[int64(uint32(v4+v1<<2))+20:]))
-						p8 = t10
-					} else {
-						p8 = i32(0)
-					}
-					v6 = p8
-					t11 := int32(load32((*m.memory)[int64(uint32(v4))+16:]))
-					v7 = v6 + t11
-					store32((*m.memory)[uint32(t9):], uint32(v7))
-					t12 := int32(load32((*m.memory)[int64(uint32(v4+v1<<2))+24:]))
-					t13 := t12 - v6
-					p6 = t13
-					goto l1
-				}
-				t14 := m._sqlite3Fts5ExprPhraseCollist(v6, v1, v2, v5+i32(12))
-				v4 = t14
-				if v4 != 0 {
-					goto l0
-				}
-				t15 := int32(load32((*m.memory)[uint32(v2):]))
-				v7 = t15
-				t16 := int32(load32((*m.memory)[int64(uint32(v5))+12:]))
-				p6 = t16
-			}
-		l1:
-			v1 = p6
-			v4 = i32(0)
-			store32((*m.memory)[uint32(v3):], uint32(i32(0)))
-			t18 := v2
-			p17 := i32(0)
-			if v7 != 0 {
-				p17 = v1 + v7
-			}
-			store32((*m.memory)[int64(uint32(t18))+4:], uint32(p17))
-			m._fts5ApiPhraseNextColumn(v0, v2, v3)
-			goto l0
-		}
-		t19 := m._fts5CsrPoslist(v0, v1, v2, v5+i32(8))
-		v4 = t19
-		if v4 != 0 {
-			goto l0
-		}
-		t20 := int32(load32((*m.memory)[uint32(v2):]))
-		t21 := v2
-		v0 = t20
-		t22 := int32(load32((*m.memory)[int64(uint32(v5))+8:]))
-		t23 := v0
-		v1 = t22
-		p24 := i32(0)
-		if v0 != 0 {
-			p24 = t23 + v1
-		}
-		store32((*m.memory)[int64(uint32(t21))+4:], uint32(p24))
-		if v1 <= i32(0) {
-			store32((*m.memory)[uint32(v3):], uint32(i32(-1)))
-			goto l0
-		}
-		t25 := int32((*m.memory)[uint32(v0)])
-		if t25 == i32(1) {
-			t26 := m._sqlite3Fts5GetVarint32(v0+i32(1), v3)
-			t27 := int32(load32((*m.memory)[uint32(v2):]))
-			store32((*m.memory)[uint32(v2):], uint32(t26+t27+i32(1)))
-			goto l0
-		}
-		store32((*m.memory)[uint32(v3):], uint32(i32(0)))
-	}
-l0:
-	*m.___stack_pointer = v5 + i32(16)
-	return v4
-}
-func (m *Module) _fts5ApiPhraseNextColumn(v0, v1, v2 int32) {
-	var v3, v4 int32
-	t0 := *m.___stack_pointer
-	v3 = t0 - i32(16)
-	*m.___stack_pointer = v3
-	{
-		t1 := int32(load32((*m.memory)[uint32(v0):]))
-		t2 := int32(load32((*m.memory)[int64(uint32(t1))+12:]))
-		t3 := int32(load32((*m.memory)[int64(uint32(t2))+68:]))
-		if t3 != i32(2) {
-			t4 := int32(load32((*m.memory)[uint32(v1):]))
-			v0 = t4
-			t5 := int32(load32((*m.memory)[int64(uint32(v1))+4:]))
-			v4 = t5
-		l1:
-			{
-				if uint32(v0) >= uint32(v4) {
-					store32((*m.memory)[uint32(v2):], uint32(i32(-1)))
-					goto l0
-				}
-				t6 := int32((*m.memory)[uint32(v0)])
-				if t6 != i32(1) {
-					t7 := m._sqlite3Fts5GetVarint32(v0, v3+i32(8))
-					t8 := v1
-					v0 = t7 + v0
-					store32((*m.memory)[uint32(t8):], uint32(v0))
-					goto l1
-				}
-			}
-			t9 := m._sqlite3Fts5GetVarint32(v0+i32(1), v2)
-			t10 := int32(load32((*m.memory)[uint32(v1):]))
-			store32((*m.memory)[uint32(v1):], uint32(t9+t10+i32(1)))
-			goto l0
-		}
-		t11 := int32(load32((*m.memory)[uint32(v1):]))
-		v0 = t11
-		t12 := int32(load32((*m.memory)[int64(uint32(v1))+4:]))
-		if uint32(v0) >= uint32(t12) {
-			store32((*m.memory)[uint32(v2):], uint32(i32(-1)))
-			goto l0
-		}
-		t13 := m._sqlite3Fts5GetVarint32(v0, v3+i32(12))
-		store32((*m.memory)[uint32(v1):], uint32(t13+v0))
-		t14 := int32(load32((*m.memory)[int64(uint32(v3))+12:]))
-		t15 := int32(load32((*m.memory)[uint32(v2):]))
-		store32((*m.memory)[uint32(v2):], uint32(t14+t15-i32(2)))
-	}
-l0:
-	*m.___stack_pointer = v3 + i32(16)
 }
 func (m *Module) _fts5ExprPopulatePoslistsCb(v0, v1, v2, v3, v4, v5 int32) int32 {
 	var v6, v7, v8, v9, v10 int32

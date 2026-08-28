@@ -2654,7 +2654,7 @@ l0:
 	return i32(0)
 }
 func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
-	var v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31 int32
+	var v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30 int32
 	t0 := *m.___stack_pointer
 	v19 = t0 - i32(1024)
 	*m.___stack_pointer = v19
@@ -2678,8 +2678,7 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 		{
 			v15 = v14 + i32(1)
 			v21 = v15 * (v2 + i32(1))
-			v27 = v21 + i32(1)
-			v5 = v27 & i32(-2) << 2
+			v5 = (v21 + i32(1)) & i32(-2) << 2
 			t5 := v5
 			v0 = v2 * i32(12)
 			v9 = t5 + v0
@@ -2687,8 +2686,8 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 				goto l1
 			}
 			t6 := m._sqlite3_malloc64(int64(uint32(v9)))
-			v28 = t6
-			v11 = v28
+			v27 = t6
+			v11 = v27
 			if v11 != 0 {
 				goto l1
 			}
@@ -2802,8 +2801,8 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 									v6 = v9
 									goto l6
 								}
-								v29 = v8 << 2
-								v0 = v29 + v22
+								v28 = v8 << 2
+								v0 = v28 + v22
 								t29 := int32(load32((*m.memory)[uint32(v0):]))
 								t30 := int32(load32((*m.memory)[int64(uint32(v3))+8:]))
 								v5 = t29 + t30
@@ -2811,9 +2810,9 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 								t32 := v0
 								v10 = v20 + v8*i32(20)
 								t33 := int32(load32((*m.memory)[int64(uint32(v10))+8:]))
-								v30 = t33
-								v31 = v30 << 2
-								v7 = t32 + v31
+								v29 = t33
+								v30 = v29 << 2
+								v7 = t32 + v30
 								t34 := int32(load32((*m.memory)[uint32(v7):]))
 								if uint32(t31) < uint32(t34) {
 									store32((*m.memory)[uint32(v7):], uint32(v5))
@@ -2845,8 +2844,8 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 								t43 := int32(load32((*m.memory)[uint32(v7):]))
 								v5 = t43
 								t44 := v5
-								v12 = v23 + v29
-								t45 := int32(load32((*m.memory)[uint32(v12+v31):]))
+								v12 = v23 + v28
+								t45 := int32(load32((*m.memory)[uint32(v12+v30):]))
 								t46 := int32(load32((*m.memory)[int64(uint32(v3))+4:]))
 								v0 = t45 + t46
 								if uint32(t44) > uint32(v0) {
@@ -2919,7 +2918,7 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 										goto l10
 									}
 								}
-								v8 = v8 + v30
+								v8 = v8 + v29
 								goto l11
 							}
 						} else {
@@ -3043,7 +3042,7 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 			}
 		}
 	l4:
-		v0 = v27<<2&i32(-8) + v11 + i32(8)
+		v0 = v16 + i32(8)
 	l18:
 		if v13 != 0 {
 			t96 := int32(load32((*m.memory)[uint32(v0):]))
@@ -3052,7 +3051,7 @@ func (m *Module) _editDist3Core(v0, v1, v2, v3, v4 int32) int32 {
 			v0 = v0 + i32(12)
 			goto l18
 		}
-		m._sqlite3_free(v28)
+		m._sqlite3_free(v27)
 	}
 l0:
 	*m.___stack_pointer = v19 + i32(1024)
@@ -3640,7 +3639,7 @@ l0:
 		}
 		t3 := m._strlen(v2)
 		v0 = t3
-		v1 = v0 >> 31 & v0
+		v1 = v0 & (v0 >> 31)
 	l6:
 		{
 			if v0 > i32(0) {

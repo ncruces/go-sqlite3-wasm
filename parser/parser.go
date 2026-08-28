@@ -42,9 +42,9 @@ func (m *Module) Xmalloc(v0 int32) int32 {
 			goto l0
 		}
 		v2 = (v0 + i32(15)) & i32(-16)
-		t0 := int32(load32(m.memory[uint32(i32(65948)):]))
+		t0 := int32(load32(m.memory[uint32(i32(65920)):]))
 		v1 = t0
-		t1 := int32(load32(m.memory[uint32(i32(65952)):]))
+		t1 := int32(load32(m.memory[uint32(i32(65924)):]))
 		v3 = t1
 		v0 = v3
 	l2:
@@ -60,15 +60,15 @@ func (m *Module) Xmalloc(v0 int32) int32 {
 			t3 := v1
 			v0 = v4 << 16
 			if t3 != v0 {
-				store32(m.memory[uint32(i32(65952)):], uint32(v0))
+				store32(m.memory[uint32(i32(65924)):], uint32(v0))
 				v1 = (v4 + v6) << 16
-				store32(m.memory[uint32(i32(65948)):], uint32(v1))
+				store32(m.memory[uint32(i32(65920)):], uint32(v1))
 				v3 = v0
 				goto l2
 			}
-			store32(m.memory[uint32(i32(65948)):], uint32(v1+v5&i32(-65536)))
+			store32(m.memory[uint32(i32(65920)):], uint32(v1+v5&i32(-65536)))
 		}
-		store32(m.memory[uint32(i32(65952)):], uint32(v2+v3))
+		store32(m.memory[uint32(i32(65924)):], uint32(v2+v3))
 		return v3
 	}
 l0:
@@ -227,7 +227,7 @@ func (m *Module) Xsql3parse_table(v0, v1, v2 int32) int32 {
 											}
 										}
 									}
-									t26 := int32(load32(m.memory[int64(uint32(v0<<2))+65904:]))
+									t26 := int32(m.memory[int64(uint32(v0))+65904])
 									p2 = t26
 									goto l8
 								}
@@ -399,7 +399,7 @@ func (m *Module) Xsql3parse_table(v0, v1, v2 int32) int32 {
 						if i32_shr_u(i32(29), v5)&i32(1) == 0 {
 							goto l2
 						}
-						t63 := int32(load32(m.memory[int64(uint32(v5<<2))+65928:]))
+						t63 := int32(m.memory[int64(uint32(v5))+65912])
 						p58 = t63
 					} else {
 						p58 = v0
@@ -1040,7 +1040,8 @@ l5:
 		if v2 == i32(91) {
 			p63 = i32(93)
 		}
-		v7 = p63
+		v9 = p63
+		v7 = v9 & i32(255)
 		v2 = v3
 	l32:
 		{
@@ -1054,15 +1055,14 @@ l5:
 				t67 := int32(m.memory[uint32(v1+v5)])
 				v6 = t67
 				if v6 != 0 {
-					v9 = v7 & i32(255)
-					if v9 != v6 {
+					if v6 != v7 {
 						goto l32
 					}
 					if uint32(v2) >= uint32(v8) {
 						goto l31
 					}
 					t68 := int32(m.memory[uint32(v2+v5)])
-					if t68 != v9 {
+					if t68 != v7 {
 						goto l31
 					}
 					t69 := v0
@@ -1074,7 +1074,7 @@ l5:
 			} else {
 				p65 = v6
 			}
-			if p65 != v7&i32(255) {
+			if p65 != v9&i32(255) {
 				goto l8
 			}
 			goto l31
@@ -1592,10 +1592,10 @@ func (m *Module) _sql3_array_grow(v0, v1, v2 int32) int32 {
 			if uint32(v2) < uint32(i32(17)) {
 				goto l0
 			}
-			t2 := int32(load32(m.memory[uint32(i32(65952)):]))
+			t2 := int32(load32(m.memory[uint32(i32(65924)):]))
 			v3 = t2 - v0
 			if v3 == i32(16) {
-				store32(m.memory[uint32(i32(65952)):], uint32(v0))
+				store32(m.memory[uint32(i32(65924)):], uint32(v0))
 			}
 			{
 				t3 := m.Xmalloc(v2)
@@ -2331,4 +2331,4 @@ func memory_copy[T uint32 | uint64](mem []byte, dest, src, n T) {
 	copy(mem[x:y], mem[z:w])
 }
 
-const data0 = "temporary\x00primary\x00initially\x00key\x00without\x00abort\x00not\x00constraint\x00autoincrement\x00default\x00set\x00restrict\x00conflict\x00always\x00exists\x00references\x00as\x00alter\x00drop\x00temp\x00to\x00no\x00action\x00column\x00foreign\x00null\x00fail\x00virtual\x00check\x00rollback\x00match\x00if\x00unique\x00delete\x00collate\x00immediate\x00create\x00update\x00ignore\x00rename\x00table\x00deferrable\x00cascade\x00replace\x00rowid\x00generated\x00deferred\x00stored\x00add\x00desc\x00asc\x00\x00\x00\x00\x90\x00\x01\x00\x04\x00\x00\x00\x15\x00\x00\x00\x16\x00\x00\x00\x00\x00\x00\x00\x18\x00\x00\x00\x19\x00\x00\x00\x1a\x00\x00\x00\x16\x00\x00\x00\x00\x00\x00\x00\x18\x00\x00\x00\x19\x00\x00\x00\x1a\x00\x00\x00\x00\x00\x02\x00\xb0\x01\x01"
+const data0 = "temporary\x00primary\x00initially\x00key\x00without\x00abort\x00not\x00constraint\x00autoincrement\x00default\x00set\x00restrict\x00conflict\x00always\x00exists\x00references\x00as\x00alter\x00drop\x00temp\x00to\x00no\x00action\x00column\x00foreign\x00null\x00fail\x00virtual\x00check\x00rollback\x00match\x00if\x00unique\x00delete\x00collate\x00immediate\x00create\x00update\x00ignore\x00rename\x00table\x00deferrable\x00cascade\x00replace\x00rowid\x00generated\x00deferred\x00stored\x00add\x00desc\x00asc\x00\x00\x00\x00\x90\x00\x01\x00\x04\x00\x00\x00\x15\x16\x00\x18\x19\x1a\x00\x00\x16\x00\x18\x19\x1a\x00\x00\x00\x00\x00\x02\x00\x90\x01\x01"

@@ -688,11 +688,11 @@ l0:
 		t3 := int32(load32((*m.memory)[uint32(v2):]))
 		t4 := v3 - i32(4)
 		v4 = t3
-		store32((*m.memory)[uint32(t4):], uint32(i32_rotr(v4, i32(24))&i32(0xff00ff)|i32_rotr(v4&i32(0xff00ff), i32(8))))
+		store32((*m.memory)[uint32(t4):], uint32(int32(uint32((i32_rotr(v4, i32(16))^v4)&i32(-0xff0100))>>8)^i32_rotr(v4, i32(8))))
 		t5 := int32(load32((*m.memory)[int64(uint32(v2))+4:]))
 		t6 := v3
 		v4 = t5
-		store32((*m.memory)[uint32(t6):], uint32(i32_rotr(v4, i32(24))&i32(0xff00ff)|i32_rotr(v4&i32(0xff00ff), i32(8))))
+		store32((*m.memory)[uint32(t6):], uint32(int32(uint32((i32_rotr(v4, i32(16))^v4)&i32(-0xff0100))>>8)^i32_rotr(v4, i32(8))))
 		v2 = v2 + i32(8)
 		v3 = v3 + i32(8)
 		v1 = v1 + i32(2)
@@ -1020,25 +1020,25 @@ func (m *Module) _rtreeCheckNode(v0, v1, v2 int32, v3 int64) {
 			v5 = t11
 			t12 := int32(load32((*m.memory)[int64(uint32(v0))+20:]))
 			t13 := m._sqlite3_column_blob(t12, i32(0))
-			v7 = t13
+			v8 = t13
 			t14 := m._sqlite3_malloc64(int64(v5))
-			v6 = t14
-			if v6 == 0 {
+			v7 = t14
+			if v7 == 0 {
 				store32((*m.memory)[int64(uint32(v0))+40:], uint32(i32(7)))
 				v5 = i32(0)
-				v6 = i32(0)
+				v7 = i32(0)
 				goto l1
 			}
 			if v5 == 0 {
 				goto l1
 			}
-			memory_copy(*m.memory, uint32(v6), uint32(v7), uint32(v5))
+			memory_copy(*m.memory, uint32(v7), uint32(v8), uint32(v5))
 		}
 	l1:
 		t15 := int32(load32((*m.memory)[int64(uint32(v0))+20:]))
 		m._rtreeCheckReset(v0, t15)
 		{
-			if v6 != 0 {
+			if v7 != 0 {
 				goto l2
 			}
 			t16 := int32(load32((*m.memory)[int64(uint32(v0))+40:]))
@@ -1050,7 +1050,7 @@ func (m *Module) _rtreeCheckNode(v0, v1, v2 int32, v3 int64) {
 			goto l0
 		}
 	l2:
-		if v6 == 0 {
+		if v7 == 0 {
 			goto l0
 		}
 		{
@@ -1064,8 +1064,8 @@ func (m *Module) _rtreeCheckNode(v0, v1, v2 int32, v3 int64) {
 				if v2 != 0 {
 					goto l4
 				}
-				t17 := int32((*m.memory)[int64(uint32(v6))+1])
-				t18 := int32((*m.memory)[uint32(v6)])
+				t17 := int32((*m.memory)[int64(uint32(v7))+1])
+				t18 := int32((*m.memory)[uint32(v7)])
 				v1 = t17 | t18<<8
 				if uint32(v1) < uint32(i32(41)) {
 					goto l4
@@ -1075,13 +1075,13 @@ func (m *Module) _rtreeCheckNode(v0, v1, v2 int32, v3 int64) {
 				goto l3
 			}
 		l4:
-			t19 := int32((*m.memory)[int64(uint32(v6))+3])
-			t20 := int32((*m.memory)[int64(uint32(v6))+2])
+			t19 := int32((*m.memory)[int64(uint32(v7))+3])
+			t20 := int32((*m.memory)[int64(uint32(v7))+2])
 			t21 := v5
 			v13 = t19 | t20<<8
 			t22 := int32(load32((*m.memory)[int64(uint32(v0))+16:]))
 			if t21 >= v13*(t22<<3+i32(8))|i32(4) {
-				v14 = v6 + i32(16)
+				v14 = v7 + i32(16)
 				v15 = v1 - i32(1)
 			l11:
 				{
@@ -1089,45 +1089,45 @@ func (m *Module) _rtreeCheckNode(v0, v1, v2 int32, v3 int64) {
 						goto l3
 					}
 					t23 := int32(load32((*m.memory)[int64(uint32(v0))+16:]))
-					v8 = t23
-					v7 = (v8<<3 + i32(8)) * v9
-					v5 = v7 + v14
-					v7 = v6 + v7
-					v16 = v7 + i32(12)
-					t24 := m._readInt64(v7 + i32(4))
+					v6 = t23
+					v8 = (v6<<3 + i32(8)) * v9
+					v5 = v8 + v14
+					v8 = v7 + v8
+					v16 = v8 + i32(12)
+					t24 := m._readInt64(v8 + i32(4))
 					v17 = t24
 					v10 = i32(0)
-					v7 = v2
+					v8 = v2
 				l9:
-					if v8 > v10 {
+					if v6 > v10 {
 						t25 := int32(load32((*m.memory)[uint32(v5-i32(4)):]))
 						t26 := v4
-						v8 = t25
-						store32((*m.memory)[int64(uint32(t26))+124:], uint32(i32_rotr(v8, i32(24))&i32(0xff00ff)|i32_rotr(v8&i32(0xff00ff), i32(8))))
+						v6 = t25
+						store32((*m.memory)[int64(uint32(t26))+124:], uint32(int32(uint32((i32_rotr(v6, i32(16))^v6)&i32(-0xff0100))>>8)^i32_rotr(v6, i32(8))))
 						t27 := int32(load32((*m.memory)[uint32(v5):]))
 						t28 := v4
-						v8 = t27
-						store32((*m.memory)[int64(uint32(t28))+120:], uint32(i32_rotr(v8, i32(24))&i32(0xff00ff)|i32_rotr(v8&i32(0xff00ff), i32(8))))
+						v6 = t27
+						store32((*m.memory)[int64(uint32(t28))+120:], uint32(int32(uint32((i32_rotr(v6, i32(16))^v6)&i32(-0xff0100))>>8)^i32_rotr(v6, i32(8))))
 						{
 							t29 := int32(load32((*m.memory)[int64(uint32(v0))+12:]))
 							if t29 != 0 {
 								t30 := int32(load32((*m.memory)[int64(uint32(v4))+120:]))
-								v11 = t30
-								v18 = math.Float32frombits(uint32(v11))
+								v12 = t30
+								v18 = math.Float32frombits(uint32(v12))
 								t31 := int32(load32((*m.memory)[int64(uint32(v4))+124:]))
-								v8 = t31
-								v19 = math.Float32frombits(uint32(v8))
-								if v8 > v11 {
+								v6 = t31
+								v19 = math.Float32frombits(uint32(v6))
+								if v6 > v12 {
 									goto l5
 								}
 								goto l6
 							}
 							t32 := math.Float32frombits(load32((*m.memory)[int64(uint32(v4))+120:]))
 							v18 = t32
-							v11 = int32(math.Float32bits(v18))
+							v12 = int32(math.Float32bits(v18))
 							t33 := math.Float32frombits(load32((*m.memory)[int64(uint32(v4))+124:]))
 							v19 = t33
-							v8 = int32(math.Float32bits(v19))
+							v6 = int32(math.Float32bits(v19))
 							if !(v18 < v19) {
 								goto l6
 							}
@@ -1142,23 +1142,23 @@ func (m *Module) _rtreeCheckNode(v0, v1, v2 int32, v3 int64) {
 							if v2 == 0 {
 								goto l7
 							}
-							t34 := int32(load32((*m.memory)[uint32(v7):]))
+							t34 := int32(load32((*m.memory)[uint32(v8):]))
 							t35 := v4
-							v12 = t34
-							store32((*m.memory)[int64(uint32(t35))+116:], uint32(i32_rotr(v12, i32(24))&i32(0xff00ff)|i32_rotr(v12&i32(0xff00ff), i32(8))))
-							t36 := int32(load32((*m.memory)[int64(uint32(v7))+4:]))
+							v11 = t34
+							store32((*m.memory)[int64(uint32(t35))+116:], uint32(int32(uint32((i32_rotr(v11, i32(16))^v11)&i32(-0xff0100))>>8)^i32_rotr(v11, i32(8))))
+							t36 := int32(load32((*m.memory)[int64(uint32(v8))+4:]))
 							t37 := v4
-							v12 = t36
-							store32((*m.memory)[int64(uint32(t37))+112:], uint32(i32_rotr(v12, i32(24))&i32(0xff00ff)|i32_rotr(v12&i32(0xff00ff), i32(8))))
+							v11 = t36
+							store32((*m.memory)[int64(uint32(t37))+112:], uint32(int32(uint32((i32_rotr(v11, i32(16))^v11)&i32(-0xff0100))>>8)^i32_rotr(v11, i32(8))))
 							{
 								t38 := int32(load32((*m.memory)[int64(uint32(v0))+12:]))
 								if t38 != 0 {
 									t39 := int32(load32((*m.memory)[int64(uint32(v4))+116:]))
-									if v8 < t39 {
+									if v6 < t39 {
 										goto l8
 									}
 									t40 := int32(load32((*m.memory)[int64(uint32(v4))+112:]))
-									if v11 > t40 {
+									if v12 > t40 {
 										goto l8
 									}
 									goto l7
@@ -1180,10 +1180,10 @@ func (m *Module) _rtreeCheckNode(v0, v1, v2 int32, v3 int64) {
 						}
 					l7:
 						v5 = v5 + i32(8)
-						v7 = v7 + i32(8)
+						v8 = v8 + i32(8)
 						v10 = v10 + i32(1)
 						t43 := int32(load32((*m.memory)[int64(uint32(v0))+16:]))
-						v8 = t43
+						v6 = t43
 						goto l9
 					}
 					{
@@ -1209,7 +1209,7 @@ func (m *Module) _rtreeCheckNode(v0, v1, v2 int32, v3 int64) {
 			m._rtreeCheckAppendMsg(v0, m.___memory_base+i32(2161), v4+i32(48))
 		}
 	l3:
-		m._sqlite3_free(v6)
+		m._sqlite3_free(v7)
 	}
 l0:
 	*m.___stack_pointer = v4 + i32(128)
@@ -2503,7 +2503,7 @@ l32:
 		{
 			t5 := int32((*m.memory)[int64(uint32(v0))+5])
 			if t5 == 0 {
-				v2 = i32(1)
+				v3 = i32(1)
 				t6 := int32(load32((*m.memory)[int64(uint32(v0))+24:]))
 				if t6 == 0 {
 					goto l0
@@ -2518,18 +2518,18 @@ l32:
 			if t8 != 0 {
 				goto l1
 			}
-			v2 = i32(0)
+			v3 = i32(0)
 		}
 	l0:
-		(*m.memory)[int64(uint32(v0))+4] = byte(v2)
-		v2 = i32(0)
+		(*m.memory)[int64(uint32(v0))+4] = byte(v3)
+		v3 = i32(0)
 		goto l2
 	l1:
 		t9 := m._rtreeNodeOfFirstSearchPoint(v0, v1+i32(8))
 		v7 = t9
 		t10 := int32(load32((*m.memory)[int64(uint32(v1))+8:]))
-		v2 = t10
-		if v2 != 0 {
+		v3 = t10
+		if v3 != 0 {
 			goto l2
 		}
 		{
@@ -2543,11 +2543,11 @@ l32:
 			}
 			t14 := int32((*m.memory)[int64(uint32(v6))+18])
 			t15 := v7
-			v2 = t14
+			v3 = t14
 			t16 := int32((*m.memory)[int64(uint32(v11))+23])
-			v5 = t15 + v2*t16 + i32(4)
+			v5 = t15 + v3*t16 + i32(4)
 		l31:
-			if uint32(v12) <= uint32(v2&i32(255)) {
+			if uint32(v12) <= uint32(v3&i32(255)) {
 				goto l4
 			}
 			v13 = i32(8)
@@ -2560,11 +2560,11 @@ l32:
 					{
 						if v7 != 0 {
 							t17 := int32(load32((*m.memory)[int64(uint32(v0))+16:]))
-							v2 = t17 + v13
-							t18 := int32(load32((*m.memory)[uint32(v2-i32(4)):]))
+							v3 = t17 + v13
+							t18 := int32(load32((*m.memory)[uint32(v3-i32(4)):]))
 							v8 = t18
 							if v8 >= i32(70) {
-								t19 := int32(load32((*m.memory)[int64(uint32(v2))+8:]))
+								t19 := int32(load32((*m.memory)[int64(uint32(v3))+8:]))
 								v4 = t19
 								t20 := int32(load32((*m.memory)[int64(uint32(v4))+28:]))
 								v14 = t20
@@ -2587,70 +2587,70 @@ l32:
 									case 6:
 										t25 := int32(load32((*m.memory)[int64(uint32(v5))+44:]))
 										t26 := v1
-										v3 = t25
-										store32((*m.memory)[int64(uint32(t26))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+										v2 = t25
+										store32((*m.memory)[int64(uint32(t26))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 										t27 := math.Float32frombits(load32((*m.memory)[int64(uint32(v1))+108:]))
 										store64((*m.memory)[int64(uint32(v1))+88:], math.Float64bits(float64(t27)))
 										t28 := int32(load32((*m.memory)[int64(uint32(v5))+40:]))
 										t29 := v1
-										v3 = t28
-										store32((*m.memory)[int64(uint32(t29))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+										v2 = t28
+										store32((*m.memory)[int64(uint32(t29))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 										t30 := math.Float32frombits(load32((*m.memory)[int64(uint32(v1))+108:]))
 										store64((*m.memory)[int64(uint32(v1))+80:], math.Float64bits(float64(t30)))
 										fallthrough
 									case 4:
 										t31 := int32(load32((*m.memory)[int64(uint32(v5))+36:]))
 										t32 := v1
-										v3 = t31
-										store32((*m.memory)[int64(uint32(t32))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+										v2 = t31
+										store32((*m.memory)[int64(uint32(t32))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 										t33 := math.Float32frombits(load32((*m.memory)[int64(uint32(v1))+108:]))
 										store64((*m.memory)[int64(uint32(v1))+72:], math.Float64bits(float64(t33)))
 										t34 := int32(load32((*m.memory)[int64(uint32(v5))+32:]))
 										t35 := v1
-										v3 = t34
-										store32((*m.memory)[int64(uint32(t35))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+										v2 = t34
+										store32((*m.memory)[int64(uint32(t35))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 										t36 := math.Float32frombits(load32((*m.memory)[int64(uint32(v1))+108:]))
 										store64((*m.memory)[int64(uint32(v1))+64:], math.Float64bits(float64(t36)))
 										fallthrough
 									case 2:
 										t37 := int32(load32((*m.memory)[int64(uint32(v5))+28:]))
 										t38 := v1
-										v3 = t37
-										store32((*m.memory)[int64(uint32(t38))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+										v2 = t37
+										store32((*m.memory)[int64(uint32(t38))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 										t39 := math.Float32frombits(load32((*m.memory)[int64(uint32(v1))+108:]))
 										store64((*m.memory)[int64(uint32(v1))+56:], math.Float64bits(float64(t39)))
 										t40 := int32(load32((*m.memory)[int64(uint32(v5))+24:]))
 										t41 := v1
-										v3 = t40
-										store32((*m.memory)[int64(uint32(t41))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+										v2 = t40
+										store32((*m.memory)[int64(uint32(t41))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 										t42 := math.Float32frombits(load32((*m.memory)[int64(uint32(v1))+108:]))
 										store64((*m.memory)[int64(uint32(v1))+48:], math.Float64bits(float64(t42)))
 										fallthrough
 									case 0:
 										t43 := int32(load32((*m.memory)[int64(uint32(v5))+20:]))
 										t44 := v1
-										v3 = t43
-										store32((*m.memory)[int64(uint32(t44))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+										v2 = t43
+										store32((*m.memory)[int64(uint32(t44))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 										t45 := math.Float32frombits(load32((*m.memory)[int64(uint32(v1))+108:]))
 										store64((*m.memory)[int64(uint32(v1))+40:], math.Float64bits(float64(t45)))
 										t46 := int32(load32((*m.memory)[int64(uint32(v5))+16:]))
 										t47 := v1
-										v3 = t46
-										store32((*m.memory)[int64(uint32(t47))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+										v2 = t46
+										store32((*m.memory)[int64(uint32(t47))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 										t48 := math.Float32frombits(load32((*m.memory)[int64(uint32(v1))+108:]))
 										store64((*m.memory)[int64(uint32(v1))+32:], math.Float64bits(float64(t48)))
 										fallthrough
 									default:
 										t49 := int32(load32((*m.memory)[int64(uint32(v5))+12:]))
 										t50 := v1
-										v3 = t49
-										store32((*m.memory)[int64(uint32(t50))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+										v2 = t49
+										store32((*m.memory)[int64(uint32(t50))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 										t51 := math.Float32frombits(load32((*m.memory)[int64(uint32(v1))+108:]))
 										store64((*m.memory)[int64(uint32(v1))+24:], math.Float64bits(float64(t51)))
 										t52 := int32(load32((*m.memory)[int64(uint32(v5))+8:]))
 										t53 := v1
-										v3 = t52
-										store32((*m.memory)[int64(uint32(t53))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+										v2 = t52
+										store32((*m.memory)[int64(uint32(t53))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 										t54 := math.Float32frombits(load32((*m.memory)[int64(uint32(v1))+108:]))
 										t55 := float64(t54)
 										p23 = t55
@@ -2661,70 +2661,70 @@ l32:
 								case 6:
 									t56 := int32(load32((*m.memory)[int64(uint32(v5))+44:]))
 									t57 := v1
-									v3 = t56
-									store32((*m.memory)[int64(uint32(t57))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+									v2 = t56
+									store32((*m.memory)[int64(uint32(t57))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 									t58 := int32(load32((*m.memory)[int64(uint32(v1))+108:]))
 									store64((*m.memory)[int64(uint32(v1))+88:], math.Float64bits(float64(t58)))
 									t59 := int32(load32((*m.memory)[int64(uint32(v5))+40:]))
 									t60 := v1
-									v3 = t59
-									store32((*m.memory)[int64(uint32(t60))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+									v2 = t59
+									store32((*m.memory)[int64(uint32(t60))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 									t61 := int32(load32((*m.memory)[int64(uint32(v1))+108:]))
 									store64((*m.memory)[int64(uint32(v1))+80:], math.Float64bits(float64(t61)))
 									fallthrough
 								case 4:
 									t62 := int32(load32((*m.memory)[int64(uint32(v5))+36:]))
 									t63 := v1
-									v3 = t62
-									store32((*m.memory)[int64(uint32(t63))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+									v2 = t62
+									store32((*m.memory)[int64(uint32(t63))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 									t64 := int32(load32((*m.memory)[int64(uint32(v1))+108:]))
 									store64((*m.memory)[int64(uint32(v1))+72:], math.Float64bits(float64(t64)))
 									t65 := int32(load32((*m.memory)[int64(uint32(v5))+32:]))
 									t66 := v1
-									v3 = t65
-									store32((*m.memory)[int64(uint32(t66))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+									v2 = t65
+									store32((*m.memory)[int64(uint32(t66))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 									t67 := int32(load32((*m.memory)[int64(uint32(v1))+108:]))
 									store64((*m.memory)[int64(uint32(v1))+64:], math.Float64bits(float64(t67)))
 									fallthrough
 								case 2:
 									t68 := int32(load32((*m.memory)[int64(uint32(v5))+28:]))
 									t69 := v1
-									v3 = t68
-									store32((*m.memory)[int64(uint32(t69))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+									v2 = t68
+									store32((*m.memory)[int64(uint32(t69))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 									t70 := int32(load32((*m.memory)[int64(uint32(v1))+108:]))
 									store64((*m.memory)[int64(uint32(v1))+56:], math.Float64bits(float64(t70)))
 									t71 := int32(load32((*m.memory)[int64(uint32(v5))+24:]))
 									t72 := v1
-									v3 = t71
-									store32((*m.memory)[int64(uint32(t72))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+									v2 = t71
+									store32((*m.memory)[int64(uint32(t72))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 									t73 := int32(load32((*m.memory)[int64(uint32(v1))+108:]))
 									store64((*m.memory)[int64(uint32(v1))+48:], math.Float64bits(float64(t73)))
 									fallthrough
 								case 0:
 									t74 := int32(load32((*m.memory)[int64(uint32(v5))+20:]))
 									t75 := v1
-									v3 = t74
-									store32((*m.memory)[int64(uint32(t75))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+									v2 = t74
+									store32((*m.memory)[int64(uint32(t75))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 									t76 := int32(load32((*m.memory)[int64(uint32(v1))+108:]))
 									store64((*m.memory)[int64(uint32(v1))+40:], math.Float64bits(float64(t76)))
 									t77 := int32(load32((*m.memory)[int64(uint32(v5))+16:]))
 									t78 := v1
-									v3 = t77
-									store32((*m.memory)[int64(uint32(t78))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+									v2 = t77
+									store32((*m.memory)[int64(uint32(t78))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 									t79 := int32(load32((*m.memory)[int64(uint32(v1))+108:]))
 									store64((*m.memory)[int64(uint32(v1))+32:], math.Float64bits(float64(t79)))
 									fallthrough
 								default:
 									t80 := int32(load32((*m.memory)[int64(uint32(v5))+12:]))
 									t81 := v1
-									v3 = t80
-									store32((*m.memory)[int64(uint32(t81))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+									v2 = t80
+									store32((*m.memory)[int64(uint32(t81))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 									t82 := int32(load32((*m.memory)[int64(uint32(v1))+108:]))
 									store64((*m.memory)[int64(uint32(v1))+24:], math.Float64bits(float64(t82)))
 									t83 := int32(load32((*m.memory)[int64(uint32(v5))+8:]))
 									t84 := v1
-									v3 = t83
-									store32((*m.memory)[int64(uint32(t84))+108:], uint32(i32_rotr(v3, i32(24))&i32(0xff00ff)|i32_rotr(v3&i32(0xff00ff), i32(8))))
+									v2 = t83
+									store32((*m.memory)[int64(uint32(t84))+108:], uint32(int32(uint32((i32_rotr(v2, i32(16))^v2)&i32(-0xff0100))>>8)^i32_rotr(v2, i32(8))))
 									t85 := int32(load32((*m.memory)[int64(uint32(v1))+108:]))
 									p23 = float64(t85)
 								}
@@ -2734,9 +2734,9 @@ l32:
 								{
 									if v8 == i32(70) {
 										store32((*m.memory)[int64(uint32(v1))+12:], uint32(i32(0)))
-										t87 := int32(load32((*m.memory)[uint32(v2):]))
+										t87 := int32(load32((*m.memory)[uint32(v3):]))
 										t88 := (*m.t0)[uint(t87)].(func(int32, int32, int32, int32) int32)(v4, v14, v1+i32(16), v1+i32(12))
-										v2 = t88
+										v3 = t88
 										v18 = float64(0)
 										t89 := int32(load32((*m.memory)[int64(uint32(v1))+12:]))
 										p90 := i32(0)
@@ -2759,9 +2759,9 @@ l32:
 									t95 := int32((*m.memory)[int64(uint32(v6))+16])
 									store32((*m.memory)[int64(uint32(v4))+32:], uint32(t95-i32(1)))
 									store32((*m.memory)[int64(uint32(v4))+20:], uint32(v1+i32(16)))
-									t96 := int32(load32((*m.memory)[uint32(v2):]))
+									t96 := int32(load32((*m.memory)[uint32(v3):]))
 									t97 := (*m.t0)[uint(t96)].(func(int32) int32)(v4)
-									v2 = t97
+									v3 = t97
 									t98 := math.Float64frombits(load64((*m.memory)[int64(uint32(v4))+64:]))
 									v17 = t98
 									t100 := v17
@@ -2784,8 +2784,7 @@ l32:
 								}
 							l17:
 								v9 = p86
-								store32((*m.memory)[int64(uint32(v1))+8:], uint32(v2))
-								if v2 != 0 {
+								if v3 != 0 {
 									goto l2
 								}
 								if v9 != 0 {
@@ -2793,13 +2792,13 @@ l32:
 								}
 								goto l19
 							}
-							t104 := int32(load32((*m.memory)[uint32(v2-i32(8)):]))
+							t104 := int32(load32((*m.memory)[uint32(v3-i32(8)):]))
 							v4 = t104 << 2
 							t105 := int32((*m.memory)[int64(uint32(v6))+16])
 							if t105 == i32(1) {
 								t106 := int32(load32((*m.memory)[int64(uint32(v4+v5))+8:]))
 								v4 = t106
-								v4 = i32_rotr(v4, i32(24))&i32(0xff00ff) | i32_rotr(v4&i32(0xff00ff), i32(8))
+								v4 = int32(uint32((i32_rotr(v4, i32(16))^v4)&i32(-0xff0100))>>8) ^ i32_rotr(v4, i32(8))
 								p107 := float64(math.Float32frombits(uint32(v4)))
 								if v10 == i32(1) {
 									p107 = float64(v4)
@@ -2813,25 +2812,25 @@ l32:
 								case 3:
 									goto l21
 								case 4:
-									t108 := math.Float64frombits(load64((*m.memory)[uint32(v2):]))
+									t108 := math.Float64frombits(load64((*m.memory)[uint32(v3):]))
 									if v17 < t108 {
 										goto l18
 									}
 									goto l19
 								case 5:
-									t109 := math.Float64frombits(load64((*m.memory)[uint32(v2):]))
+									t109 := math.Float64frombits(load64((*m.memory)[uint32(v3):]))
 									if v17 >= t109 {
 										goto l18
 									}
 									goto l19
 								case 6:
-									t110 := math.Float64frombits(load64((*m.memory)[uint32(v2):]))
+									t110 := math.Float64frombits(load64((*m.memory)[uint32(v3):]))
 									if v17 > t110 {
 										goto l18
 									}
 									goto l19
 								default:
-									t111 := math.Float64frombits(load64((*m.memory)[uint32(v2):]))
+									t111 := math.Float64frombits(load64((*m.memory)[uint32(v3):]))
 									if v17 == t111 {
 										goto l18
 									}
@@ -2845,12 +2844,12 @@ l32:
 							case 1:
 								goto l19
 							case 2:
-								t112 := math.Float64frombits(load64((*m.memory)[uint32(v2):]))
+								t112 := math.Float64frombits(load64((*m.memory)[uint32(v3):]))
 								v17 = t112
 								t113 := int32(load32((*m.memory)[int64(uint32(v4))+8:]))
 								t114 := v17
 								v8 = t113
-								v8 = i32_rotr(v8, i32(24))&i32(0xff00ff) | i32_rotr(v8&i32(0xff00ff), i32(8))
+								v8 = int32(uint32((i32_rotr(v8, i32(16))^v8)&i32(-0xff0100))>>8) ^ i32_rotr(v8, i32(8))
 								t115 := float64(v8)
 								t116 := float64(math.Float32frombits(uint32(v8)))
 								var p117 int32
@@ -2867,37 +2866,37 @@ l32:
 								}
 								t119 := int32(load32((*m.memory)[int64(uint32(v4))+12:]))
 								t120 := v17
-								v2 = t119
-								v2 = i32_rotr(v2, i32(24))&i32(0xff00ff) | i32_rotr(v2&i32(0xff00ff), i32(8))
-								p121 := float64(math.Float32frombits(uint32(v2)))
+								v3 = t119
+								v3 = int32(uint32((i32_rotr(v3, i32(16))^v3)&i32(-0xff0100))>>8) ^ i32_rotr(v3, i32(8))
+								p121 := float64(math.Float32frombits(uint32(v3)))
 								if v8 != 0 {
-									p121 = float64(v2)
+									p121 = float64(v3)
 								}
 								if t120 <= p121 {
 									goto l18
 								}
 								goto l19
 							case 3, 4:
-								t122 := math.Float64frombits(load64((*m.memory)[uint32(v2):]))
+								t122 := math.Float64frombits(load64((*m.memory)[uint32(v3):]))
 								t123 := int32(load32((*m.memory)[int64(uint32(v4))+8:]))
-								v2 = t123
-								v2 = i32_rotr(v2, i32(24))&i32(0xff00ff) | i32_rotr(v2&i32(0xff00ff), i32(8))
-								p124 := float64(math.Float32frombits(uint32(v2)))
+								v3 = t123
+								v3 = int32(uint32((i32_rotr(v3, i32(16))^v3)&i32(-0xff0100))>>8) ^ i32_rotr(v3, i32(8))
+								p124 := float64(math.Float32frombits(uint32(v3)))
 								if v10 == i32(1) {
-									p124 = float64(v2)
+									p124 = float64(v3)
 								}
 								if t122 >= p124 {
 									goto l18
 								}
 								goto l19
 							default:
-								t125 := math.Float64frombits(load64((*m.memory)[uint32(v2):]))
+								t125 := math.Float64frombits(load64((*m.memory)[uint32(v3):]))
 								t126 := int32(load32((*m.memory)[int64(uint32(v4))+12:]))
-								v2 = t126
-								v2 = i32_rotr(v2, i32(24))&i32(0xff00ff) | i32_rotr(v2&i32(0xff00ff), i32(8))
-								p127 := float64(math.Float32frombits(uint32(v2)))
+								v3 = t126
+								v3 = int32(uint32((i32_rotr(v3, i32(16))^v3)&i32(-0xff0100))>>8) ^ i32_rotr(v3, i32(8))
+								p127 := float64(math.Float32frombits(uint32(v3)))
 								if v10 == i32(1) {
-									p127 = float64(v2)
+									p127 = float64(v3)
 								}
 								if !(t125 <= p127) {
 									goto l19
@@ -2923,7 +2922,7 @@ l32:
 									p133 = v6
 								}
 								v7 = p133 + i32(1)
-								v2 = i32(8)
+								v3 = i32(8)
 							l29:
 								{
 									v7 = v7 - i32(1)
@@ -2932,8 +2931,8 @@ l32:
 										goto l28
 									}
 									t134 := int32(load32((*m.memory)[int64(uint32(v0))+32:]))
-									v6 = t134 + v2
-									v2 = v2 + i32(24)
+									v6 = t134 + v3
+									v3 = v3 + i32(24)
 									t135 := int64(load64((*m.memory)[uint32(v6):]))
 									if v19 != t135 {
 										goto l29
@@ -2964,11 +2963,11 @@ l32:
 							}
 							goto l4
 						}
-						v2 = i32(7)
+						v3 = i32(7)
 						goto l2
 					}
 				l21:
-					t140 := math.Float64frombits(load64((*m.memory)[uint32(v2):]))
+					t140 := math.Float64frombits(load64((*m.memory)[uint32(v3):]))
 					if v17 <= t140 {
 						goto l18
 					}
@@ -2976,8 +2975,8 @@ l32:
 			l19:
 				t141 := int32((*m.memory)[int64(uint32(v6))+18])
 				t142 := v6
-				v2 = t141 + i32(1)
-				(*m.memory)[int64(uint32(t142))+18] = byte(v2)
+				v3 = t141 + i32(1)
+				(*m.memory)[int64(uint32(t142))+18] = byte(v3)
 				t143 := int32((*m.memory)[int64(uint32(v11))+23])
 				v5 = v5 + t143
 				goto l31
@@ -2992,10 +2991,10 @@ l32:
 		}
 	l3:
 	}
-	v2 = i32(267)
+	v3 = i32(267)
 l2:
 	*m.___stack_pointer = v1 + i32(112)
-	return v2
+	return v3
 }
 func (m *Module) _nodeRelease(v0, v1 int32) int32 {
 	var v2, v3 int32
@@ -3208,7 +3207,7 @@ l0:
 				t17 := int32(load32((*m.memory)[int64(uint32(v6+t16*v8+v2<<2))+8:]))
 				t18 := v5
 				v0 = t17
-				store32((*m.memory)[int64(uint32(t18))+12:], uint32(i32_rotr(v0, i32(24))&i32(0xff00ff)|i32_rotr(v0&i32(0xff00ff), i32(8))))
+				store32((*m.memory)[int64(uint32(t18))+12:], uint32(int32(uint32((i32_rotr(v0, i32(16))^v0)&i32(-0xff0100))>>8)^i32_rotr(v0, i32(8))))
 				t19 := int32((*m.memory)[int64(uint32(v4))+22])
 				if t19 == 0 {
 					t20 := math.Float32frombits(load32((*m.memory)[int64(uint32(v5))+12:]))
@@ -5757,7 +5756,7 @@ l0:
 			t5 := int32(load32((*m.memory)[uint32(v3):]))
 			t6 := v5
 			v6 = t5
-			store32((*m.memory)[uint32(t6):], uint32(i32_rotr(v6, i32(24))&i32(0xff00ff)|i32_rotr(v6&i32(0xff00ff), i32(8))))
+			store32((*m.memory)[uint32(t6):], uint32(int32(uint32((v6^i32_rotr(v6, i32(16)))&i32(-0xff0100))>>8)^i32_rotr(v6, i32(8))))
 			v3 = v3 + i32(4)
 			v2 = v2 + i32(1)
 			v5 = v5 + i32(4)
@@ -6453,351 +6452,346 @@ l0:
 	m._sqlite3_free(v2)
 }
 func (m *Module) _geopolyOverlap(v0, v1 int32) int32 {
-	var v2, v3, v4, v5, v6, v7, v8, v9, v10 int32
-	var v11, v12, v13 float64
+	var v2, v3, v4, v5, v6, v7, v8, v9 int32
+	var v10, v11, v12 float64
 	t0 := *m.___stack_pointer
-	v6 = t0 - i32(224)
-	*m.___stack_pointer = v6
+	v5 = t0 - i32(224)
+	*m.___stack_pointer = v5
 	{
 		t1 := int32(load32((*m.memory)[uint32(v0):]))
 		t2 := int32(load32((*m.memory)[uint32(v1):]))
 		v2 = t1 + t2 + i32(2)
 		t3 := m._sqlite3_malloc64(int64(v2)*i64(88) + i64(16))
-		v8 = t3
-		if v8 == 0 {
+		v7 = t3
+		if v7 == 0 {
 			v1 = i32(-1)
 			goto l0
 		}
-		store64((*m.memory)[int64(uint32(v8))+8:], uint64(i64(0)))
-		t4 := v8
-		v3 = v8 + i32(16)
+		store64((*m.memory)[int64(uint32(v7))+8:], uint64(i64(0)))
+		t4 := v7
+		v3 = v7 + i32(16)
 		store32((*m.memory)[uint32(t4):], uint32(v3))
-		store32((*m.memory)[int64(uint32(v8))+4:], uint32(v3+v2*i32(48)))
-		m._geopolyAddSegments(v8, v0, i32(1))
-		m._geopolyAddSegments(v8, v1, i32(2))
-		t5 := int32(load32((*m.memory)[int64(uint32(v8))+8:]))
+		store32((*m.memory)[int64(uint32(v7))+4:], uint32(v3+v2*i32(48)))
+		m._geopolyAddSegments(v7, v0, i32(1))
+		m._geopolyAddSegments(v7, v1, i32(2))
+		t5 := int32(load32((*m.memory)[int64(uint32(v7))+8:]))
 		v0 = t5
 		p6 := i32(0)
 		if v0 > i32(0) {
 			p6 = v0
 		}
-		v7 = p6
-		t7 := int32(load32((*m.memory)[uint32(v8):]))
-		v9 = t7
-	l4:
+		v4 = p6
+		t7 := int32(load32((*m.memory)[uint32(v7):]))
+		v6 = t7
+		v2 = i32(0)
+	l22:
 		{
-			if v5 == v7 {
-				v7 = i32(0)
+			if v4 == v8 {
+				v6 = i32(0)
 				p8 := i32(0)
-				if v4 > i32(0) {
-					p8 = v4
+				if v2 > i32(0) {
+					p8 = v2
 				}
 				v1 = p8
-				v0 = v6 + i32(16)
+				v0 = v5 + i32(16)
 			l2:
 				{
 					if v1 == 0 {
-						var p16 float64
-						if v7 != 0 {
-							t17 := math.Float64frombits(load64((*m.memory)[uint32(v7):]))
-							p18 := float64(0)
-							if t17 == float64(0) {
-								p18 = float64(-1)
+						var p13 float64
+						if v6 != 0 {
+							t14 := math.Float64frombits(load64((*m.memory)[uint32(v6):]))
+							p15 := float64(0)
+							if t14 == float64(0) {
+								p15 = float64(-1)
 							}
-							p16 = p18
+							p13 = p15
 						} else {
-							p16 = float64(0)
+							p13 = float64(0)
 						}
-						v11 = p16
-						store32((*m.memory)[int64(uint32(v6))+12:], uint32(i32(0)))
-						v4 = i32(0)
+						v10 = p13
+						store32((*m.memory)[int64(uint32(v5))+12:], uint32(i32(0)))
+						v8 = i32(0)
 						v3 = i32(0)
-					l22:
+					l21:
 						{
 							{
-								if v7 != 0 {
-									t19 := math.Float64frombits(load64((*m.memory)[uint32(v7):]))
-									v12 = t19
-									if v12 == v11 {
+								if v6 != 0 {
+									t16 := math.Float64frombits(load64((*m.memory)[uint32(v6):]))
+									v11 = t16
+									if v11 == v10 {
+										goto l5
+									}
+									if v8 == 0 {
 										goto l6
 									}
-									if v4 == 0 {
-										goto l7
-									}
-									v4 = i32(0)
-								l10:
-									{
-										if v3 == 0 {
-											v3 = i32(0)
-											p20 := i32(0)
-											if v4 > i32(0) {
-												p20 = v4
-											}
-											v1 = p20
-											v0 = v6 + i32(16)
-										l8:
-											{
-												if v1 == 0 {
-													goto l7
-												}
-												v1 = v1 - i32(1)
-												t21 := int32(load32((*m.memory)[uint32(v0):]))
-												t22 := m._geopolySegmentMerge(t21, v3)
-												v3 = t22
-												v0 = v0 + i32(4)
-												goto l8
-											}
-										}
-										t23 := int32(load32((*m.memory)[int64(uint32(v3))+36:]))
-										v5 = t23
+									v2 = i32(0)
+								l9:
+									if v3 != 0 {
+										t17 := int32(load32((*m.memory)[int64(uint32(v3))+36:]))
 										v0 = i32(0)
 										store32((*m.memory)[int64(uint32(v3))+36:], uint32(i32(0)))
-										p24 := i32(0)
-										if v4 > i32(0) {
-											p24 = v4
-										}
-										v2 = p24
-										v1 = v6 + i32(16)
-									l11:
+										v1 = v5 + i32(16)
+									l8:
 										{
-											if v0 != v2 {
-												t25 := int32(load32((*m.memory)[uint32(v1):]))
-												v9 = t25
-												if v9 != 0 {
-													t28 := m._geopolySegmentMerge(v9, v3)
-													v3 = t28
-													store32((*m.memory)[uint32(v1):], uint32(i32(0)))
-													v1 = v1 + i32(4)
-													v0 = v0 + i32(1)
-													goto l11
-												}
-												v2 = v0
+											if v0 == v2 {
+												v0 = v2
+												goto l7
 											}
-											store32((*m.memory)[uint32(v6+i32(16)+v2<<2):], uint32(v3))
-											t26 := v4
-											v0 = v2 + i32(1)
-											p27 := v0
-											if v0 < v4 {
-												p27 = t26
+											t18 := int32(load32((*m.memory)[uint32(v1):]))
+											v8 = t18
+											if v8 == 0 {
+												goto l7
 											}
-											v4 = p27
-											v3 = v5
+											t19 := m._geopolySegmentMerge(v8, v3)
+											v3 = t19
+											store32((*m.memory)[uint32(v1):], uint32(i32(0)))
+											v1 = v1 + i32(4)
+											v0 = v0 + i32(1)
+											goto l8
+										}
+									l7:
+										store32((*m.memory)[uint32(v5+i32(16)+v0<<2):], uint32(v3))
+										t20 := v2
+										v0 = v0 + i32(1)
+										p21 := v0
+										if v0 < v2 {
+											p21 = t20
+										}
+										v2 = p21
+										v3 = t17
+										goto l9
+									} else {
+										v3 = i32(0)
+										p22 := i32(0)
+										if v2 > i32(0) {
+											p22 = v2
+										}
+										v1 = p22
+										v0 = v5 + i32(16)
+									l10:
+										{
+											if v1 == 0 {
+												goto l6
+											}
+											v1 = v1 - i32(1)
+											t23 := int32(load32((*m.memory)[uint32(v0):]))
+											t24 := m._geopolySegmentMerge(t23, v3)
+											v3 = t24
+											v0 = v0 + i32(4)
 											goto l10
 										}
 									}
 								}
-								t29 := int32((*m.memory)[int64(uint32(v6))+15])
-								if t29 == 0 {
+								t25 := int32((*m.memory)[int64(uint32(v5))+15])
+								if t25 == 0 {
 									v1 = i32(0)
-									goto l12
+									goto l11
 								}
-								t30 := int32((*m.memory)[int64(uint32(v6))+14])
-								v0 = t30
+								t26 := int32((*m.memory)[int64(uint32(v5))+14])
+								v0 = t26
 								{
-									t31 := int32((*m.memory)[int64(uint32(v6))+13])
-									v1 = t31
+									t27 := int32((*m.memory)[int64(uint32(v5))+13])
+									v1 = t27
 									if v1 == 0 {
-										goto l13
+										goto l12
 									}
 									if v0 != 0 {
-										goto l13
+										goto l12
 									}
 									v1 = i32(3)
-									goto l12
+									goto l11
 								}
-							l13:
+							l12:
 								if v1 != 0 {
-									goto l14
+									goto l13
 								}
 								if v0 == 0 {
-									goto l14
+									goto l13
 								}
 								v1 = i32(2)
-								goto l12
-							l14:
-								p32 := i32(4)
+								goto l11
+							l13:
+								p28 := i32(4)
 								if v0|v1 != 0 {
-									p32 = i32(1)
+									p28 = i32(1)
 								}
-								v1 = p32
-								goto l12
+								v1 = p28
+								goto l11
 							}
-						l7:
+						l6:
 							v1 = i32(0)
 							v2 = v3
 							v0 = i32(0)
-						l16:
+						l15:
 							if v2 != 0 {
-								v5 = v2
+								v4 = v2
 								{
 									if v1 == 0 {
-										goto l15
+										goto l14
 									}
-									t33 := math.Float64frombits(load64((*m.memory)[int64(uint32(v1))+16:]))
-									t34 := math.Float64frombits(load64((*m.memory)[int64(uint32(v2))+16:]))
-									if t33 == t34 {
-										goto l15
+									t29 := math.Float64frombits(load64((*m.memory)[int64(uint32(v1))+16:]))
+									t30 := math.Float64frombits(load64((*m.memory)[int64(uint32(v2))+16:]))
+									if t29 == t30 {
+										goto l14
 									}
-									(*m.memory)[uint32(v6+i32(12)+v0)] = byte(i32(1))
+									(*m.memory)[uint32(v5+i32(12)+v0)] = byte(i32(1))
 								}
-							l15:
-								t35 := int32((*m.memory)[int64(uint32(v5))+28])
-								v0 = v0 ^ t35
-								t36 := int32(load32((*m.memory)[int64(uint32(v5))+36:]))
-								v2 = t36
-								v1 = v5
-								goto l16
+							l14:
+								t31 := int32((*m.memory)[int64(uint32(v4))+28])
+								v0 = v0 ^ t31
+								t32 := int32(load32((*m.memory)[int64(uint32(v4))+36:]))
+								v2 = t32
+								v1 = v4
+								goto l15
 							} else {
-								v4 = i32(0)
+								v8 = i32(0)
 								v2 = v3
 								v1 = i32(0)
-							l19:
+							l18:
 								{
-									v5 = v2
-									if v5 == 0 {
-										v11 = v12
-										goto l6
+									v4 = v2
+									if v4 == 0 {
+										v10 = v11
+										goto l5
 									}
-									t37 := math.Float64frombits(load64((*m.memory)[uint32(v5):]))
-									t38 := math.Float64frombits(load64((*m.memory)[int64(uint32(v5))+8:]))
-									t39 := v5
-									v11 = float64(float64(t37*v12) + t38)
-									store64((*m.memory)[int64(uint32(t39))+16:], math.Float64bits(v11))
+									t33 := math.Float64frombits(load64((*m.memory)[uint32(v4):]))
+									t34 := math.Float64frombits(load64((*m.memory)[int64(uint32(v4))+8:]))
+									t35 := v4
+									v10 = float64(float64(t33*v11) + t34)
+									store64((*m.memory)[int64(uint32(t35))+16:], math.Float64bits(v10))
 									if v1 == 0 {
-										goto l17
+										goto l16
 									}
 									{
-										t40 := math.Float64frombits(load64((*m.memory)[int64(uint32(v1))+16:]))
-										t41 := v11
-										v13 = t40
-										if !(t41 < v13) {
-											goto l18
+										t36 := math.Float64frombits(load64((*m.memory)[int64(uint32(v1))+16:]))
+										t37 := v10
+										v12 = t36
+										if !(t37 < v12) {
+											goto l17
 										}
-										t42 := int32((*m.memory)[int64(uint32(v1))+28])
-										t43 := int32((*m.memory)[int64(uint32(v5))+28])
-										if t42 == t43 {
-											goto l18
+										t38 := int32((*m.memory)[int64(uint32(v1))+28])
+										t39 := int32((*m.memory)[int64(uint32(v4))+28])
+										if t38 == t39 {
+											goto l17
 										}
 										v1 = i32(1)
-										goto l12
+										goto l11
 									}
-								l18:
-									if v11 == v13 {
-										goto l17
-									}
-									(*m.memory)[uint32(v6+i32(12)+v0)] = byte(i32(1))
 								l17:
-									t44 := int32((*m.memory)[int64(uint32(v5))+28])
-									v0 = v0 ^ t44
-									t45 := int32(load32((*m.memory)[int64(uint32(v5))+36:]))
-									v2 = t45
-									v1 = v5
-									goto l19
+									if v10 == v12 {
+										goto l16
+									}
+									(*m.memory)[uint32(v5+i32(12)+v0)] = byte(i32(1))
+								l16:
+									t40 := int32((*m.memory)[int64(uint32(v4))+28])
+									v0 = v0 ^ t40
+									t41 := int32(load32((*m.memory)[int64(uint32(v4))+36:]))
+									v2 = t41
+									v1 = v4
+									goto l18
 								}
 							}
-						l12:
-							m._sqlite3_free(v8)
+						l11:
+							m._sqlite3_free(v7)
 							goto l0
-						l6:
-							t46 := int32(load32((*m.memory)[int64(uint32(v7))+12:]))
-							v2 = t46
+						l5:
+							t42 := int32(load32((*m.memory)[int64(uint32(v6))+12:]))
+							v2 = t42
 							{
-								t47 := int32(load32((*m.memory)[int64(uint32(v7))+8:]))
-								if t47 == 0 {
+								t43 := int32(load32((*m.memory)[int64(uint32(v6))+8:]))
+								if t43 == 0 {
 									store32((*m.memory)[int64(uint32(v2))+36:], uint32(v3))
-									t48 := math.Float32frombits(load32((*m.memory)[int64(uint32(v2))+24:]))
-									store64((*m.memory)[int64(uint32(v2))+16:], math.Float64bits(float64(t48)))
-									v4 = i32(1)
+									t44 := math.Float32frombits(load32((*m.memory)[int64(uint32(v2))+24:]))
+									store64((*m.memory)[int64(uint32(v2))+16:], math.Float64bits(float64(t44)))
+									v8 = i32(1)
 									v3 = v2
-									goto l20
+									goto l19
 								}
-								t49 := v2
+								t45 := v2
 								v1 = v3
-								if t49 == v1 {
+								if t45 == v1 {
 									if v1 == 0 {
 										v3 = i32(0)
-										goto l20
+										goto l19
 									}
-									t50 := int32(load32((*m.memory)[int64(uint32(v3))+36:]))
-									v3 = t50
-									goto l20
+									t46 := int32(load32((*m.memory)[int64(uint32(v3))+36:]))
+									v3 = t46
+									goto l19
 								}
-							l21:
+							l20:
 								{
 									v0 = v1
 									if v0 == 0 {
+										goto l19
+									}
+									t47 := int32(load32((*m.memory)[int64(uint32(v0))+36:]))
+									t48 := v2
+									v1 = t47
+									if t48 != v1 {
 										goto l20
 									}
-									t51 := int32(load32((*m.memory)[int64(uint32(v0))+36:]))
-									t52 := v2
-									v1 = t51
-									if t52 != v1 {
-										goto l21
-									}
 								}
-								t54 := v0
-								var p53 int32
+								t50 := v0
+								var p49 int32
 								if v2 != 0 {
-									t55 := int32(load32((*m.memory)[int64(uint32(v1))+36:]))
-									p53 = t55
+									t51 := int32(load32((*m.memory)[int64(uint32(v1))+36:]))
+									p49 = t51
 								} else {
-									p53 = i32(0)
+									p49 = i32(0)
 								}
-								store32((*m.memory)[int64(uint32(t54))+36:], uint32(p53))
+								store32((*m.memory)[int64(uint32(t50))+36:], uint32(p49))
 							}
-						l20:
-							t56 := int32(load32((*m.memory)[int64(uint32(v7))+16:]))
-							v7 = t56
-							goto l22
+						l19:
+							t52 := int32(load32((*m.memory)[int64(uint32(v6))+16:]))
+							v6 = t52
+							goto l21
 						}
 					}
 					v1 = v1 - i32(1)
 					t9 := int32(load32((*m.memory)[uint32(v0):]))
-					t10 := m._geopolyEventMerge(t9, v7)
-					v7 = t10
+					t10 := m._geopolyEventMerge(t9, v6)
+					v6 = t10
 					v0 = v0 + i32(4)
 					goto l2
 				}
 			}
 			v0 = i32(0)
-			v3 = v9 + v5*i32(24)
+			v3 = v6 + v8*i32(24)
 			store32((*m.memory)[int64(uint32(v3))+16:], uint32(i32(0)))
-			p11 := i32(0)
-			if v4 > i32(0) {
-				p11 = v4
-			}
-			v2 = p11
-			v1 = v6 + i32(16)
-		l5:
+			v1 = v5 + i32(16)
+		l4:
 			{
-				if v0 != v2 {
-					t12 := int32(load32((*m.memory)[uint32(v1):]))
-					v10 = t12
-					if v10 != 0 {
-						t15 := m._geopolyEventMerge(v10, v3)
-						v3 = t15
-						store32((*m.memory)[uint32(v1):], uint32(i32(0)))
-						v1 = v1 + i32(4)
-						v0 = v0 + i32(1)
-						goto l5
-					}
-					v2 = v0
+				if v0 == v2 {
+					v0 = v2
+					goto l3
 				}
-				store32((*m.memory)[uint32(v6+i32(16)+v2<<2):], uint32(v3))
-				t13 := v4
-				v0 = v2 + i32(1)
-				p14 := v0
-				if v0 < v4 {
-					p14 = t13
+				t11 := int32(load32((*m.memory)[uint32(v1):]))
+				v9 = t11
+				if v9 == 0 {
+					goto l3
 				}
-				v4 = p14
-				v5 = v5 + i32(1)
+				t12 := m._geopolyEventMerge(v9, v3)
+				v3 = t12
+				store32((*m.memory)[uint32(v1):], uint32(i32(0)))
+				v1 = v1 + i32(4)
+				v0 = v0 + i32(1)
 				goto l4
 			}
+		l3:
+			store32((*m.memory)[uint32(v5+i32(16)+v0<<2):], uint32(v3))
+			t53 := v2
+			v0 = v0 + i32(1)
+			p54 := v0
+			if v0 < v2 {
+				p54 = t53
+			}
+			v2 = p54
+			v8 = v8 + i32(1)
+			goto l22
 		}
 	}
 l0:
-	*m.___stack_pointer = v6 + i32(224)
+	*m.___stack_pointer = v5 + i32(224)
 	return v1
 }
 func (m *Module) _geopolyContainsPointFunc(v0, v1, v2 int32) {

@@ -33,7 +33,7 @@ func New(v0 Xenv) *Module {
 	m.___stack_pointer = v0.X__stack_pointer()
 	m.___memory_base = *v0.X__memory_base()
 	m.___table_base = *v0.X__table_base()
-	m.elements = [][]any{{m._fts5CreateAux, m._fts5FindTokenizer_v2, m._fts5CreateTokenizer_v2, m._fts5FindTokenizer, m._fts5CreateTokenizer, m._fts5ModuleDestroy, m._fts5Fts5Func, m._fts5SourceIdFunc, m._fts5LocaleFunc, m._fts5InsttokenFunc, m._fts5V1toV2Tokenize, m._fts5VtoVCreate, m._fts5VtoVDelete, m._fts5V2toV1Tokenize, m._local_sqlite3_free, m._go_destroy_wrapper, m._go_fts5_function_wrapper, m._fts5ColumnSizeCb, m._prefixIterSetupTokendataCb, m._fts5StorageInsertCallback, m._fts5MergeChunkCallback, m._fts5StorageIntegrityCallback, m._fts5ApiCallback, m._fts5TriCreate, m._fts5ParseTokenize, m._fts5ExprNodeNext_OR, m._fts5ExprNodeNext_STRING, m._fts5ExprNodeNext_TERM, m._fts5ExprNodeNext_AND, m._fts5ExprNodeNext_NOT, m._fts5AppendRowid, m._fts5MergeRowidLists, m._fts5AppendPoslist, m._fts5MergePrefixLists, m._prefixIterSetupCb, _fts5IterSetOutputs_Noop, m._fts5SegIterNext_Reverse, m._fts5SegIterNext_None, m._fts5SegIterNext, m._fts5IterSetOutputs_None, m._fts5IterSetOutputs_Nocolset, m._fts5IterSetOutputs_ZeroColset, m._fts5IterSetOutputs_Full, m._fts5IterSetOutputs_Col100, m._fts5IterSetOutputs_Col, m._fts5PoslistCallback, m._fts5PoslistFilterCallback, m._fts5PoslistOffsetsCallback, m._fts5SentenceFinderCb, m._fts5HighlightCb, m._fts5CountCb, m._fts5PorterCb, m._fts5ExprPopulatePoslistsCb, m._go_fts5_create_wrapper, m._go_destroy_wrapper, m._go_fts5_tokenize_wrapper, m._fts5ApiUserData, m.Xfts5_xColumnCount, m._fts5ApiRowCount, m._fts5ApiColumnTotalSize, m._fts5ApiTokenize, m.Xfts5_xPhraseCount, m._fts5ApiPhraseSize, m._fts5ApiInstCount, m._fts5ApiInst, m.Xfts5_xRowid, m._fts5ApiColumnText, m._fts5ApiColumnSize, m._fts5ApiQueryPhrase, m._fts5ApiSetAuxdata, m._fts5ApiGetAuxdata, m._fts5ApiPhraseFirst, m._fts5ApiPhraseNext, m._fts5ApiPhraseFirstColumn, m._fts5ApiPhraseNextColumn, m._fts5ApiQueryToken, m._fts5ApiInstToken, m._fts5ApiColumnLocale, m._fts5ApiTokenize_v2, m._fts5CreateMethod, m._fts5ConnectMethod, m._fts5BestIndexMethod, m._fts5DisconnectMethod, m._fts5DestroyMethod, m._fts5OpenMethod, m._fts5CloseMethod, m._fts5FilterMethod, m._fts5NextMethod, m._fts5EofMethod, m._fts5ColumnMethod, m._fts5RowidMethod, m._fts5UpdateMethod, m._fts5BeginMethod, m._fts5SyncMethod, _fts5CommitMethod, m._fts5RollbackMethod, m._fts5FindFunctionMethod, m._fts5RenameMethod, m._fts5SavepointMethod, m._fts5ReleaseMethod, m._fts5RollbackToMethod, m._fts5ShadowName, m._fts5IntegrityMethod, m._fts5SnippetFunction, m._fts5HighlightFunction, m._fts5Bm25Function, m._fts5GetLocaleFunction, m._fts5UnicodeCreate, m._fts5UnicodeDelete, m._fts5UnicodeTokenize, m._fts5AsciiCreate, m._local_sqlite3_free, m._fts5AsciiTokenize, m._local_sqlite3_free, m._fts5TriTokenize, m._fts5PorterCreate, m._fts5PorterDelete, m._fts5PorterTokenize, m._fts5VocabCreateMethod, m._fts5VocabCreateMethod, m._fts5VocabBestIndexMethod, m._fts5VocabDisconnectMethod, m._fts5VocabDisconnectMethod, m._fts5VocabOpenMethod, m._fts5VocabCloseMethod, m._fts5VocabFilterMethod, m._fts5VocabNextMethod, m._fts5VocabEofMethod, m._fts5VocabColumnMethod, m._fts5VocabRowidMethod}}
+	m.elements = [][]any{{m._fts5CreateAux, m._fts5FindTokenizer_v2, m._fts5CreateTokenizer_v2, m._fts5FindTokenizer, m._fts5CreateTokenizer, m._fts5ModuleDestroy, m._fts5Fts5Func, m._fts5SourceIdFunc, m._fts5LocaleFunc, m._fts5InsttokenFunc, m._fts5V1toV2Tokenize, m._fts5VtoVCreate, m._fts5VtoVDelete, m._fts5V2toV1Tokenize, m._local_sqlite3_free, m._go_destroy_wrapper, m._go_fts5_function_wrapper, m._fts5ColumnSizeCb, m._prefixIterSetupTokendataCb, m._go_fts5_token_wrapper, m._fts5StorageInsertCallback, m._fts5MergeChunkCallback, m._fts5StorageIntegrityCallback, m._fts5ApiCallback, m._fts5TriCreate, m._fts5ParseTokenize, m._fts5ExprNodeNext_OR, m._fts5ExprNodeNext_STRING, m._fts5ExprNodeNext_TERM, m._fts5ExprNodeNext_AND, m._fts5ExprNodeNext_NOT, m._fts5AppendRowid, m._fts5MergeRowidLists, m._fts5AppendPoslist, m._fts5MergePrefixLists, m._prefixIterSetupCb, _fts5IterSetOutputs_Noop, m._fts5SegIterNext_Reverse, m._fts5SegIterNext_None, m._fts5SegIterNext, m._fts5IterSetOutputs_None, m._fts5IterSetOutputs_Nocolset, m._fts5IterSetOutputs_ZeroColset, m._fts5IterSetOutputs_Full, m._fts5IterSetOutputs_Col100, m._fts5IterSetOutputs_Col, m._fts5PoslistCallback, m._fts5PoslistFilterCallback, m._fts5PoslistOffsetsCallback, m._fts5SentenceFinderCb, m._fts5HighlightCb, m._fts5CountCb, m._fts5PorterCb, m._fts5ExprPopulatePoslistsCb, m._go_fts5_create_wrapper, m._go_fts5_tokenize_wrapper, m._fts5ApiUserData, m.Xfts5_xColumnCount, m._fts5ApiRowCount, m._fts5ApiColumnTotalSize, m._fts5ApiTokenize, m.Xfts5_xPhraseCount, m._fts5ApiPhraseSize, m._fts5ApiInstCount, m._fts5ApiInst, m.Xfts5_xRowid, m._fts5ApiColumnText, m._fts5ApiColumnSize, m._fts5ApiQueryPhrase, m._fts5ApiSetAuxdata, m._fts5ApiGetAuxdata, m._fts5ApiPhraseFirst, m._fts5ApiPhraseNext, m._fts5ApiPhraseFirstColumn, m._fts5ApiPhraseNextColumn, m._fts5ApiQueryToken, m._fts5ApiInstToken, m._fts5ApiColumnLocale, m._fts5ApiTokenize_v2, m._fts5CreateMethod, m._fts5ConnectMethod, m._fts5BestIndexMethod, m._fts5DisconnectMethod, m._fts5DestroyMethod, m._fts5OpenMethod, m._fts5CloseMethod, m._fts5FilterMethod, m._fts5NextMethod, m._fts5EofMethod, m._fts5ColumnMethod, m._fts5RowidMethod, m._fts5UpdateMethod, m._fts5BeginMethod, m._fts5SyncMethod, _fts5CommitMethod, m._fts5RollbackMethod, m._fts5FindFunctionMethod, m._fts5RenameMethod, m._fts5SavepointMethod, m._fts5ReleaseMethod, m._fts5RollbackToMethod, m._fts5ShadowName, m._fts5IntegrityMethod, m._fts5SnippetFunction, m._fts5HighlightFunction, m._fts5Bm25Function, m._fts5GetLocaleFunction, m._fts5UnicodeCreate, m._fts5UnicodeDelete, m._fts5UnicodeTokenize, m._fts5AsciiCreate, m._local_sqlite3_free, m._fts5AsciiTokenize, m._local_sqlite3_free, m._fts5TriTokenize, m._fts5PorterCreate, m._fts5PorterDelete, m._fts5PorterTokenize, m._fts5VocabCreateMethod, m._fts5VocabCreateMethod, m._fts5VocabBestIndexMethod, m._fts5VocabDisconnectMethod, m._fts5VocabDisconnectMethod, m._fts5VocabOpenMethod, m._fts5VocabCloseMethod, m._fts5VocabFilterMethod, m._fts5VocabNextMethod, m._fts5VocabEofMethod, m._fts5VocabColumnMethod, m._fts5VocabRowidMethod}}
 	table_init(*m.t0, m.elements[0], int32(m.___table_base), 0, len(m.elements[0]))
 	m.elements[0] = nil
 	memory_init(*m.memory, data[0:14480], uint32(m.___memory_base), 0, len(data[0:14480]))
@@ -55,6 +55,7 @@ type Xenv = interface {
 	Xgo_destroy(v0 int32)
 	Xgo_fts5_create(v0, v1, v2, v3 int32) int32
 	Xgo_fts5_function(v0, v1, v2, v3, v4 int32)
+	Xgo_fts5_token(v0, v1, v2, v3, v4, v5 int32) int32
 	Xgo_fts5_tokenize(v0, v1, v2, v3, v4, v5, v6, v7 int32) int32
 	Xmemory() Memory
 	Xsqlite3_bind_blob(v0, v1, v2, v3, v4 int32) int32
@@ -179,6 +180,9 @@ func (m *Module) _go_fts5_tokenize(v0, v1, v2, v3, v4, v5, v6, v7 int32) int32 {
 }
 func (m *Module) _go_fts5_function(v0, v1, v2, v3, v4 int32) {
 	m._env.Xgo_fts5_function(v0, v1, v2, v3, v4)
+}
+func (m *Module) _go_fts5_token(v0, v1, v2, v3, v4, v5 int32) int32 {
+	return m._env.Xgo_fts5_token(v0, v1, v2, v3, v4, v5)
 }
 func (m *Module) _sqlite3_mprintf(v0, v1 int32) int32 {
 	return m._env.Xsqlite3_mprintf(v0, v1)
@@ -377,8 +381,8 @@ func (m *Module) _sqlite3_result_int(v0, v1 int32) {
 }
 func (m *Module) X__wasm_apply_data_relocs() {
 	var v0 int32
-	store32((*m.memory)[uint32(m.___memory_base+i32(14484)):], uint32(m.___table_base+i32(53)))
-	store32((*m.memory)[uint32(m.___memory_base+i32(14488)):], uint32(m.___table_base+i32(54)))
+	store32((*m.memory)[uint32(m.___memory_base+i32(14484)):], uint32(m.___table_base+i32(54)))
+	store32((*m.memory)[uint32(m.___memory_base+i32(14488)):], uint32(m.___table_base+i32(15)))
 	store32((*m.memory)[uint32(m.___memory_base+i32(14492)):], uint32(m.___table_base+i32(55)))
 	store32((*m.memory)[uint32(m.___memory_base+i32(14500)):], uint32(m.___table_base+i32(56)))
 	store32((*m.memory)[uint32(m.___memory_base+i32(14504)):], uint32(m.___table_base+i32(57)))
@@ -466,7 +470,7 @@ func (m *Module) X__wasm_apply_data_relocs() {
 	store32((*m.memory)[uint32(m.___memory_base+i32(14904)):], uint32(m.___table_base+i32(111)))
 	store32((*m.memory)[uint32(m.___memory_base+i32(14908)):], uint32(m.___table_base+i32(112)))
 	store32((*m.memory)[uint32(m.___memory_base+i32(14912)):], uint32(m.___memory_base+i32(1180)))
-	store32((*m.memory)[uint32(m.___memory_base+i32(14916)):], uint32(m.___table_base+i32(23)))
+	store32((*m.memory)[uint32(m.___memory_base+i32(14916)):], uint32(m.___table_base+i32(24)))
 	store32((*m.memory)[uint32(m.___memory_base+i32(14920)):], uint32(m.___table_base+i32(113)))
 	store32((*m.memory)[uint32(m.___memory_base+i32(14924)):], uint32(m.___table_base+i32(114)))
 	store32((*m.memory)[uint32(m.___memory_base+i32(14932)):], uint32(m.___table_base+i32(115)))
@@ -879,15 +883,21 @@ l5:
 	return v2
 }
 func (m *Module) Xfts5_xCreateTokenizer_v2(v0, v1 int32) int32 {
-	var v2 int32
+	var v2, v3 int32
 	t0 := int32(load32((*m.memory)[uint32(m.___memory_base+i32(15056)):]))
 	v2 = t0
 	t1 := int32(load32((*m.memory)[int64(uint32(v2))+16:]))
-	t2 := (*m.t0)[uint(t1)].(func(int32, int32, int32, int32, int32) int32)(v2, v0, v1, m.___memory_base+i32(14480), m.___table_base+i32(15))
-	v0 = t2
-	if v0 != 0 {
-		m._go_destroy(v1)
+	v3 = t1
+	if v1 == 0 {
+		t2 := (*m.t0)[uint(v3)].(func(int32, int32, int32, int32, int32) int32)(v2, v0, i32(0), i32(0), i32(0))
+		return t2
 	}
+	t3 := (*m.t0)[uint(v3)].(func(int32, int32, int32, int32, int32) int32)(v2, v0, v1, m.___memory_base+i32(14480), m.___table_base+i32(15))
+	v0 = t3
+	if v0 == 0 {
+		return i32(0)
+	}
+	m._go_destroy(v1)
 	return v0
 }
 func (m *Module) _go_destroy_wrapper(v0 int32) {
@@ -900,15 +910,21 @@ func (m *Module) _go_fts5_tokenize_wrapper(v0, v1, v2, v3, v4, v5, v6, v7 int32)
 	return m._go_fts5_tokenize(v0, v1, v2, v3, v4, v5, v6, v7)
 }
 func (m *Module) Xfts5_xCreateFunction(v0, v1 int32) int32 {
-	var v2 int32
+	var v2, v3 int32
 	t0 := int32(load32((*m.memory)[uint32(m.___memory_base+i32(15056)):]))
 	v2 = t0
 	t1 := int32(load32((*m.memory)[int64(uint32(v2))+12:]))
-	t2 := (*m.t0)[uint(t1)].(func(int32, int32, int32, int32, int32) int32)(v2, v0, v1, m.___table_base+i32(16), m.___table_base+i32(15))
-	v0 = t2
-	if v0 != 0 {
-		m._go_destroy(v1)
+	v3 = t1
+	if v1 == 0 {
+		t2 := (*m.t0)[uint(v3)].(func(int32, int32, int32, int32, int32) int32)(v2, v0, i32(0), i32(0), i32(0))
+		return t2
 	}
+	t3 := (*m.t0)[uint(v3)].(func(int32, int32, int32, int32, int32) int32)(v2, v0, v1, m.___table_base+i32(16), m.___table_base+i32(15))
+	v0 = t3
+	if v0 == 0 {
+		return i32(0)
+	}
+	m._go_destroy(v1)
 	return v0
 }
 func (m *Module) _go_fts5_function_wrapper(v0, v1, v2, v3, v4 int32) {
@@ -1933,6 +1949,25 @@ func (m *Module) _fts5ApiColumnLocale(v0, v1, v2, v3 int32) int32 {
 l0:
 	*m.___stack_pointer = v6 + i32(16)
 	return v5
+}
+func (m *Module) Xfts5_xTokenize_v2(v0, v1, v2, v3, v4, v5 int32) int32 {
+	return m._fts5ApiTokenize_v2(v0, v1, v2, v3, v4, v5, m.___table_base+i32(19))
+}
+func (m *Module) _go_fts5_token_wrapper(v0, v1, v2, v3, v4, v5 int32) int32 {
+	return m._go_fts5_token(v0, v1, v2, v3, v4, v5)
+}
+func (m *Module) _fts5ApiTokenize_v2(v0, v1, v2, v3, v4, v5, v6 int32) int32 {
+	var v7 int32
+	t0 := int32(load32((*m.memory)[uint32(v0):]))
+	v7 = t0
+	t1 := int32(load32((*m.memory)[int64(uint32(v7))+12:]))
+	v0 = t1
+	store32((*m.memory)[int64(uint32(v0))+104:], uint32(v4))
+	store32((*m.memory)[int64(uint32(v0))+100:], uint32(v3))
+	t2 := m._sqlite3Fts5Tokenize(v0, i32(8), v1, v2, v5, v6)
+	t3 := int32(load32((*m.memory)[int64(uint32(v7))+12:]))
+	store64((*m.memory)[int64(uint32(t3))+100:], uint64(i64(0)))
+	return t2
 }
 func (m *Module) _fts5CreateMethod(v0, v1, v2, v3, v4, v5 int32) int32 {
 	return m._fts5InitVtab(i32(1), v0, v1, v2, v3, v4, v5)
@@ -6606,7 +6641,7 @@ func (m *Module) _fts5UpdateMethod(v0, v1, v2, v3 int32) int32 {
 												l11:
 													store32((*m.memory)[int64(uint32(v7))+104:], uint32(v3))
 													store32((*m.memory)[int64(uint32(v7))+100:], uint32(v10))
-													t75 := m._sqlite3Fts5Tokenize(v7, i32(4), v1, v6, v4-i32(-64), m.___table_base+i32(19))
+													t75 := m._sqlite3Fts5Tokenize(v7, i32(4), v1, v6, v4-i32(-64), m.___table_base+i32(20))
 													v1 = t75
 													store64((*m.memory)[int64(uint32(v7))+100:], uint64(i64(0)))
 													store32((*m.memory)[int64(uint32(v4))+60:], uint32(v1))
@@ -7727,7 +7762,7 @@ func (m *Module) _sqlite3Fts5StorageDelete(v0 int32, v1 int64, v2, v3 int32) int
 												store32((*m.memory)[int64(uint32(v7))+100:], uint32(t122))
 												store32((*m.memory)[int64(uint32(v6))+40:], uint32(i32(0)))
 												t123 := int32(load32((*m.memory)[int64(uint32(v6))+28:]))
-												t124 := m._sqlite3Fts5Tokenize(v7, i32(4), t123, v5, v6+i32(32), m.___table_base+i32(19))
+												t124 := m._sqlite3Fts5Tokenize(v7, i32(4), t123, v5, v6+i32(32), m.___table_base+i32(20))
 												v5 = t124
 												store64((*m.memory)[int64(uint32(v7))+100:], uint64(i64(0)))
 												t125 := int32(load32((*m.memory)[int64(uint32(v0))+24:]))
@@ -9688,7 +9723,7 @@ func (m *Module) _fts5IndexMergeLevel(v0, v1, v2, v3 int32) {
 				t68 := int32((*m.memory)[int64(uint32(v2))+100])
 				t69 := int32(load32((*m.memory)[int64(uint32(v2))+96:]))
 				m._sqlite3Fts5BufferAppendVarint(v7, v5, int64(t68+t69<<1))
-				m._fts5ChunkIterate(v0, v2, v4+i32(24), m.___table_base+i32(20))
+				m._fts5ChunkIterate(v0, v2, v4+i32(24), m.___table_base+i32(21))
 			}
 		l4:
 			m._fts5MultiIterNext(v0, v11, i32(0), i64(0))
@@ -10386,7 +10421,7 @@ func (m *Module) _sqlite3Fts5StorageIntegrity(v0, v1 int32) int32 {
 									store32((*m.memory)[int64(uint32(v6))+100:], uint32(t34))
 									t35 := int32(load32((*m.memory)[int64(uint32(v2))+112:]))
 									t36 := int32(load32((*m.memory)[int64(uint32(v2))+96:]))
-									t37 := m._sqlite3Fts5Tokenize(v6, i32(4), t35, t36, v2+i32(32), m.___table_base+i32(21))
+									t37 := m._sqlite3Fts5Tokenize(v6, i32(4), t35, t36, v2+i32(32), m.___table_base+i32(22))
 									v3 = t37
 									store64((*m.memory)[int64(uint32(v6))+100:], uint64(i64(0)))
 									if v3 != 0 {
@@ -11630,7 +11665,7 @@ func (m *Module) _sqlite3Fts5StorageIndexInsert(v0, v1 int32, v2 int64) int32 {
 						store32((*m.memory)[int64(uint32(v6))+100:], uint32(t36))
 						t37 := int32(load32((*m.memory)[int64(uint32(v3))+8:]))
 						t38 := int32(load32((*m.memory)[int64(uint32(v3))+12:]))
-						t39 := m._sqlite3Fts5Tokenize(v6, i32(4), t37, t38, v3+i32(32), m.___table_base+i32(19))
+						t39 := m._sqlite3Fts5Tokenize(v6, i32(4), t37, t38, v3+i32(32), m.___table_base+i32(20))
 						v4 = t39
 						store64((*m.memory)[int64(uint32(v6))+100:], uint64(i64(0)))
 						store32((*m.memory)[int64(uint32(v3))+44:], uint32(v4))
@@ -11730,7 +11765,7 @@ func (m *Module) _fts5FindFunctionMethod(v0, v1, v2, v3, v4 int32) int32 {
 	if v0 == 0 {
 		return i32(0)
 	}
-	store32((*m.memory)[uint32(v3):], uint32(m.___table_base+i32(22)))
+	store32((*m.memory)[uint32(v3):], uint32(m.___table_base+i32(23)))
 	store32((*m.memory)[uint32(v4):], uint32(v0))
 	return i32(1)
 }
@@ -12307,7 +12342,7 @@ func (m *Module) _sqlite3Fts5LoadTokenizer(v0 int32) int32 {
 			var p18 int32
 			{
 				t20 := int32(load32((*m.memory)[int64(uint32(v1))+12:]))
-				if t20 != m.___table_base+i32(23) {
+				if t20 != m.___table_base+i32(24) {
 					p18 = i32(0)
 					goto l3
 				}
@@ -13801,7 +13836,7 @@ func (m *Module) _sqlite3Fts5ParseTerm(v0, v1, v2, v3 int32) int32 {
 			p7 = i32(3)
 		}
 		t9 := m._strlen(v5)
-		t10 := m._sqlite3Fts5Tokenize(t8, p7, v5, t9, v4, m.___table_base+i32(24))
+		t10 := m._sqlite3Fts5Tokenize(t8, p7, v5, t9, v4, m.___table_base+i32(25))
 		v2 = t10
 	}
 	m._sqlite3_free(v5)
@@ -14000,7 +14035,7 @@ func (m *Module) _fts5ParseSetColset(v0, v1, v2, v3 int32) {
 }
 func (m *Module) _fts5ExprAssignXNext(v0 int32) {
 	var v1, v2 int32
-	v1 = m.___table_base + i32(25)
+	v1 = m.___table_base + i32(26)
 	{
 		t0 := int32(load32((*m.memory)[uint32(v0):]))
 		v2 = t0
@@ -14015,36 +14050,36 @@ func (m *Module) _fts5ExprAssignXNext(v0 int32) {
 			v1 = t1
 			t2 := int32(load32((*m.memory)[int64(uint32(v1))+8:]))
 			if t2 != i32(1) {
-				v1 = m.___table_base + i32(26)
+				v1 = m.___table_base + i32(27)
 				goto l0
 			}
 			t3 := int32(load32((*m.memory)[int64(uint32(v1))+12:]))
 			v1 = t3
 			t4 := int32(load32((*m.memory)[int64(uint32(v1))+16:]))
 			if t4 != i32(1) {
-				v1 = m.___table_base + i32(26)
+				v1 = m.___table_base + i32(27)
 				goto l0
 			}
 			t5 := int32(load32((*m.memory)[int64(uint32(v1))+40:]))
 			if t5 != 0 {
-				v1 = m.___table_base + i32(26)
+				v1 = m.___table_base + i32(27)
 				goto l0
 			}
 			t6 := int32((*m.memory)[int64(uint32(v1))+21])
 			if t6 != 0 {
-				v1 = m.___table_base + i32(26)
+				v1 = m.___table_base + i32(27)
 				goto l0
 			}
 			store32((*m.memory)[uint32(v0):], uint32(i32(4)))
-			v1 = m.___table_base + i32(27)
+			v1 = m.___table_base + i32(28)
 			goto l0
 		case 1:
-			v1 = m.___table_base + i32(28)
+			v1 = m.___table_base + i32(29)
 			goto l0
 		}
 	}
 l3:
-	v1 = m.___table_base + i32(29)
+	v1 = m.___table_base + i32(30)
 l0:
 	store32((*m.memory)[int64(uint32(v0))+16:], uint32(v1))
 }
@@ -18512,17 +18547,17 @@ func (m *Module) _sqlite3Fts5IndexQuery(v0, v1, v2, v3, v4, v5 int32) int32 {
 				{
 					t106 := int32(load32((*m.memory)[int64(uint32(v6))+68:]))
 					if t106 == i32(1) {
-						v12 = m.___table_base + i32(31)
+						v12 = m.___table_base + i32(32)
 						v28 = i64(384)
-						t107 := m.___table_base + i32(30)
+						t107 := m.___table_base + i32(31)
 						p104 = t107
 						goto l34
 					}
 					store32((*m.memory)[int64(uint32(v7))+72:], uint32(i32(120)))
 					store32((*m.memory)[int64(uint32(v7))+64:], uint32(i32(15)))
-					v12 = m.___table_base + i32(33)
+					v12 = m.___table_base + i32(34)
 					v28 = i64(1440)
-					p104 = m.___table_base + i32(32)
+					p104 = m.___table_base + i32(33)
 				}
 			l34:
 				store32((*m.memory)[int64(uint32(t105))+52:], uint32(p104))
@@ -18540,10 +18575,10 @@ func (m *Module) _sqlite3Fts5IndexQuery(v0, v1, v2, v3, v4, v5 int32) int32 {
 					}
 					if v9 != 0 {
 						(*m.memory)[uint32(v1)] = byte(i32(48))
-						m._fts5VisitEntries(v0, v4, v1, v16, i32(0), m.___table_base+i32(34), v7+i32(48))
+						m._fts5VisitEntries(v0, v4, v1, v16, i32(0), m.___table_base+i32(35), v7+i32(48))
 					}
 					(*m.memory)[uint32(v1)] = byte(v9 + i32(48))
-					m._fts5VisitEntries(v0, v4, v1, v16, i32(1), m.___table_base+i32(34), v7+i32(48))
+					m._fts5VisitEntries(v0, v4, v1, v16, i32(1), m.___table_base+i32(35), v7+i32(48))
 					v4 = v7 + i32(76)
 					v12 = i32(0)
 				l36:
@@ -18725,7 +18760,7 @@ l0:
 		t1 := v1
 		v0 = int32(v2)
 		store32((*m.memory)[int64(uint32(t1))+52:], uint32(v0))
-		store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(35)))
+		store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(36)))
 		store32((*m.memory)[int64(uint32(v1))+72:], uint32(v1+v0*i32(104)+i32(80)))
 	}
 	return v1
@@ -18733,16 +18768,16 @@ l0:
 func (m *Module) _fts5SegIterSetNext(v0, v1 int32) {
 	t0 := int32((*m.memory)[int64(uint32(v1))+4])
 	if t0&i32(2) != 0 {
-		store32((*m.memory)[int64(uint32(v1))+36:], uint32(m.___table_base+i32(36)))
+		store32((*m.memory)[int64(uint32(v1))+36:], uint32(m.___table_base+i32(37)))
 		return
 	}
 	t1 := int32(load32((*m.memory)[uint32(v0):]))
 	t2 := int32(load32((*m.memory)[int64(uint32(t1))+68:]))
 	if t2 == i32(1) {
-		store32((*m.memory)[int64(uint32(v1))+36:], uint32(m.___table_base+i32(37)))
+		store32((*m.memory)[int64(uint32(v1))+36:], uint32(m.___table_base+i32(38)))
 		return
 	}
-	store32((*m.memory)[int64(uint32(v1))+36:], uint32(m.___table_base+i32(38)))
+	store32((*m.memory)[int64(uint32(v1))+36:], uint32(m.___table_base+i32(39)))
 }
 func (m *Module) _fts5SegIterLoadTerm(v0, v1, v2 int32) {
 	var v3, v4, v5, v6 int32
@@ -19333,32 +19368,32 @@ func (m *Module) _fts5IterSetOutputCb(v0, v1 int32) {
 		t3 := int32(load32((*m.memory)[int64(uint32(v2))+68:]))
 		v3 = t3
 		if v3 == i32(1) {
-			store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(39)))
+			store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(40)))
 			return
 		}
 		t4 := int32(load32((*m.memory)[int64(uint32(v1))+44:]))
 		v4 = t4
 		if v4 == 0 {
-			store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(40)))
+			store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(41)))
 			return
 		}
 		t5 := int32(load32((*m.memory)[uint32(v4):]))
 		if t5 == 0 {
-			store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(41)))
+			store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(42)))
 			return
 		}
 		if v3 == 0 {
-			store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(42)))
+			store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(43)))
 			return
 		}
 		t6 := int32(load32((*m.memory)[int64(uint32(v2))+16:]))
 		v2 = t6
 		if v2 <= i32(100) {
-			store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(43)))
+			store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(44)))
 			_ = m._sqlite3Fts5BufferSize(v0, v1+i32(32), v2)
 			return
 		}
-		store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(44)))
+		store32((*m.memory)[int64(uint32(v1))+48:], uint32(m.___table_base+i32(45)))
 	}
 }
 func (m *Module) _fts5MultiIterFinishSetup(v0, v1 int32) {
@@ -23540,7 +23575,7 @@ func (m *Module) _fts5SegiterPoslist(v0, v1, v2, v3 int32) {
 		t8 := int32(load32((*m.memory)[uint32(v3):]))
 		store64((*m.memory)[uint32(t8+v5+v6):], uint64(i64(0)))
 		if v2 == 0 {
-			m._fts5ChunkIterate(v0, v1, v3, m.___table_base+i32(45))
+			m._fts5ChunkIterate(v0, v1, v3, m.___table_base+i32(46))
 			goto l0
 		}
 		t9 := int32(load32((*m.memory)[uint32(v0):]))
@@ -23550,13 +23585,13 @@ func (m *Module) _fts5SegiterPoslist(v0, v1, v2, v3 int32) {
 			store32((*m.memory)[uint32(v4):], uint32(v3))
 			t11 := m._fts5IndexColsetTest(v2, i32(0))
 			store32((*m.memory)[int64(uint32(v4))+8:], uint32(t11))
-			m._fts5ChunkIterate(v0, v1, v4, m.___table_base+i32(46))
+			m._fts5ChunkIterate(v0, v1, v4, m.___table_base+i32(47))
 			goto l0
 		}
 		store32((*m.memory)[int64(uint32(v4))+4:], uint32(v2))
 		store32((*m.memory)[uint32(v4):], uint32(v3))
 		store64((*m.memory)[int64(uint32(v4))+8:], uint64(i64(0)))
-		m._fts5ChunkIterate(v0, v1, v4, m.___table_base+i32(47))
+		m._fts5ChunkIterate(v0, v1, v4, m.___table_base+i32(48))
 	}
 l0:
 	*m.___stack_pointer = v4 + i32(16)
@@ -24729,7 +24764,7 @@ func (m *Module) _fts5SnippetFunction(v0, v1, v2, v3, v4 int32) {
 					t37 := int32(load32((*m.memory)[int64(uint32(v5))+36:]))
 					t38 := int32(load32((*m.memory)[int64(uint32(v5))+32:]))
 					t39 := int32(load32((*m.memory)[int64(uint32(v0))+92:]))
-					t40 := (*m.t0)[uint(t39)].(func(int32, int32, int32, int32, int32, int32, int32) int32)(v1, t35, t36, t37, t38, v5+i32(40), m.___table_base+i32(48))
+					t40 := (*m.t0)[uint(t39)].(func(int32, int32, int32, int32, int32, int32, int32) int32)(v1, t35, t36, t37, t38, v5+i32(40), m.___table_base+i32(49))
 					v3 = t40
 					if v3 != 0 {
 						goto l4
@@ -24959,7 +24994,7 @@ func (m *Module) _fts5SnippetFunction(v0, v1, v2, v3, v4 int32) {
 				t89 := int32(load32((*m.memory)[int64(uint32(v5))+36:]))
 				t90 := int32(load32((*m.memory)[int64(uint32(v5))+32:]))
 				t91 := int32(load32((*m.memory)[int64(uint32(v0))+92:]))
-				t92 := (*m.t0)[uint(t91)].(func(int32, int32, int32, int32, int32, int32, int32) int32)(v1, t87, t88, t89, t90, v5+i32(76), m.___table_base+i32(49))
+				t92 := (*m.t0)[uint(t91)].(func(int32, int32, int32, int32, int32, int32, int32) int32)(v1, t87, t88, t89, t90, v5+i32(76), m.___table_base+i32(50))
 				store32((*m.memory)[int64(uint32(v5))+72:], uint32(t92))
 			}
 		l14:
@@ -25536,7 +25571,7 @@ func (m *Module) _fts5HighlightFunction(v0, v1, v2, v3, v4 int32) {
 				t18 := int32(load32((*m.memory)[int64(uint32(v5))+4:]))
 				t19 := int32(load32((*m.memory)[uint32(v5):]))
 				t20 := int32(load32((*m.memory)[int64(uint32(v0))+92:]))
-				t21 := (*m.t0)[uint(t20)].(func(int32, int32, int32, int32, int32, int32, int32) int32)(v1, t16, t17, t18, t19, v5+i32(12), m.___table_base+i32(49))
+				t21 := (*m.t0)[uint(t20)].(func(int32, int32, int32, int32, int32, int32, int32) int32)(v1, t16, t17, t18, t19, v5+i32(12), m.___table_base+i32(50))
 				store32((*m.memory)[int64(uint32(v5))+8:], uint32(t21))
 			}
 		l1:
@@ -25631,7 +25666,7 @@ func (m *Module) _fts5Bm25Function(v0, v1, v2, v3, v4 int32) {
 				}
 				store64((*m.memory)[int64(uint32(v6))+8:], uint64(i64(0)))
 				t14 := int32(load32((*m.memory)[int64(uint32(v0))+52:]))
-				t15 := (*m.t0)[uint(t14)].(func(int32, int32, int32, int32) int32)(v1, v8, v6+i32(8), m.___table_base+i32(50))
+				t15 := (*m.t0)[uint(t14)].(func(int32, int32, int32, int32) int32)(v1, v8, v6+i32(8), m.___table_base+i32(51))
 				v5 = t15
 				if v5 == 0 {
 					t16 := int64(load64((*m.memory)[int64(uint32(v6))+24:]))
@@ -27311,7 +27346,7 @@ func (m *Module) _fts5PorterTokenize(v0, v1, v2, v3, v4, v5, v6, v7 int32) int32
 	store32((*m.memory)[int64(uint32(v8))+12:], uint32(v0+i32(20)))
 	t1 := int32(load32((*m.memory)[int64(uint32(v0))+16:]))
 	t2 := int32(load32((*m.memory)[int64(uint32(v0))+12:]))
-	t3 := (*m.t0)[uint(t2)].(func(int32, int32, int32, int32, int32, int32, int32, int32) int32)(t1, v8+i32(4), v2, v3, v4, v5, v6, m.___table_base+i32(51))
+	t3 := (*m.t0)[uint(t2)].(func(int32, int32, int32, int32, int32, int32, int32, int32) int32)(t1, v8+i32(4), v2, v3, v4, v5, v6, m.___table_base+i32(52))
 	*m.___stack_pointer = v8 + i32(16)
 	return t3
 }
@@ -29892,19 +29927,6 @@ func (m *Module) _fts5ApiUserData(v0 int32) int32 {
 func (m *Module) _fts5ApiTokenize(v0, v1, v2, v3, v4 int32) int32 {
 	return m._fts5ApiTokenize_v2(v0, v1, v2, i32(0), i32(0), v3, v4)
 }
-func (m *Module) _fts5ApiTokenize_v2(v0, v1, v2, v3, v4, v5, v6 int32) int32 {
-	var v7 int32
-	t0 := int32(load32((*m.memory)[uint32(v0):]))
-	v7 = t0
-	t1 := int32(load32((*m.memory)[int64(uint32(v7))+12:]))
-	v0 = t1
-	store32((*m.memory)[int64(uint32(v0))+104:], uint32(v4))
-	store32((*m.memory)[int64(uint32(v0))+100:], uint32(v3))
-	t2 := m._sqlite3Fts5Tokenize(v0, i32(8), v1, v2, v5, v6)
-	t3 := int32(load32((*m.memory)[int64(uint32(v7))+12:]))
-	store64((*m.memory)[int64(uint32(t3))+100:], uint64(i64(0)))
-	return t2
-}
 func (m *Module) _fts5CacheInstArray(v0 int32) int32 {
 	var v1, v2, v3, v4, v5, v6, v7, v8, v9, v10 int32
 	var v11 int64
@@ -30263,12 +30285,12 @@ func (m *Module) _fts5ApiQueryPhrase(v0, v1, v2, v3 int32) int32 {
 					if t45 != 0 {
 						goto l12
 					}
-					v4 = m.___table_base + i32(27)
+					v4 = m.___table_base + i32(28)
 					p42 = i32(4)
 					goto l13
 				}
 			l12:
-				v4 = m.___table_base + i32(26)
+				v4 = m.___table_base + i32(27)
 				p42 = i32(9)
 			l13:
 				v0 = p42
@@ -30521,7 +30543,7 @@ func (m *Module) _fts5CsrPoslist(v0, v1, v2, v3 int32) int32 {
 							v5 = v5 + i32(1)
 							goto l13
 						}
-						t43 := m._sqlite3Fts5Tokenize(v11, i32(4), v9, v15, v6+i32(16), m.___table_base+i32(52))
+						t43 := m._sqlite3Fts5Tokenize(v11, i32(4), v9, v15, v6+i32(16), m.___table_base+i32(53))
 						v4 = t43
 					}
 					store64((*m.memory)[int64(uint32(v11))+100:], uint64(i64(0)))

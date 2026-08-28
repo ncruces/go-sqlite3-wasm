@@ -9,12 +9,9 @@ static void local_sqlite3_free(void* p) { sqlite3_free(p); }
 #include "fts5.c"
 #include "libc.c"
 
-fts5_api* pFts5Api;
+static fts5_api* pFts5Api;
 
-// Callbacks.
-
-typedef void* go_handle;
-void go_destroy(go_handle);
+// Imported functions.
 
 int go_fts5_create(go_handle app, const char** azArg, int nArg,
                    go_handle* pOut);
@@ -25,6 +22,9 @@ int go_fts5_tokenize(go_handle app, void* pCtx, int flags, const char* pText,
 
 void go_fts5_function(go_handle app, Fts5Context* pFts, sqlite3_context* pCtx,
                       int nArg, sqlite3_value** apVal);
+
+int go_fts5_token(go_handle app, int tflags, const char* pToken, int nToken,
+                  int iStart, int iEnd);
 
 // Callback wrappers.
 
@@ -44,17 +44,18 @@ static int go_fts5_tokenize_wrapper(Fts5Tokenizer* pTokenizer, void* pCtx,
                           nLocale, xToken);
 }
 
-static void go_fts5_delete_wrapper(Fts5Tokenizer* pTokenizer) {
-  go_destroy(pTokenizer);
-}
-
 static void go_fts5_function_wrapper(const Fts5ExtensionApi* pApi,
                                      Fts5Context* pFts, sqlite3_context* pCtx,
                                      int nArg, sqlite3_value** apVal) {
   go_fts5_function(pApi->xUserData(pFts), pFts, pCtx, nArg, apVal);
 }
 
-// Public API.
+static int go_fts5_token_wrapper(void* app, int tflags, const char* pToken,
+                                 int nToken, int iStart, int iEnd) {
+  return go_fts5_token(app, tflags, pToken, nToken, iStart, iEnd);
+}
+
+// Exported functions.
 
 int sqlite3_extension_init(sqlite3* db, char**, const sqlite3_api_routines*) {
   int rc = fts5Init(db);
@@ -74,9 +75,12 @@ int fts5_xCreateTokenizer_v2(const char* name, go_handle app) {
   static fts5_tokenizer_v2 tokenizer = {
       .iVersion = 2,
       .xCreate = go_fts5_create_wrapper,
-      .xDelete = go_fts5_delete_wrapper,
       .xTokenize = go_fts5_tokenize_wrapper,
+      .xDelete = (void (*)(Fts5Tokenizer*))go_destroy_wrapper,
   };
+  if (app == NULL) {
+    return pFts5Api->xCreateTokenizer_v2(pFts5Api, name, NULL, NULL, NULL);
+  }
   int rc = pFts5Api->xCreateTokenizer_v2(pFts5Api, name, app, &tokenizer,
                                          go_destroy_wrapper);
   if (rc) go_destroy(app);
@@ -84,6 +88,9 @@ int fts5_xCreateTokenizer_v2(const char* name, go_handle app) {
 }
 
 int fts5_xCreateFunction(const char* name, go_handle app) {
+  if (app == NULL) {
+    return pFts5Api->xCreateFunction(pFts5Api, name, NULL, NULL, NULL);
+  }
   int rc = pFts5Api->xCreateFunction(
       pFts5Api, name, app, go_fts5_function_wrapper, go_destroy_wrapper);
   if (rc) go_destroy(app);
@@ -175,6 +182,12 @@ int fts5_xInstToken(Fts5Context* pCtx, int iIdx, int iToken,
 
 int fts5_xColumnLocale(Fts5Context* pCtx, int iCol, const char** pz, int* pn) {
   return sFts5Api.xColumnLocale(pCtx, iCol, pz, pn);
+}
+
+int fts5_xTokenize_v2(Fts5Context* pCtx, const char* pText, int nText,
+                      const char* pLocale, int nLocale, go_handle app) {
+  return sFts5Api.xTokenize_v2(pCtx, pText, nText, pLocale, nLocale, app,
+                               go_fts5_token_wrapper);
 }
 
 static_assert(offsetof(struct phrase_iter, iter) == 0, "Unexpected offset");

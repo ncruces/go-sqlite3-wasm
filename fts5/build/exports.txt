@@ -20,4 +20,5 @@ fts5_xRowCount
 fts5_xRowid
 fts5_xSetAuxdata
 fts5_xToken
+fts5_xTokenize_v2
 sqlite3_extension_init

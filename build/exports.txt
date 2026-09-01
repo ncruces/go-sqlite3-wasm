@@ -223,5 +223,3 @@ sqlite3_wal_autocheckpoint
 sqlite3_wal_checkpoint
 sqlite3_wal_checkpoint_v2
 sqlite3_wal_hook_go
-sqlite3GetToken
-sqlite3IntFloatCompare

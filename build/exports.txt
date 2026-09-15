@@ -1,7 +1,7 @@
 __stack_pointer
-aligned_alloc
 main_mptest
 main_speedtest1
+memalign
 sqlite3_aggregate_context
 sqlite3_autovacuum_pages_go
 sqlite3_backup_finish

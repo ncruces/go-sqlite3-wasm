@@ -17,10 +17,19 @@
 #include "vtab.c"
 // Libc
 #include "libc.c"
-#include "malloc_sbrk.c"
+#include "malloc_tlsf.c"
+
+static int malloc_good_size_(int size) { return malloc_good_size(size); }
 
 void _initialize() {
   init_allocator();
+
+  static sqlite3_mem_methods mem_methods;
+  sqlite3_config(SQLITE_CONFIG_GETMALLOC, &mem_methods);
+
+  mem_methods.xRoundup = malloc_good_size_;
+  sqlite3_config(SQLITE_CONFIG_MALLOC, &mem_methods);
+
   sqlite3_initialize();
   sqlite3_auto_extension((void (*)(void))sqlite3_decimal_init);
   sqlite3_auto_extension((void (*)(void))sqlite3_ieee_init);

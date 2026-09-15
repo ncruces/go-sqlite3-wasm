@@ -36,7 +36,7 @@ func (m *Module) _strtod_helper(s, endptr int32, bitSize int) float64 {
 		if digits > 0 {
 			s += int32(prefix + digits)
 		}
-		store32((*m.memory)[uint32(endptr):], uint32(s))
+		store32((*m.memory), uint32(endptr), uint32(s))
 	}
 	return val
 }

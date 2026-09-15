@@ -1,4 +1,4 @@
-module github.com/ncruces/go-sqlite3-wasm/v5
+module github.com/ncruces/go-sqlite3-wasm/v6
 
 go 1.26.0
 
@@ -8,6 +8,6 @@ tool (
 )
 
 require (
-	github.com/ncruces/wasm2go v0.4.11 // indirect
-	golang.org/x/tools v0.45.0 // indirect
+	github.com/ncruces/wasm2go v0.4.12 // indirect
+	golang.org/x/tools v0.49.0 // indirect
 )

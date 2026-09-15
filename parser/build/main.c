@@ -1,5 +1,7 @@
 #include <stddef.h>
 
+#define BUMP_NO_FREE
+
 #include "libc.c"
 #include "malloc_bump.c"
 #include "sql3parse_table.c"

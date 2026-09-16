@@ -4968,29 +4968,36 @@ func (m *Module) _malloc(v0 int32) int32 {
 		t0 := m._tlsf_find_free_block(v2)
 		v1 = t0
 		if v1 == 0 {
-			v1 = int32(uint32(v0+i32(65571)) >> 16)
-			t1 := int32(m.memImp.Grow(int64(v1), m.maxMem))
-			v0 = t1
+			var p1 int32
+			if uint32(v0) >= uint32(i32(237)) {
+				v0 = int32(bits.LeadingZeros32(uint32(v2)))
+				p1 = (i32_shr_u(i32(0x7ffffff), v0) + v2) & i32_shr_s(i32(-0x8000000), v0)
+			} else {
+				p1 = v2
+			}
+			v1 = int32(uint32(p1+i32(65555)) >> 16)
+			t2 := int32(m.memImp.Grow(int64(v1), m.maxMem))
+			v0 = t2
 			if v0 == i32(-1) {
 				goto l0
 			}
 			m._tlsf_add_pool(v0<<16, (v0+v1)<<16)
-			t2 := m._tlsf_find_free_block(v2)
-			v1 = t2
+			t3 := m._tlsf_find_free_block(v2)
+			v1 = t3
 			if v1 == 0 {
-				goto l0
+				panic("unreachable")
 			}
 		}
 		m._tlsf_remove_free_block(v1)
-		t3 := int32(load32(*m.memory, uint32(v1)))
-		t4 := v1
-		v0 = t3
-		store32(*m.memory, uint32(t4), uint32(v0&i32(-2)))
+		t4 := int32(load32(*m.memory, uint32(v1)))
+		t5 := v1
+		v0 = t4
+		store32(*m.memory, uint32(t5), uint32(v0&i32(-2)))
 		v0 = v1 + v0&i32(-16)
-		t5 := int32(load32(*m.memory, uint32(v0)))
-		store32(*m.memory, uint32(v0), uint32(t5&i32(-3)))
-		t6 := m._tlsf_block_split(v1, v2)
-		v0 = t6
+		t6 := int32(load32(*m.memory, uint32(v0)))
+		store32(*m.memory, uint32(v0), uint32(t6&i32(-3)))
+		t7 := m._tlsf_block_split(v1, v2)
+		v0 = t7
 		if v0 != 0 {
 			m._tlsf_block_free(v0)
 		}
@@ -46806,27 +46813,22 @@ func (m *Module) _tlsf_find_free_block(v0 int32) int32 {
 	m._tlsf_mapping(v0, i32(0), v1+i32(12), v1+i32(8))
 	{
 		t1 := int32(load32(*m.memory, int64(uint32(v1))+12))
-		v2 = t1
-		t2 := int32(load32(*m.memory, uint32(v2<<2+i32(169316))))
+		v0 = t1
+		t2 := int32(load32(*m.memory, uint32(v0<<2+i32(169316))))
 		t3 := int32(load32(*m.memory, int64(uint32(v1))+8))
-		v0 = t2 & i32_shl(i32(-1), t3)
-		if v0 == 0 {
+		v2 = t2 & i32_shl(i32(-1), t3)
+		if v2 == 0 {
 			t4 := int32(load32(*m.memory, uint32(i32(169312))))
-			v0 = t4 & i32_shl(i32(-1), v2+i32(1))
+			v0 = t4 & i32_shl(i32(-1), v0+i32(1))
 			if v0 == 0 {
 				goto l0
 			}
-			v2 = int32(bits.TrailingZeros32(uint32(v0)))
-			t5 := int32(load32(*m.memory, int64(uint32(v2<<2))+169316))
-			v0 = t5
+			v0 = int32(bits.TrailingZeros32(uint32(v0)))
+			t5 := int32(load32(*m.memory, int64(uint32(v0<<2))+169316))
+			v2 = t5
 		}
-		t7 := v2 << 6
-		p6 := i32(-1)
-		if v0 != 0 {
-			p6 = int32(bits.TrailingZeros32(uint32(v0)))
-		}
-		t8 := int32(load32(*m.memory, uint32(t7+p6<<2+i32(169416))))
-		v3 = t8
+		t6 := int32(load32(*m.memory, uint32(v0<<6+int32(bits.TrailingZeros32(uint32(v2)))<<2+i32(169416))))
+		v3 = t6
 	}
 l0:
 	m.___stack_pointer = v1 + i32(16)
@@ -47203,7 +47205,7 @@ func (m *Module) _fprintf(v0, v1, v2 int32) {
 	m.___stack_pointer = v3 + i32(16)
 }
 func (m *Module) _tlsf_mapping(v0, v1, v2, v3 int32) {
-	var v4, v5, v6 int32
+	var v4, v5 int32
 	if uint32(v0) <= uint32(i32(255)) {
 		store32(*m.memory, uint32(v2), uint32(i32(0)))
 		store32(*m.memory, uint32(v3), uint32(int32(uint32(v0)>>4)))
@@ -47213,20 +47215,18 @@ func (m *Module) _tlsf_mapping(v0, v1, v2, v3 int32) {
 	v4 = int32(bits.LeadingZeros32(uint32(v0)))
 	store32(*m.memory, uint32(t0), uint32(i32(24)-v4))
 	t1 := v3
-	t2 := v0
-	v5 = i32(27) - v4
-	v6 = i32_shr_u(t2, v5) & i32(15)
-	store32(*m.memory, uint32(t1), uint32(v6))
+	v5 = i32_shr_u(v0, i32(27)-v4) & i32(15)
+	store32(*m.memory, uint32(t1), uint32(v5))
 	{
 		if v1 != 0 {
 			return
 		}
-		if int64(uint32(v0))&(i64_shl(i64(-1), int64(uint32(v5)))^i64(-1)) == 0 {
+		if i32_shl(v0, v4)&i32(0x7ffffff) == 0 {
 			return
 		}
-		t3 := v3
-		v0 = v6 + i32(1)
-		store32(*m.memory, uint32(t3), uint32(v0))
+		t2 := v3
+		v0 = v5 + i32(1)
+		store32(*m.memory, uint32(t2), uint32(v0))
 		if v0 != i32(16) {
 			return
 		}

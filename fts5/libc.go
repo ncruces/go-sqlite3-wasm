@@ -10,6 +10,9 @@ import (
 func (m *Module) _log(x float64) float64 { return math.Log(x) }
 
 func (m *Module) _memcmp(s1, s2, n int32) int32 {
+	if s1 == s2 {
+		return 0
+	}
 	e1, e2 := s1+n, s2+n
 	b1 := (*m.memory)[uint32(s1):uint32(e1)]
 	b2 := (*m.memory)[uint32(s2):uint32(e2)]

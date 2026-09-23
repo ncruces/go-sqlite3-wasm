@@ -5,10 +5,13 @@ package spellfix
 import "bytes"
 
 func (m *Module) _strcmp(s1, s2 int32) int32 {
+	if s1 == s2 {
+		return 0
+	}
 	b1 := (*m.memory)[uint32(s1):]
 	b2 := (*m.memory)[uint32(s2):]
 	sz := min(len(b1), len(b2))
-	if i := bytes.IndexByte(b1[:sz], 0); i >= 0 {
+	if i := bytes.IndexByte(b2[:sz], 0); i >= 0 {
 		sz = i + 1
 	}
 	return int32(bytes.Compare(b1[:sz], b2[:sz]))
@@ -18,10 +21,13 @@ func (m *Module) _strlen(s int32) int32 {
 }
 
 func (m *Module) _strncmp(s1, s2, n int32) int32 {
+	if s1 == s2 {
+		return 0
+	}
 	b1 := (*m.memory)[uint32(s1):]
 	b2 := (*m.memory)[uint32(s2):]
 	sz := int(min(uint(len(b1)), uint(len(b2)), uint(uint32(n))))
-	if i := bytes.IndexByte(b1[:sz], 0); i >= 0 {
+	if i := bytes.IndexByte(b2[:sz], 0); i >= 0 {
 		sz = i + 1
 	}
 	return int32(bytes.Compare(b1[:sz], b2[:sz]))

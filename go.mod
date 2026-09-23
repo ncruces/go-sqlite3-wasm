@@ -8,6 +8,6 @@ tool (
 )
 
 require (
-	github.com/ncruces/wasm2go v0.4.13 // indirect
+	github.com/ncruces/wasm2go v0.4.15 // indirect
 	golang.org/x/tools v0.50.0 // indirect
 )

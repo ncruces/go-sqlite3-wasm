@@ -9,9 +9,9 @@ WASI_SDK="$ROOT/tools/wasi-sdk/bin/"
 
 trap 'rm -f sql3parse_table*' EXIT
 
-curl -#OL "https://github.com/ncruces/sqlite-createtable-parser/raw/master/LICENSE"
-curl -#OL "https://github.com/ncruces/sqlite-createtable-parser/raw/master/sql3parse_table.c"
-curl -#OL "https://github.com/ncruces/sqlite-createtable-parser/raw/master/sql3parse_table.h"
+curl -#fOL "https://github.com/ncruces/sqlite-createtable-parser/raw/master/LICENSE"
+curl -#fOL "https://github.com/ncruces/sqlite-createtable-parser/raw/master/sql3parse_table.c"
+curl -#fOL "https://github.com/ncruces/sqlite-createtable-parser/raw/master/sql3parse_table.h"
 
 mv LICENSE ../LICENSE
 

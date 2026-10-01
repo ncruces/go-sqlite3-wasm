@@ -11,7 +11,7 @@ trap 'rm -f spellfix*' EXIT
 
 GITHUB_TAG="https://github.com/sqlite/sqlite/raw/version-3.53.4"
 
-curl -#OL "$GITHUB_TAG/ext/misc/spellfix.c"
+curl -#fOL "$GITHUB_TAG/ext/misc/spellfix.c"
 
 go tool libc-gen -c-out "$ROOT/libc"
 

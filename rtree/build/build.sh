@@ -11,10 +11,10 @@ trap 'rm -f *rtree* geopoly*' EXIT
 
 GITHUB_TAG="https://github.com/sqlite/sqlite/raw/version-3.53.4"
 
-curl -#OL "$GITHUB_TAG/ext/rtree/rtree.h"
-curl -#OL "$GITHUB_TAG/ext/rtree/rtree.c"
-curl -#OL "$GITHUB_TAG/ext/rtree/geopoly.c"
-curl -#OL "$GITHUB_TAG/ext/rtree/sqlite3rtree.h"
+curl -#fOL "$GITHUB_TAG/ext/rtree/rtree.h"
+curl -#fOL "$GITHUB_TAG/ext/rtree/rtree.c"
+curl -#fOL "$GITHUB_TAG/ext/rtree/geopoly.c"
+curl -#fOL "$GITHUB_TAG/ext/rtree/sqlite3rtree.h"
 
 go tool libc-gen -c-out "$ROOT/libc"
 

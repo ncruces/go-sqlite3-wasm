@@ -9,17 +9,17 @@ WASI_SDK="$ROOT/tools/wasi-sdk/bin/"
 
 trap 'rm -f vec1*' EXIT
 curl -#fL "https://sqlite.org/vec1/raw/cc3b6a5aca?at=vec1.c" > vec1.c
-go tool libc-gen -c-out "$ROOT/libc"
+~/go/bin/libc-gen -c-out "$ROOT/libc"
 
 "$WASI_SDK/clang" --target=wasm32 -ffreestanding -nostdlib -std=c23 -g0 -Oz \
-	-o vec1 vec1.c -I"$ROOT/libc" -I"$ROOT/build" \
+	-o vec1 main.c -I"$ROOT/libc" -I"$ROOT/build" -Isimde/simde/ \
 	-DSQLITE_OMIT_LOAD_EXTENSION \
 	-mexec-model=reactor -shared -fPIC \
 	-mmutable-globals -mmultivalue \
 	-mnontrapping-fptoint -msign-ext \
 	-mreference-types -mbulk-memory \
 	-mextended-const -mtail-call \
-	-mwide-arithmetic \
+	-mwide-arithmetic -msimd128 \
 	-Wl,--no-entry \
 	-Wl,--stack-first \
 	-Wl,--import-undefined \
@@ -32,8 +32,8 @@ go tool libc-gen -c-out "$ROOT/libc"
 	--enable-nontrapping-float-to-int --enable-sign-ext \
 	--enable-reference-types --enable-bulk-memory \
 	--enable-extended-const --enable-tail-call \
-	--enable-wide-arithmetic \
+	--enable-wide-arithmetic --enable-simd \
 	--strip --strip-producers
 
-go tool libc-gen -wasm vec1.wasm -o ../libc.go
-go tool wasm2go -embed -unsafe -provided ../libc.go -o ../vec1.go vec1.wasm
+~/go/bin/libc-gen -wasm vec1.wasm -o ../libc.go
+~/go/bin/wasm2go -embed -unsafe -provided ../libc.go -o ../vec1.go vec1.wasm

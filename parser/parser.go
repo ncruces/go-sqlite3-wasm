@@ -2334,7 +2334,7 @@ func memory_init[T1, T2 int | uint32 | uint64](mem []byte, data string, dest T1,
 	z := uint64(src)
 	y := x + uint64(n)
 	w := z + uint64(n)
-	copy(mem[x:y], data[z:w])
+	copy(mem[x:y:len(mem)], data[z:w])
 }
 
 func memory_copy[T uint32 | uint64](mem []byte, dest, src, n T) {
@@ -2342,7 +2342,7 @@ func memory_copy[T uint32 | uint64](mem []byte, dest, src, n T) {
 	z := uint64(src)
 	y := x + uint64(n)
 	w := z + uint64(n)
-	copy(mem[x:y], mem[z:w])
+	copy(mem[x:y:len(mem)], mem[z:w:len(mem)])
 }
 
 const data0 = "temporary\x00primary\x00initially\x00key\x00without\x00abort\x00not\x00constraint\x00autoincrement\x00default\x00set\x00restrict\x00conflict\x00always\x00exists\x00references\x00as\x00alter\x00drop\x00temp\x00to\x00no\x00action\x00column\x00foreign\x00null\x00fail\x00virtual\x00check\x00rollback\x00match\x00if\x00unique\x00delete\x00collate\x00immediate\x00create\x00update\x00ignore\x00rename\x00table\x00deferrable\x00cascade\x00replace\x00rowid\x00generated\x00deferred\x00stored\x00add\x00desc\x00asc\x00\x00\x00\x00\x90\x00\x01\x00\x04\x00\x00\x00\x15\x16\x00\x18\x19\x1a\x00\x00\x16\x00\x18\x19\x1a\x00\x00\x00\x00\x00\x02\x00\x90\x01\x01"

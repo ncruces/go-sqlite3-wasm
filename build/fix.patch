@@ -1,0 +1,38 @@
+# https://sqlite.org/src/info/6ebd1e69486cabc6
+--- sqlite3.c.orig
++++ sqlite3.c
+@@ -21121,6 +21121,7 @@
+   int nErr;            /* Number of errors seen */
+   int nTab;            /* Number of previously allocated VDBE cursors */
+   int nMem;            /* Number of memory cells used so far */
++  int szOpAlloc;       /* Bytes of memory space allocated for Vdbe.aOp[] */
+   int iSelfTab;        /* Table associated with an index on expr, or negative
+                        ** of the base register during check-constraint eval */
+   int nNestSel;        /* Number of nested SELECT statements and/or VIEWs */
+@@ -87488,6 +87489,7 @@
+   assert( pParse->aLabel==0 );
+   assert( pParse->nLabel==0 );
+   assert( p->nOpAlloc==0 );
++  assert( pParse->szOpAlloc==0 );
+   sqlite3VdbeAddOp2(p, OP_Init, 0, 1);
+   return p;
+ }
+@@ -87638,7 +87640,8 @@
+   assert( nNew>=(v->nOpAlloc+nOp) );
+   pNew = sqlite3DbRealloc(p->db, v->aOp, nNew*sizeof(Op));
+   if( pNew ){
+-    v->nOpAlloc = sqlite3DbMallocSize(p->db, pNew)/sizeof(Op);
++    p->szOpAlloc = sqlite3DbMallocSize(p->db, pNew);
++    v->nOpAlloc = p->szOpAlloc/sizeof(Op);
+     v->aOp = pNew;
+   }
+   return (pNew ? SQLITE_OK : SQLITE_NOMEM_BKPT);
+@@ -90145,7 +90148,7 @@
+   n = ROUND8P(sizeof(Op)*p->nOp);             /* Bytes of opcode memory used */
+   x.pSpace = &((u8*)p->aOp)[n];               /* Unused opcode memory */
+   assert( EIGHT_BYTE_ALIGNMENT(x.pSpace) );
+-  x.nFree = ROUNDDOWN8((p->nOpAlloc-p->nOp)*sizeof(Op)); /* Bytes unused mem */
++  x.nFree = ROUNDDOWN8(pParse->szOpAlloc - n);  /* Bytes unused memory */
+   assert( x.nFree>=0 );
+   assert( EIGHT_BYTE_ALIGNMENT(&x.pSpace[x.nFree]) );
+ 

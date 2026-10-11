@@ -9,7 +9,7 @@ WASI_SDK="$ROOT/tools/wasi-sdk/bin/"
 
 trap 'rm -f *rtree* geopoly*' EXIT
 
-GITHUB_TAG="https://github.com/sqlite/sqlite/raw/version-3.53.4"
+GITHUB_TAG="https://github.com/sqlite/sqlite/raw/version-3.54.0"
 
 curl -#fOL "$GITHUB_TAG/ext/rtree/rtree.h"
 curl -#fOL "$GITHUB_TAG/ext/rtree/rtree.c"

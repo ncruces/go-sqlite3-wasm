@@ -26,7 +26,7 @@ func (m *Module) _strncmp(s1, s2, n int32) int32 {
 	}
 	b1 := (*m.memory)[uint32(s1):]
 	b2 := (*m.memory)[uint32(s2):]
-	sz := int(min(uint(len(b1)), uint(len(b2)), uint(uint32(n))))
+	sz := int(min(uint64(len(b1)), uint64(len(b2)), uint64(uint32(n))))
 	if i := bytes.IndexByte(b2[:sz], 0); i >= 0 {
 		sz = i + 1
 	}

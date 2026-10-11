@@ -8,7 +8,13 @@ BINARYEN="$ROOT/tools/binaryen/bin/"
 WASI_SDK="$ROOT/tools/wasi-sdk/bin/"
 
 trap 'rm -f vec1*' EXIT
-curl -#fL "https://sqlite.org/vec1/raw/cc3b6a5aca?at=vec1.c" > vec1.c
+
+GITHUB_TAG="https://github.com/sqlite/sqlite/raw/version-3.54.0"
+
+curl -#fOL "$GITHUB_TAG/ext/vec1/vec1.c"
+
+cat *.patch | patch -p0 --no-backup-if-mismatch
+
 go tool libc-gen -c-out "$ROOT/libc"
 
 "$WASI_SDK/clang" --target=wasm32 -ffreestanding -nostdlib -std=c23 -g0 -Oz \

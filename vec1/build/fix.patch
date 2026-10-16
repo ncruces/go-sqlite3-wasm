@@ -1,6 +1,6 @@
 --- vec1.c.orig
 +++ vec1.c
-@@ -2183,7 +2183,7 @@
+@@ -2198,7 +2198,7 @@
    float *aOut,                    /* Array to populate with centroids */
    u32 *aHist                      /* Array to populate with histogram */
  ){
